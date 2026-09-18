@@ -8,7 +8,7 @@
 
 ## Tabelas principais (hubs)
 
-- **EstruturaAvaliacao** (PK: `Id, Id`) — 21 FK(s) de negócio
+- **EstruturaAvaliacao** (PK: `Id, Id`) — 22 FK(s) de negócio
 - **Avaliacao** (PK: `Id, Id, Id`) — 18 FK(s) de negócio
 - **EstruturaAvaliacaoConfiguracao** (PK: `Id, Id`) — 12 FK(s) de negócio
 - **AlunoNota** (PK: `Id, Id, Id`) — 9 FK(s) de negócio
@@ -53,17 +53,20 @@
 - **BaseDeAvaliacoes** (PK: `Id`, 0 FK(s) negócio)
 - **BaseDeAvaliacoesAluno** (PK: `Id`, 2 FK(s) negócio)
 - **BaseDeNotas** (PK: `Id, Id`, 0 FK(s) negócio)
-- **EstruturaAvaliacao** (PK: `Id, Id`, 21 FK(s) negócio)
-- **EstruturaAvaliacaoAprovacao** (PK: `Id`, 3 FK(s) negócio)
+- **EstruturaAvaliacao** (PK: `Id, Id`, 22 FK(s) negócio)
+- **EstruturaAvaliacaoAprovacao** (PK: `Id`, 6 FK(s) negócio)
+- **EstruturaAvaliacaoAprovacaoEscola** (PK: `Id`, 4 FK(s) negócio)
 - **EstruturaAvaliacaoConfiguracao** (PK: `Id, Id`, 12 FK(s) negócio)
 - **EstruturaAvaliacaoConfiguracaoEscopo** (PK: `Id`, 2 FK(s) negócio)
-- **EstruturaAvaliacaoEscopo** (PK: `Id`, 0 FK(s) negócio)
+- **EstruturaAvaliacaoEscopo** (PK: `Id`, 1 FK(s) negócio)
 - **EstruturaAvaliacaoImportacao** (PK: `Id`, 8 FK(s) negócio)
 - **EstruturaAvaliacaoImportacaoAprovacao** (PK: `Id`, 3 FK(s) negócio)
 - **EstruturaAvaliacaoImportacaoEstrutura** (PK: `Id`, 8 FK(s) negócio)
 - **EstruturaAvaliacaoImportacaoSerie** (PK: `Id`, 3 FK(s) negócio)
 - **EstruturaAvaliacaoLiberacaoBoletim** (PK: `Id`, 3 FK(s) negócio)
 - **EstruturaAvaliacaoLiberacaoSituacao** (PK: `Id`, 3 FK(s) negócio)
+- **EstruturaAvaliacaoNomenclaturaCiclo** (PK: `Id`, 4 FK(s) negócio)
+- **EstruturaAvaliacaoNomenclaturaEscopo** (PK: `Id`, 4 FK(s) negócio)
 - **EstruturaAvaliacaoOrdemDisciplina** (PK: `Id`, 4 FK(s) negócio)
 - **EstruturaAvaliacaoSubstituicao** (PK: `Id`, 2 FK(s) negócio)
 - **ExtracaoBaseDeNotas** (PK: `Id`, 1 FK(s) negócio)

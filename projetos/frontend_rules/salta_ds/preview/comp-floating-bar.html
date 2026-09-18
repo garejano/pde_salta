@@ -1,0 +1,125 @@
+<!-- @dsCard group="Components" name="Floating Bar" subtitle="Barra de ação flutuante — Only Buttons, Couple, Text+Expanded" viewport="900x400" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+<style>
+  * { box-sizing:border-box; }
+  body { margin:0; padding:24px; background:#F8F9FB; font-family:'Nunito',sans-serif; display:flex; flex-direction:column; gap:28px; }
+  .section-label { font-family:'Archivo'; font-weight:700; font-size:11px; color:#65686E; text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px; }
+
+  /* ── Bar shell ── */
+  .float-bar {
+    width:100%; background:#fff;
+    border-radius:8px 8px 0 0;
+    box-shadow:0px -12px 12px 0px rgba(0,23,31,0.15);
+    display:flex; align-items:center;
+    padding:16px 16px;
+    min-height:72px;
+  }
+
+  /* ── Buttons side ── */
+  .bar-buttons { display:flex; gap:16px; align-items:center; margin-left:auto; padding:0 8px; }
+
+  .btn-outline {
+    display:inline-flex; align-items:center; gap:6px;
+    padding:0 16px; height:40px; border-radius:8px;
+    border:1px solid #242CC2; background:#fff; color:#242CC2;
+    font-family:'Archivo'; font-weight:700; font-size:14px; cursor:pointer;
+    transition:background 120ms;
+  }
+  .btn-outline:hover { background:#ECEDFF; }
+  .btn-fill {
+    display:inline-flex; align-items:center; gap:6px;
+    padding:0 16px; height:40px; border-radius:8px;
+    border:0; background:#242CC2; color:#fff;
+    font-family:'Archivo'; font-weight:700; font-size:14px; cursor:pointer;
+    transition:background 120ms;
+  }
+  .btn-fill:hover { background:#191F88; }
+  .btn-icon {
+    width:40px; height:40px; border-radius:8px; border:0;
+    background:transparent; color:#65686E; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:background 120ms;
+  }
+  .btn-icon:hover { background:#F8F9FB; }
+  .btn-icon .material-symbols-outlined { font-size:20px; }
+
+  /* ── Content side ── */
+  .bar-content { display:flex; align-items:center; gap:8px; flex:1; min-width:0; }
+  .bar-texts { display:flex; flex-direction:column; gap:2px; min-width:0; }
+  .bar-caption { font-family:'Nunito'; font-weight:700; font-size:12px; color:#65686E; }
+  .bar-title   { font-family:'Nunito'; font-weight:400; font-size:16px; color:#65686E; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+  /* ── Expanded content ── */
+  .bar-expanded { flex-direction:column; align-items:flex-start; min-height:140px; }
+  .bar-expanded .bar-content { width:100%; }
+  .bar-item-list { display:flex; flex-direction:column; gap:4px; margin-top:8px; width:100%; }
+  .bar-item {
+    display:flex; align-items:center; gap:12px; padding:8px 12px;
+    border-radius:6px; border:1px solid #EBEDF1; background:#F8F9FB;
+    font-family:'Nunito'; font-size:14px; color:#3D3F42;
+  }
+  .bar-item .material-symbols-outlined { font-size:18px; color:#65686E; }
+  .bar-expanded .bar-buttons { margin-left:auto; padding:0; }
+</style>
+</head>
+<body>
+
+<!-- Variante 1: Only buttons -->
+<div>
+  <div class="section-label">Only Buttons</div>
+  <div class="float-bar">
+    <div class="bar-buttons">
+      <button class="btn-outline"><span class="material-symbols-outlined" style="font-size:18px">close</span>Cancelar</button>
+      <button class="btn-fill"><span class="material-symbols-outlined" style="font-size:18px">check</span>Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Variante 2: Couple (text + buttons) -->
+<div>
+  <div class="section-label">Couple — Texto + Botões</div>
+  <div class="float-bar">
+    <div class="bar-content">
+      <button class="btn-icon" title="Voltar">
+        <span class="material-symbols-outlined" style="transform:scaleX(-1)">send</span>
+      </button>
+      <div class="bar-texts">
+        <span class="bar-caption">Eletivas selecionadas (2/2)</span>
+        <span class="bar-title">Produzindo o argumento: como fazer análise de discurso, produção de texto e debates (+1)</span>
+      </div>
+    </div>
+    <div class="bar-buttons">
+      <button class="btn-outline">Cancelar</button>
+      <button class="btn-fill">Salvar seleção</button>
+    </div>
+  </div>
+</div>
+
+<!-- Variante 3: Text expanded/icon -->
+<div>
+  <div class="section-label">Text / Expanded</div>
+  <div class="float-bar bar-expanded">
+    <div style="display:flex;align-items:center;width:100%;">
+      <div class="bar-content">
+        <button class="btn-icon" title="Recolher">
+          <span class="material-symbols-outlined">expand_more</span>
+        </button>
+        <span class="bar-caption" style="font-size:14px;">3 alunos selecionados</span>
+      </div>
+      <div class="bar-buttons">
+        <button class="btn-outline">Cancelar</button>
+        <button class="btn-fill">Enturmar</button>
+      </div>
+    </div>
+    <div class="bar-item-list">
+      <div class="bar-item"><span class="material-symbols-outlined">person</span>Ana Clara Rodrigues · 1º Ano A</div>
+      <div class="bar-item"><span class="material-symbols-outlined">person</span>Bruno Ferreira Santos · 2º Ano B</div>
+      <div class="bar-item"><span class="material-symbols-outlined">person</span>Carolina Maia Fonseca · 3º Ano A</div>
+    </div>
+  </div>
+</div>
+
+</body></html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<!-- @dsCard group="Colors" name="Primary color scale" subtitle="$color-primary · dark1 → light3" viewport="700x140" -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: #fff; }
+  .row { display: flex; gap: 8px; align-items: stretch; }
+  .swatch { flex: 1; min-height: 96px; border-radius: 8px; display: flex; flex-direction: column; justify-content: space-between; padding: 10px 12px; font-family: 'Nunito', sans-serif; }
+  .swatch .name { font-weight: 700; font-family: 'Archivo'; font-size: 11px; line-height: 1.1; }
+  .swatch .hex  { font-family: 'Inconsolata', monospace; font-size: 11px; opacity: .85; }
+  .swatch .token{ font-family: 'Inconsolata', monospace; font-size: 10px; opacity: .7; }
+  .l { color: #0F0F10; }
+  .d { color: #fff; }
+</style></head>
+<body>
+<div class="row">
+  <div class="swatch d" style="background:#191F88"><span><span class="name">Primary dark 1</span><br><span class="token">$color-primary-dark1</span></span><span class="hex">#191F88</span></div>
+  <div class="swatch d" style="background:#242CC2"><span><span class="name">Primary ★</span><br><span class="token">$color-primary</span></span><span class="hex">#242CC2</span></div>
+  <div class="swatch d" style="background:#666BD4"><span><span class="name">Primary light 1</span><br><span class="token">$color-primary-light1</span></span><span class="hex">#666BD4</span></div>
+  <div class="swatch l" style="background:#A7ABE6"><span><span class="name">Primary light 2</span><br><span class="token">$color-primary-light2</span></span><span class="hex">#A7ABE6</span></div>
+  <div class="swatch l" style="background:#ECEDFF"><span><span class="name">Primary light 3</span><br><span class="token">$color-primary-light3</span></span><span class="hex">#ECEDFF</span></div>
+</div>
+</body></html>

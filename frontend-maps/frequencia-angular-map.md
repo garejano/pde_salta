@@ -1,5 +1,5 @@
 # Angular Map — frequencia
-> Gerado em: 2026-05-21  
+> Gerado em: 2026-07-30  
 > Fonte: `C:\projects\frequencia\frontend`
 
 ## Módulos
@@ -89,7 +89,7 @@
 
 ### falta-atraso
 - **FaltaAtrasoComponent** `app-falta-atraso`
-  - Injeta: ChamadaDetailModel, FaltaAtrasoService, IAlunoResponsavelModel, IFaltaAtrasoSummaryModel, TipoFrequencia, ... +1
+  - Injeta: ChamadaDetailModel, FaltaAtrasoService, IAlunoResponsavelModel, IFaltaAtrasoSummaryModel, NotificationService, ... +1
 
 ### grid
 - **GridComponent** `grid-component`
@@ -368,7 +368,7 @@
 - **IExceptionFormErrorMessage** (interface): property: string, error: string
 - **IExceptionImportError** (interface): type: EnumValidationErrorType, messages: IExceptionImportErrorMessage[]
 - **IExceptionImportErrorMessage** (interface): linha: string, propriedade: string, valor: any, descricao: string
-- **IFaltaAtrasoSummaryModel** (interface): hashUsuarioOrigem: string, totalFaltas: number, totalAtrasos: number, anoLetivo: number
+- **IFaltaAtrasoSummaryModel** (interface): hashUsuarioOrigem: string, totalFaltas: number, totalAtrasos: number, totalSaidasAntecipadas: number, anoLetivo: number
 - **IGridCheckedItem** (interface): id: any, checked: boolean
 - **IGridColumnDef** (interface): headerName: string, field: string, width: string, centralized: boolean
 - **IGridRowActions** (interface): width: string, actions: IGridRowActionsItems[]

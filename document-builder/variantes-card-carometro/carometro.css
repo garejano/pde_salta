@@ -1,0 +1,627 @@
+/* =====================================================================
+   Carômetro — variantes de card do aluno
+   HTML puro + CSS puro · Eleva Design System
+   Largura de card alvo: ~241px (3 colunas em A4 portrait)
+   ===================================================================== */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-canvas, #F8F9FB);
+  color: var(--color-neutral-dark3, #0F0F10);
+  font-family: 'Nunito', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Gallery shell ──────────────────────────────────────────────── */
+.gallery {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+}
+
+.gallery__intro {
+  margin-bottom: 40px;
+}
+.gallery__kicker {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-primary, #242CC2);
+  margin: 0 0 8px;
+}
+.gallery__title {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-neutral-dark3, #0F0F10);
+  margin: 0 0 12px;
+}
+.gallery__lede {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--color-neutral-dark1, #5A6170);
+  max-width: 620px;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+/* legend */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-neutral-light2, #DDE1E8);
+}
+.legend__item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--color-neutral-dark2, #3A4150);
+}
+.legend__dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  flex-shrink: 0;
+}
+.dot-ped { background: var(--color-primary, #242CC2); }
+.dot-fin { background: var(--magenta-700, #9D0364); }
+.dot-non { background: var(--color-neutral, #8A909C); }
+
+/* ─── Variant section ────────────────────────────────────────────── */
+.variant {
+  margin-top: 44px;
+}
+.variant__head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.variant__tag {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  color: var(--color-white, #fff);
+  background: var(--color-neutral-dark3, #0F0F10);
+  width: 26px; height: 26px;
+  border-radius: 7px;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+}
+.variant__name {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  color: var(--color-neutral-dark3, #0F0F10);
+  margin: 0;
+}
+.variant__desc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-neutral-dark1, #5A6170);
+  margin: 0 0 16px 38px;
+  max-width: 600px;
+  text-wrap: pretty;
+}
+
+/* paper strip — one A4-width row of 3 cards in real context */
+.paper {
+  background: var(--color-white, #fff);
+  border: 1px solid var(--color-neutral-light2, #DDE1E8);
+  border-radius: 10px;
+  box-shadow: var(--shadow-down-small, 0 1px 3px rgba(0,23,31,.08));
+  padding: 24px;
+}
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   AVATAR (iniciais) — 8 cores determinísticas
+   ═══════════════════════════════════════════════════════════════════ */
+.av {
+  display: grid;
+  place-items: center;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.av-1 { background: #E3E5FB; color: #242CC2; } /* indigo  */
+.av-2 { background: #D5F2F4; color: #1F7479; } /* teal    */
+.av-3 { background: #FBE5F1; color: #9D0364; } /* magenta */
+.av-4 { background: #ECE2F7; color: #6B41A3; } /* purple  */
+.av-5 { background: #FCEFCF; color: #9A6610; } /* amber   */
+.av-6 { background: #D5F2E0; color: #1F7E48; } /* green   */
+.av-7 { background: #FBDED4; color: #A13C26; } /* orange  */
+.av-8 { background: #DCEBFB; color: #235E9E; } /* blue    */
+
+/* ═══════════════════════════════════════════════════════════════════
+   CARD — base shared
+   ═══════════════════════════════════════════════════════════════════ */
+.card {
+  background: var(--color-white, #fff);
+  border: 1px solid var(--color-neutral-light2, #DDE1E8);
+  border-radius: 8px;
+  overflow: hidden;
+  break-inside: avoid;
+}
+
+.c-name {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  color: var(--color-neutral-dark3, #0F0F10);
+  letter-spacing: -0.01em;
+}
+.c-ra {
+  font-family: 'Inconsolata', monospace;
+  color: var(--color-neutral-dark1, #5A6170);
+  letter-spacing: 0.02em;
+}
+.c-ra b { color: var(--color-neutral-dark2, #3A4150); font-weight: 700; }
+
+/* responsável type label */
+.c-resp-kind {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.c-resp-kind::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+.kind-ped { color: var(--color-primary, #242CC2); }
+.kind-fin { color: var(--magenta-700, #9D0364); }
+.kind-non { color: var(--color-neutral, #8A909C); }
+
+.muted { color: var(--color-neutral, #8A909C); }
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.clamp2 {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.clamp3 {
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+  font-size: 14px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   VARIANT A — Photo-First Stack
+   foto no topo centralizada, blocos verticais abaixo
+   ───────────────────────────────────────────────────────────────────── */
+.va { padding: 14px 12px; text-align: center; min-height: 188px; display: flex; flex-direction: column; align-items: center; }
+.va .av { width: 84px; height: 84px; border-radius: 14px; font-size: 30px; margin-bottom: 10px; }
+.va .c-name { font-size: 13px; line-height: 16px; min-height: 32px; }
+.va .c-ra { font-size: 11px; margin-top: 4px; }
+.va .va-resp {
+  margin-top: 9px; padding-top: 9px;
+  border-top: 1px solid var(--color-neutral-light2, #DDE1E8);
+  width: 100%;
+  font-size: 10.5px;
+}
+.va .c-resp-kind { font-size: 9px; margin-bottom: 3px; justify-content: center; }
+.va .va-resp-name { color: var(--color-neutral-dark2, #3A4150); font-weight: 600; }
+
+/* ─────────────────────────────────────────────────────────────────────
+   VARIANT B — ID Card (foto lateral retrato)
+   ───────────────────────────────────────────────────────────────────── */
+.vb { display: grid; grid-template-columns: 78px 1fr; min-height: 168px; }
+.vb .av { width: 78px; height: 100%; border-radius: 0; font-size: 30px; align-self: stretch; }
+.vb-body { padding: 11px 12px; display: flex; flex-direction: column; min-width: 0; }
+.vb .c-name { font-size: 12px; line-height: 14px; min-height: 28px; }
+.vb .c-ra { font-size: 10px; margin-top: 3px; }
+.vb-sep { height: 1px; background: var(--color-neutral-light2, #DDE1E8); margin: 9px 0; }
+.vb-badge {
+  align-self: flex-start;
+  font-size: 8.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+  padding: 2px 7px; border-radius: 999px; margin-bottom: 6px;
+}
+.badge-ped { color: var(--color-primary, #242CC2); background: #E3E5FB; }
+.badge-fin { color: var(--magenta-700, #9D0364); background: #FBE5F1; }
+.badge-non { color: var(--color-neutral-dark1, #5A6170); background: var(--color-neutral-light3, #EBEDF1); }
+.vb-line { font-size: 10px; line-height: 15px; color: var(--color-neutral-dark1, #5A6170); }
+.vb-line b { color: var(--color-neutral-dark2, #3A4150); font-weight: 600; }
+
+/* shared mini dot for compact footers */
+.mini-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+/* ─────────────────────────────────────────────────────────────────────
+   VARIANT C — Hero Banner (foto domina; nome+RA como rótulo na base)
+   ───────────────────────────────────────────────────────────────────── */
+.vc { display: flex; flex-direction: column; min-height: 198px; }
+.vc-photo {
+  position: relative;
+  height: 150px;
+  display: grid; place-items: center;
+  font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 46px;
+  letter-spacing: -0.03em;
+}
+.vc-label {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  background: rgba(255,255,255,.95);
+  border-top: 1px solid var(--color-neutral-light2, #DDE1E8);
+  padding: 7px 11px 8px;
+}
+.vc-l-name {
+  font-family: 'Archivo', sans-serif; font-weight: 700;
+  font-size: 12px; line-height: 14px; letter-spacing: -0.01em;
+  color: var(--color-neutral-dark3, #0F0F10);
+}
+.vc-l-ra {
+  font-family: 'Inconsolata', monospace; font-size: 9.5px; letter-spacing: 0.03em;
+  color: var(--color-neutral-dark1, #5A6170); margin-top: 2px;
+}
+.vc-resp {
+  display: flex; align-items: center; gap: 7px; margin-top: auto;
+  padding: 8px 11px; font-size: 10.5px; color: var(--color-neutral-dark2, #3A4150);
+}
+.vc-resp b { font-weight: 600; }
+
+/* ─────────────────────────────────────────────────────────────────────
+   VARIANT D — Foto Máxima (mínimo de texto)
+   ───────────────────────────────────────────────────────────────────── */
+.vd { padding: 14px 10px; text-align: center; min-height: 186px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+.vd .av { width: 96px; height: 96px; border-radius: 50%; font-size: 34px; margin-bottom: 11px; }
+.vd .c-name { font-size: 11.5px; line-height: 15px; min-height: 30px; }
+.vd .c-ra { font-size: 10px; margin-top: 5px; }
+.vd-resp { font-size: 10px; margin-top: 7px; color: var(--color-neutral-dark1, #5A6170); }
+.vd-resp .c-resp-kind { font-size: 8.5px; }
+
+/* ─────────────────────────────────────────────────────────────────────
+   VARIANT E — Híbrida (foto + bloco de contato)
+   ───────────────────────────────────────────────────────────────────── */
+.ve { display: flex; flex-direction: column; min-height: 206px; }
+.ve-top { padding: 13px 12px 11px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.ve .av { width: 78px; height: 78px; border-radius: 50%; font-size: 28px; margin-bottom: 9px; }
+.ve .c-name { font-size: 12.5px; line-height: 15px; min-height: 30px; }
+.ve .c-ra { font-size: 10px; margin-top: 4px; }
+.ve-contact {
+  background: var(--bg-subtle, #F8F9FB);
+  border-top: 1px solid var(--color-neutral-light2, #DDE1E8);
+  padding: 9px 12px 10px;
+  margin-top: auto;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.ve-crow {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 10px; color: var(--color-neutral-dark2, #3A4150);
+  min-width: 0;
+}
+.ve-crow .material-symbols-outlined { color: var(--color-neutral, #8A909C); }
+.ve-crow span:last-child { min-width: 0; }
+
+/* ─────────────────────────────────────────────────────────────────────
+   VARIANT F — Crachá / ID (foto domina; nome+RA em rótulo flutuante)
+   ───────────────────────────────────────────────────────────────────── */
+.vf { display: flex; flex-direction: column; min-height: 214px; }
+.vf-photo {
+  position: relative; height: 156px;
+  display: grid; place-items: center;
+  font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 46px; letter-spacing: -0.03em;
+}
+.vf-label {
+  position: absolute; left: 10px; right: 10px; bottom: 10px;
+  background: var(--color-white, #fff);
+  border-radius: 8px;
+  box-shadow: var(--shadow-down-small, 0 1px 4px rgba(0,23,31,.14));
+  padding: 7px 10px 8px; text-align: center;
+}
+.vf-l-name {
+  font-family: 'Archivo', sans-serif; font-weight: 700;
+  font-size: 11.5px; line-height: 14px; letter-spacing: -0.01em;
+  color: var(--color-neutral-dark3, #0F0F10);
+}
+.vf-l-ra {
+  font-family: 'Inconsolata', monospace; font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--color-neutral, #8A909C); margin-top: 2px;
+}
+.vf-foot {
+  display: flex; align-items: center; gap: 7px;
+  padding: 9px 12px 11px;
+  margin-top: auto;
+}
+.vf-mark { width: 20px; height: 20px; border-radius: 5px; display: grid; place-items: center; flex-shrink: 0; }
+.vf-foot-text { min-width: 0; }
+.vf-foot-kind { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.vf-foot-name { font-size: 10px; color: var(--color-neutral-dark2, #3A4150); font-weight: 600; }
+
+/* ─────────────────────────────────────────────────────────────────────
+   VARIANT G — Catálogo (inspirado no card de produto)
+   foto em caixa suave, nome, RA como legenda, responsável + selo
+   ───────────────────────────────────────────────────────────────────── */
+.vg { padding: 11px; display: flex; flex-direction: column; gap: 10px; min-height: 208px; }
+.vg-photo {
+  border-radius: 8px; height: 150px; overflow: hidden;
+  display: grid; place-items: center; position: relative;
+  font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 44px; letter-spacing: -0.03em;
+}
+.vg-label {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  background: rgba(255,255,255,.95);
+  padding: 7px 10px 8px;
+}
+.vg-l-name {
+  font-family: 'Archivo', sans-serif; font-weight: 700;
+  font-size: 12.5px; line-height: 15px; letter-spacing: -0.01em;
+  color: var(--color-neutral-dark3, #0F0F10);
+}
+.vg-l-ra {
+  font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--color-neutral, #8A909C); margin-top: 2px;
+}
+.vg-pill {
+  position: absolute; top: 7px; right: 7px;
+  font-size: 8px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 2px 7px; border-radius: 999px;
+}
+.pill-ped { color: var(--color-primary,#242CC2); background: rgba(255,255,255,.82); }
+.pill-fin { color: var(--magenta-700,#9D0364); background: rgba(255,255,255,.82); }
+.pill-non { color: var(--color-neutral-dark1,#5A6170); background: rgba(255,255,255,.82); }
+.vg-name { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 13px; line-height: 16px; color: var(--color-neutral-dark3,#0F0F10); min-height: 16px; }
+.vg-cat {
+  font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--color-neutral, #8A909C);
+}
+.vg-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; margin-top: auto; }
+.vg-resp { font-size: 10px; line-height: 14px; min-width: 0; }
+.vg-resp .vg-resp-lbl { color: var(--color-neutral, #8A909C); font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
+.vg-resp .vg-resp-name { color: var(--color-neutral-dark2, #3A4150); font-weight: 600; }
+.vg-resp .vg-resp-tel { font-family: 'Inconsolata', monospace; color: var(--color-neutral-dark1,#5A6170); font-size: 9.5px; }
+
+/* ─────────────────────────────────────────────────────────────────────
+   VARIANT H — Ficha com chips (inspirado em card de coleção)
+   avatar + nome, chips de atributos, linhas de dados
+   ───────────────────────────────────────────────────────────────────── */
+.vh { padding: 12px; display: flex; flex-direction: column; gap: 9px; min-height: 206px; }
+.vh-top { display: flex; align-items: center; gap: 10px; }
+.vh .av { width: 46px; height: 46px; border-radius: 10px; font-size: 18px; }
+.vh-name { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 12px; line-height: 14px; color: var(--color-neutral-dark3,#0F0F10); min-width:0; }
+.vh-ra { font-family: 'Inconsolata', monospace; font-size: 9.5px; color: var(--color-neutral,#8A909C); margin-top: 3px; }
+.vh-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.vh-chip {
+  font-size: 9px; font-weight: 600;
+  padding: 3px 8px; border-radius: 999px;
+  background: var(--color-neutral-light3, #EBEDF1);
+  color: var(--color-neutral-dark2, #3A4150);
+}
+.vh-chip.is-kind { font-weight: 700; }
+.vh-rows {
+  border-top: 1px solid var(--color-neutral-light2, #DDE1E8);
+  padding-top: 8px; margin-top: auto;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.vh-r { display: flex; gap: 8px; font-size: 10px; line-height: 14px; }
+.vh-r .vh-r-lbl { color: var(--color-neutral, #8A909C); width: 58px; flex-shrink: 0; }
+.vh-r .vh-r-val { color: var(--color-neutral-dark2, #3A4150); min-width: 0; }
+
+/* ─────────────────────────────────────────────────────────────────────
+   VARIANT I — Crachá escuro (inspirado no cartão de identificação)
+   fundo escuro monocromático, nome em caixa-alta no topo, foto dominante,
+   RA na vertical à lateral, rodapé com marca + responsável + selo do tipo
+   ───────────────────────────────────────────────────────────────────── */
+.vi {
+  background: #16171D;
+  border: 1px solid #2A2C34;
+  color: #fff;
+  padding: 13px 13px 12px;
+  display: flex; flex-direction: column;
+  min-height: 224px;
+  position: relative;
+}
+.vi-name {
+  font-family: 'Archivo', sans-serif; font-weight: 700;
+  font-size: 12.5px; line-height: 15px; letter-spacing: 0.04em;
+  text-transform: uppercase; text-align: center;
+  color: #F5F6F8;
+}
+.vi-sub {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  text-align: center; color: #7F838F; margin-top: 3px;
+}
+.vi-photo {
+  position: relative;
+  margin: 11px 0 0;
+  height: 116px;
+  border-radius: 6px;
+  background: linear-gradient(160deg, #2A2C36 0%, #1B1C23 100%);
+  display: grid; place-items: center;
+  font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 44px; letter-spacing: -0.03em;
+  color: rgba(255,255,255,.5);
+}
+.vi-ra-vert {
+  position: absolute; right: -7px; bottom: 6px;
+  writing-mode: vertical-rl;
+  font-family: 'Inconsolata', monospace; font-size: 8.5px; font-weight: 700;
+  letter-spacing: 0.14em; color: #6A6E79; white-space: nowrap;
+}
+.vi-foot {
+  display: flex; align-items: center; gap: 9px;
+  margin-top: auto; padding-top: 11px;
+  border-top: 1px solid #2A2C34;
+}
+.vi-mark {
+  width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+  background: var(--brand-gradient, linear-gradient(160deg, #30B7BE, #39D881));
+  display: grid; place-items: center;
+  font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 11px; color: #0B0C0F;
+}
+.vi-foot-text { flex: 1; min-width: 0; }
+.vi-foot-name { font-size: 10px; font-weight: 600; color: #E3E5EA; }
+.vi-foot-phone { font-family: 'Inconsolata', monospace; font-size: 9.5px; color: #7F838F; letter-spacing: 0.03em; }
+.vi-badge {
+  width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+  border: 1px solid #3A3D47;
+  display: grid; place-items: center;
+  font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 11px;
+}
+.vi-badge.kind-ped { color: #8E93F0; border-color: #3B3E6B; }
+.vi-badge.kind-fin { color: #E069AE; border-color: #5E3251; }
+.vi-badge.kind-non { color: #7F838F; }
+
+/* ─────────────────────────────────────────────────────────────────────
+   VARIANT J — Crachá claro (variação do I)
+   tema claro, sem série, nome sobreposto na foto com degradê + sombra
+   garantindo contraste em qualquer fundo; rodapé com marca + responsável
+   ───────────────────────────────────────────────────────────────────── */
+.vj { display: flex; flex-direction: column; min-height: 212px; }
+.vj-photo {
+  position: relative; height: 152px;
+  display: grid; place-items: center;
+  font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 46px; letter-spacing: -0.03em;
+}
+.vj-cap {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 22px 11px 9px;
+  background: linear-gradient(to top, rgba(0,0,0,.68) 0%, rgba(0,0,0,.30) 55%, rgba(0,0,0,0) 100%);
+}
+.vj-name {
+  font-family: 'Archivo', sans-serif; font-weight: 700;
+  font-size: 13px; line-height: 15px; letter-spacing: -0.01em;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,.6), 0 0 2px rgba(0,0,0,.5);
+}
+.vj-ra {
+  font-family: 'Inconsolata', monospace; font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.05em; color: rgba(255,255,255,.92);
+  text-shadow: 0 1px 3px rgba(0,0,0,.6); margin-top: 2px;
+}
+.vj-foot {
+  display: flex; align-items: center; gap: 9px;
+  padding: 10px 11px 11px; margin-top: auto;
+}
+.vj-mark {
+  width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+  background: var(--brand-gradient, linear-gradient(160deg, #30B7BE, #39D881));
+  display: grid; place-items: center;
+  font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 11px; color: #0B0C0F;
+}
+.vj-foot-text { flex: 1; min-width: 0; }
+.vj-foot-name { font-size: 10px; font-weight: 600; color: var(--color-neutral-dark2, #3A4150); }
+.vj-foot-phone { font-family: 'Inconsolata', monospace; font-size: 9.5px; color: var(--color-neutral, #8A909C); letter-spacing: 0.03em; }
+.vj-badge {
+  width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+  border: 1px solid var(--color-neutral-light2, #DDE1E8);
+  display: grid; place-items: center;
+  font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 11px;
+}
+.vj-badge.kind-ped { color: var(--color-primary, #242CC2); border-color: #C4C7F2; }
+.vj-badge.kind-fin { color: var(--magenta-700, #9D0364); border-color: #EBC3DC; }
+.vj-badge.kind-non { color: var(--color-neutral, #8A909C); }
+
+/* ─────────────────────────────────────────────────────────────────────
+   VARIANT K — Foto lateral com rótulo (B + sobreposição do J)
+   foto retrato à esquerda ocupando mais largura, nome+RA sobrepostos na
+   base da foto; dados do responsável na coluna direita
+   ───────────────────────────────────────────────────────────────────── */
+.vk { display: grid; grid-template-columns: 106px 1fr; min-height: 176px; }
+.vk-photo {
+  position: relative;
+  display: grid; place-items: center;
+  font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 32px; letter-spacing: -0.03em;
+}
+.vk-cap {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 20px 9px 8px;
+  background: linear-gradient(to top, rgba(0,0,0,.70) 0%, rgba(0,0,0,.32) 55%, rgba(0,0,0,0) 100%);
+}
+.vk-name {
+  font-family: 'Archivo', sans-serif; font-weight: 700;
+  font-size: 11px; line-height: 13px; letter-spacing: -0.01em;
+  color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,.65), 0 0 2px rgba(0,0,0,.5);
+}
+.vk-ra {
+  font-family: 'Inconsolata', monospace; font-size: 9px; font-weight: 700;
+  letter-spacing: 0.04em; color: rgba(255,255,255,.92);
+  text-shadow: 0 1px 3px rgba(0,0,0,.65); margin-top: 2px;
+}
+.vk-body { padding: 11px 12px; display: flex; flex-direction: column; min-width: 0; }
+.vk-lbl {
+  font-size: 8.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--color-neutral, #8A909C); margin-bottom: 6px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   VARIANT L — Crachá full-bleed (empresarial, retrato)
+   foto ocupa todo o card; nome+RA no topo e dados embaixo, sobre degradês
+   ───────────────────────────────────────────────────────────────────── */
+.vl { position: relative; min-height: 288px; }
+.vl-photo {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 62px; letter-spacing: -0.03em;
+}
+.vl-top {
+  position: absolute; top: 0; left: 0; right: 0;
+  padding: 12px 12px 28px;
+  background: linear-gradient(to bottom, rgba(0,0,0,.56) 0%, rgba(0,0,0,.18) 55%, rgba(0,0,0,0) 100%);
+}
+.vl-name {
+  font-family: 'Archivo', sans-serif; font-weight: 700;
+  font-size: 13.5px; line-height: 16px; letter-spacing: -0.01em;
+  color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,.6), 0 0 2px rgba(0,0,0,.5);
+}
+.vl-ra {
+  font-family: 'Inconsolata', monospace; font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.05em; color: rgba(255,255,255,.9);
+  text-shadow: 0 1px 3px rgba(0,0,0,.6); margin-top: 3px;
+}
+.vl-bot {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 28px 12px 11px;
+  background: linear-gradient(to top, rgba(0,0,0,.80) 0%, rgba(0,0,0,.32) 55%, rgba(0,0,0,0) 100%);
+  display: flex; flex-direction: column; gap: 2px;
+}
+.vl-kind {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 8.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+  text-shadow: 0 1px 3px rgba(0,0,0,.7); margin-bottom: 3px;
+}
+.vl-kind::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+.vl-kind.kind-ped { color: #9AA0FF; }
+.vl-kind.kind-fin { color: #EE7BBC; }
+.vl-kind.kind-non { color: rgba(255,255,255,.65); }
+.vl-line {
+  font-size: 9.5px; line-height: 13px; color: rgba(255,255,255,.88);
+  text-shadow: 0 1px 3px rgba(0,0,0,.65);
+}
+.vl-line b { color: #fff; font-weight: 600; }
+
+/* ─── print ─────────────────────────────────────────────────────── */
+@media print {
+  body { background: #fff; }
+  .gallery { max-width: none; padding: 0; }
+  .paper { box-shadow: none; border: none; padding: 0; }
+  .card { break-inside: avoid; }
+  .vi, .vi-photo, .vi-mark, .vi-badge,
+  .vc-photo, .vf-photo, .vg-photo, .vj-photo, .vj-cap, .vj-mark,
+  .vk-photo, .vk-cap,
+  .vl-photo, .vl-top, .vl-bot, .av {
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+}

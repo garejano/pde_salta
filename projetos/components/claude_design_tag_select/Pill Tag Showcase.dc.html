@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/colors_and_type.css">
+  <script src="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/_ds_bundle.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+  <style>
+    body { margin: 0; background: #F8F9FB; }
+    a { color: #242CC2; }
+    a:hover { color: #191F88; }
+  </style>
+</helmet>
+
+<div style="min-height:100vh;padding:48px 56px;font-family:Nunito,system-ui,sans-serif;color:#0F0F10;box-sizing:border-box;">
+
+  <div style="max-width:1080px;margin:0 auto;">
+
+    <!-- Page header -->
+    <div style="margin-bottom:8px;font-family:Archivo;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#65686E;">Eleva · Grupo Salta</div>
+    <h1 style="margin:0;font-family:Archivo;font-weight:600;font-size:40px;line-height:1.15;color:#0F0F10;">Componente Pill (Tag)</h1>
+    <p style="margin:12px 0 40px;font-family:Nunito;font-size:16px;line-height:1.6;color:#3D3F42;max-width:640px;">
+      Pill sólido de canto capsular (raio 999). Aceita <strong>cor</strong>, <strong>ícone</strong> opcional e <strong>tamanho</strong> (md / sm). O texto é branco por padrão — apenas o âmbar usa texto escuro para contraste.
+    </p>
+
+    <!-- Sizes -->
+    <section style="background:#fff;border:1px solid #EBEDF1;border-radius:8px;padding:28px 32px;margin-bottom:24px;box-shadow:0 1px 3px rgba(0,23,31,.08);">
+      <h2 style="margin:0 0 4px;font-family:Archivo;font-weight:600;font-size:24px;">Tamanhos</h2>
+      <p style="margin:0 0 20px;font-family:Nunito;font-size:14px;color:#65686E;">Dois tamanhos: <code style="font-family:Inconsolata;background:#F2F2F2;padding:1px 6px;border-radius:4px;">md</code> (13px, padding 4·12) e <code style="font-family:Inconsolata;background:#F2F2F2;padding:1px 6px;border-radius:4px;">sm</code> (12px, padding 2·10).</p>
+      <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center;">
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;">
+          <span style="font-family:Nunito;font-size:12px;color:#65686E;">size="md"</span>
+          <x-import component-from-global-scope="Tag" color="#242CC2" size="md" hint-size="auto,28px">Médio</x-import>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;">
+          <span style="font-family:Nunito;font-size:12px;color:#65686E;">size="sm"</span>
+          <x-import component-from-global-scope="Tag" color="#242CC2" size="sm" hint-size="auto,24px">Pequeno</x-import>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;">
+          <span style="font-family:Nunito;font-size:12px;color:#65686E;">md · com ícone</span>
+          <x-import component-from-global-scope="Tag" color="#242CC2" size="md" icon="school" hint-size="auto,28px">Médio</x-import>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;">
+          <span style="font-family:Nunito;font-size:12px;color:#65686E;">sm · com ícone</span>
+          <x-import component-from-global-scope="Tag" color="#242CC2" size="sm" icon="school" hint-size="auto,24px">Pequeno</x-import>
+        </div>
+      </div>
+    </section>
+
+    <!-- Colors -->
+    <section style="background:#fff;border:1px solid #EBEDF1;border-radius:8px;padding:28px 32px;margin-bottom:24px;box-shadow:0 1px 3px rgba(0,23,31,.08);">
+      <h2 style="margin:0 0 4px;font-family:Archivo;font-weight:600;font-size:24px;">Cores da paleta</h2>
+      <p style="margin:0 0 20px;font-family:Nunito;font-size:14px;color:#65686E;">Cada cor da paleta pode preencher o pill. Abaixo, os tons base de cada eixo.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+        <x-import component-from-global-scope="Tag" color="#242CC2" size="md" hint-size="auto,28px">Primary</x-import>
+        <x-import component-from-global-scope="Tag" color="#9D0364" size="md" hint-size="auto,28px">Secondary</x-import>
+        <x-import component-from-global-scope="Tag" color="#30B7BE" size="md" hint-size="auto,28px">Tertiary</x-import>
+        <x-import component-from-global-scope="Tag" color="#774BB0" size="md" hint-size="auto,28px">Inform</x-import>
+        <x-import component-from-global-scope="Tag" color="#28975A" size="md" hint-size="auto,28px">Positive</x-import>
+        <x-import component-from-global-scope="Tag" color="#FFAC30" size="md" hint-size="auto,28px">Warning</x-import>
+        <x-import component-from-global-scope="Tag" color="#E65637" size="md" hint-size="auto,28px">Error</x-import>
+        <x-import component-from-global-scope="Tag" color="#65686E" size="md" hint-size="auto,28px">Neutral</x-import>
+      </div>
+
+      <h3 style="margin:28px 0 12px;font-family:Archivo;font-weight:600;font-size:16px;color:#3D3F42;">Tons dark / light por eixo</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;">
+
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font-family:Nunito;font-size:12px;font-weight:700;color:#65686E;">Primary (indigo)</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <x-import component-from-global-scope="Tag" color="#191F88" size="sm" hint-size="auto,24px">dark1</x-import>
+            <x-import component-from-global-scope="Tag" color="#242CC2" size="sm" hint-size="auto,24px">base</x-import>
+            <x-import component-from-global-scope="Tag" color="#666BD4" size="sm" hint-size="auto,24px">light1</x-import>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font-family:Nunito;font-size:12px;font-weight:700;color:#65686E;">Secondary (magenta)</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <x-import component-from-global-scope="Tag" color="#6E0246" size="sm" hint-size="auto,24px">dark1</x-import>
+            <x-import component-from-global-scope="Tag" color="#9D0364" size="sm" hint-size="auto,24px">base</x-import>
+            <x-import component-from-global-scope="Tag" color="#BA4F93" size="sm" hint-size="auto,24px">light1</x-import>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font-family:Nunito;font-size:12px;font-weight:700;color:#65686E;">Positive (green)</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <x-import component-from-global-scope="Tag" color="#007722" size="sm" hint-size="auto,24px">dark</x-import>
+            <x-import component-from-global-scope="Tag" color="#28975A" size="sm" hint-size="auto,24px">base</x-import>
+            <x-import component-from-global-scope="Tag" color="#96CEB0" size="sm" hint-size="auto,24px">light</x-import>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font-family:Nunito;font-size:12px;font-weight:700;color:#65686E;">Warning (amber)</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <x-import component-from-global-scope="Tag" color="#B37822" size="sm" hint-size="auto,24px">dark</x-import>
+            <x-import component-from-global-scope="Tag" color="#FFAC30" size="sm" hint-size="auto,24px">base</x-import>
+            <x-import component-from-global-scope="Tag" color="#FFDEAC" size="sm" hint-size="auto,24px">light</x-import>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font-family:Nunito;font-size:12px;font-weight:700;color:#65686E;">Error (orange)</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <x-import component-from-global-scope="Tag" color="#A13C26" size="sm" hint-size="auto,24px">dark</x-import>
+            <x-import component-from-global-scope="Tag" color="#E65637" size="sm" hint-size="auto,24px">base</x-import>
+            <x-import component-from-global-scope="Tag" color="#F5BBAF" size="sm" hint-size="auto,24px">light</x-import>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font-family:Nunito;font-size:12px;font-weight:700;color:#65686E;">Neutral (gray)</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <x-import component-from-global-scope="Tag" color="#3D3F42" size="sm" hint-size="auto,24px">dark2</x-import>
+            <x-import component-from-global-scope="Tag" color="#65686E" size="sm" hint-size="auto,24px">dark1</x-import>
+            <x-import component-from-global-scope="Tag" color="#ADB2BA" size="sm" hint-size="auto,24px">base</x-import>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- With icons -->
+    <section style="background:#fff;border:1px solid #EBEDF1;border-radius:8px;padding:28px 32px;margin-bottom:24px;box-shadow:0 1px 3px rgba(0,23,31,.08);">
+      <h2 style="margin:0 0 4px;font-family:Archivo;font-weight:600;font-size:24px;">Com ícone</h2>
+      <p style="margin:0 0 20px;font-family:Nunito;font-size:14px;color:#65686E;">Ícone Material Symbols opcional à esquerda do rótulo, herdando a cor do texto.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+        <x-import component-from-global-scope="Tag" color="#9D0364" size="md" icon="school" hint-size="auto,28px">Militar</x-import>
+        <x-import component-from-global-scope="Tag" color="#28975A" size="md" icon="check_circle" hint-size="auto,28px">Aprovado</x-import>
+        <x-import component-from-global-scope="Tag" color="#FFAC30" size="md" icon="warning" hint-size="auto,28px">Atenção</x-import>
+        <x-import component-from-global-scope="Tag" color="#E65637" size="md" icon="error" hint-size="auto,28px">Pendente</x-import>
+        <x-import component-from-global-scope="Tag" color="#242CC2" size="md" icon="star" hint-size="auto,28px">Destaque</x-import>
+        <x-import component-from-global-scope="Tag" color="#774BB0" size="md" icon="translate" hint-size="auto,28px">Bilíngue</x-import>
+      </div>
+    </section>
+
+    <!-- Outline -->
+    <section style="background:#fff;border:1px solid #EBEDF1;border-radius:8px;padding:28px 32px;margin-bottom:24px;box-shadow:0 1px 3px rgba(0,23,31,.08);">
+      <h2 style="margin:0 0 4px;font-family:Archivo;font-weight:600;font-size:24px;">Outline</h2>
+      <p style="margin:0 0 20px;font-family:Nunito;font-size:14px;color:#65686E;">Variante contornada: fundo branco, borda 1px e texto/ícone na cor. Útil para metadados sobre superfícies claras.</p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:24px;">
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:#fff;border:1px solid #9D0364;color:#9D0364;font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;"><span class="material-symbols-outlined" style="font-size:16px;">calendar_today</span>Ano: 2026</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:#fff;border:1px solid #9D0364;color:#9D0364;font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;"><span class="material-symbols-outlined" style="font-size:16px;">hub</span>Rede: Ábaco</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:#fff;border:1px solid #9D0364;color:#9D0364;font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;"><span class="material-symbols-outlined" style="font-size:16px;">check_circle</span>Em Uso: Sim</span>
+      </div>
+
+      <h3 style="margin:0 0 12px;font-family:Archivo;font-weight:600;font-size:16px;color:#3D3F42;">Cores</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:24px;">
+        <span style="display:inline-flex;align-items:center;padding:4px 12px;border-radius:999px;background:#fff;border:1px solid #242CC2;color:#242CC2;font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;">Primary</span>
+        <span style="display:inline-flex;align-items:center;padding:4px 12px;border-radius:999px;background:#fff;border:1px solid #9D0364;color:#9D0364;font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;">Secondary</span>
+        <span style="display:inline-flex;align-items:center;padding:4px 12px;border-radius:999px;background:#fff;border:1px solid #228085;color:#228085;font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;">Tertiary</span>
+        <span style="display:inline-flex;align-items:center;padding:4px 12px;border-radius:999px;background:#fff;border:1px solid #774BB0;color:#774BB0;font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;">Inform</span>
+        <span style="display:inline-flex;align-items:center;padding:4px 12px;border-radius:999px;background:#fff;border:1px solid #28975A;color:#28975A;font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;">Positive</span>
+        <span style="display:inline-flex;align-items:center;padding:4px 12px;border-radius:999px;background:#fff;border:1px solid #B37822;color:#B37822;font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;">Warning</span>
+        <span style="display:inline-flex;align-items:center;padding:4px 12px;border-radius:999px;background:#fff;border:1px solid #E65637;color:#E65637;font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;">Error</span>
+        <span style="display:inline-flex;align-items:center;padding:4px 12px;border-radius:999px;background:#fff;border:1px solid #65686E;color:#65686E;font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;">Neutral</span>
+      </div>
+
+      <h3 style="margin:0 0 12px;font-family:Archivo;font-weight:600;font-size:16px;color:#3D3F42;">Tamanhos</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;">
+          <span style="font-family:Nunito;font-size:12px;color:#65686E;">md</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:#fff;border:1px solid #242CC2;color:#242CC2;font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;"><span class="material-symbols-outlined" style="font-size:16px;">school</span>Médio</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;">
+          <span style="font-family:Nunito;font-size:12px;color:#65686E;">sm</span>
+          <span style="display:inline-flex;align-items:center;gap:4px;padding:2px 10px;border-radius:999px;background:#fff;border:1px solid #242CC2;color:#242CC2;font-family:Archivo;font-weight:700;font-size:12px;white-space:nowrap;"><span class="material-symbols-outlined" style="font-size:14px;">school</span>Pequeno</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trailing icon & removable -->
+    <section style="background:#fff;border:1px solid #EBEDF1;border-radius:8px;padding:28px 32px;margin-bottom:24px;box-shadow:0 1px 3px rgba(0,23,31,.08);">
+      <h2 style="margin:0 0 4px;font-family:Archivo;font-weight:600;font-size:24px;">Ícone à direita e removível</h2>
+      <p style="margin:0 0 20px;font-family:Nunito;font-size:14px;color:#65686E;">Ícone à direita (ex.: expandir, seta) ou botão de remoção (x). O x é clicável — remove o pill. Use "Restaurar" para repor.</p>
+
+      <h3 style="margin:0 0 12px;font-family:Archivo;font-weight:600;font-size:16px;color:#3D3F42;">Ícone à direita</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:24px;">
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:#242CC2;color:#fff;font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;">Turma A<span class="material-symbols-outlined" style="font-size:16px;">expand_more</span></span>
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:#9D0364;color:#fff;font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;">Ver ficha<span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span></span>
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:#fff;border:1px solid #242CC2;color:#242CC2;font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;">Filtrar<span class="material-symbols-outlined" style="font-size:16px;">expand_more</span></span>
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:#fff;border:1px solid #9D0364;color:#9D0364;font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;">Ano: 2026<span class="material-symbols-outlined" style="font-size:16px;">expand_more</span></span>
+      </div>
+
+      <h3 style="margin:0 0 12px;font-family:Archivo;font-weight:600;font-size:16px;color:#3D3F42;">Removível — sólido</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;min-height:28px;margin-bottom:20px;">
+        <sc-for list="{{ filledChips }}" as="chip" hint-placeholder-count="4">
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 8px 4px 12px;border-radius:999px;background:{{ chip.color }};color:#fff;font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;">
+            {{ chip.label }}
+            <span onClick="{{ chip.onRemove }}" title="Remover" style="display:inline-flex;align-items:center;justify-content:center;cursor:pointer;border-radius:999px;opacity:.85;font-size:16px;" class="material-symbols-outlined" style-hover="opacity:1;background:rgba(255,255,255,.22)">close</span>
+          </span>
+        </sc-for>
+      </div>
+
+      <h3 style="margin:0 0 12px;font-family:Archivo;font-weight:600;font-size:16px;color:#3D3F42;">Removível — outline</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;min-height:28px;margin-bottom:20px;">
+        <sc-for list="{{ outlineChips }}" as="chip" hint-placeholder-count="3">
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 8px 4px 12px;border-radius:999px;background:#fff;border:1px solid {{ chip.color }};color:{{ chip.color }};font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;">
+            {{ chip.label }}
+            <span onClick="{{ chip.onRemove }}" title="Remover" style="display:inline-flex;align-items:center;justify-content:center;cursor:pointer;border-radius:999px;opacity:.7;font-size:16px;" class="material-symbols-outlined" style-hover="opacity:1;background:rgba(0,0,0,.06)">close</span>
+          </span>
+        </sc-for>
+      </div>
+
+      <x-import component-from-global-scope="Button" variant="ghost" size="sm" on-click="{{ reset }}" hint-size="auto,32px">Restaurar</x-import>
+    </section>
+
+    <!-- Dropdown / mini-select -->
+    <section style="background:#fff;border:1px solid #EBEDF1;border-radius:8px;padding:28px 32px;margin-bottom:24px;box-shadow:0 1px 3px rgba(0,23,31,.08);">
+      <h2 style="margin:0 0 4px;font-family:Archivo;font-weight:600;font-size:24px;">Dropdown (mini-select)</h2>
+      <p style="margin:0 0 20px;font-family:Nunito;font-size:14px;color:#65686E;">Pill com chevron à direita: ao clicar, abre um menu e funciona como um select compacto. A direção (para baixo ou para cima) se ajusta ao espaço disponível — ou pode ser fixada.</p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+        <dc-import name="PillSelect" prefix="Ano" options="{{ anos }}" color="#9D0364" direction="down" hint-size="140px,32px"></dc-import>
+        <dc-import name="PillSelect" prefix="Rede" options="{{ redes }}" color="#242CC2" direction="down" hint-size="150px,32px"></dc-import>
+        <dc-import name="PillSelect" prefix="Turno" options="{{ turnos }}" color="#774BB0" direction="auto" hint-size="150px,32px"></dc-import>
+        <dc-import name="PillSelect" prefix="Ano" options="{{ anos }}" color="#28975A" direction="up" hint-size="140px,32px"></dc-import>
+      </div>
+      <p style="margin:16px 0 0;font-family:Nunito;font-size:12px;color:#ADB2BA;">Da esquerda para a direita: abre para baixo · para baixo · automático · fixado para cima.</p>
+
+      <h3 style="margin:28px 0 12px;font-family:Archivo;font-weight:600;font-size:16px;color:#3D3F42;">Com ícone à esquerda</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+        <dc-import name="PillSelect" prefix="Ano" icon="calendar_today" options="{{ anos }}" color="#9D0364" direction="down" hint-size="150px,32px"></dc-import>
+        <dc-import name="PillSelect" prefix="Rede" icon="hub" options="{{ redes }}" color="#242CC2" direction="down" hint-size="160px,32px"></dc-import>
+        <dc-import name="PillSelect" prefix="Turno" icon="schedule" options="{{ turnos }}" color="#774BB0" direction="down" hint-size="160px,32px"></dc-import>
+        <dc-import name="PillSelect" placeholder="Selecione o ano" icon="calendar_today" options="{{ anos }}" color="#242CC2" direction="down" hint-size="180px,32px"></dc-import>
+      </div>
+
+      <h3 style="margin:28px 0 12px;font-family:Archivo;font-weight:600;font-size:16px;color:#3D3F42;">Muitas opções (rolagem)</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+        <dc-import name="PillSelect" placeholder="Estado" icon="location_on" options="{{ estados }}" color="#242CC2" direction="down" hint-size="150px,32px"></dc-import>
+        <dc-import name="PillSelect" prefix="UF" options="{{ estados }}" color="#9D0364" direction="down" max-visible="{{ 5 }}" hint-size="150px,32px"></dc-import>
+      </div>
+      <p style="margin:16px 0 0;font-family:Nunito;font-size:12px;color:#ADB2BA;">Quando há mais opções que o limite visível, o menu ganha altura fixa e rola. Padrão: 8 itens (o segundo exemplo usa 5).</p>
+
+      <h3 style="margin:28px 0 12px;font-family:Archivo;font-weight:600;font-size:16px;color:#3D3F42;">Sem seleção (placeholder)</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+        <dc-import name="PillSelect" placeholder="Selecione o ano" options="{{ anos }}" color="#242CC2" direction="down" hint-size="160px,32px"></dc-import>
+        <dc-import name="PillSelect" placeholder="Rede de ensino" prefix="Rede" options="{{ redes }}" color="#9D0364" direction="down" hint-size="150px,32px"></dc-import>
+      </div>
+      <p style="margin:16px 0 0;font-family:Nunito;font-size:12px;color:#ADB2BA;">Enquanto nada é escolhido, o pill mostra o placeholder com texto e borda neutros; ao selecionar, assume a cor e o prefixo.</p>
+
+      <h3 style="margin:28px 0 12px;font-family:Archivo;font-weight:600;font-size:16px;color:#3D3F42;">Seleção obrigatória</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+        <dc-import name="PillSelect" placeholder="Ano letivo" required="{{ true }}" options="{{ anos }}" color="#242CC2" direction="down" hint-size="150px,32px"></dc-import>
+        <dc-import name="PillSelect" placeholder="Rede de ensino" required="{{ true }}" options="{{ redes }}" color="#9D0364" direction="down" hint-size="160px,32px"></dc-import>
+      </div>
+      <p style="margin:16px 0 0;font-family:Nunito;font-size:12px;color:#ADB2BA;">Obrigatório e ainda vazio: borda e texto em vermelho com asterisco. Após a escolha, volta à cor normal e o asterisco some.</p>
+
+      <h3 style="margin:28px 0 12px;font-family:Archivo;font-weight:600;font-size:16px;color:#3D3F42;">Loading e desabilitado</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+        <dc-import name="PillSelect" prefix="Rede" options="{{ redes }}" color="#242CC2" loading="{{ true }}" hint-size="150px,32px"></dc-import>
+        <dc-import name="PillSelect" placeholder="Carregando redes" options="{{ redes }}" color="#242CC2" loading="{{ true }}" hint-size="170px,32px"></dc-import>
+        <dc-import name="PillSelect" prefix="Turno" options="{{ turnos }}" color="#242CC2" disabled="{{ true }}" hint-size="150px,32px"></dc-import>
+        <dc-import name="PillSelect" placeholder="Indisponível" options="{{ anos }}" disabled="{{ true }}" hint-size="150px,32px"></dc-import>
+      </div>
+      <p style="margin:16px 0 0;font-family:Nunito;font-size:12px;color:#ADB2BA;">Loading: o chevron vira um spinner e o pill não abre. Desabilitado: preenchimento e texto acinzentados (tokens de disabled), sem interação.</p>
+    </section>
+
+    <!-- Selectable / toggle -->
+    <section style="background:#fff;border:1px solid #EBEDF1;border-radius:8px;padding:28px 32px;margin-bottom:24px;box-shadow:0 1px 3px rgba(0,23,31,.08);">
+      <h2 style="margin:0 0 4px;font-family:Archivo;font-weight:600;font-size:24px;">Selecionável (toggle)</h2>
+      <p style="margin:0 0 24px;font-family:Nunito;font-size:14px;color:#65686E;">Pill que alterna entre ligado e desligado ao clicar. Três variantes — simples (preenche ao selecionar), com check e on/off (interruptor) — em todos os estados.</p>
+
+      <!-- plain -->
+      <h3 style="margin:0 0 12px;font-family:Archivo;font-weight:600;font-size:16px;color:#3D3F42;">Simples</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;margin-bottom:28px;">
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">enabled (off)</span><dc-import name="PillToggle" label="Integral" color="#242CC2" hint-size="auto,28px"></dc-import></div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">enabled (on)</span><dc-import name="PillToggle" label="Integral" color="#242CC2" default-on="{{ true }}" hint-size="auto,28px"></dc-import></div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">disabled</span><dc-import name="PillToggle" label="Integral" color="#242CC2" disabled="{{ true }}" hint-size="auto,28px"></dc-import></div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">loading</span><dc-import name="PillToggle" label="Integral" color="#242CC2" loading="{{ true }}" hint-size="auto,28px"></dc-import></div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">required</span><dc-import name="PillToggle" label="Integral" color="#242CC2" required="{{ true }}" hint-size="auto,28px"></dc-import></div>
+      </div>
+
+      <!-- check -->
+      <h3 style="margin:0 0 12px;font-family:Archivo;font-weight:600;font-size:16px;color:#3D3F42;">Com check</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;margin-bottom:28px;">
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">enabled (off)</span><dc-import name="PillToggle" variant="check" label="Matemática" color="#28975A" hint-size="auto,28px"></dc-import></div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">enabled (on)</span><dc-import name="PillToggle" variant="check" label="Matemática" color="#28975A" default-on="{{ true }}" hint-size="auto,28px"></dc-import></div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">disabled</span><dc-import name="PillToggle" variant="check" label="Matemática" color="#28975A" disabled="{{ true }}" hint-size="auto,28px"></dc-import></div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">loading</span><dc-import name="PillToggle" variant="check" label="Matemática" color="#28975A" loading="{{ true }}" hint-size="auto,28px"></dc-import></div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">required</span><dc-import name="PillToggle" variant="check" label="Matemática" color="#28975A" required="{{ true }}" hint-size="auto,28px"></dc-import></div>
+      </div>
+
+      <!-- circle -->
+      <h3 style="margin:0 0 12px;font-family:Archivo;font-weight:600;font-size:16px;color:#3D3F42;">Círculo com check</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;margin-bottom:28px;">
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">enabled (off)</span><dc-import name="PillToggle" variant="circle" label="História" color="#774BB0" hint-size="auto,28px"></dc-import></div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">enabled (on)</span><dc-import name="PillToggle" variant="circle" label="História" color="#774BB0" default-on="{{ true }}" hint-size="auto,28px"></dc-import></div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">disabled</span><dc-import name="PillToggle" variant="circle" label="História" color="#774BB0" disabled="{{ true }}" hint-size="auto,28px"></dc-import></div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">loading</span><dc-import name="PillToggle" variant="circle" label="História" color="#774BB0" loading="{{ true }}" hint-size="auto,28px"></dc-import></div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">required</span><dc-import name="PillToggle" variant="circle" label="História" color="#774BB0" required="{{ true }}" hint-size="auto,28px"></dc-import></div>
+      </div>
+
+      <!-- onoff -->
+      <h3 style="margin:0 0 12px;font-family:Archivo;font-weight:600;font-size:16px;color:#3D3F42;">On / Off</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;">
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">enabled (off)</span><dc-import name="PillToggle" variant="onoff" label="Notificações" color="#242CC2" hint-size="auto,28px"></dc-import></div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">enabled (on)</span><dc-import name="PillToggle" variant="onoff" label="Notificações" color="#242CC2" default-on="{{ true }}" hint-size="auto,28px"></dc-import></div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">disabled</span><dc-import name="PillToggle" variant="onoff" label="Notificações" color="#242CC2" disabled="{{ true }}" hint-size="auto,28px"></dc-import></div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">loading</span><dc-import name="PillToggle" variant="onoff" label="Notificações" color="#242CC2" loading="{{ true }}" hint-size="auto,28px"></dc-import></div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;"><span style="font-family:Nunito;font-size:12px;color:#65686E;">required</span><dc-import name="PillToggle" variant="onoff" label="Aceito os termos" color="#242CC2" required="{{ true }}" hint-size="auto,28px"></dc-import></div>
+      </div>
+    </section>
+
+    <!-- In use -->
+    <section style="background:#fff;border:1px solid #EBEDF1;border-radius:8px;padding:28px 32px;box-shadow:0 1px 3px rgba(0,23,31,.08);">
+      <h2 style="margin:0 0 4px;font-family:Archivo;font-weight:600;font-size:24px;">Em uso</h2>
+      <p style="margin:0 0 20px;font-family:Nunito;font-size:14px;color:#65686E;">Combinações reais do portal Eleva: situação do aluno e trilha da turma.</p>
+
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div>
+          <div style="font-family:Nunito;font-size:12px;font-weight:700;color:#65686E;margin-bottom:8px;">Situação</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <x-import component-from-global-scope="Tag" color="#28975A" size="sm" hint-size="auto,24px">Cursando</x-import>
+            <x-import component-from-global-scope="Tag" color="#FFAC30" size="sm" hint-size="auto,24px">Atenção</x-import>
+            <x-import component-from-global-scope="Tag" color="#242CC2" size="sm" hint-size="auto,24px">Destaque</x-import>
+            <x-import component-from-global-scope="Tag" color="#E65637" size="sm" hint-size="auto,24px">Pendente</x-import>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:Nunito;font-size:12px;font-weight:700;color:#65686E;margin-bottom:8px;">Trilha</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <x-import component-from-global-scope="Tag" color="#9D0364" size="sm" icon="school" hint-size="auto,24px">1 ano A — Militar</x-import>
+            <x-import component-from-global-scope="Tag" color="#774BB0" size="sm" hint-size="auto,24px">Bilíngue</x-import>
+            <x-import component-from-global-scope="Tag" color="#65686E" size="sm" hint-size="auto,24px">Regular</x-import>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    filled: [
+      { id: 'f1', label: 'Militar', color: '#9D0364' },
+      { id: 'f2', label: 'Bilíngue', color: '#774BB0' },
+      { id: 'f3', label: 'Cursando', color: '#28975A' },
+      { id: 'f4', label: 'Destaque', color: '#242CC2' }
+    ],
+    outline: [
+      { id: 'o1', label: 'Ano: 2026', color: '#9D0364' },
+      { id: 'o2', label: 'Rede: Ábaco', color: '#9D0364' },
+      { id: 'o3', label: 'Turno: Manhã', color: '#242CC2' }
+    ]
+  };
+  makeChips(key) {
+    return this.state[key].map(c => ({
+      ...c,
+      onRemove: () => this.setState(s => ({ [key]: s[key].filter(x => x.id !== c.id) }))
+    }));
+  }
+  reset() {
+    this.setState({
+      filled: [
+        { id: 'f1', label: 'Militar', color: '#9D0364' },
+        { id: 'f2', label: 'Bilíngue', color: '#774BB0' },
+        { id: 'f3', label: 'Cursando', color: '#28975A' },
+        { id: 'f4', label: 'Destaque', color: '#242CC2' }
+      ],
+      outline: [
+        { id: 'o1', label: 'Ano: 2026', color: '#9D0364' },
+        { id: 'o2', label: 'Rede: Ábaco', color: '#9D0364' },
+        { id: 'o3', label: 'Turno: Manhã', color: '#242CC2' }
+      ]
+    });
+  }
+  renderVals() {
+    return {
+      filledChips: this.makeChips('filled'),
+      outlineChips: this.makeChips('outline'),
+      reset: () => this.reset(),
+      anos: ['2024', '2025', '2026', '2027'],
+      redes: ['Ábaco', 'Militar', 'Bilíngue', 'Regular'],
+      turnos: ['Manhã', 'Tarde', 'Integral'],
+      estados: ['Acre', 'Alagoas', 'Amapá', 'Amazonas', 'Bahia', 'Ceará', 'Distrito Federal', 'Espírito Santo', 'Goiás', 'Maranhão', 'Mato Grosso', 'Mato Grosso do Sul', 'Minas Gerais', 'Pará', 'Paraíba', 'Paraná', 'Pernambuco', 'Piauí', 'Rio de Janeiro', 'Rio Grande do Norte', 'Rio Grande do Sul', 'Rondônia', 'Roraima', 'Santa Catarina', 'São Paulo', 'Sergipe', 'Tocantins']
+    };
+  }
+}
+</script>
+</body>
+</html>

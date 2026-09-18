@@ -88,6 +88,7 @@ graph TD
   AlunoJustificativaFalta --> Pessoa
   AlunoLaudoMedico --> Pessoa
   AlunoNecessidadesEspeciais --> Pessoa
+  AlunoNecessidadesEspeciais --> TipoTranstorno
   AlunoNecessidadesEspeciaisRelatorio --> Agrupamento
   AlunoNecessidadesEspeciaisRelatorio --> AnoLetivo
   AlunoNecessidadesEspeciaisRelatorio --> Pessoa
@@ -111,11 +112,17 @@ graph TD
   AlunoOcorrencia --> Ocorrencia
   AlunoParentesco --> AlunoEscola
   AlunoParentesco --> TipoParentesco
+  AlunoPercentualFrequencia --> AnoLetivo
+  AlunoPercentualFrequencia --> Pessoa
+  AlunoPercentualFrequencia --> Serie
   AlunoProva --> AvaliacaoFormativa
   AlunoProva --> Pessoa
   AlunoProva --> ProvaSituacao
   AlunoProvaResposta --> AlunoProva
   AlunoProvaResposta --> QuestaoRespostaObjetiva
+  AlunoSaidaAntecipada --> Escola
+  AlunoSaidaAntecipada --> Pessoa
+  AlunoSaidaAntecipada --> Turno
   AlunoSemNecessidadesEspeciais --> Pessoa
   AlunoTendencia --> Ciclo
   AlunoTendencia --> Disciplina
@@ -175,6 +182,17 @@ graph TD
   AtualidadeSerie --> Serie
   AtualidadeTurma --> Atualidade
   AtualidadeTurma --> Turma
+  AtualizacaoHoraAulaClasseItem --> ClassePagamento
+  AtualizacaoHoraAulaClasseItem --> EscolaPagamento
+  AtualizacaoHoraAulaClasseItem --> HoraAulaPadrao
+  AtualizacaoHoraAulaClasseItem --> AtualizacaoHoraAulaLote
+  AtualizacaoHoraAulaClasseItem --> SegmentoPagamento
+  AtualizacaoHoraAulaLote --> AnoLetivo
+  AtualizacaoHoraAulaSegmentoItem --> EscolaPagamento
+  AtualizacaoHoraAulaSegmentoItem --> HoraAulaSegmento
+  AtualizacaoHoraAulaSegmentoItem --> AtualizacaoHoraAulaLote
+  AtualizacaoHoraAulaSegmentoItem --> ProfessorPerfilVigente
+  AtualizacaoHoraAulaSegmentoItem --> SegmentoPagamento
   Aula_ComentarioComportamento --> ComentarioComportamento
   Aula_ComentarioComportamento --> Disciplina
   Aula_ComentarioComportamento --> Pessoa
@@ -270,8 +288,7 @@ graph TD
   BaseDeAvaliacoesAluno --> BaseDeAvaliacoes
   BaseDeDatasFeriados --> BaseDeDatas
   BaseDeDatasFeriados --> Cidade
-  BloqueioBoletim --> Ciclo
-  BloqueioBoletim --> TipoAvaliacao
+  BloqueioBoletim --> EstruturaAvaliacao
   BloqueioBoletim --> Turma
   BloqueioMaterialComplementar --> Agrupamento
   BloqueioMaterialComplementar --> ConteudoOnline
@@ -358,6 +375,7 @@ graph TD
   ClasseExemplo --> Rede
   ClasseExemploEscola --> ClasseExemplo
   ClasseExemploEscola --> Escola
+  ClassePagamento --> PerfilAcesso
   ClassePagamento --> RedePagamento
   ClasseTurmaSegmentoPgto --> ClassePgto
   ClasseTurmaSegmentoPgto --> SegmentoPgto
@@ -448,6 +466,7 @@ graph TD
   DiaLetivoExtra --> AnoLetivo
   DiaLetivoExtra --> Escola
   DiarioClasseConfiguracao --> Rede
+  DiarioDeClasseConfiguracao --> Rede
   DiaSemAula --> Turma
   DiaSemAulaMotivo --> AnoLetivo
   DiaSemAulaMotivo --> DiaSemAulaTipo
@@ -510,10 +529,15 @@ graph TD
   EscolaMeta --> AnoLetivo
   EscolaMeta --> Escola
   EscolaMeta --> TipoMeta
+  EscolaPagamento --> Sindicato
   EscolaPagamento --> RedePagamento
   EscolaPagamentoEscola --> AnoLetivo
   EscolaPagamentoEscola --> Escola
   EscolaPagamentoEscola --> EscolaPagamento
+  EscolaPagamentoEscolaGerencial --> AnoLetivo
+  EscolaPagamentoEscolaGerencial --> EscolaGerencial
+  EscolaPagamentoEscolaGerencial --> EscolaPagamento
+  EscolaPagamentoEscolaGerencial --> RedePagamento
   EscolaSerie --> Agrupamento
   EscolaSerie --> AnoLetivo
   EscolaSerie --> Escola
@@ -547,6 +571,7 @@ graph TD
   EstruturaAvaliacao --> Agrupamento
   EstruturaAvaliacao --> AnoLetivo
   EstruturaAvaliacao --> Ciclo
+  EstruturaAvaliacao --> EstruturaAvaliacaoEscopo
   EstruturaAvaliacao --> EstruturaAvaliacao
   EstruturaAvaliacao --> ItinerarioFormativoCiclo
   EstruturaAvaliacao --> Rede
@@ -554,8 +579,15 @@ graph TD
   EstruturaAvaliacao --> TipoCartaoResposta
   EstruturaAvaliacao --> TipoResultado
   EstruturaAvaliacao --> TipoSubstituicao
+  EstruturaAvaliacaoAprovacao --> Agrupamento
+  EstruturaAvaliacaoAprovacao --> AnoLetivo
   EstruturaAvaliacaoAprovacao --> Escola
   EstruturaAvaliacaoAprovacao --> EstruturaAvaliacao
+  EstruturaAvaliacaoAprovacao --> Rede
+  EstruturaAvaliacaoAprovacaoEscola --> Agrupamento
+  EstruturaAvaliacaoAprovacaoEscola --> AnoLetivo
+  EstruturaAvaliacaoAprovacaoEscola --> Escola
+  EstruturaAvaliacaoAprovacaoEscola --> Rede
   EstruturaAvaliacaoConfiguracao --> TipoArredondamento
   EstruturaAvaliacaoConfiguracao --> Agrupamento
   EstruturaAvaliacaoConfiguracao --> AnoLetivo
@@ -565,6 +597,7 @@ graph TD
   EstruturaAvaliacaoConfiguracao --> EstruturaAvaliacaoConfiguracao
   EstruturaAvaliacaoConfiguracaoEscopo --> EscopoBoletim
   EstruturaAvaliacaoConfiguracaoEscopo --> EstruturaAvaliacaoConfiguracao
+  EstruturaAvaliacaoEscopo --> ItinerarioFormativoCiclo
   EstruturaAvaliacaoImportacao --> Agrupamento
   EstruturaAvaliacaoImportacao --> AnoLetivo
   EstruturaAvaliacaoImportacao --> EstruturaAvaliacaoEscopo
@@ -584,6 +617,14 @@ graph TD
   EstruturaAvaliacaoLiberacaoSituacao --> Agrupamento
   EstruturaAvaliacaoLiberacaoSituacao --> AnoLetivo
   EstruturaAvaliacaoLiberacaoSituacao --> Rede
+  EstruturaAvaliacaoNomenclaturaCiclo --> Agrupamento
+  EstruturaAvaliacaoNomenclaturaCiclo --> AnoLetivo
+  EstruturaAvaliacaoNomenclaturaCiclo --> Ciclo
+  EstruturaAvaliacaoNomenclaturaCiclo --> Rede
+  EstruturaAvaliacaoNomenclaturaEscopo --> Agrupamento
+  EstruturaAvaliacaoNomenclaturaEscopo --> AnoLetivo
+  EstruturaAvaliacaoNomenclaturaEscopo --> EstruturaAvaliacaoEscopo
+  EstruturaAvaliacaoNomenclaturaEscopo --> Rede
   EstruturaAvaliacaoOrdemDisciplina --> Agrupamento
   EstruturaAvaliacaoOrdemDisciplina --> AnoLetivo
   EstruturaAvaliacaoOrdemDisciplina --> Disciplina
@@ -702,19 +743,39 @@ graph TD
   HisHistoricoNotas --> HisHistoricoAnoLetivo
   HisNucleoComum --> HisDisciplina
   HisNucleoComum --> HisSerie
+  HistoricoAlocacaoValidador --> Redacao
+  HistoricoAlocacaoValidador --> Usuario
   HistoricoHoraAulaPgto --> HoraAulaPgto
   HistoricoHoraAulaSegmentoPgto --> HoraAulaSegmentoPgto
+  HoraAulaEspecial --> JustificativaHoraAula
+  HoraAulaEspecial --> MotivoAlteracaoHoraAula
+  HoraAulaEspecial --> MovimentacaoHoraAula
+  HoraAulaEspecial --> ProfessorPerfilVigente
+  HoraAulaEspecial --> Turma
   HoraAulaPadrao --> AnoLetivo
   HoraAulaPadrao --> ClassePagamento
   HoraAulaPadrao --> EscolaPagamento
   HoraAulaPadrao --> SegmentoPagamento
-  HoraAulaPgto --> TipoHoraAula
+  HoraAulaPadrao --> MotivoAlteracaoHoraAula
+  HoraAulaPadrao --> MovimentacaoHoraAula
+  HoraAulaPgto --> TipoHoraAula_Excluir
   HoraAulaPgto --> DissidioAnoLetivo
   HoraAulaPgto --> UnidadePgto
+  HoraAulaSegmento --> AnoLetivo
+  HoraAulaSegmento --> EscolaPagamento
+  HoraAulaSegmento --> MotivoAlteracaoHoraAula
+  HoraAulaSegmento --> MovimentacaoHoraAula
+  HoraAulaSegmento --> ProfessorPerfilVigente
+  HoraAulaSegmento --> SegmentoPagamento
   HoraAulaSegmentoPgto --> ClasseTurmaSegmentoPgto
   HoraAulaSegmentoPgto --> DissidioAnoLetivo
-  HoraAulaSegmentoPgto --> TipoHoraAula
+  HoraAulaSegmentoPgto --> TipoHoraAula_Excluir
   HoraAulaSegmentoPgto --> UnidadePgto
+  HoraAulaTabelada --> AnoLetivo
+  HoraAulaTabelada --> CargoPagamento
+  HoraAulaTabelada --> EscolaPagamento
+  HoraAulaTabelada --> MotivoAlteracaoHoraAula
+  HoraAulaTabelada --> Segmento
   IconDisciplinaPladGame --> Disciplina
   ImportacaoTRI --> ProvaModelo
   ImportacaoTRILinha --> ImportacaoTRI
@@ -1029,6 +1090,7 @@ graph TD
   MonitorTurmaDisciplina --> Disciplina
   MonitorTurmaDisciplina --> PessoaEscolaAcesso
   MonitorTurmaDisciplina --> Turma
+  MotivoAlteracaoHoraAula --> TipoHoraAula
   MotivoAtendimento --> TipoAtendimento
   MotivoAtendimentoTipoPublicoAtendido --> MotivoAtendimento
   MotivoAtendimentoTipoPublicoAtendido --> TipoPublicoAtendido
@@ -1037,6 +1099,8 @@ graph TD
   MotivoFrequenciaProfessorTipoPresenca --> Rede
   MotivoFrequenciaProfessorTipoPresenca --> TipoPresenca
   MotivosSaida --> Rede
+  MovimentacaoHoraAula --> MotivoAlteracaoHoraAula
+  MovimentacaoHoraAula --> TipoHoraAula
   NaoRecalcularBaseDeSeriesPorAluno --> Pessoa
   NomeUraniaDisciplina --> Rede
   NomeUraniaDisciplinaLinha --> NomeUraniaDisciplina
@@ -1412,10 +1476,13 @@ graph TD
   Redacao --> StatusRedacao
   Redacao --> AlunoCartao
   Redacao --> GradeRedacao
+  RedacaoAspectoCritico --> Redacao
   RedacaoAvaliacaoCorrecaoIA --> AvaliacaoIA
   RedacaoAvaliacaoCorrecaoIA --> Redacao
   RedacaoCompetencia --> Competencia
   RedacaoCompetencia --> Redacao
+  RedacaoCompetenciaValidacaoIA --> Competencia
+  RedacaoCompetenciaValidacaoIA --> Redacao
   RedacaoCorrecaoIAAcompanhamento --> Redacao
   RedacaoCorrecaoIAAcompanhamento --> StatusCorrecaoIA
   RedacaoCorrecaoIAAcompanhamento --> TipoErroCorrecaoIA
@@ -1475,6 +1542,8 @@ graph TD
   RedeSerieDisciplinaAssunto --> RedeSerieDisciplina
   RedeSerieDisciplinaCiclo --> RedeSerieCiclo
   RedeSerieDisciplinaCiclo --> RedeSerieDisciplina
+  RedeSerieDisciplinaEscola --> Escola
+  RedeSerieDisciplinaEscola --> RedeSerieDisciplina
   RedeSerieDisciplinaFrente --> Disciplina
   RedeSerieDisciplinaFrente --> RedeSerieDisciplina
   RedeSerieDisciplinaLinha --> RedeSerieDisciplina
@@ -1533,6 +1602,7 @@ graph TD
   SimuladoTRIAreaConhecimento --> AreaConhecimento
   SimuladoTRIAreaConhecimento --> SimuladoTRI
   SimuladoTRICalculo --> SimuladoTRI
+  SimuladoTRICalculoLog --> SimuladoTRICalculo
   SimuladoTRIGabaritoOficial --> SimuladoTRI
   SimuladoTRIProvaCodigo --> ProvaCodigo
   SimuladoTRIProvaCodigo --> SimuladoTRI
@@ -1607,6 +1677,7 @@ graph TD
   TipoRedeResultado --> TipoResultado
   TipoRedeSerie --> Serie
   TipoRedeSerie --> TipoRede
+  TipoTranstorno --> TipoTranstorno
   TRI --> SimuladoTRI
   TRILinha --> TRI
   Turma --> Turma
@@ -1652,6 +1723,7 @@ graph TD
   TwilioFilaEnvio --> TwilioTemplate
   TwilioFilaEnvioParametro --> TwilioFilaEnvio
   TwilioFilaEnvioParametro --> TwilioTemplateParametro
+  TwilioRemetente --> TwilioFilaEnvio
   TwilioRemetenteRede --> Rede
   TwilioRemetenteRede --> TwilioRemetente
   TwilioTemplate --> Funcionalidade
@@ -1680,6 +1752,7 @@ graph TD
   AgrupadorDeMeses
   AlocacaoFeriados
   AlocacaoProfessoresStatus
+  AlocacaoValidadorStatus
   AlunoAvaliacaoPresenca_bkp
   AlunoAvaliacaoPresenca_bkp2
   AlunoCartaoResposta
@@ -1745,11 +1818,15 @@ graph TD
   Counter
   CustomClassroom
   DATAS
+  DadosImportacaoFrequencia
+  DadosJustificativa
   DashboardEditora
   DeHabilitacaoParaSerie
   DisciplinaCargaHoraria
   DisciplinaLinha
   Disciplina_Origem
+  DisparoCorrecaoIAPendente
+  DocumentoCarometroConfiguracao
   Dummy
   EnturmacaoEE
   Escola_Origem
@@ -1757,6 +1834,7 @@ graph TD
   EventosProfessor
   FalhaLogin
   Feriado
+  FilaImportacaoFrequencia
   FiltroBaseDeDesempenho
   Fluig
   FonteQuestao
@@ -1833,6 +1911,12 @@ graph TD
   MenuDevolutivas
   Meta permanência 2017'
   MonitorEscola
+  MovimentacaoHoraAula_Backup_20260721113925
+  MovimentacaoHoraAula_Backup_20260721114218
+  MovimentacaoHoraAula_Backup_20260721114430
+  MovimentacaoHoraAula_Backup_20260721114651
+  MovimentacaoHoraAula_Backup_20260721114956
+  MovimentacaoHoraAula_Backup_20260721120617
   NivelQuestao
   NotaElite
   NotaPensi
@@ -1914,6 +1998,7 @@ graph TD
   Set
   SimuladoDetalhe
   SituacaoQuestoesLaplace
+  StatusAprovacao
   StatusBoletim
   StatusControleEmail
   StatusLancamentoFrequencia

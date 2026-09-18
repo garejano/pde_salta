@@ -1,0 +1,45 @@
+<!doctype html>
+<!-- @dsCard group="Spacing" name="Opacity levels" subtitle="$opacity-level-* · semiopaque → semitransparent" viewport="700x200" -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 22px 20px; background: #fff; font-family: 'Nunito', sans-serif; color: #0F0F10; }
+  .row { display: flex; gap: 16px; align-items: stretch; }
+  .cell { flex: 1; text-align: center; }
+  .swatch {
+    position: relative;
+    height: 90px;
+    background-image: linear-gradient(45deg, #EBEDF1 25%, transparent 25%),
+                      linear-gradient(-45deg, #EBEDF1 25%, transparent 25%),
+                      linear-gradient(45deg, transparent 75%, #EBEDF1 75%),
+                      linear-gradient(-45deg, transparent 75%, #EBEDF1 75%);
+    background-size: 12px 12px;
+    background-position: 0 0, 0 6px, 6px -6px, -6px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .swatch::after {
+    content: ""; position: absolute; inset: 0;
+    background: #0F0F10;
+  }
+  .name  { font-family: 'Archivo'; font-weight: 700; font-size: 11px; }
+  .token { font-family: 'Inconsolata', monospace; font-size: 10px; color: #65686E; margin-top: 2px; }
+  .val   { font-family: 'Inconsolata', monospace; font-size: 11px; color: #0F0F10; margin-top: 2px; }
+</style></head>
+<body>
+  <div class="row">
+    <div class="cell"><div class="swatch" style="--a:.80;"></div><div class="name">Semi Opaque</div><div class="token">$opacity-level-semiopaque</div><div class="val">0.80</div></div>
+    <div class="cell"><div class="swatch" style="--a:.64;"></div><div class="name">Intense</div><div class="token">$opacity-level-intense</div><div class="val">0.64</div></div>
+    <div class="cell"><div class="swatch" style="--a:.32;"></div><div class="name">Medium</div><div class="token">$opacity-level-medium</div><div class="val">0.32</div></div>
+    <div class="cell"><div class="swatch" style="--a:.16;"></div><div class="name">Light</div><div class="token">$opacity-level-light</div><div class="val">0.16</div></div>
+    <div class="cell"><div class="swatch" style="--a:.08;"></div><div class="name">Semi Transparent</div><div class="token">$opacity-level-semitransparent</div><div class="val">0.08</div></div>
+  </div>
+  <style>
+    .swatch:nth-child(1)::after, .row .cell:nth-child(1) .swatch::after { opacity: .80; }
+    .row .cell:nth-child(2) .swatch::after { opacity: .64; }
+    .row .cell:nth-child(3) .swatch::after { opacity: .32; }
+    .row .cell:nth-child(4) .swatch::after { opacity: .16; }
+    .row .cell:nth-child(5) .swatch::after { opacity: .08; }
+  </style>
+</body></html>

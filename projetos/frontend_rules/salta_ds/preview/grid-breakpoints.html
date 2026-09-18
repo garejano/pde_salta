@@ -1,0 +1,49 @@
+<!doctype html>
+<!-- @dsCard group="Spacing" name="Grid breakpoints" subtitle="bp-1/2/3 · column + margin + gutter rules" viewport="700x300" -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: #fff; font-family: 'Nunito', sans-serif; color: #0F0F10; }
+  .row { display: grid; grid-template-columns: 130px 1fr 200px 220px; gap: 6px 14px; align-items: center; padding: 10px 0; border-bottom: 1px solid #EBEDF1; }
+  .row:last-child { border-bottom: 0; }
+  .name { font-family: 'Archivo'; font-weight: 700; font-size: 13px; }
+  .range{ font-family: 'Inconsolata', monospace; font-size: 11px; color: #65686E; }
+  .bar { height: 14px; background: linear-gradient(90deg, #CFD1F6, #242CC2); border-radius: 4px; position: relative; }
+  .bar::after { content: ""; position: absolute; inset: 0; border-radius: 4px; }
+  .spec { font-family: 'Inconsolata', monospace; font-size: 11px; color: #0F0F10; text-align: right; }
+  .container { font-family: 'Inconsolata', monospace; font-size: 11px; color: #65686E; text-align: right; }
+  h3 { font-family: 'Archivo'; font-weight: 700; font-size: 12px; margin: 0 0 8px; letter-spacing: .04em; text-transform: uppercase; color: #242CC2; }
+</style></head>
+<body>
+  <h3>Breakpoints · 3 bandas, 5 comportamentos</h3>
+  <div class="row">
+    <div><div class="name">bp-1</div><div class="range">Celular retrato</div></div>
+    <div><div class="bar" style="width:24%;"></div></div>
+    <div class="spec">0 – 575 px · 4 cols</div>
+    <div class="container">margin 24 · gutter 16 · fluid</div>
+  </div>
+  <div class="row">
+    <div><div class="name">bp-2</div><div class="range">Tablet retrato</div></div>
+    <div><div class="bar" style="width:44%;"></div></div>
+    <div class="spec">576 – 991 · 12 cols</div>
+    <div class="container">margin 24 · gutter 16 · fluid</div>
+  </div>
+  <div class="row">
+    <div><div class="name">bp-2</div><div class="range">Tablet paisagem</div></div>
+    <div><div class="bar" style="width:62%;"></div></div>
+    <div class="spec">992 – 1365 · 12 cols</div>
+    <div class="container">margin 24 · gutter 16 · fluid</div>
+  </div>
+  <div class="row">
+    <div><div class="name">bp-3</div><div class="range">Desktop</div></div>
+    <div><div class="bar" style="width:82%;"></div></div>
+    <div class="spec">1366 – 1439 · 12 cols</div>
+    <div class="container">margin 32 · gutter 24 · fluid</div>
+  </div>
+  <div class="row">
+    <div><div class="name">bp-3</div><div class="range">Desktop grande</div></div>
+    <div><div class="bar" style="width:100%;"></div></div>
+    <div class="spec">1440+ · 12 cols</div>
+    <div class="container">margin 32 · gutter 24 · fixo</div>
+  </div>
+</body></html>

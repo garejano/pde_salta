@@ -1,0 +1,435 @@
+/* =====================================================================
+   Eleva Design System — Core tokens
+   Brand: Eleva (by Grupo Salta)
+   Source: "Gabarito | Design tokens — v02" + "Gabarito | Componentes — v02"
+   All $token names below are the OFFICIAL names used in the Figma file.
+   ===================================================================== */
+
+/* ---------- Fonts ----------
+   Archivo: loaded locally from fonts/ (full family uploaded by user).
+   Nunito, Inter, Inconsolata: Google Fonts (not supplied locally).
+---------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@400;500;600;700&family=Inconsolata:wght@400;500;700&display=swap');
+
+/* Archivo — normal width, all used weights */
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("fonts/Archivo-Regular.ttf") format("truetype"); }
+@font-face { font-family: "Archivo"; font-style: italic; font-weight: 400; font-display: swap;
+  src: url("fonts/Archivo-Italic.ttf") format("truetype"); }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 500; font-display: swap;
+  src: url("fonts/Archivo-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Archivo"; font-style: italic; font-weight: 500; font-display: swap;
+  src: url("fonts/Archivo-MediumItalic.ttf") format("truetype"); }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("fonts/Archivo-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Archivo"; font-style: italic; font-weight: 600; font-display: swap;
+  src: url("fonts/Archivo-SemiBoldItalic.ttf") format("truetype"); }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("fonts/Archivo-Bold.ttf") format("truetype"); }
+@font-face { font-family: "Archivo"; font-style: italic; font-weight: 700; font-display: swap;
+  src: url("fonts/Archivo-BoldItalic.ttf") format("truetype"); }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 800; font-display: swap;
+  src: url("fonts/Archivo-ExtraBold.ttf") format("truetype"); }
+@font-face { font-family: "Archivo"; font-style: italic; font-weight: 800; font-display: swap;
+  src: url("fonts/Archivo-ExtraBoldItalic.ttf") format("truetype"); }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 900; font-display: swap;
+  src: url("fonts/Archivo-Black.ttf") format("truetype"); }
+@font-face { font-family: "Archivo"; font-style: italic; font-weight: 900; font-display: swap;
+  src: url("fonts/Archivo-BlackItalic.ttf") format("truetype"); }
+
+/* Archivo Condensed — available for compact display usage */
+@font-face { font-family: "Archivo Condensed"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("fonts/Archivo_Condensed-Regular.ttf") format("truetype"); }
+@font-face { font-family: "Archivo Condensed"; font-style: normal; font-weight: 500; font-display: swap;
+  src: url("fonts/Archivo_Condensed-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Archivo Condensed"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("fonts/Archivo_Condensed-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Archivo Condensed"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("fonts/Archivo_Condensed-Bold.ttf") format("truetype"); }
+
+/* Archivo Expanded — wider cut for special display treatments */
+@font-face { font-family: "Archivo Expanded"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("fonts/Archivo_Expanded-Regular.ttf") format("truetype"); }
+@font-face { font-family: "Archivo Expanded"; font-style: normal; font-weight: 500; font-display: swap;
+  src: url("fonts/Archivo_Expanded-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Archivo Expanded"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("fonts/Archivo_Expanded-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Archivo Expanded"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("fonts/Archivo_Expanded-Bold.ttf") format("truetype"); }
+
+:root {
+  /* ====================================================================
+     COLORS — Primary (indigo)      $color-primary-*
+     ==================================================================== */
+  --color-primary-dark1:  #191F88;
+  --color-primary:        #242CC2;
+  --color-primary-light1: #666BD4;
+  --color-primary-light2: #A7ABE6;
+  --color-primary-light3: #ECEDFF;
+
+  /* COLORS — Secondary (magenta)   $color-secondary-* */
+  --color-secondary-dark1:  #6E0246;
+  --color-secondary:        #9D0364;
+  --color-secondary-light1: #BA4F93;
+  --color-secondary-light2: #D89AC1;
+
+  /* COLORS — Tertiary (teal)       $color-tertiary-* */
+  --color-tertiary-dark1:  #228085;
+  --color-tertiary:        #30B7BE;
+  --color-tertiary-light1: #6ECDD1;
+  --color-tertiary-light2: #ACE2E5;
+
+  /* COLORS — Semantic              $color-{warning,error,inform}-* */
+  --color-warning-dark:   #B37822;
+  --color-warning:        #FFAC30;
+  --color-warning-light:  #FFDEAC;
+
+  --color-error-dark:     #A13C26;
+  --color-error:          #E65637;
+  --color-error-light:    #F5BBAF;
+
+  --color-inform-dark:    #53347B;
+  --color-inform:         #774BB0;
+  --color-inform-light:   #C9B7DF;
+  --color-inform-light2:  #F5EDFF;
+
+  /* COLORS — Neutrals              $color-neutral-* */
+  --color-neutral-dark3:  #0F0F10;
+  --color-neutral-dark2:  #3D3F42;
+  --color-neutral-dark1:  #65686E;
+  --color-neutral:        #ADB2BA;
+  --color-neutral-light1: #C3C8D1;
+  --color-neutral-light2: #EBEDF1;
+  --color-neutral-light3: #F8F9FB;
+  --color-white:          #FFFFFF;
+
+  /* Brand mark gradient (Eleva logo) */
+  --brand-gradient:   linear-gradient(180deg, #30B7BE 0%, #39D881 100%);
+  --brand-gradient-h: linear-gradient(90deg, #30B7BE 0%, #39D881 100%);
+
+  /* ====================================================================
+     SEMANTIC COLOR ROLES — use these in components
+     ==================================================================== */
+  --fg-primary:    var(--color-neutral-dark3);
+  --fg-secondary:  var(--color-neutral-dark2);
+  --fg-muted:      var(--color-neutral-dark1);
+  --fg-disabled:   var(--color-neutral);
+  --fg-on-brand:   var(--color-white);
+  --fg-link:       var(--color-primary);
+
+  --bg-canvas:     var(--color-white);
+  --bg-surface:    var(--color-neutral-light3);
+  --bg-subtle:     var(--color-neutral-light2);
+  --bg-inset:      #F2F2F2;
+
+  --border-default: var(--color-neutral-light1);
+  --border-subtle:  var(--color-neutral-light2);
+  --border-strong:  var(--color-neutral-dark2);
+  --border-brand:   var(--color-primary);
+
+  --accent-primary: var(--color-primary);
+  --accent-hover:   var(--color-primary-dark1);
+  --accent-pressed: #0E137A;
+
+  /* ====================================================================
+     TYPOGRAPHY — families
+     Display: Archivo  (títulos, botões)
+     Body:    Nunito   (texto corrido)
+     UI:      Inter    (small chrome, labels — fallback)
+     Mono:    Inconsolata
+     ==================================================================== */
+  --font-display-family: "Archivo", "Inter", system-ui, sans-serif;
+  --font-display-condensed-family: "Archivo Condensed", "Archivo", system-ui, sans-serif;
+  --font-display-expanded-family:  "Archivo Expanded",  "Archivo", system-ui, sans-serif;
+  --font-body-family:    "Nunito", "Inter", system-ui, sans-serif;
+  --font-ui-family:      "Inter", system-ui, sans-serif;
+  --font-mono-family:    "Inconsolata", ui-monospace, Menlo, monospace;
+
+  /* TYPOGRAPHY — OFFICIAL named tokens (from /Fonts/Fonte)
+     Format: --font-<name>-{size|lh|weight}
+     ==================================================================== */
+
+  /* Display */
+  --font-display1-size: 56px;   --font-display1-lh: 64px;   --font-display1-weight: 600;
+  --font-display2-size: 48px;   --font-display2-lh: 60px;   --font-display2-weight: 600;
+
+  /* Titles */
+  --font-title1-size: 40px;     --font-title1-lh: 56px;     --font-title1-weight: 600;
+  --font-title2-size: 32px;     --font-title2-lh: 48px;     --font-title2-weight: 600;
+  --font-title3-size: 24px;     --font-title3-lh: 32px;     --font-title3-weight: 600;
+  --font-title4-size: 18px;     --font-title4-lh: 22px;     --font-title4-weight: 600;
+
+  /* Buttons */
+  --font-button1-size: 16px;    --font-button1-lh: 16px;    --font-button1-weight: 700;
+  --font-button2-size: 14px;    --font-button2-lh: 14px;    --font-button2-weight: 700;
+  --font-button3-size: 14px;    --font-button3-lh: 14px;    --font-button3-weight: 400;
+
+  /* Subtitle / Medium */
+  --font-medium-size: 24px;     --font-medium-lh: 32px;     --font-medium-weight: 400;
+  --font-medium-bold-size: 24px; --font-medium-bold-lh: 32px; --font-medium-bold-weight: 700;
+  --font-medium-italic-size: 24px; --font-medium-italic-lh: 32px; --font-medium-italic-weight: 400;
+
+  /* Body text */
+  --font-text-size: 16px;           --font-text-lh: 24px;           --font-text-weight: 400;
+  --font-text-bold-size: 16px;      --font-text-bold-lh: 24px;      --font-text-bold-weight: 700;
+  --font-text-italic-size: 16px;    --font-text-italic-lh: 24px;    --font-text-italic-weight: 400;
+  --font-text-underline-size: 16px; --font-text-underline-lh: 24px; --font-text-underline-weight: 400;
+
+  /* Small text */
+  --font-text-small-size: 14px;            --font-text-small-lh: 24px;            --font-text-small-weight: 400;
+  --font-text-small-bold-size: 14px;       --font-text-small-bold-lh: 24px;       --font-text-small-bold-weight: 700;
+  --font-text-small-italic-size: 14px;     --font-text-small-italic-lh: 24px;     --font-text-small-italic-weight: 400;
+  --font-text-small-underline-size: 14px;  --font-text-small-underline-lh: 24px;  --font-text-small-underline-weight: 400;
+
+  /* Description */
+  --font-description-size: 12px;            --font-description-lh: 20px;            --font-description-weight: 400;
+  --font-description-bold-size: 12px;       --font-description-bold-lh: 20px;       --font-description-bold-weight: 700;
+  --font-description-italic-size: 12px;     --font-description-italic-lh: 20px;     --font-description-italic-weight: 400;
+  --font-description-underline-size: 12px;  --font-description-underline-lh: 20px;  --font-description-underline-weight: 400;
+
+  /* ====================================================================
+     SPACING — 4-point grid ($spacing-2 … $spacing-13)
+     ==================================================================== */
+  --spacing-2:  4px;
+  --spacing-3:  8px;
+  --spacing-4:  12px;
+  --spacing-5:  16px;
+  --spacing-6:  20px;
+  --spacing-7:  24px;
+  --spacing-8:  32px;
+  --spacing-9:  40px;
+  --spacing-10: 48px;
+  --spacing-11: 56px;
+  --spacing-12: 64px;
+  --spacing-13: 72px;
+  --spacing-14: 80px;
+
+  /* ====================================================================
+     BORDER — radius + width
+     ==================================================================== */
+  --border-radius-0:   0;
+  --border-radius-1:   4px;
+  --border-radius-2:   8px;     /* ★ default — buttons, inputs, cards */
+  --border-radius-3:   12px;
+  --border-radius-4:   16px;
+  --border-radius-5:   32px;
+  --border-radius-pill: 999px;
+
+  --border-width-0: 0;
+  --border-width-1: 1px;
+  --border-width-2: 2px;
+  --border-width-3: 3px;
+  --border-width-4: 4px;
+
+  /* ====================================================================
+     SHADOWS — 12-token system (direction × size)
+     Direction: down (default), center (ambient), up (floating modals)
+     Size: small, medium, large, xlarge
+     Base color: rgba(0, 23, 31, 0.15)
+     ==================================================================== */
+  --shadow-down-small:     0 2px 4px 0 rgba(0, 23, 31, 0.15);
+  --shadow-down-medium:    0 4px 8px 0 rgba(0, 23, 31, 0.15);
+  --shadow-down-large:     0 8px 16px 0 rgba(0, 23, 31, 0.15);
+  --shadow-down-xlarge:    0 16px 32px 0 rgba(0, 23, 31, 0.18);
+
+  --shadow-center-small:   0 0 4px 0 rgba(0, 23, 31, 0.12);
+  --shadow-center-medium:  0 0 8px 0 rgba(0, 23, 31, 0.14);
+  --shadow-center-large:   0 0 16px 0 rgba(0, 23, 31, 0.16);
+  --shadow-center-xlarge:  0 0 32px 0 rgba(0, 23, 31, 0.18);
+
+  --shadow-up-small:       0 -2px 4px 0 rgba(0, 23, 31, 0.12);
+  --shadow-up-medium:      0 -4px 8px 0 rgba(0, 23, 31, 0.14);
+  --shadow-up-large:       0 -8px 16px 0 rgba(0, 23, 31, 0.16);
+  --shadow-up-xlarge:      0 -16px 32px 0 rgba(0, 23, 31, 0.18);
+
+  --shadow-focus: 0 0 0 3px rgba(36, 44, 194, 0.24);  /* indigo focus ring */
+
+  /* ====================================================================
+     OPACITY — 5-level system
+     ==================================================================== */
+  --opacity-level-semiopaque:      0.80;
+  --opacity-level-intense:         0.64;
+  --opacity-level-medium:          0.32;
+  --opacity-level-light:           0.16;
+  --opacity-level-semitransparent: 0.08;
+
+  /* ====================================================================
+     MOTION — 7 named tokens (duration × easing)
+     ==================================================================== */
+  --motion-fast-1:         80ms  cubic-bezier(0.16, 1, 0.3, 1);   /* ease-out */
+  --motion-fast-2:         120ms cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-moderate-1:     160ms cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-moderate-2:     240ms cubic-bezier(0.16, 1, 0.3, 1);
+  --linear-moderate-2:     240ms linear;
+  --motion-slow-1:         400ms cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-slow-2:         720ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Raw durations + easings (for custom animations) */
+  --duration-fast-1:     80ms;
+  --duration-fast-2:     120ms;
+  --duration-moderate-1: 160ms;
+  --duration-moderate-2: 240ms;
+  --duration-slow-1:     400ms;
+  --duration-slow-2:     720ms;
+
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-linear: linear;
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ====================================================================
+     GRID — breakpoints (from /Grids/Grid-v02---Novo-grid)
+     bp-1 = mobile portrait     | 0 – 575px   | 4 cols  | margin 24 | gutter 16
+     bp-2 = tablet portrait     | 576 – 991   | 12 cols | margin 24 | gutter 16
+     bp-2 = tablet landscape    | 992 – 1365  | 12 cols | margin 24 | gutter 16
+     bp-3 = desktop             | 1366 – 1439 | 12 cols | margin 32 | gutter 24
+     bp-3 = desktop grande      | 1440+       | 12 cols | margin 32 | gutter 24
+     Container: fluid 100% up to bp-3 grande (fixed width)
+     ==================================================================== */
+  --breakpoint-bp-1: 576px;   /* phone → tablet portrait */
+  --breakpoint-bp-2: 992px;   /* tablet portrait → landscape */
+  --breakpoint-bp-3: 1366px;  /* tablet → desktop */
+  --breakpoint-bp-3-grande: 1440px;
+
+  /* Legacy short aliases kept for backward compat with existing UI kit */
+  --eleva-teal:   var(--color-tertiary);
+  --eleva-green:  #39D881;
+  --indigo-700:   var(--color-primary);
+  --indigo-800:   #1E258F;
+  --indigo-900:   var(--color-primary-dark1);
+  --indigo-500:   var(--color-primary-light1);
+  --indigo-300:   var(--color-primary-light2);
+  --indigo-100:   #E3E5FB;
+  --ink-900:      var(--color-neutral-dark3);
+  --ink-600:      var(--color-neutral-dark2);
+  --ink-500:      var(--color-neutral-dark1);
+  --ink-300:      var(--color-neutral);
+  --ink-200:      var(--color-neutral-light1);
+  --ink-100:      var(--color-neutral-light2);
+  --ink-50:       var(--color-neutral-light3);
+  --magenta-700:  var(--color-secondary);
+  --orange-500:   var(--color-error);
+  --amber-500:    var(--color-warning);
+  --purple-500:   var(--color-inform);
+  --success-500:  #28975A;
+  --danger-500:   var(--color-error);
+  --warning-500:  var(--color-warning);
+  --info-500:     var(--color-primary);
+  --white:        var(--color-white);
+  --black:        #000000;
+
+  --radius-xs:    var(--border-radius-1);
+  --radius-sm:    var(--border-radius-1);
+  --radius-md:    var(--border-radius-2);
+  --radius-lg:    var(--border-radius-4);
+  --radius-xl:    24px;
+  --radius-pill:  var(--border-radius-pill);
+
+  --space-0: 0;      --space-1: 4px;     --space-2: 8px;     --space-3: 12px;
+  --space-4: 16px;   --space-5: 24px;    --space-6: 32px;    --space-7: 40px;
+  --space-8: 48px;   --space-9: 64px;    --space-10: 96px;
+
+  --shadow-xs: var(--shadow-center-small);
+  --shadow-sm: var(--shadow-down-small);
+  --shadow-md: var(--shadow-down-medium);
+  --shadow-lg: var(--shadow-down-large);
+
+  --dur-fast: var(--duration-fast-2);
+  --dur-base: var(--duration-moderate-2);
+  --dur-slow: var(--duration-slow-1);
+
+  --font-display: var(--font-display-family);
+  --font-body:    var(--font-body-family);
+  --font-ui:      var(--font-ui-family);
+  --font-mono:    var(--font-mono-family);
+}
+
+/* =====================================================================
+   SEMANTIC TYPE STYLES — named helpers ($font-*)
+   ===================================================================== */
+.font-display1 {
+  font-family: var(--font-display-family);
+  font-size: var(--font-display1-size);
+  line-height: var(--font-display1-lh);
+  font-weight: var(--font-display1-weight);
+  letter-spacing: -0.01em;
+}
+.font-display2 {
+  font-family: var(--font-display-family);
+  font-size: var(--font-display2-size);
+  line-height: var(--font-display2-lh);
+  font-weight: var(--font-display2-weight);
+  letter-spacing: -0.01em;
+}
+.font-title1 {
+  font-family: var(--font-display-family);
+  font-size: var(--font-title1-size);
+  line-height: var(--font-title1-lh);
+  font-weight: var(--font-title1-weight);
+}
+.font-title2 {
+  font-family: var(--font-display-family);
+  font-size: var(--font-title2-size);
+  line-height: var(--font-title2-lh);
+  font-weight: var(--font-title2-weight);
+}
+.font-title3 {
+  font-family: var(--font-display-family);
+  font-size: var(--font-title3-size);
+  line-height: var(--font-title3-lh);
+  font-weight: var(--font-title3-weight);
+}
+.font-title4 {
+  font-family: var(--font-display-family);
+  font-size: var(--font-title4-size);
+  line-height: var(--font-title4-lh);
+  font-weight: var(--font-title4-weight);
+}
+
+.font-medium       { font-family: var(--font-body-family); font-size: 24px; line-height: 32px; font-weight: 400; }
+.font-medium-bold  { font-family: var(--font-body-family); font-size: 24px; line-height: 32px; font-weight: 700; }
+.font-medium-italic{ font-family: var(--font-body-family); font-size: 24px; line-height: 32px; font-weight: 400; font-style: italic; }
+
+.font-text                { font-family: var(--font-body-family); font-size: 16px; line-height: 24px; font-weight: 400; }
+.font-text-bold           { font-family: var(--font-body-family); font-size: 16px; line-height: 24px; font-weight: 700; }
+.font-text-italic         { font-family: var(--font-body-family); font-size: 16px; line-height: 24px; font-weight: 400; font-style: italic; }
+.font-text-underline      { font-family: var(--font-body-family); font-size: 16px; line-height: 24px; font-weight: 400; text-decoration: underline; }
+
+.font-text-small          { font-family: var(--font-body-family); font-size: 14px; line-height: 24px; font-weight: 400; }
+.font-text-small-bold     { font-family: var(--font-body-family); font-size: 14px; line-height: 24px; font-weight: 700; }
+.font-text-small-italic   { font-family: var(--font-body-family); font-size: 14px; line-height: 24px; font-weight: 400; font-style: italic; }
+.font-text-small-underline{ font-family: var(--font-body-family); font-size: 14px; line-height: 24px; font-weight: 400; text-decoration: underline; }
+
+.font-description         { font-family: var(--font-body-family); font-size: 12px; line-height: 20px; font-weight: 400; }
+.font-description-bold    { font-family: var(--font-body-family); font-size: 12px; line-height: 20px; font-weight: 700; }
+.font-description-italic  { font-family: var(--font-body-family); font-size: 12px; line-height: 20px; font-weight: 400; font-style: italic; }
+.font-description-underline{font-family: var(--font-body-family); font-size: 12px; line-height: 20px; font-weight: 400; text-decoration: underline; }
+
+.font-button1 { font-family: var(--font-display-family); font-size: 16px; line-height: 16px; font-weight: 700; }
+.font-button2 { font-family: var(--font-display-family); font-size: 14px; line-height: 14px; font-weight: 700; }
+.font-button3 { font-family: var(--font-display-family); font-size: 14px; line-height: 14px; font-weight: 400; }
+
+/* Back-compat classnames (previous Eleva set) */
+.eleva-display-xl,  h1.eleva { font-family: var(--font-display-family); font-weight: 600; font-size: 56px; line-height: 64px; color: var(--fg-primary); }
+.eleva-display-lg,  h2.eleva { font-family: var(--font-display-family); font-weight: 600; font-size: 40px; line-height: 56px; color: var(--fg-primary); }
+.eleva-display-md,  h3.eleva { font-family: var(--font-display-family); font-weight: 600; font-size: 32px; line-height: 48px; color: var(--fg-primary); }
+.eleva-title,       h4.eleva { font-family: var(--font-display-family); font-weight: 600; font-size: 24px; line-height: 32px; color: var(--fg-primary); }
+.eleva-subtitle,    h5.eleva { font-family: var(--font-display-family); font-weight: 600; font-size: 18px; line-height: 22px; color: var(--fg-primary); }
+.eleva-body, p.eleva         { font-family: var(--font-body-family); font-weight: 400; font-size: 16px; line-height: 24px; color: var(--fg-primary); }
+.eleva-body-strong           { font-family: var(--font-body-family); font-weight: 700; font-size: 16px; line-height: 24px; }
+.eleva-small                 { font-family: var(--font-body-family); font-size: 14px; line-height: 24px; color: var(--fg-secondary); }
+.eleva-caption               { font-family: var(--font-body-family); font-size: 12px; line-height: 20px; color: var(--fg-muted); }
+.eleva-label                 { font-family: var(--font-ui-family); font-weight: 500; font-size: 12px; line-height: 1; color: var(--fg-primary); }
+.eleva-button-text           { font-family: var(--font-display-family); font-weight: 700; font-size: 16px; line-height: 1; }
+.eleva-mono, code.eleva      { font-family: var(--font-mono-family); font-size: 16px; line-height: 24px; }
+
+/* =====================================================================
+   RESET / DEFAULTS when this sheet is used standalone
+   ===================================================================== */
+html, body {
+  font-family: var(--font-body-family);
+  color: var(--fg-primary);
+  background: var(--bg-canvas);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}

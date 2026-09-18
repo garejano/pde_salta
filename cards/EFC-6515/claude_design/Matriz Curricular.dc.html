@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/colors_and_type.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+  <script src="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/_ds_bundle.js"></script>
+  <style>
+    body{margin:0}
+    .msi{font-family:"Material Symbols Outlined";font-weight:normal;font-style:normal;line-height:1;display:inline-block;white-space:nowrap;-webkit-font-smoothing:antialiased}
+  </style>
+</helmet>
+<div data-screen-label="Matriz Curricular" style="width:1440px;background:#fff;font-family:'Nunito',system-ui,sans-serif;color:#0F0F10">
+
+  <!-- App bar -->
+  <div style="height:56px;border-bottom:1px solid #EBEDF1;display:flex;align-items:center;gap:16px;padding:0 24px">
+    <div style="display:flex;align-items:center;gap:8px">
+      <span style="width:26px;height:26px;border-radius:7px;background:linear-gradient(180deg,#30B7BE 0%,#39D881 100%);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Archivo';font-weight:800;font-size:15px">a</span>
+      <span style="font-family:'Archivo';font-weight:700;font-size:16px;color:#3D3F42;letter-spacing:.02em">atlas</span>
+    </div>
+    <button style="display:flex;align-items:center;gap:6px;height:34px;padding:0 10px;border:0;background:transparent;border-radius:8px;cursor:pointer;color:#3D3F42;font-family:'Archivo';font-weight:700;font-size:13px">
+      <span class="msi" style="font-size:20px">menu</span>Menu
+    </button>
+    <div style="flex:1"></div>
+    <span class="msi" style="font-size:22px;color:#65686E">apps</span>
+    <span class="msi" style="font-size:22px;color:#65686E">notifications</span>
+    <span style="width:30px;height:30px;border-radius:999px;background:#EBEDF1;display:flex;align-items:center;justify-content:center;color:#65686E"><span class="msi" style="font-size:20px">person</span></span>
+  </div>
+
+  <!-- Page body -->
+  <div style="padding:24px 32px 40px">
+
+    <!-- Title + primary actions -->
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+      <h1 style="margin:0;font-family:'Archivo';font-weight:600;font-size:28px;line-height:34px;color:#0F0F10">Matriz Curricular</h1>
+      <div style="display:flex;align-items:center;gap:10px">
+        <button style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border:1px solid #242CC2;border-radius:8px;background:#fff;color:#242CC2;font-family:'Archivo';font-weight:700;font-size:14px;cursor:pointer">
+          <span class="msi" style="font-size:20px">download</span>Exportar planilha
+        </button>
+        <button style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 18px;border:0;border-radius:8px;background:#242CC2;color:#fff;font-family:'Archivo';font-weight:700;font-size:14px;cursor:pointer">
+          <span class="msi" style="font-size:20px">add</span>Incluir disciplina
+        </button>
+      </div>
+    </div>
+
+    <!-- Toolbar: filtro + busca + chips ativos -->
+    <div style="display:flex;align-items:center;gap:12px;margin-top:20px;flex-wrap:wrap">
+      <button style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border:1px solid #242CC2;border-radius:8px;background:#fff;color:#242CC2;font-family:'Archivo';font-weight:700;font-size:14px;cursor:pointer">
+        <span class="msi" style="font-size:20px">filter_list</span>Filtro
+        <span style="min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:#242CC2;color:#fff;font-family:'Archivo';font-weight:700;font-size:12px;display:inline-flex;align-items:center;justify-content:center">3</span>
+      </button>
+      <div style="display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border:1px solid #C3C8D1;border-radius:8px;background:#fff;flex:1;max-width:360px">
+        <span class="msi" style="font-size:20px;color:#65686E">search</span>
+        <input value="{{ query }}" onInput="{{ onSearch }}" placeholder="Buscar por disciplina ou série" style="border:0;outline:0;font-family:'Nunito';font-size:14px;flex:1;background:transparent;color:#0F0F10;min-width:0">
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border:1px solid #C3C8D1;border-radius:999px;background:#fff;font-family:'Nunito';font-weight:700;font-size:13px;color:#3D3F42"><span class="msi" style="font-size:16px;color:#65686E">calendar_today</span>Ano: 2026<span class="msi" style="font-size:16px;color:#ADB2BA;cursor:pointer">close</span></span>
+        <span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border:1px solid #C3C8D1;border-radius:999px;background:#fff;font-family:'Nunito';font-weight:700;font-size:13px;color:#3D3F42"><span class="msi" style="font-size:16px;color:#65686E">hub</span>Rede: Pensi<span class="msi" style="font-size:16px;color:#ADB2BA;cursor:pointer">close</span></span>
+        <span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border:1px solid #C3C8D1;border-radius:999px;background:#fff;font-family:'Nunito';font-weight:700;font-size:13px;color:#3D3F42"><span class="msi" style="font-size:16px;color:#65686E">school</span>Segmento: Ensino Médio<span class="msi" style="font-size:16px;color:#ADB2BA;cursor:pointer">close</span></span>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div style="margin-top:16px;border:1px solid #EBEDF1;border-radius:8px;overflow:hidden">
+      <!-- header -->
+      <div style="display:grid;grid-template-columns:minmax(150px,1.15fr) minmax(140px,1.05fr) 96px minmax(260px,2fr) 92px 116px 104px;column-gap:16px;align-items:center;padding:13px 20px;background:#F8F9FB;border-bottom:1px solid #ADB2BA">
+        <span style="font-family:'Archivo';font-weight:700;font-size:12.5px;color:#3D3F42">Disciplina</span>
+        <span style="font-family:'Archivo';font-weight:700;font-size:12.5px;color:#3D3F42">Nome na Matriz</span>
+        <span style="font-family:'Archivo';font-weight:700;font-size:12.5px;color:#3D3F42">Área</span>
+        <span style="font-family:'Archivo';font-weight:700;font-size:12.5px;color:#3D3F42">Séries</span>
+        <span style="font-family:'Archivo';font-weight:700;font-size:12.5px;color:#3D3F42;text-align:center">Enriq.</span>
+        <span style="font-family:'Archivo';font-weight:700;font-size:12.5px;color:#3D3F42;text-align:center">Carga horária</span>
+        <span style="font-family:'Archivo';font-weight:700;font-size:12.5px;color:#3D3F42;text-align:right">Ações</span>
+      </div>
+      <!-- rows -->
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="9">
+        <div style="display:grid;grid-template-columns:minmax(150px,1.15fr) minmax(140px,1.05fr) 96px minmax(260px,2fr) 92px 116px 104px;column-gap:16px;align-items:center;padding:14px 20px;border-bottom:1px solid #EBEDF1" style-hover="{{ rowHoverStyle }}">
+          <span style="font-family:'Archivo';font-weight:600;font-size:14px;line-height:19px;color:#0F0F10">{{ r.disc }}</span>
+          <span style="font-family:'Nunito';font-size:14px;line-height:19px;color:#3D3F42">{{ r.nome }}</span>
+          <span style="font-family:'Nunito';font-size:14px;color:#ADB2BA">{{ r.area }}</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center">
+            <sc-for list="{{ r.chips }}" as="c" hint-placeholder-count="4">
+              <span style="display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:999px;background:#F2F2F2;color:#3D3F42;font-family:'Nunito';font-weight:600;font-size:12px;white-space:nowrap">{{ c }}</span>
+            </sc-for>
+            <sc-if value="{{ r.hasMore }}" hint-placeholder-val="{{ true }}">
+              <span style="display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:999px;background:#ECEDFF;color:#242CC2;font-family:'Archivo';font-weight:700;font-size:12px;white-space:nowrap">{{ r.moreLabel }}</span>
+            </sc-if>
+          </div>
+          <div style="display:flex;justify-content:center">
+            <span style="{{ r.enriqPill.style }}">{{ r.enriqPill.label }}</span>
+          </div>
+          <div style="display:flex;justify-content:center">
+            <span style="{{ r.cargaPill.style }}"><span class="msi" style="font-size:15px">{{ r.cargaPill.icon }}</span>{{ r.cargaPill.label }}</span>
+          </div>
+          <div style="display:flex;justify-content:flex-end;align-items:center;gap:4px">
+            <button style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border:1px solid #242CC2;border-radius:8px;background:#fff;color:#242CC2;font-family:'Archivo';font-weight:700;font-size:13px;cursor:pointer">
+              <span class="msi" style="font-size:17px">edit</span>Editar
+            </button>
+            <button style="width:32px;height:32px;border:0;border-radius:8px;background:transparent;color:#65686E;cursor:pointer;display:inline-flex;align-items:center;justify-content:center">
+              <span class="msi" style="font-size:20px">more_vert</span>
+            </button>
+          </div>
+        </div>
+      </sc-for>
+      <!-- footer -->
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:#F8F9FB;border-top:1px solid #EBEDF1">
+        <span style="font-family:'Nunito';font-size:13px;color:#65686E">{{ filteredCount }} de {{ totalCount }} disciplinas</span>
+        <div style="display:flex;align-items:center;gap:4px">
+          <button style="width:32px;height:32px;border:1px solid #EBEDF1;border-radius:8px;background:#fff;color:#ADB2BA;display:inline-flex;align-items:center;justify-content:center;cursor:not-allowed"><span class="msi" style="font-size:18px">chevron_left</span></button>
+          <span style="width:32px;height:32px;border-radius:8px;background:#242CC2;color:#fff;font-family:'Archivo';font-weight:700;font-size:13px;display:inline-flex;align-items:center;justify-content:center">1</span>
+          <button style="width:32px;height:32px;border:1px solid #EBEDF1;border-radius:8px;background:#fff;color:#ADB2BA;display:inline-flex;align-items:center;justify-content:center;cursor:not-allowed"><span class="msi" style="font-size:18px">chevron_right</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:860}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { query: "" };
+  }
+
+  renderVals() {
+    const full13 = ["1ª Série Regular","1ª Série IME/ITA","1ª série Medicina","1ª série Preparatória","2ª Série IME/ITA","2ª Série Regular","2ª série Preparatória","2ª série Medicina","3ª Série AFA/EFOMM","3ª Série EsPCEx","3ª Série IME/ITA","3ª Série Medicina","3ª Série Regular"];
+
+    const raw = [
+      { disc:"Artes", nome:"Arte", series:["1ª Série Regular","1ª Série IME/ITA","1ª série Medicina","1ª série Preparatória"], enriq:false, carga:"ok" },
+      { disc:"Biologia", nome:"Biologia", series:full13, enriq:false, carga:"ok" },
+      { disc:"Biologia II", nome:"Biologia Aprofundamento", series:["1ª série Medicina","2ª série Medicina"], enriq:true, carga:"ok" },
+      { disc:"Ciências da Natureza e suas Tecnologias no Contexto Social", nome:"Ciências da Natureza e suas Tecnologias no Contexto Social", series:["1ª Série IME/ITA","1ª série Preparatória","2ª Série IME/ITA","2ª série Preparatória","3ª Série AFA/EFOMM","3ª Série EsPCEx","3ª Série IME/ITA"], enriq:false, carga:"pendente" },
+      { disc:"Educação Física", nome:"Educação Física", series:["1ª Série Regular","1ª Série IME/ITA","1ª série Medicina","1ª série Preparatória","2ª Série IME/ITA","2ª Série Regular","2ª série Medicina","2ª série Preparatória"], enriq:false, carga:"ok" },
+      { disc:"Química II", nome:"Química Aprofundamento", series:["1ª série Medicina","2ª série Medicina"], enriq:true, carga:"ok" },
+      { disc:"Redação", nome:"Redação", series:full13, enriq:false, carga:"ok" },
+      { disc:"Sociologia", nome:"Sociologia", series:["2ª Série IME/ITA","2ª Série Regular","2ª série Medicina","2ª série Preparatória","3ª Série Medicina","3ª Série Regular"], enriq:false, carga:"ok" },
+      { disc:"Tutorial de Redação", nome:"Tutorial de Redação", series:["3ª Série Medicina","3ª Série Regular"], enriq:false, carga:"ok" },
+    ];
+
+    const q = this.state.query.trim().toLowerCase();
+    const filtered = raw.filter(r => !q ||
+      r.disc.toLowerCase().includes(q) ||
+      r.nome.toLowerCase().includes(q) ||
+      r.series.join(" ").toLowerCase().includes(q));
+
+    const pillBase = {
+      display:"inline-flex", alignItems:"center", gap:5, height:24,
+      padding:"0 10px", borderRadius:999,
+      fontFamily:"Archivo", fontWeight:700, fontSize:12, whiteSpace:"nowrap",
+    };
+
+    const rows = filtered.map(r => {
+      const chips = r.series.slice(0, 5);
+      const more = r.series.length - chips.length;
+      return {
+        ...r,
+        area: "—",
+        chips,
+        hasMore: more > 0,
+        moreLabel: "+" + more,
+        enriqPill: r.enriq
+          ? { label:"Sim", style:{ ...pillBase, background:"#E0F2E9", color:"#007722" } }
+          : { label:"Não", style:{ ...pillBase, background:"#F2F2F2", color:"#65686E" } },
+        cargaPill: r.carga === "ok"
+          ? { label:"Completa", icon:"check_circle", style:{ ...pillBase, background:"#E0F2E9", color:"#007722" } }
+          : { label:"Pendente", icon:"error", style:{ ...pillBase, background:"#FFDEAC", color:"#B37822" } },
+      };
+    });
+
+    return {
+      rows,
+      query: this.state.query,
+      onSearch: e => this.setState({ query: e.target.value }),
+      totalCount: raw.length,
+      filteredCount: filtered.length,
+      rowHoverStyle: { background: "#F8F9FB" },
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!-- @dsCard group="Components" name="Tooltip" subtitle="4 posições · dark e light · hover para ver" viewport="700x400" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+<style>
+  body { margin:0; padding:32px; background:#fff; font-family:'Nunito',sans-serif; display:flex; flex-direction:column; gap:32px; }
+  .section-label { font-family:'Archivo'; font-weight:700; font-size:11px; color:#65686E; text-transform:uppercase; letter-spacing:.06em; margin-bottom:16px; }
+
+  /* ── Host ── */
+  .tip-host { position:relative; display:inline-flex; align-items:center; justify-content:center; }
+
+  /* ── Bubble ── */
+  .tooltip {
+    position:absolute; z-index:200; pointer-events:none;
+    background:#3D3F42; color:#fff;
+    font-family:'Nunito'; font-size:13px; line-height:18px; font-weight:400;
+    padding:8px 12px; border-radius:4px;
+    max-width:220px; white-space:normal;
+    box-shadow:0 4px 8px rgba(0,23,31,0.15);
+    opacity:0; transition:opacity 120ms, transform 120ms;
+  }
+  .tip-host:hover .tooltip { opacity:1; }
+  .tooltip::after { content:''; position:absolute; border:5px solid transparent; }
+
+  /* top */
+  .tooltip.top    { bottom:calc(100% + 10px); left:50%; transform:translateX(-50%); }
+  .tooltip.top::after { top:100%; left:50%; transform:translateX(-50%); border-top-color:#3D3F42; }
+
+  /* bottom */
+  .tooltip.bottom { top:calc(100% + 10px); left:50%; transform:translateX(-50%); }
+  .tooltip.bottom::after { bottom:100%; left:50%; transform:translateX(-50%); border-bottom-color:#3D3F42; }
+
+  /* left */
+  .tooltip.left   { right:calc(100% + 10px); top:50%; transform:translateY(-50%); }
+  .tooltip.left::after { left:100%; top:50%; transform:translateY(-50%); border-left-color:#3D3F42; }
+
+  /* right */
+  .tooltip.right  { left:calc(100% + 10px); top:50%; transform:translateY(-50%); }
+  .tooltip.right::after { right:100%; top:50%; transform:translateY(-50%); border-right-color:#3D3F42; }
+
+  /* light */
+  .tooltip.light { background:#fff; color:#0F0F10; border:1px solid #EBEDF1; box-shadow:0 4px 8px rgba(0,23,31,0.12); }
+  .tooltip.light.top::after    { border-top-color:#fff; }
+  .tooltip.light.bottom::after { border-bottom-color:#fff; }
+  .tooltip.light.left::after   { border-left-color:#fff; }
+  .tooltip.light.right::after  { border-right-color:#fff; }
+
+  /* ── Demo trigger ── */
+  .demo-btn {
+    height:40px; padding:0 16px; border-radius:8px; border:1px solid #C3C8D1;
+    background:#fff; color:#3D3F42; font-family:'Archivo'; font-weight:700; font-size:14px; cursor:default;
+    display:flex; align-items:center; gap:6px;
+  }
+  .icon-btn {
+    width:40px; height:40px; border-radius:8px; border:1px solid #EBEDF1;
+    background:#fff; display:flex; align-items:center; justify-content:center;
+    color:#65686E; cursor:default;
+  }
+  .icon-btn .material-symbols-outlined { font-size:20px; }
+
+  /* ── Grid ── */
+  .grid { display:flex; gap:48px; flex-wrap:wrap; align-items:center; }
+  .col  { display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .col-label { font-family:'Inter'; font-size:11px; color:#ADB2BA; }
+</style>
+</head>
+<body>
+
+<div class="section-label">Posições — hover para ativar</div>
+<div class="grid">
+
+  <div class="col">
+    <div class="tip-host">
+      <div class="demo-btn">Top</div>
+      <div class="tooltip top">Dica exibida acima do elemento</div>
+    </div>
+    <span class="col-label">top</span>
+  </div>
+
+  <div class="col">
+    <div class="tip-host">
+      <div class="demo-btn">Bottom</div>
+      <div class="tooltip bottom">Dica exibida abaixo do elemento</div>
+    </div>
+    <span class="col-label">bottom</span>
+  </div>
+
+  <div class="col">
+    <div class="tip-host">
+      <div class="demo-btn">Left</div>
+      <div class="tooltip left">À esquerda</div>
+    </div>
+    <span class="col-label">left</span>
+  </div>
+
+  <div class="col">
+    <div class="tip-host">
+      <div class="demo-btn">Right</div>
+      <div class="tooltip right">À direita</div>
+    </div>
+    <span class="col-label">right</span>
+  </div>
+
+</div>
+
+<div class="section-label">Variante light</div>
+<div class="grid">
+  <div class="col">
+    <div class="tip-host">
+      <div class="demo-btn">Light · top</div>
+      <div class="tooltip light top">Tooltip com fundo claro e borda sutil</div>
+    </div>
+    <span class="col-label">light top</span>
+  </div>
+  <div class="col">
+    <div class="tip-host">
+      <div class="demo-btn">Light · bottom</div>
+      <div class="tooltip light bottom">Tooltip com fundo claro e borda sutil</div>
+    </div>
+    <span class="col-label">light bottom</span>
+  </div>
+</div>
+
+<div class="section-label">Em contexto</div>
+<div class="grid">
+  <div class="tip-host">
+    <div class="icon-btn"><span class="material-symbols-outlined">help_outline</span></div>
+    <div class="tooltip top">Mais informações sobre este campo</div>
+  </div>
+  <div class="tip-host">
+    <div class="icon-btn"><span class="material-symbols-outlined">info</span></div>
+    <div class="tooltip top">Matrícula editável apenas pelo gestor</div>
+  </div>
+  <div class="tip-host">
+    <div class="icon-btn" style="color:#E65637;border-color:#F5BBAF;"><span class="material-symbols-outlined">delete</span></div>
+    <div class="tooltip top" style="background:#A13C26;">Excluir permanentemente</div>
+  </div>
+  <div class="tip-host">
+    <button class="demo-btn" style="background:#242CC2;color:#fff;border:0;">
+      <span class="material-symbols-outlined" style="font-size:18px;color:#fff;">download</span>Exportar
+    </button>
+    <div class="tooltip bottom">Exporta em .xlsx ou .pdf</div>
+  </div>
+</div>
+
+</body></html>

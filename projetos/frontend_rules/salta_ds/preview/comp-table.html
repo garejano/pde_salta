@@ -1,0 +1,79 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Table" subtitle="Header #C3C8D1 · checkbox · avatar · sort · ações" viewport="700x260" -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+<style>
+  body { margin:0; padding:20px; background:#F8F9FB; font-family:'Nunito',sans-serif; }
+  .table { width:100%; border-collapse:collapse; background:#fff; border-radius:8px; overflow:hidden; border:1px solid #EBEDF1; }
+  .table thead tr { background:#C3C8D1; }
+  .table th { padding:8px 16px; text-align:left; font-family:'Nunito'; font-weight:700; font-size:14px; color:#3D3F42; white-space:nowrap; border-bottom:1px solid #ADB2BA; }
+  .table td { padding:12px 16px; border-bottom:1px solid #EBEDF1; vertical-align:middle; }
+  .table tbody tr:last-child td { border-bottom:0; }
+  .table tbody tr:hover td { background:#F8F9FB; }
+  /* checkbox */
+  .cb { width:16px; height:16px; border-radius:4px; border:1.5px solid #C3C8D1; background:#fff; flex-shrink:0; }
+  /* avatar */
+  .av { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,#30B7BE,#39D881); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Archivo'; font-weight:700; font-size:14px; flex-shrink:0; }
+  .name-cell { display:flex; align-items:center; gap:12px; }
+  .name-info .name { font-family:'Nunito'; font-weight:700; font-size:14px; color:#0F0F10; }
+  .name-info .sub  { font-family:'Nunito'; font-size:12px; color:#65686E; }
+  /* tag */
+  .tag { display:inline-flex; align-items:center; padding:2px 10px; border-radius:999px; font-family:'Archivo'; font-weight:700; font-size:12px; color:#fff; white-space:nowrap; }
+  /* action */
+  .act { display:flex; gap:4px; justify-content:flex-end; }
+  .icon-btn { width:32px; height:32px; border-radius:8px; border:0; background:transparent; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 120ms; }
+  .icon-btn:hover { background:#F8F9FB; }
+  .icon-btn .material-symbols-outlined { font-size:18px; color:#65686E; }
+  /* sort icon */
+  .th-inner { display:inline-flex; align-items:center; gap:4px; cursor:pointer; }
+  .th-inner .material-symbols-outlined { font-size:14px; color:#65686E; }
+</style></head>
+<body>
+<table class="table">
+  <thead>
+    <tr>
+      <th style="width:40px"><div class="cb"></div></th>
+      <th><div class="th-inner">Aluno<span class="material-symbols-outlined">unfold_more</span></div></th>
+      <th><div class="th-inner">Turma<span class="material-symbols-outlined">unfold_more</span></div></th>
+      <th>Trilha</th>
+      <th style="text-align:right">Faltas</th>
+      <th style="text-align:right">Média</th>
+      <th>Situação</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><div class="cb"></div></td>
+      <td><div class="name-cell"><div class="av">MS</div><div class="name-info"><div class="name">Maria Silva Santos</div><div class="sub">maria.silva@eleva.edu.br</div></div></div></td>
+      <td style="font-size:14px;color:#3D3F42">1 ano A</td>
+      <td><span class="tag" style="background:#9D0364">Militar</span></td>
+      <td style="text-align:right;font-size:14px;color:#3D3F42">3</td>
+      <td style="text-align:right;font-family:'Archivo';font-weight:700;font-size:14px;color:#0F0F10">8,4</td>
+      <td><span class="tag" style="background:#28975A">Cursando</span></td>
+      <td><div class="act"><button class="icon-btn"><span class="material-symbols-outlined">edit</span></button><button class="icon-btn"><span class="material-symbols-outlined">more_vert</span></button></div></td>
+    </tr>
+    <tr>
+      <td><div class="cb"></div></td>
+      <td><div class="name-cell"><div class="av">JP</div><div class="name-info"><div class="name">João Pedro Oliveira</div><div class="sub">joao.oliveira@eleva.edu.br</div></div></div></td>
+      <td style="font-size:14px;color:#3D3F42">2 ano B</td>
+      <td><span class="tag" style="background:#65686E">Regular</span></td>
+      <td style="text-align:right;font-size:14px;color:#3D3F42">0</td>
+      <td style="text-align:right;font-family:'Archivo';font-weight:700;font-size:14px;color:#0F0F10">9,1</td>
+      <td><span class="tag" style="background:#28975A">Cursando</span></td>
+      <td><div class="act"><button class="icon-btn"><span class="material-symbols-outlined">edit</span></button><button class="icon-btn"><span class="material-symbols-outlined">more_vert</span></button></div></td>
+    </tr>
+    <tr>
+      <td><div class="cb"></div></td>
+      <td><div class="name-cell"><div class="av">AC</div><div class="name-info"><div class="name">Ana Clara Ferreira</div><div class="sub">ana.ferreira@eleva.edu.br</div></div></div></td>
+      <td style="font-size:14px;color:#3D3F42">3 ano A</td>
+      <td><span class="tag" style="background:#9D0364">Militar</span></td>
+      <td style="text-align:right;font-size:14px;color:#E65637;font-weight:700">5</td>
+      <td style="text-align:right;font-family:'Archivo';font-weight:700;font-size:14px;color:#0F0F10">7,2</td>
+      <td><span class="tag" style="background:#FFAC30;color:#0F0F10">Atenção</span></td>
+      <td><div class="act"><button class="icon-btn"><span class="material-symbols-outlined">edit</span></button><button class="icon-btn"><span class="material-symbols-outlined">more_vert</span></button></div></td>
+    </tr>
+  </tbody>
+</table>
+</body></html>

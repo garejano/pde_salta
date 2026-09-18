@@ -1,0 +1,1726 @@
+{
+  "percentualRespondido": 67,
+  "grupos": [
+    {
+      "hash": "6802f5dd-79d9-46c8-b344-02fd53cb5508",
+      "nome": "Família",
+      "awesomeIcon": "fas fa-users",
+      "ordem": 1,
+      "perguntas": [
+        {
+          "hash": "744587b1-fcf4-480a-b645-784da43c2714",
+          "texto": "O aluno mora com quem?",
+          "tipoResposta": 6,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": true,
+          "hashOpcaoGatilho": null,
+          "ordem": 1,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [
+            {
+              "hash": "2b8cf6cf-b72f-45b3-afe2-93cccd588701",
+              "nome": "Pai",
+              "ordem": 1,
+              "selecionada": true
+            },
+            {
+              "hash": "13d4e800-e5ce-4bb2-b2d5-f254983a5da8",
+              "nome": "Mãe",
+              "ordem": 2,
+              "selecionada": true
+            },
+            {
+              "hash": "98a10b61-2d0b-490d-9522-24293e3b1a4d",
+              "nome": "Avós",
+              "ordem": 3,
+              "selecionada": false
+            },
+            {
+              "hash": "5a33dc9f-fddc-4a29-9e35-e625e6c4f1ab",
+              "nome": "Tios",
+              "ordem": 4,
+              "selecionada": false
+            },
+            {
+              "hash": "e81c7d6f-5389-4bd4-a654-47fcd765b6bc",
+              "nome": "Outros",
+              "ordem": 5,
+              "selecionada": false
+            }
+          ],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [
+            "2b8cf6cf-b72f-45b3-afe2-93cccd588701",
+            "13d4e800-e5ce-4bb2-b2d5-f254983a5da8"
+          ],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "c19c0501-48d8-476b-815d-5bba357fb0ec",
+          "texto": "Especifique:",
+          "tipoResposta": 7,
+          "obrigatoria": true,
+          "condicional": true,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": "e81c7d6f-5389-4bd4-a654-47fcd765b6bc",
+          "ordem": 2,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": "Resposta de teste preenchida",
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "951d8c74-6dc9-4e23-ab69-5313aed5fdee",
+          "texto": "Irmão(ã) na Rede:",
+          "tipoResposta": 11,
+          "obrigatoria": false,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 3,
+          "repetivel": true,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "8ca4fba6-fb99-43a6-bd92-231c096733fc",
+          "texto": "Outro(a) Irmão(ã):",
+          "tipoResposta": 7,
+          "obrigatoria": false,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 4,
+          "repetivel": true,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [
+            {
+              "respostaBit": null,
+              "respostaTexto": "Maria Eduarda",
+              "respostaNumerica": null,
+              "respostaDataHora": null,
+              "hashesOpcoesSelecionadas": [],
+              "hashesDisciplinasSelecionadas": [],
+              "hashAlunoEscolaMesmoResponsavel": null
+            }
+          ],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "ef68c98a-85f2-41d3-9242-3eae185eeb09",
+          "texto": "Sexo:",
+          "tipoResposta": 2,
+          "obrigatoria": false,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 5,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": "8ca4fba6-fb99-43a6-bd92-231c096733fc",
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [
+            {
+              "respostaBit": null,
+              "respostaTexto": null,
+              "respostaNumerica": 2,
+              "respostaDataHora": null,
+              "hashesOpcoesSelecionadas": [],
+              "hashesDisciplinasSelecionadas": [],
+              "hashAlunoEscolaMesmoResponsavel": null
+            }
+          ],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "d4dfd2e5-17f2-4abb-ade3-539b55d364e9",
+          "texto": "Nascimento:",
+          "tipoResposta": 4,
+          "obrigatoria": false,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 6,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": "ef68c98a-85f2-41d3-9242-3eae185eeb09",
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [
+            {
+              "respostaBit": null,
+              "respostaTexto": null,
+              "respostaNumerica": null,
+              "respostaDataHora": "2016-03-15T00:00:00",
+              "hashesOpcoesSelecionadas": [],
+              "hashesDisciplinasSelecionadas": [],
+              "hashAlunoEscolaMesmoResponsavel": null
+            }
+          ],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "d91f12c6-6469-4d13-bd05-df105bea5d4f",
+          "texto": "Como é a relação com a mãe/responsável?",
+          "tipoResposta": 6,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 7,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [
+            {
+              "hash": "27959a00-ccc4-473b-bca9-0c3773641242",
+              "nome": "Muito próxima",
+              "ordem": 1,
+              "selecionada": false
+            },
+            {
+              "hash": "47c95638-69c0-427e-98a7-94a51f853394",
+              "nome": "Próxima",
+              "ordem": 2,
+              "selecionada": false
+            },
+            {
+              "hash": "e28c24b3-360f-4f42-8b07-49818fc143f5",
+              "nome": "Distante",
+              "ordem": 3,
+              "selecionada": false
+            },
+            {
+              "hash": "6848fa58-4c08-47c5-9c70-b3f42d567cd1",
+              "nome": "Muito distante",
+              "ordem": 4,
+              "selecionada": false
+            },
+            {
+              "hash": "30af6520-01c1-459f-bec9-d86e43f3f3d6",
+              "nome": "Não se aplica",
+              "ordem": 5,
+              "selecionada": false
+            }
+          ],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "610096f4-5b6e-446f-b5c9-d739c01de462",
+          "texto": "Como é a relação com o pai/responsável?",
+          "tipoResposta": 6,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 8,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [
+            {
+              "hash": "0dee0712-cd68-4cb5-9d27-182579d906a0",
+              "nome": "Muito próxima",
+              "ordem": 1,
+              "selecionada": true
+            },
+            {
+              "hash": "d9d73501-02b8-47e3-bcaf-34cfb220db91",
+              "nome": "Próxima",
+              "ordem": 2,
+              "selecionada": false
+            },
+            {
+              "hash": "6421985b-e280-43be-b7c3-4aa99f2c6862",
+              "nome": "Distante",
+              "ordem": 3,
+              "selecionada": false
+            },
+            {
+              "hash": "f554c031-d521-4846-b04c-68ebcad51ae7",
+              "nome": "Muito distante",
+              "ordem": 4,
+              "selecionada": false
+            },
+            {
+              "hash": "3954acd2-8c0f-4ce8-9d34-ffd6996bd056",
+              "nome": "Não se aplica",
+              "ordem": 5,
+              "selecionada": false
+            }
+          ],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [
+            "0dee0712-cd68-4cb5-9d27-182579d906a0"
+          ],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "f94c9b8c-b431-43bc-af77-f3b689e5b8f6",
+          "texto": "Como é a relação com o(s) irmão(s)?",
+          "tipoResposta": 6,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 9,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [
+            {
+              "hash": "b8f030cd-e442-447c-9114-fa2867b1cfd4",
+              "nome": "Muito próxima",
+              "ordem": 1,
+              "selecionada": true
+            },
+            {
+              "hash": "78f4537d-6017-4e5d-9ec5-40a9584e899f",
+              "nome": "Próxima",
+              "ordem": 2,
+              "selecionada": false
+            },
+            {
+              "hash": "d9cda6c0-8ed0-417e-a5e1-a396e032f87b",
+              "nome": "Distante",
+              "ordem": 3,
+              "selecionada": false
+            },
+            {
+              "hash": "53eefab1-da5a-4e5a-8ecd-0187b0032122",
+              "nome": "Muito distante",
+              "ordem": 4,
+              "selecionada": false
+            },
+            {
+              "hash": "75068b1c-6955-4f42-923c-1892c979b197",
+              "nome": "Não se aplica",
+              "ordem": 5,
+              "selecionada": false
+            }
+          ],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [
+            "b8f030cd-e442-447c-9114-fa2867b1cfd4"
+          ],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "49dfea76-cd07-42b9-a4ac-4caa100eb475",
+          "texto": "Os pais são casados?",
+          "tipoResposta": 1,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 10,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "a073d104-62fb-4998-a0cf-e206438af168",
+          "texto": "Os pais vivem juntos?",
+          "tipoResposta": 1,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 11,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": true,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "c6083590-e4e9-4bdf-9344-f45b5d0dcf2c",
+          "texto": "Qual o tempo disponível do aluno com a família?",
+          "tipoResposta": 6,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 12,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [
+            {
+              "hash": "fda41a36-ad02-405f-9394-a967b5e4d1fb",
+              "nome": "Todos os dias, em algum momento do dia (almoço/jantar/estudo)",
+              "ordem": 1,
+              "selecionada": true
+            },
+            {
+              "hash": "97c94202-599f-4412-8a9e-c0c28376fdf0",
+              "nome": "Somente finais de semana",
+              "ordem": 2,
+              "selecionada": false
+            },
+            {
+              "hash": "6760a7df-ad45-40b8-ba94-ae5c8a007c0a",
+              "nome": "Apenas 1 dia do final de semana",
+              "ordem": 3,
+              "selecionada": false
+            }
+          ],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [
+            "fda41a36-ad02-405f-9394-a967b5e4d1fb"
+          ],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        }
+      ]
+    },
+    {
+      "hash": "aa8066a7-f426-4939-b96f-120dbe179b64",
+      "nome": "Hobbies",
+      "awesomeIcon": "fas fa-table-tennis",
+      "ordem": 2,
+      "perguntas": [
+        {
+          "hash": "7b741dc6-cf23-4fb3-abd7-dd3979cb8446",
+          "texto": "Pratica atividade física?",
+          "tipoResposta": 1,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 1,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "1cf20ab2-0cc2-47bc-bbd1-267c060fee8d",
+          "texto": "Faz quantas atividades extracurriculares (curso de línguas, dança, esporte, etc)?",
+          "tipoResposta": 6,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 2,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [
+            {
+              "hash": "e588ae9f-f93b-44a8-b94a-e5ff9362e307",
+              "nome": "Nenhuma",
+              "ordem": 1,
+              "selecionada": true
+            },
+            {
+              "hash": "5525abc3-4e55-4194-a716-749616daf7e6",
+              "nome": "1 (uma)",
+              "ordem": 2,
+              "selecionada": false
+            },
+            {
+              "hash": "ca22f98c-787e-4b9c-8297-9879ce3d494f",
+              "nome": "2 (duas) ou mais",
+              "ordem": 3,
+              "selecionada": false
+            }
+          ],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [
+            "e588ae9f-f93b-44a8-b94a-e5ff9362e307"
+          ],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "c4f64565-be9f-48d8-8a04-71934964bc3c",
+          "texto": "Quais (especifique)?",
+          "tipoResposta": 7,
+          "obrigatoria": true,
+          "condicional": true,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 3,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": "Resposta de teste preenchida",
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "9c6548e0-9945-4b04-ad75-2d0d75f532f6",
+          "texto": "O que gosta de fazer no tempo livre?",
+          "tipoResposta": 6,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": true,
+          "hashOpcaoGatilho": null,
+          "ordem": 4,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [
+            {
+              "hash": "33b85181-032a-4829-9716-3a342448dc56",
+              "nome": "Passeios",
+              "ordem": 1,
+              "selecionada": false
+            },
+            {
+              "hash": "42f48857-1735-4942-9fe2-819c88fa0d81",
+              "nome": "Leitura",
+              "ordem": 2,
+              "selecionada": false
+            },
+            {
+              "hash": "fa3815a7-333c-496f-ab67-e9b476c7ac79",
+              "nome": "Celular",
+              "ordem": 3,
+              "selecionada": false
+            },
+            {
+              "hash": "22269a95-953f-4b97-88a6-34a750e3c6ef",
+              "nome": "Brincadeiras",
+              "ordem": 4,
+              "selecionada": false
+            },
+            {
+              "hash": "ac2de861-3a7d-4ba8-b7af-a423a99a124f",
+              "nome": "Familia",
+              "ordem": 5,
+              "selecionada": false
+            },
+            {
+              "hash": "72824aed-e18a-46a9-b432-e145256ed6d6",
+              "nome": "Estudos",
+              "ordem": 6,
+              "selecionada": false
+            },
+            {
+              "hash": "e098c2ff-52d9-4800-8542-1a4152ae709c",
+              "nome": "TV",
+              "ordem": 7,
+              "selecionada": false
+            },
+            {
+              "hash": "28365a24-c9e7-41d7-b1b9-cbe8fea5b0bc",
+              "nome": "Esportes",
+              "ordem": 8,
+              "selecionada": false
+            },
+            {
+              "hash": "5df29feb-0636-44b4-955a-84ca458543aa",
+              "nome": "Jogos eletrônicos",
+              "ordem": 9,
+              "selecionada": false
+            }
+          ],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        }
+      ]
+    },
+    {
+      "hash": "120d8df3-69c3-4bbb-b2f7-b83ba328e26d",
+      "nome": "Áreas de Interesse e Rotinas de Estudo",
+      "awesomeIcon": "fas fa-chalkboard-teacher",
+      "ordem": 3,
+      "perguntas": [
+        {
+          "hash": "6a36e988-ba99-443b-9e2d-d9a82cfe6ddb",
+          "texto": "Veio de qual escola?",
+          "tipoResposta": 7,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 1,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": "Resposta de teste preenchida",
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "95054f37-9eb1-4ff6-8699-6c9e3c81b21c",
+          "texto": "Apresentou dificuldades em escolas anteriores?",
+          "tipoResposta": 1,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 2,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": false,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "e806bd21-2209-4e33-b7f9-411e60e3fad9",
+          "texto": "Se sim, qual a dificuldade?",
+          "tipoResposta": 7,
+          "obrigatoria": true,
+          "condicional": true,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 3,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "17736566-35ee-4120-873a-5aa9694a7cd6",
+          "texto": "Estuda sozinho ou acompanhado?",
+          "tipoResposta": 6,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 4,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [
+            {
+              "hash": "de22c123-0fcf-47be-8409-d34e869795a8",
+              "nome": "Sozinho",
+              "ordem": 1,
+              "selecionada": true
+            },
+            {
+              "hash": "b7ddac9f-03e4-40c7-ae74-b476881858ac",
+              "nome": "Acompanhado",
+              "ordem": 2,
+              "selecionada": false
+            }
+          ],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [
+            "de22c123-0fcf-47be-8409-d34e869795a8"
+          ],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "eed784df-3e2c-4247-9ce3-e5eea46d8cfe",
+          "texto": "Se acompanhado, com quem?",
+          "tipoResposta": 6,
+          "obrigatoria": true,
+          "condicional": true,
+          "multiplaSelecaoResposta": true,
+          "hashOpcaoGatilho": "b7ddac9f-03e4-40c7-ae74-b476881858ac",
+          "ordem": 5,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [
+            {
+              "hash": "d85c9482-8008-4fd1-8330-d50c4be5ed42",
+              "nome": "Mãe",
+              "ordem": 1,
+              "selecionada": true
+            },
+            {
+              "hash": "db89be56-c542-41f6-b361-015aa4d47ef7",
+              "nome": "Pai",
+              "ordem": 2,
+              "selecionada": true
+            },
+            {
+              "hash": "9b36d850-37ce-448c-afa0-5219076de38c",
+              "nome": "Amigos",
+              "ordem": 3,
+              "selecionada": false
+            },
+            {
+              "hash": "9b814f0c-f8ac-4e13-92bc-e642ab811887",
+              "nome": "Irmão(ã)",
+              "ordem": 4,
+              "selecionada": false
+            },
+            {
+              "hash": "750958c0-17b8-4691-8aef-db19fafb3c75",
+              "nome": "Professor Particular",
+              "ordem": 5,
+              "selecionada": false
+            },
+            {
+              "hash": "2e8336ac-942c-40b5-aab0-43022754e9d0",
+              "nome": "Avô/Avó",
+              "ordem": 6,
+              "selecionada": false
+            },
+            {
+              "hash": "9e379df4-ac6d-462a-aaa8-4f9dcd66fcb4",
+              "nome": "Tio(a)",
+              "ordem": 7,
+              "selecionada": false
+            }
+          ],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [
+            "d85c9482-8008-4fd1-8330-d50c4be5ed42",
+            "db89be56-c542-41f6-b361-015aa4d47ef7"
+          ],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "55aa2a00-42f9-4087-b291-6bab2e1fa058",
+          "texto": "Gosta de ir para a escola?",
+          "tipoResposta": 1,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 6,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "a11d6488-123b-42cb-8657-07a0e872d274",
+          "texto": "Se não, por quê?",
+          "tipoResposta": 7,
+          "obrigatoria": true,
+          "condicional": true,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 7,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": "Resposta de teste preenchida",
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "1580202e-7c9c-47f0-9e87-38ab789cf832",
+          "texto": "Frequentou creche?",
+          "tipoResposta": 1,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 8,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": false,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        }
+      ]
+    },
+    {
+      "hash": "a5d07558-1f30-42d0-aafc-a27ecb37151d",
+      "nome": "Comportamento",
+      "awesomeIcon": "fas fa-child",
+      "ordem": 4,
+      "perguntas": [
+        {
+          "hash": "186e8bd9-6e16-44df-842b-35fe9b37d161",
+          "texto": "Como é o sono?",
+          "tipoResposta": 6,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": true,
+          "hashOpcaoGatilho": null,
+          "ordem": 1,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [
+            {
+              "hash": "917dde5d-99a9-42d6-843c-30ca3af98b3d",
+              "nome": "Tranquilo, dorme a noite inteira",
+              "ordem": 1,
+              "selecionada": false
+            },
+            {
+              "hash": "6c8889e9-c8ac-47bc-8dab-05876ef55282",
+              "nome": "Agitado, tem interrupções",
+              "ordem": 2,
+              "selecionada": false
+            },
+            {
+              "hash": "639ab06b-c18c-465a-a38b-383e8ff5408b",
+              "nome": "Costuma tirar uma soneca à tarde",
+              "ordem": 3,
+              "selecionada": false
+            }
+          ],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "321b2faf-0aed-406f-a11b-c50d138d9d6c",
+          "texto": "Usou chupeta?",
+          "tipoResposta": 1,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 2,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": false,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "6a112c70-7eb6-4dcd-b21f-1d8a626b286a",
+          "texto": "Se sim, até que idade?",
+          "tipoResposta": 3,
+          "obrigatoria": true,
+          "condicional": true,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 3,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": 9,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "6782eef3-49ba-41ea-a34c-b5b07afc278e",
+          "texto": "Chupou dedo?",
+          "tipoResposta": 1,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 4,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "971c6559-69aa-43fc-9c25-fb78b4aa6431",
+          "texto": "Se sim, até que idade?",
+          "tipoResposta": 3,
+          "obrigatoria": true,
+          "condicional": true,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 5,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": 11,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "7b904ab2-d92c-429e-aaaa-be2511ebd769",
+          "texto": "Como é a alimentação?",
+          "tipoResposta": 6,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 6,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [
+            {
+              "hash": "fdd41920-9612-4e49-890e-f87d89f0ea1d",
+              "nome": "Come de tudo",
+              "ordem": 1,
+              "selecionada": true
+            },
+            {
+              "hash": "4593c860-2e91-4c12-aa49-e1d4f7cb8246",
+              "nome": "Come com limitações",
+              "ordem": 2,
+              "selecionada": false
+            }
+          ],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [
+            "fdd41920-9612-4e49-890e-f87d89f0ea1d"
+          ],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "07a0bb5d-d6ef-41b3-9b69-fe00d1fac1ae",
+          "texto": "Tem amigos?",
+          "tipoResposta": 6,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 7,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [
+            {
+              "hash": "842cbb34-3828-4497-9de0-3e7275b489a2",
+              "nome": "Sim, muitos",
+              "ordem": 1,
+              "selecionada": false
+            },
+            {
+              "hash": "f5554bff-0e1a-445c-80e4-2981946f10cb",
+              "nome": "Sim, alguns",
+              "ordem": 2,
+              "selecionada": false
+            },
+            {
+              "hash": "15c1ba00-8b52-4797-a93c-beca338f36c1",
+              "nome": "Não muitos",
+              "ordem": 3,
+              "selecionada": false
+            },
+            {
+              "hash": "f85a58fa-1ae9-451e-abd6-38fb4f7ac898",
+              "nome": "Nenhum",
+              "ordem": 4,
+              "selecionada": false
+            }
+          ],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "92b631c8-f1e8-456a-92dd-f71dc2f56ea3",
+          "texto": "Como é o comportamento habitual do aluno?",
+          "tipoResposta": 6,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": true,
+          "hashOpcaoGatilho": null,
+          "ordem": 8,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [
+            {
+              "hash": "53abd183-aae6-41df-90c2-78c8bda2c89c",
+              "nome": "Obediente",
+              "ordem": 1,
+              "selecionada": true
+            },
+            {
+              "hash": "3093e2a8-7ec9-4243-8d1e-ecb62b375db5",
+              "nome": "Agressivo",
+              "ordem": 2,
+              "selecionada": true
+            },
+            {
+              "hash": "8396ecfa-5171-4d4f-bfde-1705e04a8fdc",
+              "nome": "Impulsivo",
+              "ordem": 3,
+              "selecionada": false
+            },
+            {
+              "hash": "6f795659-05c2-4c3c-b7d9-780c9747eab8",
+              "nome": "Independente",
+              "ordem": 4,
+              "selecionada": false
+            },
+            {
+              "hash": "e5640522-5ff1-4ee9-80a4-2c4a8ccdd692",
+              "nome": "Cooperativo",
+              "ordem": 5,
+              "selecionada": false
+            },
+            {
+              "hash": "9a7d1d7f-d611-4648-87f0-0832197cfce9",
+              "nome": "Controlador",
+              "ordem": 6,
+              "selecionada": false
+            },
+            {
+              "hash": "d36c23ab-7e46-4b08-9929-b7323d756028",
+              "nome": "Comunicativo",
+              "ordem": 7,
+              "selecionada": false
+            },
+            {
+              "hash": "47512cc0-25a3-406a-bc41-aa406a1f4e0a",
+              "nome": "Responsável",
+              "ordem": 8,
+              "selecionada": false
+            },
+            {
+              "hash": "80de8d2c-d69e-48aa-a6f3-af2f93abc36a",
+              "nome": "Introvertido",
+              "ordem": 9,
+              "selecionada": false
+            },
+            {
+              "hash": "ab572302-362a-4345-bd53-4485cfebe7ce",
+              "nome": "Extrovertido",
+              "ordem": 10,
+              "selecionada": false
+            }
+          ],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [
+            "53abd183-aae6-41df-90c2-78c8bda2c89c",
+            "3093e2a8-7ec9-4243-8d1e-ecb62b375db5"
+          ],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "3a382e33-e909-4c98-91bf-d09017f8ed9c",
+          "texto": "Passou por perdas ou mudanças significativas/situações traumáticas?",
+          "tipoResposta": 1,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 9,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": true,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "2a06b96b-2e74-4054-8179-f24900fb50ad",
+          "texto": "Se sim, qual(is)?",
+          "tipoResposta": 7,
+          "obrigatoria": true,
+          "condicional": true,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 10,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "6fbb522f-9f5a-4d6f-86dc-eca70b5386d2",
+          "texto": "Possui algum tipo de deficiência, ou mesmo uma leve dificuldade?",
+          "tipoResposta": 6,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": true,
+          "hashOpcaoGatilho": null,
+          "ordem": 11,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [
+            {
+              "hash": "22f37cad-10fa-4130-b38d-6195a08eb97f",
+              "nome": "Visual",
+              "ordem": 1,
+              "selecionada": true
+            },
+            {
+              "hash": "353f29db-5257-4dee-a847-b28ca1a33407",
+              "nome": "Auditiva",
+              "ordem": 2,
+              "selecionada": true
+            },
+            {
+              "hash": "b97939b4-a40d-43f2-a406-d7f3719ec148",
+              "nome": "Outra",
+              "ordem": 3,
+              "selecionada": false
+            },
+            {
+              "hash": "ac2d421a-048a-48d4-be75-9d925c667de0",
+              "nome": "Nenhuma",
+              "ordem": 4,
+              "selecionada": false
+            }
+          ],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [
+            "22f37cad-10fa-4130-b38d-6195a08eb97f",
+            "353f29db-5257-4dee-a847-b28ca1a33407"
+          ],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "bb71c327-67ee-46c0-af6d-c1ff4a8c1f53",
+          "texto": "Especifique:",
+          "tipoResposta": 7,
+          "obrigatoria": true,
+          "condicional": true,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": "b97939b4-a40d-43f2-a406-d7f3719ec148",
+          "ordem": 12,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": "Resposta de teste preenchida",
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "8ef9101b-ce24-49cc-a9fe-1d840476e4c2",
+          "texto": "Tem algum medo?",
+          "tipoResposta": 1,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 13,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "a1d7adb2-54d3-4f33-a508-cb5937d21fa4",
+          "texto": "Se sim, qual(is)?",
+          "tipoResposta": 7,
+          "obrigatoria": true,
+          "condicional": true,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 14,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": "Resposta de teste preenchida",
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "7cbc62a3-0282-49d7-84e2-c9200880c539",
+          "texto": "Rói unhas?",
+          "tipoResposta": 1,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 15,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": true,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "5d51615c-3c15-42b4-b06a-34b5146baee7",
+          "texto": "Como reage quando contrariado?",
+          "tipoResposta": 6,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": true,
+          "hashOpcaoGatilho": null,
+          "ordem": 16,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [
+            {
+              "hash": "7babd50e-2b83-49e6-9774-3c2d6eba813e",
+              "nome": "Faz pirraça",
+              "ordem": 1,
+              "selecionada": false
+            },
+            {
+              "hash": "a1e5019e-2c05-4bc1-8d3b-ad109ac38fc1",
+              "nome": "Não aceita e responde",
+              "ordem": 2,
+              "selecionada": false
+            },
+            {
+              "hash": "15f86fc4-47df-4fd3-b098-f7d4a6d60b83",
+              "nome": "Aceita",
+              "ordem": 3,
+              "selecionada": false
+            }
+          ],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "464f2b0b-1dbf-4839-a72e-5449d6d8d476",
+          "texto": "Prefere brincar sozinho ou acompanhado?",
+          "tipoResposta": 6,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": true,
+          "hashOpcaoGatilho": null,
+          "ordem": 17,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [
+            {
+              "hash": "244e744d-1f84-4edd-a3de-9b266a8020bf",
+              "nome": "Sozinho",
+              "ordem": 1,
+              "selecionada": true
+            },
+            {
+              "hash": "43c9fa80-90ee-4ef8-84fc-99d6fa6c3009",
+              "nome": "Mãe",
+              "ordem": 2,
+              "selecionada": true
+            },
+            {
+              "hash": "badd5543-a422-4788-8107-e81f6b346a4b",
+              "nome": "Pai",
+              "ordem": 3,
+              "selecionada": false
+            },
+            {
+              "hash": "2df20125-4b2b-46e8-94eb-95cf09365d81",
+              "nome": "Amigos",
+              "ordem": 4,
+              "selecionada": false
+            },
+            {
+              "hash": "9cce8aac-927c-464b-bd1b-11f416cbee0d",
+              "nome": "Irmão(ã)",
+              "ordem": 5,
+              "selecionada": false
+            },
+            {
+              "hash": "3fc81fe8-274b-482b-98bc-0ba0843d5202",
+              "nome": "Avô/avó",
+              "ordem": 6,
+              "selecionada": false
+            },
+            {
+              "hash": "2198c471-e26a-4a3c-9960-144ea9def3d8",
+              "nome": "Tio(a)",
+              "ordem": 7,
+              "selecionada": false
+            }
+          ],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [
+            "244e744d-1f84-4edd-a3de-9b266a8020bf",
+            "43c9fa80-90ee-4ef8-84fc-99d6fa6c3009"
+          ],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "0739418a-980e-4f6d-98a0-ef778a4ed792",
+          "texto": "Quais são as brincadeiras preferidas?",
+          "tipoResposta": 7,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 18,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": "Resposta de teste preenchida",
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "8bbcb292-a042-409e-a1ce-bde0351c92ef",
+          "texto": "É acompanhado por algum especialista?",
+          "tipoResposta": 1,
+          "obrigatoria": true,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 19,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "e0ea13ff-7c7e-426d-9d2d-af56f5297c2c",
+          "texto": "Especialidade:",
+          "tipoResposta": 7,
+          "obrigatoria": true,
+          "condicional": true,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 20,
+          "repetivel": true,
+          "hashPerguntaAgrupadora": null,
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [
+            {
+              "respostaBit": null,
+              "respostaTexto": "Fonoaudiologia",
+              "respostaNumerica": null,
+              "respostaDataHora": null,
+              "hashesOpcoesSelecionadas": [],
+              "hashesDisciplinasSelecionadas": [],
+              "hashAlunoEscolaMesmoResponsavel": null
+            }
+          ],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "1e7f47e2-94c9-4e50-848e-a1e5c7fbe8e4",
+          "texto": "Nome:",
+          "tipoResposta": 7,
+          "obrigatoria": false,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 21,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": "e0ea13ff-7c7e-426d-9d2d-af56f5297c2c",
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [
+            {
+              "respostaBit": null,
+              "respostaTexto": "Dra. Ana Paula",
+              "respostaNumerica": null,
+              "respostaDataHora": null,
+              "hashesOpcoesSelecionadas": [],
+              "hashesDisciplinasSelecionadas": [],
+              "hashAlunoEscolaMesmoResponsavel": null
+            }
+          ],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "3391b8c9-8314-446f-a62c-ce7ee7973a92",
+          "texto": "Telefone:",
+          "tipoResposta": 8,
+          "obrigatoria": false,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 22,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": "1e7f47e2-94c9-4e50-848e-a1e5c7fbe8e4",
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [
+            {
+              "respostaBit": null,
+              "respostaTexto": "(11) 3344-5566",
+              "respostaNumerica": null,
+              "respostaDataHora": null,
+              "hashesOpcoesSelecionadas": [],
+              "hashesDisciplinasSelecionadas": [],
+              "hashAlunoEscolaMesmoResponsavel": null
+            }
+          ],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "19df9ea3-6e7e-4e02-9c46-14881a521c24",
+          "texto": "Celular:",
+          "tipoResposta": 10,
+          "obrigatoria": false,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 23,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": "3391b8c9-8314-446f-a62c-ce7ee7973a92",
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [
+            {
+              "respostaBit": null,
+              "respostaTexto": "(11) 99887-7665",
+              "respostaNumerica": null,
+              "respostaDataHora": null,
+              "hashesOpcoesSelecionadas": [],
+              "hashesDisciplinasSelecionadas": [],
+              "hashAlunoEscolaMesmoResponsavel": null
+            }
+          ],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        },
+        {
+          "hash": "2ef49cc2-6a99-4fcd-bab8-ad025e03404b",
+          "texto": "Consultório:",
+          "tipoResposta": 8,
+          "obrigatoria": false,
+          "condicional": false,
+          "multiplaSelecaoResposta": false,
+          "hashOpcaoGatilho": null,
+          "ordem": 24,
+          "repetivel": false,
+          "hashPerguntaAgrupadora": "19df9ea3-6e7e-4e02-9c46-14881a521c24",
+          "opcoes": [],
+          "respostaBit": null,
+          "respostaTexto": null,
+          "respostaNumerica": null,
+          "respostaDataHora": null,
+          "hashesOpcoesSelecionadas": [],
+          "hashesDisciplinasSelecionadas": [],
+          "hashAlunoEscolaMesmoResponsavel": null,
+          "instancias": [
+            {
+              "respostaBit": null,
+              "respostaTexto": "(11) 3344-9900",
+              "respostaNumerica": null,
+              "respostaDataHora": null,
+              "hashesOpcoesSelecionadas": [],
+              "hashesDisciplinasSelecionadas": [],
+              "hashAlunoEscolaMesmoResponsavel": null
+            }
+          ],
+          "ehIrmaoNaRede": false,
+          "irmaosIdentificados": []
+        }
+      ]
+    }
+  ]
+}

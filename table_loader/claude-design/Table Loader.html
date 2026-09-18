@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Table Loader — Dias letivos extras</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<style>
+  :root {
+    --color-primary-dark1:#191F88; --color-primary:#242CC2; --color-primary-light3:#ECEDFF;
+    --color-secondary:#9D0364; --color-secondary-dark1:#6E0246;
+    --color-error:#E65637;
+    --color-neutral-dark3:#0F0F10; --color-neutral-dark2:#3D3F42; --color-neutral-dark1:#65686E;
+    --color-neutral:#ADB2BA; --color-neutral-light1:#C3C8D1; --color-neutral-light2:#EBEDF1;
+    --color-neutral-light3:#F8F9FB; --white:#FFFFFF;
+    --font-display:"Archivo","Inter",system-ui,sans-serif;
+    --font-body:"Nunito","Inter",system-ui,sans-serif;
+    --shadow-down-large:0 8px 16px 0 rgba(0,23,31,0.15);
+    --shadow-center-xlarge:0 0 32px 0 rgba(0,23,31,0.18);
+    --ease-out:cubic-bezier(0.16,1,0.3,1);
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; height:100%; }
+  body {
+    font-family:var(--font-body); color:var(--color-neutral-dark3);
+    background:var(--color-neutral-light3);
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  #root { min-height:100%; }
+  .ms { font-family:'Material Symbols Outlined'; font-weight:normal; font-style:normal;
+        line-height:1; letter-spacing:normal; text-transform:none; white-space:nowrap;
+        word-wrap:normal; direction:ltr; display:inline-block;
+        font-feature-settings:'liga'; -webkit-font-feature-settings:'liga';
+        font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
+        -webkit-font-smoothing:antialiased; }
+
+  /* Skeleton shimmer */
+  @keyframes shimmer { 0% { background-position:100% 0; } 100% { background-position:-100% 0; } }
+  .sk {
+    border-radius:6px;
+    background:linear-gradient(90deg,#D2D6DE 0%,#DFE2E8 25%,#ECEEF2 50%,#DFE2E8 75%,#D2D6DE 100%);
+    background-size:200% 100%;
+    animation:shimmer 1.4s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){ .sk { animation:none; } }
+
+  @keyframes rowIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
+  @keyframes scrimIn { from { opacity:0; } to { opacity:1; } }
+  @keyframes modalIn { from { opacity:0; transform:translateY(12px) scale(.98); } to { opacity:1; transform:none; } }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+const Icon = ({ name, size=20, color='currentColor', fill=0, style={} }) => (
+  <span className="ms" style={{ fontSize:size, color,
+    fontVariationSettings:`'FILL' ${fill}, 'opsz' 24`, ...style }}>{name}</span>
+);
+
+/* ---------- Data ---------- */
+const COLUMNS = [
+  { key:'data',   label:'Data',   width:200 },
+  { key:'escola', label:'Escola', width:170 },
+  { key:'titulo', label:'Título', width:'auto' },
+  { key:'turmas', label:'Turmas', width:360 },
+  { key:'acao',   label:'',       width:170, align:'right' },
+];
+const ROWS = [
+  { data:'16/02/2026', escola:'Kobrasol', titulo:'Carnaval',         turmas:'7 turmas de 7 séries, Tarde, Manhã' },
+  { data:'17/02/2026', escola:'Kobrasol', titulo:'Carnaval',         turmas:'7 turmas de 7 séries, Tarde, Manhã' },
+  { data:'18/02/2026', escola:'Kobrasol', titulo:'Feriado',          turmas:'7 turmas de 7 séries, Tarde, Manhã' },
+  { data:'03/03/2026', escola:'Kobrasol', titulo:'Feriado',          turmas:'7 turmas de 7 séries, Tarde, Manhã' },
+  { data:'19/03/2026', escola:'Kobrasol', titulo:'Feriado Municipal',turmas:'7 turmas de 7 séries, Tarde, Manhã' },
+  { data:'21/04/2026', escola:'Kobrasol', titulo:'Tiradentes',       turmas:'7 turmas de 7 séries, Tarde, Manhã' },
+  { data:'01/05/2026', escola:'Kobrasol', titulo:'Dia do Trabalho',  turmas:'7 turmas de 7 séries, Tarde, Manhã' },
+];
+const SKELETON_WIDTHS = ['70%','64%','82%','58%','74%','66%','78%']; // título column variety
+
+/* ---------- Buttons ---------- */
+const btnBase = {
+  display:'inline-flex', alignItems:'center', gap:8, cursor:'pointer',
+  fontFamily:'var(--font-display)', fontWeight:700, fontSize:14, lineHeight:'14px',
+  padding:'10px 16px', borderRadius:8, border:'1px solid transparent',
+  transition:'background 160ms var(--ease-out), color 160ms var(--ease-out), border-color 160ms',
+};
+
+/* ---------- Table header ---------- */
+const HEAD_SK_WIDTHS = { data:48, escola:62, titulo:52, turmas:62, acao:0 };
+function TableHead({ loading }) {
+  return (
+    <thead>
+      <tr style={{ background: loading ? 'var(--color-neutral-light2)' : 'var(--color-neutral-light1)',
+        transition:'background 240ms var(--ease-out)' }}>
+        {COLUMNS.map(c => (
+          <th key={c.key} style={{
+            padding:'12px 24px', textAlign:c.align||'left',
+            fontFamily:'var(--font-body)', fontWeight:700, fontSize:14, color:'var(--color-neutral-dark2)',
+            whiteSpace:'nowrap', width:c.width,
+          }}>
+            {loading
+              ? (HEAD_SK_WIDTHS[c.key] > 0
+                  ? <div className="sk" style={{ height:11, width:HEAD_SK_WIDTHS[c.key] }} />
+                  : null)
+              : c.label}
+          </th>
+        ))}
+      </tr>
+    </thead>
+  );
+}
+
+/* ---------- Skeleton rows ---------- */
+function SkeletonBody({ count=7 }) {
+  return (
+    <tbody>
+      {Array.from({ length:count }).map((_, i) => (
+        <tr key={i} style={{ background: i % 2 ? 'var(--color-neutral-light3)' : '#fff' }}>
+          <td style={cellStyle}><div className="sk" style={{ height:12, width:110 }} /></td>
+          <td style={cellStyle}><div className="sk" style={{ height:12, width:74 }} /></td>
+          <td style={cellStyle}><div className="sk" style={{ height:12, width:SKELETON_WIDTHS[i % SKELETON_WIDTHS.length] }} /></td>
+          <td style={cellStyle}><div className="sk" style={{ height:12, width:'88%' }} /></td>
+          <td style={{ ...cellStyle, textAlign:'right' }}>
+            <div className="sk" style={{ height:34, width:108, borderRadius:8, marginLeft:'auto' }} />
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  );
+}
+
+/* ---------- Data rows ---------- */
+function DataBody() {
+  return (
+    <tbody>
+      {ROWS.map((r, i) => (
+        <tr key={i}
+          style={{ background: i % 2 ? 'var(--color-neutral-light3)' : '#fff',
+                   animation:`rowIn 360ms var(--ease-out) both`, animationDelay:`${i*45}ms` }}>
+          <td style={cellStyle}><span style={{ color:'var(--color-secondary)', fontSize:14 }}>{r.data}</span></td>
+          <td style={cellStyle}><span style={{ fontSize:14, color:'var(--color-neutral-dark2)' }}>{r.escola}</span></td>
+          <td style={cellStyle}><span style={{ fontSize:14, color:'var(--color-neutral-dark2)' }}>{r.titulo}</span></td>
+          <td style={cellStyle}><span style={{ fontSize:14, color:'var(--color-neutral-dark2)' }}>{r.turmas}</span></td>
+          <td style={{ ...cellStyle, textAlign:'right' }}>
+            <button style={{ ...btnBase, padding:'8px 14px', background:'#fff',
+              color:'var(--color-primary)', border:'1px solid var(--color-primary)' }}
+              onMouseEnter={e=>e.currentTarget.style.background='var(--color-primary-light3)'}
+              onMouseLeave={e=>e.currentTarget.style.background='#fff'}>
+              <Icon name="edit" size={16} /> Ver/Editar
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  );
+}
+const cellStyle = { padding:'16px 24px', borderBottom:'1px solid var(--color-neutral-light2)', verticalAlign:'middle' };
+
+/* ---------- Static filter field (no interaction) ---------- */
+function Field({ label, required, value, placeholder, clearable }) {
+  const empty = !value;
+  return (
+    <div style={{ flex:1, minWidth:0 }}>
+      <label style={{ display:'block', fontFamily:'var(--font-body)', fontWeight:700, fontSize:14,
+        color:'var(--color-neutral-dark2)', marginBottom:6 }}>
+        {label}{required && <span style={{ color:'var(--color-error)', marginLeft:3 }}>*</span>}
+      </label>
+      <div style={{ display:'flex', alignItems:'center', gap:8, height:44, padding:'0 12px',
+        background:'#fff', border:'1px solid var(--color-neutral-light1)', borderRadius:8 }}>
+        <span style={{ flex:1, fontFamily:'var(--font-body)', fontSize:15,
+          color: empty ? 'var(--color-neutral)' : 'var(--color-neutral-dark2)', whiteSpace:'nowrap',
+          overflow:'hidden', textOverflow:'ellipsis' }}>{empty ? placeholder : value}</span>
+        {clearable && !empty && <Icon name="close" size={18} color="var(--color-neutral-dark1)" />}
+        <Icon name="expand_more" size={20} color="var(--color-neutral-dark1)" />
+      </div>
+    </div>
+  );
+}
+
+function FilterPanel() {
+  return (
+    <div style={{ background:'#fff', border:'1px solid var(--color-neutral-light2)', borderRadius:12,
+      boxShadow:'var(--shadow-down-large)', overflow:'hidden' }}>
+      <div style={{ padding:'24px 24px 20px' }}>
+        <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:18 }}>
+          <h2 style={{ margin:0, fontFamily:'var(--font-display)', fontWeight:700, fontSize:20,
+            color:'var(--color-neutral-dark3)' }}>Filtrar dias letivos extras</h2>
+          <Icon name="close" size={22} color="var(--color-primary)" style={{ cursor:'pointer' }} />
+        </div>
+        <div style={{ display:'flex', gap:24 }}>
+          <Field label="Ano Letivo" required value="2026" clearable />
+          <Field label="Rede" required value="Alfa" clearable />
+          <Field label="Escola" value="" placeholder="Todas as escolas" />
+        </div>
+      </div>
+      <div style={{ display:'flex', justifyContent:'flex-end', gap:12, padding:'16px 24px',
+        background:'var(--color-neutral-light3)', borderTop:'1px solid var(--color-neutral-light2)' }}>
+        <button style={{ ...btnBase, background:'#fff', color:'var(--color-secondary)',
+          border:'1px solid var(--color-secondary)' }}>Limpar</button>
+        <button style={{ ...btnBase, background:'var(--color-secondary)', color:'#fff' }}>Aplicar</button>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Static modal (loader visible behind it) ---------- */
+function Chk({ label, checked=true, indent=false }) {
+  return (
+    <div style={{ display:'flex', alignItems:'center', gap:8, marginLeft: indent ? 24 : 0 }}>
+      <span style={{ width:18, height:18, borderRadius:4, flexShrink:0,
+        background: checked ? 'var(--color-positive,#28975A)' : '#fff',
+        border: checked ? 'none' : '1.5px solid var(--color-neutral)',
+        display:'flex', alignItems:'center', justifyContent:'center' }}>
+        {checked && <Icon name="check" size={14} color="#fff" fill={1} />}
+      </span>
+      <span style={{ fontFamily:'var(--font-body)', fontSize:14, color:'var(--color-neutral-dark2)' }}>{label}</span>
+    </div>
+  );
+}
+
+function EditModal({ onClose }) {
+  return (
+    <div style={{ position:'fixed', inset:0, zIndex:50, display:'flex', alignItems:'center',
+      justifyContent:'center', padding:24 }}>
+      <div onClick={onClose} style={{ position:'absolute', inset:0, background:'rgba(15,15,16,0.5)',
+        animation:'scrimIn 200ms var(--ease-out) both' }} />
+      <div role="dialog" style={{ position:'relative', width:560, maxWidth:'100%', maxHeight:'92vh',
+        overflow:'auto', background:'#fff', borderRadius:12, boxShadow:'var(--shadow-center-xlarge)',
+        animation:'modalIn 240ms var(--ease-out) both' }}>
+        <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', padding:'24px 24px 0' }}>
+          <h3 style={{ margin:0, fontFamily:'var(--font-display)', fontWeight:700, fontSize:20 }}>Editar dia letivo extra</h3>
+          <Icon name="close" size={24} color="var(--color-primary)" style={{ cursor:'pointer' }} onClick={onClose} />
+        </div>
+        <div style={{ padding:'20px 24px 0', display:'flex', flexDirection:'column', gap:16 }}>
+          <div style={{ display:'flex', gap:16 }}>
+            <Field label="Escola" required value="Kobrasol" />
+            <Field label="Data" required value="16/02/2026" />
+          </div>
+          <div>
+            <label style={lbl}>Título <span style={req}>*</span></label>
+            <div style={inputBox}>Carnaval</div>
+          </div>
+          <div>
+            <label style={lbl}>Descrição <span style={req}>*</span></label>
+            <div style={{ ...inputBox, height:84, alignItems:'flex-start', paddingTop:10 }}>Carnaval</div>
+          </div>
+          <div>
+            <h4 style={{ margin:'4px 0 12px', fontFamily:'var(--font-body)', fontWeight:700, fontSize:14,
+              color:'var(--color-neutral-dark2)' }}>Filtrar por turno e série</h4>
+            <div style={{ display:'flex', flexDirection:'column', gap:10 }}>
+              <Chk label="Manhã" />
+              <div style={{ display:'flex', flexWrap:'wrap', gap:'10px 18px', marginLeft:24 }}>
+                {['7º Ano Regular','8º Ano Regular','9º Ano Regular','1ª Série Regular','2ª Série Regular','3ª Série Regular']
+                  .map(s => <Chk key={s} label={s} />)}
+              </div>
+              <Chk label="Tarde" />
+              <div style={{ marginLeft:24 }}><Chk label="6º Ano Regular" /></div>
+            </div>
+          </div>
+          <div style={{ display:'flex', alignItems:'center', gap:16, paddingTop:4 }}>
+            <span style={{ fontFamily:'var(--font-body)', fontWeight:700, fontSize:14,
+              color:'var(--color-neutral-dark2)' }}>Turmas</span>
+            <div style={{ ...inputBox, flex:1, gap:8, color:'var(--color-neutral)' }}>
+              <Icon name="search" size={18} color="var(--color-neutral)" /> Buscar turma ou disciplina
+            </div>
+            <Chk label="Selecionar todos" />
+          </div>
+        </div>
+        <div style={{ display:'flex', justifyContent:'flex-end', alignItems:'center', gap:20, padding:'20px 24px' }}>
+          <button style={{ ...btnBase, background:'transparent', color:'var(--color-primary)' }} onClick={onClose}>Cancelar</button>
+          <button style={{ ...btnBase, background:'transparent', color:'var(--color-error)' }} onClick={onClose}>Remover</button>
+          <button style={{ ...btnBase, background:'var(--color-primary)', color:'#fff' }} onClick={onClose}>Confirmar</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+const lbl = { display:'block', fontFamily:'var(--font-body)', fontWeight:700, fontSize:14, color:'var(--color-neutral-dark2)', marginBottom:6 };
+const req = { color:'var(--color-error)' };
+const inputBox = { display:'flex', alignItems:'center', minHeight:44, padding:'0 12px', background:'#fff',
+  border:'1px solid var(--color-neutral-light1)', borderRadius:8, fontFamily:'var(--font-body)', fontSize:15,
+  color:'var(--color-neutral-dark2)' };
+
+/* ---------- App ---------- */
+function App() {
+  const [loading, setLoading] = useState(true);
+  const timer = useRef(null);
+
+  const reload = () => {
+    clearTimeout(timer.current);
+    setLoading(true);
+    timer.current = setTimeout(() => setLoading(false), 2200);
+  };
+  useEffect(() => { reload(); return () => clearTimeout(timer.current); }, []);
+
+  return (
+    <div style={{ minHeight:'100vh', display:'flex', flexDirection:'column', alignItems:'center',
+      justifyContent:'center', padding:'40px' }}>
+      <div style={{ width:'100%', maxWidth:1280 }}>
+        <div style={{ display:'flex', justifyContent:'flex-end', marginBottom:16 }}>
+          <button onClick={reload} disabled={loading} style={{ ...btnBase,
+            background:'var(--color-primary)', color:'#fff',
+            opacity: loading ? 0.6 : 1, cursor: loading ? 'default' : 'pointer' }}
+            onMouseEnter={e=>{ if(!loading) e.currentTarget.style.background='var(--color-primary-dark1)'; }}
+            onMouseLeave={e=>{ e.currentTarget.style.background='var(--color-primary)'; }}>
+            <Icon name="refresh" size={18} /> {loading ? 'Carregando…' : 'Recarregar'}
+          </button>
+        </div>
+
+        <div style={{ background:'#fff', borderRadius:8, border:'1px solid var(--color-neutral-light2)', overflow:'hidden' }}>
+          <table style={{ width:'100%', borderCollapse:'collapse', tableLayout:'fixed' }}>
+            <TableHead loading={loading} />
+            {loading ? <SkeletonBody count={7} /> : <DataBody />}
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

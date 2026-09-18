@@ -614,6 +614,9 @@ def update_changelog(repo_name: str, map_file: Path) -> None:
 
 
 def update_repository_map(repo_name: str, map_file: Path) -> None:
+    if not REPOSITORY_MAP.exists():
+        print(f"  [SKIP] repository_map.md não encontrado em {REPOSITORY_MAP} — pulando atualização")
+        return
     today = date.today().isoformat()
     rel_path = f"frontend-maps/{map_file.name}"
     field_line = (

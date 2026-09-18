@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="stylesheet" href="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/colors_and_type.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+  <script src="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/_ds_bundle.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--color-neutral-light3); font-family: var(--font-body-family); }
+    @keyframes slideUp {
+      from { transform: translateY(8px); opacity: 0; }
+      to   { transform: translateY(0);   opacity: 1; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    input[type=checkbox] { accent-color: var(--color-primary); width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; }
+    input[type=text], input[type=date], textarea, select {
+      font-family: var(--font-body-family); font-size: 14px;
+      color: var(--color-neutral-dark3); background: var(--color-white);
+      border: 1px solid var(--color-neutral-light1); border-radius: 8px;
+      outline: none; transition: border-color 160ms, box-shadow 160ms;
+    }
+    input[type=text]:focus, input[type=date]:focus, textarea:focus, select:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(36,44,194,0.14);
+    }
+    input::placeholder, textarea::placeholder { color: var(--color-neutral); }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--color-neutral-light1); border-radius: 99px; }
+    .turma-block { animation: slideUp 200ms var(--ease-out) both; }
+  </style>
+</helmet>
+
+<!-- ── HEADER ─────────────────────────────────────────── -->
+<div style="background: var(--color-neutral-light3); position: sticky; top: 0; z-index: 100;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 24px 32px 0;">
+    <h1 style="font-family: var(--font-display-family); font-size: 32px; font-weight: 600; color: var(--color-neutral-dark3); line-height: 1.2; margin-bottom: 20px;">Cadastro de período letivo</h1>
+    <x-import component-from-global-scope="Tabs" tabs="{{ tabsList }}" activeId="{{ activeTab }}" onChange="{{ onTabChange }}" hint-size="100%,48px"></x-import>
+  </div>
+</div>
+
+<!-- ── PAGE BODY ──────────────────────────────────────── -->
+<div style="max-width: 1200px; margin: 0 auto; padding: 24px 32px 120px;">
+
+  <!-- Sub-nav -->
+  <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 24px;">
+    <x-import component-from-global-scope="IconButton" icon="chevron_left" onClick="{{ goBack }}" variant="ghost" hint-size="40px,40px"></x-import>
+    <span style="font-family: var(--font-display-family); font-size: 18px; font-weight: 600; color: var(--color-neutral-dark3);">Criar dia letivo extra</span>
+  </div>
+
+  <!-- ── LAYOUT COLUNAS ──────────────────────────────── -->
+  <div style="display: grid; grid-template-columns: 360px 1fr; gap: 20px; align-items: start;">
+
+    <!-- LEFT COLUMN -->
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+
+      <!-- Card Básicas -->
+      <div style="background: var(--color-white); border-radius: 12px; border: 1px solid var(--color-neutral-light2); padding: 20px;">
+        <p style="font-family: var(--font-display-family); font-size: 12px; font-weight: 600; color: var(--color-neutral-dark1); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 16px;">Informações básicas</p>
+        <div style="display: grid; grid-template-columns: 1fr 156px; gap: 12px; margin-bottom: 12px;">
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <label style="font-family: var(--font-body-family); font-size: 13px; font-weight: 600; color: var(--color-neutral-dark3);">Escola <span style="color: var(--color-error);">*</span></label>
+            <div style="position: relative;">
+              <select value="{{ escolaSelecionada }}" onChange="{{ onEscolaChange }}" style="width: 100%; height: 40px; padding: 0 36px 0 12px; appearance: none; cursor: pointer;">
+                <option value="">Selecione a escola</option>
+                <option value="Blumenau">Blumenau</option>
+                <option value="Joinville">Joinville</option>
+                <option value="Florianópolis">Florianópolis</option>
+              </select>
+              <span class="material-symbols-outlined" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--color-neutral-dark1); pointer-events: none;">expand_more</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <label style="font-family: var(--font-body-family); font-size: 13px; font-weight: 600; color: var(--color-neutral-dark3);">Data <span style="color: var(--color-error);">*</span></label>
+            <input type="date" value="{{ dataValue }}" onChange="{{ onDataChange }}" style="width: 100%; height: 40px; padding: 0 12px; cursor: pointer;">
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <x-import component-from-global-scope="Input" label="Título *" value="{{ tituloValue }}" onChange="{{ onTituloChange }}" placeholder="Digite o título" hint-size="100%,64px"></x-import>
+          <x-import component-from-global-scope="Input" label="Descrição" value="{{ descricaoValue }}" onChange="{{ onDescricaoChange }}" placeholder="Escreva a descrição aqui..." hint-size="100%,64px"></x-import>
+        </div>
+      </div>
+
+      <!-- Card Filtro Hierárquico -->
+      <div style="background: var(--color-white); border-radius: 12px; border: 1px solid var(--color-neutral-light2); padding: 20px; height: 398px">
+        <p style="font-family: var(--font-display-family); font-size: 12px; font-weight: 600; color: var(--color-neutral-dark1); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 16px;">Filtrar turmas</p>
+        <sc-for list="{{ hierTurnosList }}" as="ht" hint-placeholder-count="2">
+          <div style="margin-bottom: 16px;">
+            <div style="margin-bottom: 10px;">
+              <x-import component-from-global-scope="Checkbox" label="{{ ht.label }}" checked="{{ ht.checked }}" onChange="{{ ht.onToggle }}" hint-size="auto,20px"></x-import>
+            </div>
+            <div style="padding-left: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px;">
+              <sc-for list="{{ ht.series }}" as="hs" hint-placeholder-count="4">
+                <x-import component-from-global-scope="Checkbox" label="{{ hs.label }}" checked="{{ hs.checked }}" onChange="{{ hs.onToggle }}" hint-size="auto,20px"></x-import>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div style="background: var(--color-white); border-radius: 12px; border: 1px solid var(--color-neutral-light2); padding: 24px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+        <p style="font-family: var(--font-display-family); font-size: 12px; font-weight: 600; color: var(--color-neutral-dark1); text-transform: uppercase; letter-spacing: 0.06em;">Turmas e disciplinas</p>
+        <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-family: var(--font-body-family); font-size: 13px; color: var(--color-neutral-dark2);">
+          <input type="checkbox" checked="{{ allSelected }}" onChange="{{ onSelectAll }}">
+          Selecionar todos
+        </label>
+      </div>
+      <div style="margin-bottom: 16px;">
+        <x-import component-from-global-scope="Input" icon="search" value="{{ searchValue }}" onChange="{{ onSearchChange }}" placeholder="Buscar turma ou disciplina..." hint-size="100%,40px"></x-import>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px; background: #FFF8ED; border: 1px solid var(--color-warning-light); border-radius: 8px; padding: 10px 14px; margin-bottom: 16px;">
+        <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-warning-dark); flex-shrink: 0;">warning</span>
+        <span style="font-family: var(--font-body-family); font-size: 13px; color: var(--color-warning-dark);">Atenção: é obrigatória a marcação de pelo menos 1 disciplina em cada turma.</span>
+      </div>
+      <div style="max-height: calc(100vh - 340px); min-height: 480px; overflow-y: auto; padding-right: 4px;">
+        <sc-for list="{{ filteredTurmas }}" as="turma" hint-placeholder-count="3">
+          <div class="turma-block" style="border: 1px solid var(--color-neutral-light2); border-radius: 10px; margin-bottom: 12px; overflow: hidden;">
+            <div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--color-neutral-light3); border-bottom: 1px solid var(--color-neutral-light2);">
+              <x-import component-from-global-scope="Checkbox" checked="{{ turma.allChecked }}" indeterminate="{{ turma.someChecked }}" onChange="{{ turma.onToggleAll }}" hint-size="20px,20px"></x-import>
+              <span style="font-family: var(--font-display-family); font-weight: 600; font-size: 14px; color: var(--color-neutral-dark3); flex: 1;">{{ turma.nome }}</span>
+              <span style="font-family: var(--font-body-family); font-size: 12px; color: var(--color-neutral-dark1);">{{ turma.countLabel }}</span>
+            </div>
+            <div style="padding: 14px 16px; display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px 16px;">
+              <sc-for list="{{ turma.disciplinas }}" as="disc" hint-placeholder-count="8">
+                <x-import component-from-global-scope="Checkbox" label="{{ disc.nome }}" checked="{{ disc.checked }}" onChange="{{ disc.onToggle }}" hint-size="auto,20px"></x-import>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+        <sc-if value="{{ showEmptyState }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align: center; padding: 48px 24px; color: var(--color-neutral);">
+            <span class="material-symbols-outlined" style="font-size: 40px; display: block; margin-bottom: 12px;">search_off</span>
+            <p style="font-family: var(--font-body-family); font-size: 14px;">Nenhuma turma encontrada.</p>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ── MODAL CONFIRMAR ────────────────────────────────── -->
+<x-import component-from-global-scope="Modal" from="./Modal.jsx" title="Confirmar criação" open="{{ confirmModalOpen }}" onClose="{{ onConfirmClose }}" hint-size="580px,auto">
+
+  <!-- Metadados -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; border: 1px solid var(--color-neutral-light2); border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+    <div style="padding: 12px 16px; border-right: 1px solid var(--color-neutral-light2);">
+      <p style="font-family: var(--font-body-family); font-size: 11px; font-weight: 700; color: var(--color-neutral-dark1); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Data</p>
+      <p style="font-family: var(--font-body-family); font-size: 14px; color: var(--color-neutral-dark3); font-weight: 600;">{{ confirmData }}</p>
+    </div>
+    <div style="padding: 12px 16px; border-right: 1px solid var(--color-neutral-light2);">
+      <p style="font-family: var(--font-body-family); font-size: 11px; font-weight: 700; color: var(--color-neutral-dark1); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Escola</p>
+      <p style="font-family: var(--font-body-family); font-size: 14px; color: var(--color-neutral-dark3); font-weight: 600;">{{ confirmEscola }}</p>
+    </div>
+    <div style="padding: 12px 16px;">
+      <p style="font-family: var(--font-body-family); font-size: 11px; font-weight: 700; color: var(--color-neutral-dark1); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Título</p>
+      <p style="font-family: var(--font-body-family); font-size: 14px; color: var(--color-neutral-dark3);">{{ confirmTitulo }}</p>
+    </div>
+  </div>
+
+  <!-- Turmas e disciplinas -->
+  <div style="border: 1px solid var(--color-neutral-light2); border-radius: 8px; overflow: hidden; margin-bottom: 24px;">
+    <div style="background: var(--color-neutral-light3); padding: 10px 16px; border-bottom: 1px solid var(--color-neutral-light2); display: flex; align-items: center; justify-content: space-between;">
+      <span style="font-family: var(--font-display-family); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-neutral-dark1);">Turmas e disciplinas</span>
+      <span style="font-family: var(--font-body-family); font-size: 12px; color: var(--color-neutral-dark1);">{{ confirmTotalLabel }}</span>
+    </div>
+    <div style="padding: 16px;">
+      <sc-if value="{{ confirmTemSelecao }}" hint-placeholder-val="{{ true }}">
+        <sc-for list="{{ confirmTurmas }}" as="ct" hint-placeholder-count="2">
+          <div style="margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--color-neutral-light2);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-positive); flex-shrink: 0; display: inline-block;"></span>
+                <span style="font-family: var(--font-display-family); font-size: 13px; font-weight: 600; color: var(--color-neutral-dark3);">{{ ct.nome }}</span>
+              </div>
+              <span style="font-family: var(--font-body-family); font-size: 12px; color: var(--color-neutral-dark1); background: var(--color-neutral-light2); border-radius: 999px; padding: 2px 10px;">{{ ct.countLabel }}</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              <sc-for list="{{ ct.chips }}" as="chip" hint-placeholder-count="4">
+                <span style="font-family: var(--font-body-family); font-size: 12px; color: var(--color-primary); background: var(--color-primary-light3); border-radius: 999px; padding: 3px 10px;">{{ chip }}</span>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </sc-if>
+      <sc-if value="{{ confirmVazio }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: var(--color-neutral);">
+          <span class="material-symbols-outlined" style="font-size: 20px;">check_box_outline_blank</span>
+          <span style="font-family: var(--font-body-family); font-size: 14px;">Nenhuma disciplina selecionada.</span>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+
+  <!-- Ações -->
+  <div style="position: sticky; bottom: -24px; margin: 0 -24px -24px; padding: 16px 24px; background: var(--color-white); border-top: 1px solid var(--color-neutral-light2); display: flex; justify-content: flex-end; gap: 10px;">
+    <x-import component-from-global-scope="Button" variant="outline" onClick="{{ onConfirmClose }}" hint-size="auto,40px">Voltar</x-import>
+    <x-import component-from-global-scope="Button" variant="fill" icon="check" onClick="{{ onConfirmFinal }}" hint-size="auto,40px">Criar dia letivo extra</x-import>
+  </div>
+
+</x-import>
+
+<!-- ── STICKY FOOTER ─────────────────────────────────── -->
+<sc-if value="{{ showFooter }}" hint-placeholder-val="{{ true }}">
+  <div style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: var(--color-white); border-top: 1px solid var(--color-neutral-light2); padding: 14px 32px; display: flex; align-items: center; gap: 16px; box-shadow: var(--shadow-up-medium);">
+    <sc-if value="{{ showValidationWarning }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; align-items: center; gap: 8px; background: #FFF3CD; border: 1px solid #FFDEAC; border-radius: 8px; padding: 8px 14px; animation: fadeIn 200ms ease both;">
+        <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-warning-dark);">warning</span>
+        <span style="font-family: var(--font-body-family); font-size: 13px; color: var(--color-warning-dark);">{{ validationMessage }}</span>
+      </div>
+    </sc-if>
+    <div style="flex: 1;"></div>
+    <x-import component-from-global-scope="Button" variant="outline" onClick="{{ onCancelar }}" hint-size="auto,40px">Cancelar</x-import>
+    <x-import component-from-global-scope="Button" variant="fill" icon="check" onClick="{{ onConfirmar }}" hint-size="auto,40px">Confirmar</x-import>
+  </div>
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1280, &quot;height&quot;: 900 }
+}">
+
+class Component extends DCLogic {
+  componentDidMount() {
+    this.setState({ hierChecked: this._hierInitial() });
+  }
+
+  HIER_DEFS = [
+    {
+      key: 'manha', label: 'Manhã', suffix: '— m',
+      series: [
+        { key: '1bil', label: '1º Ano Bilíngue', ano: '1º', bilingue: true  },
+        { key: '1reg', label: '1º Ano Regular',  ano: '1º', bilingue: false },
+        { key: '2bil', label: '2º Ano Bilíngue', ano: '2º', bilingue: true  },
+        { key: '2reg', label: '2º Ano Regular',  ano: '2º', bilingue: false },
+        { key: '3bil', label: '3º Ano Bilíngue', ano: '3º', bilingue: true  },
+        { key: '3reg', label: '3º Ano Regular',  ano: '3º', bilingue: false },
+        { key: '4bil', label: '4º Ano Bilíngue', ano: '4º', bilingue: true  },
+        { key: '5bil', label: '5º Ano Bilíngue', ano: '5º', bilingue: true  },
+        { key: '5reg', label: '5º Ano Regular',  ano: '5º', bilingue: false },
+      ],
+    },
+    {
+      key: 'tarde', label: 'Tarde', suffix: '— t',
+      series: [
+        { key: '1reg', label: '1º Ano Regular', ano: '1º', bilingue: false },
+        { key: '2reg', label: '2º Ano Regular', ano: '2º', bilingue: false },
+      ],
+    },
+  ];
+
+  _hierInitial() {
+    const out = {};
+    this.HIER_DEFS.forEach(t => {
+      t.series.forEach(s => { out[t.key + '_' + s.key] = true; });
+    });
+    return out;
+  }
+
+  hierAllChecked(turnoKey) {
+    const def = this.HIER_DEFS.find(t => t.key === turnoKey);
+    if (!def) return false;
+    return def.series.every(s => this.state.hierChecked[turnoKey + '_' + s.key]);
+  }
+
+  matchHier(nome) {
+    const n = nome.toLowerCase();
+    const { hierChecked } = this.state;
+    return this.HIER_DEFS.some(turno => {
+      if (!n.includes(turno.suffix)) return false;
+      return turno.series.some(serie => {
+        if (!hierChecked[turno.key + '_' + serie.key]) return false;
+        if (!n.startsWith(serie.ano.toLowerCase())) return false;
+        if (serie.bilingue === true  && !n.includes('bilíngue')) return false;
+        if (serie.bilingue === false &&  n.includes('bilíngue')) return false;
+        return true;
+      });
+    });
+  }
+
+  state = {
+    escola: 'Blumenau',
+    data: '2026-06-12',
+    titulo: '',
+    descricao: '',
+    search: '',
+    hierChecked: null,
+    activeTab: 'letivos-especiais',
+    confirmModal: false,
+    turmas: [
+      { id: 1, nome: '1º ano bilíngue A — M', disciplinas: ['Arte 1','Ciências 1','Educação Física 1','Geografia 1','História 1','Língua Inglesa 1','LIV 1','Matemática 1','Português 1','Regente 1','Regente Integral','Zoom 1'], checked: {} },
+      { id: 2, nome: '1º ano A — M',          disciplinas: ['Arte 1','Ciências 1','Educação Física 1','Geografia 1','História 1','Língua Inglesa 1','LIV 1','Matemática 1','Português 1','Regente 1','Regente Integral','Zoom 1'], checked: {} },
+      { id: 3, nome: '2º ano bilíngue A — M', disciplinas: ['Arte 2','Ciências 2','Educação Física 2','Geografia 2','História 2','Língua Inglesa 2','LIV 2','Matemática 2','Português 2','Regente 2','Regente Integral 2'], checked: {} },
+      { id: 4, nome: '2º ano A — M',          disciplinas: ['Arte 2','Ciências 2','Educação Física 2','Geografia 2','História 2','Língua Inglesa 2','LIV 2','Matemática 2','Português 2','Regente 2'], checked: {} },
+      { id: 5, nome: '3º ano A — M',          disciplinas: ['Arte 3','Ciências 3','Ed. Física 3','Geografia 3','História 3','Matemática 3','Português 3','Regente 3'], checked: {} },
+      { id: 6, nome: '1º ano A — T',          disciplinas: ['Arte 1','Ciências 1','Ed. Física 1','Geografia 1','História 1','Matemática 1','Português 1'], checked: {} },
+      { id: 7, nome: '2º ano A — T',          disciplinas: ['Arte 2','Ciências 2','Ed. Física 2','Geografia 2','História 2','Matemática 2','Português 2'], checked: {} },
+    ],
+  };
+
+  getTurmaFiltered() {
+    const { turmas, search, hierChecked } = this.state;
+    return turmas.filter(t => {
+      if (search) {
+        const s = search.toLowerCase();
+        if (!t.nome.toLowerCase().includes(s) && !t.disciplinas.some(d => d.toLowerCase().includes(s))) return false;
+      }
+      if (hierChecked && !this.matchHier(t.nome)) return false;
+      return true;
+    });
+  }
+
+  countChecked(turma) {
+    return turma.disciplinas.filter(d => turma.checked[d]).length;
+  }
+
+  allTurmaChecked(turma) {
+    return turma.disciplinas.every(d => turma.checked[d]);
+  }
+
+  allSelected() {
+    const filtered = this.getTurmaFiltered();
+    return filtered.length > 0 && filtered.every(t => this.allTurmaChecked(t));
+  }
+
+  hasValidationIssues() {
+    const filtered = this.getTurmaFiltered();
+    return filtered.some(t => this.countChecked(t) === 0);
+  }
+
+  renderVals() {
+    const { escola, data, titulo, descricao, search, confirmModal, hierChecked } = this.state;
+    const filtered = this.getTurmaFiltered();
+    const allSel = this.allSelected();
+    const hasIssues = this.hasValidationIssues();
+
+    const filteredTurmas = filtered.map(t => ({
+      nome: t.nome,
+      allChecked: this.allTurmaChecked(t) && this.countChecked(t) > 0,
+      someChecked: this.countChecked(t) > 0 && !this.allTurmaChecked(t),
+      countLabel: (() => {
+        const n = this.countChecked(t);
+        return n === 0 ? 'Nenhuma disciplina' : `${n} de ${t.disciplinas.length} disciplinas`;
+      })(),
+      onToggleAll: (checked) => {
+        this.setState(s => ({
+          turmas: s.turmas.map(tu => tu.id !== t.id ? tu : {
+            ...tu, checked: Object.fromEntries(tu.disciplinas.map(d => [d, checked]))
+          })
+        }));
+      },
+      disciplinas: t.disciplinas.map(d => ({
+        nome: d,
+        checked: !!t.checked[d],
+        onToggle: (checked) => {
+          this.setState(s => ({
+            turmas: s.turmas.map(tu => tu.id !== t.id ? tu : {
+              ...tu, checked: { ...tu.checked, [d]: checked }
+            })
+          }));
+        },
+      })),
+    }));
+
+    // Confirmation modal data
+    const turmasComDisc = this.state.turmas.filter(t => this.countChecked(t) > 0);
+    const totalDisc = turmasComDisc.reduce((acc, t) => acc + this.countChecked(t), 0);
+    const confirmTotalLabel = totalDisc === 0
+      ? 'Nenhuma disciplina selecionada'
+      : `${turmasComDisc.length} turma${turmasComDisc.length > 1 ? 's' : ''} · ${totalDisc} disciplina${totalDisc > 1 ? 's' : ''}`;
+
+    return {
+      // Informações básicas
+      escolaSelecionada: escola || '',
+      dataValue: data,
+      tituloValue: titulo,
+      descricaoValue: descricao,
+      searchValue: search,
+      allSelected: allSel,
+      filteredTurmas,
+      showEmptyState: filtered.length === 0,
+      showValidationWarning: hasIssues,
+      validationMessage: 'Existem turmas sem disciplinas selecionadas.',
+
+      goBack: () => { window.location.href = 'Dias Letivos Extras.dc.html'; },
+      onEscolaChange:   (e) => this.setState({ escola: e.target.value }),
+      onDataChange:     (e) => this.setState({ data: e.target.value }),
+      onTituloChange:   (v) => this.setState({ titulo: v }),
+      onDescricaoChange:(v) => this.setState({ descricao: v }),
+      onSearchChange:   (v) => this.setState({ search: v }),
+      onSelectAll: (checked) => {
+        this.setState(s => ({
+          turmas: s.turmas.map(t => ({
+            ...t, checked: Object.fromEntries(t.disciplinas.map(d => [d, checked]))
+          }))
+        }));
+      },
+
+      // Tabs
+      tabsList: [
+        { id: 'ano-letivo',        label: 'Ano letivo' },
+        { id: 'etapa',             label: 'Etapa' },
+        { id: 'dias-sem-aula',     label: 'Dias sem aula' },
+        { id: 'letivos-especiais', label: 'Dias letivos especiais' },
+      ],
+      activeTab: this.state.activeTab,
+      onTabChange: (id) => this.setState({ activeTab: id }),
+
+      // Árvore hierárquica
+      hierTurnosList: (hierChecked ? this.HIER_DEFS : []).map(turno => ({
+        label: turno.label,
+        checked: this.hierAllChecked(turno.key),
+        onToggle: (val) => {
+          this.setState(s => {
+            const next = { ...s.hierChecked };
+            turno.series.forEach(s => { next[turno.key + '_' + s.key] = val; });
+            return { hierChecked: next };
+          });
+        },
+        series: turno.series.map(serie => ({
+          label: serie.label,
+          checked: !!(hierChecked && hierChecked[turno.key + '_' + serie.key]),
+          onToggle: (val) => {
+            const k = turno.key + '_' + serie.key;
+            this.setState(s => ({ hierChecked: { ...s.hierChecked, [k]: val } }));
+          },
+        })),
+      })),
+
+      // Modal confirmar
+      confirmModalOpen: confirmModal,
+      confirmData:  data  ? data.split('-').reverse().join('/') : '—',
+      confirmEscola: escola || '—',
+      confirmTitulo: titulo || '—',
+      confirmTotalLabel,
+      confirmTemSelecao: turmasComDisc.length > 0,
+      confirmVazio: turmasComDisc.length === 0,
+      confirmTurmas: turmasComDisc.map(t => ({
+        nome: t.nome,
+        countLabel: `${this.countChecked(t)} de ${t.disciplinas.length}`,
+        chips: t.disciplinas.filter(d => t.checked[d]),
+      })),
+      onConfirmClose: () => this.setState({ confirmModal: false }),
+      onConfirmFinal: () => {
+        this.setState({ confirmModal: false });
+        window.location.href = 'Dias Letivos Extras.dc.html';
+      },
+
+      showFooter: !confirmModal,
+      onCancelar: () => { window.location.href = 'Dias Letivos Extras.dc.html'; },
+      onConfirmar: () => {
+        if (!titulo.trim()) { alert('Preencha o título do dia letivo.'); return; }
+        if (!data) { alert('Selecione uma data.'); return; }
+        this.setState({ confirmModal: true });
+      },
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/colors_and_type.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+  <script src="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/_ds_bundle.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--color-neutral-light3); font-family: var(--font-body-family); }
+    .row-item:hover { background: var(--color-neutral-light3) !important; }
+    input[type=text] {
+      font-family: var(--font-body-family); font-size: 14px;
+      color: var(--color-neutral-dark3); background: var(--color-white);
+      border: none; outline: none;
+    }
+    input::placeholder { color: var(--color-neutral); }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--color-neutral-light1); border-radius: 99px; }
+    @keyframes fadeDown {
+      from { transform: translateY(-6px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+  </style>
+</helmet>
+
+<!-- ── HEADER ─────────────────────────────────────────── -->
+<div style="background: var(--color-neutral-light3); position: sticky; top: 0; z-index: 100;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 24px 32px 0;">
+    <h1 style="font-family: var(--font-display-family); font-size: 32px; font-weight: 600; color: var(--color-neutral-dark3); line-height: 1.2; margin-bottom: 20px;">Cadastro de período letivo</h1>
+    <x-import component-from-global-scope="Tabs" tabs="{{ tabsList }}" activeId="{{ activeTab }}" onChange="{{ onTabChange }}" hint-size="100%,48px"></x-import>
+  </div>
+</div>
+
+<!-- ── BODY ───────────────────────────────────────────── -->
+<div style="max-width: 1200px; margin: 0 auto; padding: 24px 32px 80px;">
+
+  <!-- Toolbar -->
+  <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap;">
+
+    <!-- Filtro (magenta) -->
+    <button onClick="{{ onFiltroToggle }}" style="height: 40px; padding: 0 16px; border-radius: 8px; border: none; background: #9D0364; color: #fff; font-family: var(--font-display-family); font-size: 14px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: background 160ms; white-space: nowrap;">
+      <span class="material-symbols-outlined" style="font-size: 18px;">filter_alt</span>
+      Filtro
+      <span style="width: 22px; height: 22px; border-radius: 999px; background: #fff; color: #9D0364; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-body-family); font-weight: 700; font-size: 12px;">{{ filtroCount }}</span>
+    </button>
+
+    <!-- Search -->
+    <div style="display: flex; align-items: center; gap: 8px; padding: 0 14px; height: 40px; border-radius: 8px; border: 1px solid var(--color-neutral-light1); background: var(--color-white); min-width: 280px; flex: 1; max-width: 380px;">
+      <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-neutral); flex-shrink: 0;">search</span>
+      <input type="text" value="{{ searchValue }}" onChange="{{ onSearchChange }}" placeholder="Buscar por escola, data ou título" style="flex: 1; min-width: 0; font-size: 14px;" />
+    </div>
+
+    <!-- Filter chips -->
+    <sc-for list="{{ filterChips }}" as="chip" hint-placeholder-count="0">
+      <div style="display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid #9D0364; color: #9D0364; font-family: var(--font-body-family); font-size: 13px; font-weight: 600; background: #fff; white-space: nowrap; cursor: default; animation: fadeDown 160ms ease both;">
+        <span class="material-symbols-outlined" style="font-size: 16px;">{{ chip.icon }}</span>
+        {{ chip.label }}
+        <span onClick="{{ chip.onRemove }}" class="material-symbols-outlined" style="cursor: pointer; font-size: 16px; line-height: 1; display: flex; align-items: center; color: #9D0364; margin-left: 2px; opacity: 0.7;">close</span>
+      </div>
+    </sc-for>
+
+    <div style="flex: 1;"></div>
+
+    <!-- Exportar planilha -->
+    <x-import component-from-global-scope="Button" variant="outline" icon="download" onClick="{{ onExportar }}" hint-size="auto,40px">Exportar planilha</x-import>
+  </div>
+
+  <!-- Table card -->
+  <div style="background: var(--color-white); border-radius: 8px; border: 1px solid var(--color-neutral-light2); overflow: hidden;">
+
+    <!-- Table header -->
+    <div style="display: grid; grid-template-columns: 140px 200px 1fr 1fr 240px; background: #C3C8D1; border-bottom: 1px solid #ADB2BA;">
+      <div style="padding: 10px 16px; font-family: var(--font-body-family); font-size: 14px; font-weight: 700; color: var(--color-neutral-dark2);">Data</div>
+      <div style="padding: 10px 16px; font-family: var(--font-body-family); font-size: 14px; font-weight: 700; color: var(--color-neutral-dark2);">Escola</div>
+      <div style="padding: 10px 16px; font-family: var(--font-body-family); font-size: 14px; font-weight: 700; color: var(--color-neutral-dark2);">Título</div>
+      <div style="padding: 10px 16px; font-family: var(--font-body-family); font-size: 14px; font-weight: 700; color: var(--color-neutral-dark2);">Turmas</div>
+      <div style="padding: 10px 16px;"></div>
+    </div>
+
+    <!-- Table rows -->
+    <sc-for list="{{ tableRows }}" as="row" hint-placeholder-count="4">
+      <div class="row-item" style="display: grid; grid-template-columns: 140px 200px 1fr 1fr 240px; border-bottom: 1px solid var(--color-neutral-light2); transition: background 120ms; background: var(--color-white); align-items: center;">
+        <div style="padding: 14px 16px; font-family: var(--font-body-family); font-size: 14px; color: var(--color-neutral-dark2);">{{ row.data }}</div>
+        <div style="padding: 14px 16px; font-family: var(--font-body-family); font-size: 14px; color: var(--color-neutral-dark3); font-weight: 600;">{{ row.escola }}</div>
+        <div style="padding: 14px 16px; font-family: var(--font-body-family); font-size: 14px; color: var(--color-neutral-dark3);">{{ row.titulo }}</div>
+        <div style="padding: 14px 16px; font-family: var(--font-body-family); font-size: 14px; color: var(--color-neutral-dark2);">{{ row.turmas }}</div>
+        <div style="padding: 10px 16px; display: flex; justify-content: flex-end; gap: 8px;">
+          <x-import component-from-global-scope="Button" variant="outline" icon="edit" size="sm" onClick="{{ row.onVerEditar }}" hint-size="auto,32px">Editar</x-import>
+          <button onClick="{{ row.onExcluir }}" style="height: 32px; padding: 0 12px; border-radius: 8px; border: none; background: transparent; color: var(--color-error); font-family: var(--font-display-family); font-size: 14px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: background 160ms;" style-hover="background: #FFF2F0">
+  <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
+  Excluir
+</button>
+        </div>
+      </div>
+    </sc-for>
+
+    <!-- Empty state -->
+    <sc-if value="{{ showEmptyState }}" hint-placeholder-val="{{ false }}">
+      <div style="padding: 64px 24px; text-align: center; color: var(--color-neutral);">
+        <span class="material-symbols-outlined" style="font-size: 40px; display: block; margin-bottom: 12px;">calendar_today</span>
+        <p style="font-family: var(--font-body-family); font-size: 14px;">Nenhum dia letivo extra encontrado.</p>
+      </div>
+    </sc-if>
+
+    <!-- Footer do card -->
+    <div style="display: flex; align-items: center; padding: 14px 16px; border-top: 1px solid var(--color-neutral-light2); background: var(--color-white);">
+      <span style="font-family: var(--font-body-family); font-size: 13px; color: var(--color-neutral-dark1);">{{ totalLabel }}</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── MODAL EXCLUIR ──────────────────────────────────── -->
+<x-import component-from-global-scope="Modal" from="./Modal.jsx" title="Excluir" open="{{ deleteModalOpen }}" onClose="{{ onDeleteClose }}" hint-size="540px,auto">
+  <!-- Aviso -->
+  <div style="display: flex; align-items: flex-start; gap: 12px; background: #FFF2F0; border: 1px solid #FBBDB3; border-radius: 8px; padding: 14px 16px; margin-bottom: 20px;">
+    <span class="material-symbols-outlined" style="font-size: 20px; color: var(--color-error); flex-shrink: 0; margin-top: 1px;">warning</span>
+    <span style="font-family: var(--font-body-family); font-size: 14px; color: #9B2335; line-height: 1.5;">Esta ação é permanente e não poderá ser desfeita. Confirme os dados abaixo antes de prosseguir.</span>
+  </div>
+
+  <!-- Metadados -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; border: 1px solid var(--color-neutral-light2); border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+    <div style="padding: 12px 16px; border-right: 1px solid var(--color-neutral-light2);">
+      <p style="font-family: var(--font-body-family); font-size: 11px; font-weight: 700; color: var(--color-neutral-dark1); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Data</p>
+      <p style="font-family: var(--font-body-family); font-size: 14px; color: var(--color-neutral-dark3); font-weight: 600;">{{ deleteRow.data }}</p>
+    </div>
+    <div style="padding: 12px 16px; border-right: 1px solid var(--color-neutral-light2);">
+      <p style="font-family: var(--font-body-family); font-size: 11px; font-weight: 700; color: var(--color-neutral-dark1); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Escola</p>
+      <p style="font-family: var(--font-body-family); font-size: 14px; color: var(--color-neutral-dark3); font-weight: 600;">{{ deleteRow.escola }}</p>
+    </div>
+    <div style="padding: 12px 16px;">
+      <p style="font-family: var(--font-body-family); font-size: 11px; font-weight: 700; color: var(--color-neutral-dark1); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px;">Título</p>
+      <p style="font-family: var(--font-body-family); font-size: 14px; color: var(--color-neutral-dark3);">{{ deleteRow.titulo }}</p>
+    </div>
+  </div>
+
+  <!-- Turmas e disciplinas selecionadas -->
+  <div style="border: 1px solid var(--color-neutral-light2); border-radius: 8px; overflow: hidden; margin-bottom: 24px;">
+    <div style="background: var(--color-neutral-light3); padding: 10px 16px; border-bottom: 1px solid var(--color-neutral-light2);">
+      <span style="font-family: var(--font-display-family); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-neutral-dark1);">Turmas e disciplinas</span>
+    </div>
+    <div style="padding: 16px;">
+      <sc-for list="{{ deleteDetalhe }}" as="dt" hint-placeholder-count="3">
+        <div style="margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--color-neutral-light2);">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-positive); flex-shrink: 0; display: inline-block;"></span>
+              <span style="font-family: var(--font-display-family); font-size: 13px; font-weight: 600; color: var(--color-neutral-dark3);">{{ dt.nome }}</span>
+            </div>
+            <span style="font-family: var(--font-body-family); font-size: 12px; color: var(--color-neutral-dark1); background: var(--color-neutral-light2); border-radius: 999px; padding: 2px 10px;">{{ dt.countLabel }}</span>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <sc-for list="{{ dt.chips }}" as="chip" hint-placeholder-count="4">
+              <span style="font-family: var(--font-body-family); font-size: 12px; color: var(--color-primary); background: var(--color-primary-light3); border-radius: 999px; padding: 3px 10px;">{{ chip }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- Ações (sticky dentro do scroll do modal) -->
+  <div style="position: sticky; bottom: -24px; margin: 0 -24px -24px; padding: 16px 24px; background: var(--color-white); border-top: 1px solid var(--color-neutral-light2); display: flex; justify-content: flex-end; gap: 10px;">
+    <x-import component-from-global-scope="Button" variant="outline" onClick="{{ onDeleteClose }}" hint-size="auto,40px">Cancelar</x-import>
+    <x-import component-from-global-scope="Button" variant="danger" icon="delete" onClick="{{ onDeleteConfirm }}" hint-size="auto,40px">Confirmar exclusão</x-import>
+  </div>
+</x-import>
+
+<!-- ── STICKY FOOTER ─────────────────────────────────── -->
+<sc-if value="{{ showFooter }}" hint-placeholder-val="{{ true }}">
+  <div style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: var(--color-white); border-top: 1px solid var(--color-neutral-light2); padding: 14px 32px; display: flex; align-items: center; justify-content: flex-end; box-shadow: var(--shadow-up-medium);">
+    <x-import component-from-global-scope="Button" variant="fill" icon="add" onClick="{{ onNovoDia }}" hint-size="auto,40px">Novo dia letivo extra</x-import>
+  </div>
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;padrao&quot;,&quot;colunas&quot;],&quot;default&quot;:&quot;colunas&quot;},&quot;filtroEstilo&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dropdown&quot;,&quot;hierarquico&quot;],&quot;default&quot;:&quot;hierarquico&quot;}}">
+class Component extends DCLogic {
+  state = {
+    activeTab: 'letivos-extras',
+    search: '',
+    deleteModal: null, // row being deleted
+    filterChips: [
+      { id: 'ano',   icon: 'calendar_today', label: 'Ano: 2026' },
+      { id: 'rede',  icon: 'hub',            label: 'Rede: Elite RJ' },
+      { id: 'escola',icon: 'school',         label: 'Escola: Bangu +22' },
+    ],
+    allRows: [
+      {
+        data: '18/02/2026', escola: 'Madureira 3', titulo: 'Quarta Feira de Cinza', turmas: '17 turmas de 6 séries, Tarde, Manhã',
+        detalhe: [
+          { nome: '1º ano bilíngue A — M', disciplinas: ['Arte 1','Ciências 1','Ed. Física 1','Geografia 1','Matemática 1','Português 1'] },
+          { nome: '1º ano A — M',          disciplinas: ['Arte 1','Ciências 1','História 1','LIV 1','Matemática 1','Português 1','Regente 1'] },
+          { nome: '2º ano bilíngue A — M', disciplinas: ['Arte 2','Ciências 2','Ed. Física 2','Matemática 2','Português 2'] },
+          { nome: '2º ano A — M',          disciplinas: ['Arte 2','Ciências 2','Ed. Física 2','Geografia 2','História 2','Matemática 2'] },
+          { nome: '1º ano A — T',          disciplinas: ['Arte 1','Ciências 1','Matemática 1','Português 1'] },
+          { nome: '2º ano A — T',          disciplinas: ['Arte 2','Matemática 2','Português 2'] },
+        ],
+      },
+      {
+        data: '18/02/2026', escola: 'Madureira 3', titulo: 'Quarta Feira de Cinza', turmas: '19 turmas de 7 séries, Tarde, Manhã',
+        detalhe: [
+          { nome: '3º ano A — M', disciplinas: ['Arte 3','Ciências 3','Ed. Física 3','Matemática 3','Português 3'] },
+          { nome: '4º ano A — M', disciplinas: ['Arte 4','Ciências 4','Geografia 4','História 4','Matemática 4','Português 4'] },
+          { nome: '5º ano A — M', disciplinas: ['Arte 5','Ciências 5','Ed. Física 5','Matemática 5','Português 5','Inglês 5'] },
+          { nome: '3º ano A — T', disciplinas: ['Ciências 3','Matemática 3','Português 3'] },
+          { nome: '4º ano A — T', disciplinas: ['Arte 4','Matemática 4','Português 4'] },
+        ],
+      },
+      {
+        data: '05/03/2026', escola: 'Bangu 1', titulo: 'Reposição de Aula — março', turmas: '12 turmas de 4 séries, Manhã',
+        detalhe: [
+          { nome: '1º ano A — M', disciplinas: ['Matemática 1','Português 1','Ciências 1'] },
+          { nome: '2º ano A — M', disciplinas: ['Matemática 2','Português 2','História 2','Geografia 2'] },
+          { nome: '3º ano A — M', disciplinas: ['Matemática 3','Português 3','Ciências 3','Arte 3'] },
+          { nome: '4º ano A — M', disciplinas: ['Matemática 4','Português 4','Ed. Física 4'] },
+        ],
+      },
+      {
+        data: '12/03/2026', escola: 'Bangu 2', titulo: 'Evento pedagógico integrado', turmas: '24 turmas de 8 séries, Tarde, Manhã',
+        detalhe: [
+          { nome: '1º ano A — M', disciplinas: ['Arte 1','Matemática 1','Português 1','Ciências 1','Ed. Física 1'] },
+          { nome: '2º ano A — M', disciplinas: ['Arte 2','Matemática 2','Português 2','Ciências 2'] },
+          { nome: '1º ano A — T', disciplinas: ['Matemática 1','Português 1'] },
+          { nome: '2º ano A — T', disciplinas: ['Matemática 2','Português 2','Arte 2'] },
+        ],
+      },
+      {
+        data: '20/04/2026', escola: 'Madureira 3', titulo: 'Sábado letivo — recuperação', turmas: '9 turmas de 3 séries, Manhã',
+        detalhe: [
+          { nome: '3º ano A — M', disciplinas: ['Matemática 3','Português 3','Ciências 3'] },
+          { nome: '4º ano A — M', disciplinas: ['Matemática 4','Português 4'] },
+          { nome: '5º ano A — M', disciplinas: ['Matemática 5','Português 5','Inglês 5','Ed. Física 5'] },
+        ],
+      },
+      {
+        data: '27/04/2026', escola: 'Bangu 3', titulo: 'Recuperação paralela', turmas: '15 turmas de 5 séries, Tarde',
+        detalhe: [
+          { nome: '1º ano A — T', disciplinas: ['Matemática 1','Português 1','Arte 1'] },
+          { nome: '2º ano A — T', disciplinas: ['Matemática 2','Português 2','Ciências 2','Geografia 2'] },
+          { nome: '3º ano A — T', disciplinas: ['Matemática 3','Português 3','História 3'] },
+          { nome: '4º ano A — T', disciplinas: ['Matemática 4','Português 4','Arte 4','Ed. Física 4'] },
+          { nome: '5º ano A — T', disciplinas: ['Matemática 5','Português 5','Inglês 5'] },
+        ],
+      },
+    ],
+  };
+
+  getFilteredRows() {
+    const { allRows, search } = this.state;
+    if (!search) return allRows;
+    const s = search.toLowerCase();
+    return allRows.filter(r =>
+      r.escola.toLowerCase().includes(s) ||
+      r.titulo.toLowerCase().includes(s) ||
+      r.data.includes(s)
+    );
+  }
+
+  renderVals() {
+    const { activeTab, search, filterChips } = this.state;
+    const filtered = this.getFilteredRows();
+
+    return {
+      // Tabs
+      tabsList: [
+        { id: 'anos-letivos',   label: 'Anos letivos' },
+        { id: 'etapas',         label: 'Etapas' },
+        { id: 'dias-sem-aula',  label: 'Dias sem aula' },
+        { id: 'letivos-extras', label: 'Dias letivos extras' },
+      ],
+      activeTab,
+      onTabChange: (id) => this.setState({ activeTab: id }),
+
+      // Toolbar
+      filtroCount: filterChips.length,
+      searchValue: search,
+      onSearchChange: (v) => this.setState({ search: v }),
+      onFiltroToggle: () => {},
+      onExportar: () => alert('Exportando planilha…'),
+
+      filterChips: filterChips.map(chip => ({
+        icon: chip.icon,
+        label: chip.label,
+        onRemove: () => this.setState(s => ({
+          filterChips: s.filterChips.filter(c => c.id !== chip.id)
+        })),
+      })),
+
+      // Table
+      tableRows: filtered.map(row => ({
+        data: row.data,
+        escola: row.escola,
+        titulo: row.titulo,
+        turmas: row.turmas,
+        onVerEditar: () => { window.location.href = 'Criar Dia Letivo Extra.dc.html'; },
+        onExcluir: () => this.setState({ deleteModal: row }),
+      })),
+      showEmptyState: filtered.length === 0,
+      totalLabel: `${filtered.length} registro${filtered.length !== 1 ? 's' : ''}`,
+
+      // Modal excluir
+      deleteModalOpen: !!this.state.deleteModal,
+      showFooter: !this.state.deleteModal,
+      deleteRow: this.state.deleteModal || { data: '', escola: '', titulo: '', turmas: '', detalhe: [] },
+      deleteDetalhe: (this.state.deleteModal?.detalhe || []).map(t => ({
+        nome: t.nome,
+        countLabel: `${t.disciplinas.length} disciplina${t.disciplinas.length !== 1 ? 's' : ''}`,
+        chips: t.disciplinas,
+      })),
+      onDeleteClose: () => this.setState({ deleteModal: null }),
+      onDeleteConfirm: () => {
+        const target = this.state.deleteModal;
+        this.setState(s => ({
+          deleteModal: null,
+          allRows: s.allRows.filter(r => !(r.data === target.data && r.titulo === target.titulo && r.escola === target.escola)),
+        }));
+      },
+
+      onNovoDia: () => { window.location.href = 'Criar Dia Letivo Extra.dc.html'; },
+    };
+  }
+}
+
+</script>
+</body>
+</html>

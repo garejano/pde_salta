@@ -1,0 +1,29 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Toggle" subtitle="Ativado · desativado · desabilitado" viewport="700x160" -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:20px; background:#fff; font-family:'Nunito',sans-serif; }
+  .row { display:flex; gap:32px; align-items:center; flex-wrap:wrap; }
+  .group { display:flex; flex-direction:column; gap:12px; }
+  .head { font-family:'Archivo'; font-weight:700; font-size:11px; color:#65686E; letter-spacing:.06em; text-transform:uppercase; margin-bottom:2px; }
+  .item { display:flex; align-items:center; gap:12px; font-size:14px; color:#0F0F10; }
+  /* Toggle track */
+  .tg { width:40px; height:24px; border-radius:48px; background:#C3C8D1; position:relative; cursor:pointer; transition:background 160ms; flex-shrink:0; }
+  .tg.on  { background:#28975A; }
+  .tg.dis { background:#EBEDF1; cursor:not-allowed; }
+  .tg .knob { position:absolute; top:3px; left:3px; width:18px; height:18px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,23,31,.2); transition:left 160ms; }
+  .tg.on .knob { left:19px; }
+  .tg.dis .knob { background:#C3C8D1; }
+</style></head>
+<body>
+<div class="row">
+  <div class="group">
+    <div class="head">Toggle</div>
+    <div class="item"><div class="tg on"><div class="knob"></div></div><span>Ativado</span></div>
+    <div class="item"><div class="tg"><div class="knob"></div></div><span>Desativado</span></div>
+    <div class="item"><div class="tg dis"><div class="knob"></div></div><span style="color:#ADB2BA">Desabilitado</span></div>
+    <div class="item"><div class="tg on dis" style="background:#EBEDF1"><div class="knob"></div></div><span style="color:#ADB2BA">Desabilitado ativo</span></div>
+  </div>
+</div>
+</body></html>

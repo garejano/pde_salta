@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/colors_and_type.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<script src="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/_ds_bundle.js"></script>
+<style>
+  @keyframes cbDraw { from { stroke-dashoffset: 30; } to { stroke-dashoffset: 0; } }
+  @keyframes cbPop  { 0% { transform: scale(0.72); } 60% { transform: scale(1.06); } 100% { transform: scale(1); } }
+  @keyframes cbDash { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes cbSpin { to { transform: rotate(360deg); } }
+  .cbx { outline: none; transition: background 160ms cubic-bezier(0.16,1,0.3,1), border-color 160ms cubic-bezier(0.16,1,0.3,1), box-shadow 160ms cubic-bezier(0.16,1,0.3,1); }
+  .cbx:not([data-dis="1"]):hover { box-shadow: 0 0 0 4px rgba(36,44,194,0.10); }
+  .cbx:focus-visible { box-shadow: 0 0 0 3px rgba(36,44,194,0.28) !important; }
+  a { color: #242CC2; text-decoration: none; }
+  a:hover { color: #1E258F; }
+</style>
+</helmet>
+<div style="min-height:100vh;background:#fff;font-family:Nunito,sans-serif;color:#0F0F10;padding:48px 40px 80px;">
+  <div style="max-width:1200px;margin:0 auto;">
+
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:8px;">
+      <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#242CC2;">Eleva · Grupo Salta</span>
+      <h1 style="font-family:'Archivo',sans-serif;font-weight:600;font-size:40px;line-height:1.15;margin:0;color:#0F0F10;">Checkbox — variantes e estados</h1>
+      <p style="font-family:Nunito,sans-serif;font-size:16px;line-height:1.5;color:#4A4E57;margin:0;max-width:720px;">Exploração para modernizar o componente. À esquerda, o checkbox atual do design system como referência; abaixo, cinco tratamentos visuais aplicados a todos os estados. Passe o mouse ou use Tab para ver foco e hover; clique para ver a marcação animar.</p>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:20px;margin:24px 0 40px;font-family:Nunito,sans-serif;font-size:13px;color:#4A4E57;">
+      <span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:12px;height:12px;border-radius:3px;background:#242CC2;"></span>Destaque (ação)</span>
+      <span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:12px;height:12px;border-radius:3px;background:#28975A;"></span>Válido</span>
+      <span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:12px;height:12px;border-radius:3px;background:#E65637;"></span>Inválido</span>
+      <span style="display:inline-flex;align-items:center;gap:8px;"><span style="width:12px;height:12px;border-radius:3px;background:#F8F9FB;border:1.5px solid #EBEDF1;"></span>Desabilitado</span>
+    </div>
+
+    <!-- REFERENCE -->
+    <section style="margin-bottom:48px;">
+      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:16px;">
+        <h2 style="font-family:'Archivo',sans-serif;font-weight:600;font-size:24px;margin:0;color:#0F0F10;">Referência — componente atual</h2>
+        <span style="font-family:Nunito,sans-serif;font-size:14px;color:#8A8F99;">Checkbox em produção no design system</span>
+      </div>
+      <div style="border:1px solid #EBEDF1;border-radius:12px;background:#fff;box-shadow:0 1px 3px rgba(0,23,31,0.10);overflow:hidden;">
+        <div style="display:grid;grid-template-columns:196px minmax(0,1fr);align-items:center;gap:16px;padding:14px 24px;background:#F8F9FB;border-bottom:1px solid #EBEDF1;">
+          <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#8A8F99;">Estilo</span>
+          <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;justify-items:center;">
+            <sc-for list="{{ refColumns }}" as="rc" hint-placeholder-count="5">
+              <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:#8A8F99;text-align:center;">{{ rc.label }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:196px minmax(0,1fr);align-items:center;gap:16px;padding:22px 24px;">
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:16px;color:#0F0F10;">Atual (DS)</span>
+            <span style="font-family:Nunito,sans-serif;font-size:13px;color:#8A8F99;line-height:1.4;">16px · cantos 4px · preenchimento indigo</span>
+          </div>
+          {{ refStrip }}
+        </div>
+      </div>
+    </section>
+
+    <!-- MODERN EXPLORATIONS -->
+    <section>
+      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:16px;">
+        <h2 style="font-family:'Archivo',sans-serif;font-weight:600;font-size:24px;margin:0;color:#0F0F10;">Explorações — variantes modernas</h2>
+        <span style="font-family:Nunito,sans-serif;font-size:14px;color:#8A8F99;">Cinco estilos × oito estados</span>
+      </div>
+      <div style="border:1px solid #EBEDF1;border-radius:12px;background:#fff;box-shadow:0 1px 3px rgba(0,23,31,0.10);overflow:hidden;">
+        <div style="display:grid;grid-template-columns:196px minmax(0,1fr);align-items:center;gap:16px;padding:14px 24px;background:#F8F9FB;border-bottom:1px solid #EBEDF1;">
+          <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#8A8F99;">Estilo</span>
+          <div style="display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px;justify-items:center;">
+            <sc-for list="{{ columns }}" as="col" hint-placeholder-count="8">
+              <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:10.5px;letter-spacing:0.01em;text-transform:uppercase;color:#8A8F99;text-align:center;line-height:1.25;overflow-wrap:anywhere;">{{ col.label }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <sc-for list="{{ styles }}" as="style" hint-placeholder-count="5">
+          <div style="display:grid;grid-template-columns:196px minmax(0,1fr);align-items:center;gap:16px;padding:22px 24px;border-top:1px solid #F0F1F4;">
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:16px;color:#0F0F10;">{{ style.title }}</span>
+              <span style="font-family:Nunito,sans-serif;font-size:13px;color:#8A8F99;line-height:1.4;">{{ style.desc }}</span>
+            </div>
+            {{ style.strip }}
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <p style="font-family:Nunito,sans-serif;font-size:13px;color:#ADB2BA;margin-top:32px;line-height:1.5;max-width:720px;">Estados <em>Ativo/Hover</em> e <em>Foco</em> são interativos. A coluna <em>Animado</em> se manifesta ao clicar em qualquer marcação. Cores, tamanho e animação são ajustáveis nos controles do painel.</p>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#28975A&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#242CC2&quot;,&quot;#30B7BE&quot;,&quot;#9D0364&quot;,&quot;#28975A&quot;],&quot;section&quot;:&quot;Aparência&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:20,&quot;min&quot;:16,&quot;max&quot;:28,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Aparência&quot;},&quot;animate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Comportamento&quot;}}">
+class Component extends DCLogic {
+  state = { on: {}, tick: 0 };
+
+  componentDidMount() {
+    if (!window.Checkbox) {
+      let n = 0;
+      this._poll = setInterval(() => {
+        n++;
+        if (window.Checkbox || n > 40) { clearInterval(this._poll); this.forceUpdate(); }
+      }, 100);
+    }
+  }
+  componentWillUnmount() { if (this._poll) clearInterval(this._poll); }
+
+  defaultFor(col) { return col === 'selecionado' || col === 'valido'; }
+
+  isOn(key, col) {
+    const o = this.state.on;
+    return key in o ? o[key] : this.defaultFor(col);
+  }
+
+  toggle(key, col) {
+    const cur = this.isOn(key, col);
+    this.setState(s => ({ on: { ...s.on, [key]: !cur } }));
+  }
+
+  lightOf(c) {
+    const m = {
+      '#242CC2': '#E3E5FB', '#28975A': '#E6F4EC', '#E65637': '#FCE7E1',
+      '#30B7BE': '#D6F0F1', '#9D0364': '#F5D9E8'
+    };
+    return m[c] || (c + '22');
+  }
+
+  mark(kind, color, sz, animate) {
+    const s = sz * 0.66;
+    if (kind === 'check') {
+      return React.createElement('svg', {
+        key: 'ck', width: s, height: s, viewBox: '0 0 24 24', fill: 'none',
+        style: { animation: animate ? 'cbPop 240ms cubic-bezier(0.16,1,0.3,1)' : 'none' }
+      }, React.createElement('path', {
+        d: 'M5 12.5 L10 17.5 L19 6.5', stroke: color, strokeWidth: 2.6,
+        strokeLinecap: 'round', strokeLinejoin: 'round',
+        style: {
+          strokeDasharray: 30, strokeDashoffset: animate ? 30 : 0,
+          animation: animate ? 'cbDraw 260ms cubic-bezier(0.16,1,0.3,1) forwards' : 'none'
+        }
+      }));
+    }
+    // indeterminate dash
+    return React.createElement('svg', {
+      key: 'ds', width: s, height: s, viewBox: '0 0 24 24', fill: 'none'
+    }, React.createElement('path', {
+      d: 'M6 12 H18', stroke: color, strokeWidth: 2.6, strokeLinecap: 'round',
+      style: {
+        transformOrigin: 'center', transformBox: 'fill-box',
+        animation: animate ? 'cbDash 200ms cubic-bezier(0.16,1,0.3,1)' : 'none'
+      }
+    }));
+  }
+
+  spinner(color, sz) {
+    return React.createElement('div', {
+      key: 'sp',
+      style: {
+        width: sz * 0.62, height: sz * 0.62, borderRadius: 999,
+        border: '2.4px solid #E3E5FB', borderTopColor: color,
+        animation: 'cbSpin 700ms linear infinite'
+      }
+    });
+  }
+
+  cell(sd, col) {
+    const p = this.props;
+    const accent = p.accent || '#242CC2';
+    const animate = p.animate !== false;
+    const scale = (p.size || 20) / 20;
+    const sz = (sd.size || 20) * scale;
+
+    const key = sd.id + ':' + col;
+    const disabled = col === 'desabilitado';
+    const loading = col === 'carregando';
+    const focus = col === 'foco';
+    const base = col === 'valido' ? '#28975A' : col === 'invalido' ? '#E65637' : accent;
+
+    const checkedVal = this.isOn(key, col);
+    const indeterminate = col === 'intermediario' && !checkedVal;
+    const marked = checkedVal || indeterminate;
+
+    let border, bg, markCol, bw = sd.bw || 1.5, shadow = '';
+
+    if (disabled) {
+      border = '#EBEDF1'; bg = '#F8F9FB'; markCol = '#C3C8D1';
+    } else if (!marked) {
+      border = col === 'invalido' ? '#E65637' : col === 'valido' ? '#28975A' : '#C3C8D1';
+      bg = (sd.fill === 'tint' && col === 'invalido') ? this.lightOf('#E65637') : '#fff';
+      markCol = base;
+    } else {
+      if (sd.fill === 'fill') { bg = base; border = base; markCol = '#fff'; }
+      else if (sd.fill === 'outline') { bg = '#fff'; border = base; markCol = base; bw = 2; }
+      else { bg = this.lightOf(base); border = base; markCol = base; } // tint
+      if (sd.shadow) shadow = '0 2px 6px rgba(0,23,31,0.15)';
+    }
+
+    // "sombra" style: simulate the border with an inset box-shadow instead of a real border
+    if (sd.borderMode === 'shadow') {
+      const ring = `inset 0 0 0 ${bw}px ${border}`;
+      shadow = shadow ? `${ring}, ${shadow}` : ring;
+      bw = 0;
+    }
+
+    if (focus) shadow = (shadow ? shadow + ', ' : '') + '0 0 0 3px rgba(36,44,194,0.24)';
+
+    const radius = sd.radius === 'pill' ? Math.round(sz * 0.42) : sd.radius;
+
+    let inner = null;
+    if (loading) inner = this.spinner(base, sz);
+    else if (indeterminate) inner = this.mark('dash', markCol, sz, animate);
+    else if (checkedVal) inner = this.mark('check', markCol, sz, animate);
+
+    const box = React.createElement('div', {
+      key: 'b',
+      className: 'cbx',
+      'data-dis': (disabled || loading) ? '1' : '0',
+      role: 'checkbox',
+      tabIndex: (disabled || loading) ? -1 : 0,
+      'aria-checked': indeterminate ? 'mixed' : String(checkedVal),
+      'aria-disabled': disabled ? 'true' : undefined,
+      onClick: () => { if (!disabled && !loading) this.toggle(key, col); },
+      onKeyDown: (e) => {
+        if ((e.key === ' ' || e.key === 'Enter') && !disabled && !loading) {
+          e.preventDefault(); this.toggle(key, col);
+        }
+      },
+      style: {
+        width: sz, height: sz, borderRadius: radius,
+        border: bw ? `${bw}px solid ${border}` : 'none',
+        background: bg, boxShadow: shadow || 'none',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        flexShrink: 0, cursor: (disabled || loading) ? 'not-allowed' : 'pointer'
+      }
+    }, inner);
+
+    return React.createElement('div', {
+      key: col,
+      style: { display: 'flex', alignItems: 'center', justifyContent: 'center' }
+    }, box);
+  }
+
+  strip(sd, cols) {
+    return React.createElement('div', {
+      style: {
+        display: 'grid',
+        gridTemplateColumns: `repeat(${cols.length},minmax(0,1fr))`,
+        gap: 12, justifyItems: 'center', alignItems: 'center'
+      }
+    }, cols.map(c => this.cell(sd, c)));
+  }
+
+  referenceStrip() {
+    const CB = window.Checkbox;
+    const cols = ['padrao', 'selecionado', 'intermediario', 'desabilitado', 'desab_sel'];
+    if (!CB) {
+      return React.createElement('div', { style: { fontFamily: 'Nunito', fontSize: 13, color: '#ADB2BA' } }, 'carregando…');
+    }
+    const cfg = {
+      padrao: {}, selecionado: { checked: true }, intermediario: { indeterminate: true },
+      desabilitado: { disabled: true }, desab_sel: { disabled: true, checked: true }
+    };
+    return React.createElement('div', {
+      style: {
+        display: 'grid', gridTemplateColumns: 'repeat(5,minmax(0,1fr))',
+        gap: 12, justifyItems: 'center', alignItems: 'center'
+      }
+    }, cols.map(c => {
+      const conf = cfg[c];
+      const key = 'ref:' + c;
+      const on = conf.disabled ? !!conf.checked : this.isOn(key, c === 'selecionado' ? 'selecionado' : 'padrao');
+      return React.createElement('div', { key: c, style: { display: 'flex', justifyContent: 'center' } },
+        React.createElement(CB, {
+          checked: on,
+          indeterminate: !!conf.indeterminate && !this.isOn(key, 'padrao'),
+          disabled: !!conf.disabled,
+          onChange: () => { if (!conf.disabled) this.toggle(key, c === 'selecionado' ? 'selecionado' : 'padrao'); }
+        }));
+    }));
+  }
+
+  renderVals() {
+    const columns = [
+      { label: 'Padrão' }, { label: 'Foco' }, { label: 'Selecionado' },
+      { label: 'Intermediário' }, { label: 'Válido' }, { label: 'Inválido' },
+      { label: 'Carregando' }, { label: 'Desabilitado' }
+    ];
+    const colKeys = ['padrao', 'foco', 'selecionado', 'intermediario', 'valido', 'invalido', 'carregando', 'desabilitado'];
+
+    const defs = [
+      { id: 'suave', title: 'Suave', desc: 'Preenchimento sólido, cantos 6px, marca desenhada', fill: 'fill', radius: 6, size: 20 },
+      { id: 'solido', title: 'Sólido', desc: 'Base atual reforçada: 22px, cantos 8px, sombra ao marcar', fill: 'fill', radius: 8, size: 22, shadow: true },
+      { id: 'contorno', title: 'Contorno', desc: 'Sem preenchimento: borda 2px e marca em destaque', fill: 'outline', radius: 8, size: 20 },
+      { id: 'tinta', title: 'Tinta', desc: 'Fundo tonal leve, contraste baixo e moderno', fill: 'tint', radius: 6, size: 20 },
+      { id: 'pilula', title: 'Pílula', desc: 'Cantos totalmente arredondados, aspecto suave', fill: 'fill', radius: 'pill', size: 22 },
+      { id: 'sombra', title: 'Sombra', desc: 'Como a Suave, mas a borda é uma sombra interna — sem traço real', fill: 'fill', radius: 6, size: 20, borderMode: 'shadow' }
+    ];
+
+    const styles = defs.map(sd => ({
+      title: sd.title, desc: sd.desc, strip: this.strip(sd, colKeys)
+    }));
+
+    return {
+      columns,
+      styles,
+      refColumns: [
+        { label: 'Padrão' }, { label: 'Selecionado' }, { label: 'Intermediário' },
+        { label: 'Desabilitado' }, { label: 'Desab. marcado' }
+      ],
+      refStrip: this.referenceStrip()
+    };
+  }
+}
+</script>
+</body>
+</html>

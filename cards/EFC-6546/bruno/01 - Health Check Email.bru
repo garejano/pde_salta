@@ -1,0 +1,33 @@
+meta {
+  name: 01 - Health Check Email (sucesso)
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/health/email?destinatario={{destinatarioTeste}}
+  body: none
+  auth: none
+}
+
+params:query {
+  destinatario: {{destinatarioTeste}}
+}
+
+docs {
+  Envia um e-mail de teste pelo transporte real (Api de Comunicação, EFC-6546) sem precisar
+  registrar um Atendimento/Ocorrência de verdade. Endpoint: HealthController.CheckEmail
+  (HealthCheckEmailService).
+
+  Espera 200 com ServiceResult sem erros quando o envio for confirmado.
+
+  Se vier 200 mas com erro "Email.DeveEnviarEmail está false neste ambiente" ou
+  "seção 'Email' ausente na configuração": o backend local ainda não recarregou o
+  appsettings.json (SettingsManager só lê a config uma vez no startup) — reinicie o processo
+  (dotnet run) e tente de novo.
+
+  Se vier erro "falha na chamada à Api de Comunicação": confira o log do console
+  (EmailSenderService) pelo StatusCode/mensagem retornados pela Api de Comunicação.
+
+  Desabilitado propositalmente quando Stage=production (retorna erro sem tentar enviar).
+}

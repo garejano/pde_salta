@@ -18,9 +18,9 @@
 
 - **LancamentoNotasBusca** (PK: `Id`) — 8 FK(s) de negócio
 - **ProtocoloLancamentoBusca** (PK: `Id`) — 8 FK(s) de negócio
+- **AtualizacaoHoraAulaClasseItem** (PK: `Id`) — 6 FK(s) de negócio
+- **AtualizacaoHoraAulaSegmentoItem** (PK: `Id`) — 6 FK(s) de negócio
 - **AulaEvento** (PK: `Id`) — 6 FK(s) de negócio
-- **Aula_LancamentoComportamento** (PK: `Id`) — 5 FK(s) de negócio
-- **LIV_FeedbackAula** (PK: `Id`) — 5 FK(s) de negócio
 
 ## Todas as tabelas
 
@@ -31,6 +31,10 @@
 - **AlunoFaltas** (PK: `Id`, 2 FK(s) negócio)
 - **AlunoFrequencia** (PK: `Id`, 4 FK(s) negócio)
 - **AlunoJustificativaFalta** (PK: `Id`, 1 FK(s) negócio)
+- **AlunoPercentualFrequencia** (PK: `Id`, 3 FK(s) negócio)
+- **AtualizacaoHoraAulaClasseItem** (PK: `Id`, 6 FK(s) negócio)
+- **AtualizacaoHoraAulaLote** (PK: `Id`, 1 FK(s) negócio)
+- **AtualizacaoHoraAulaSegmentoItem** (PK: `Id`, 6 FK(s) negócio)
 - **AulaEvento** (PK: `Id`, 6 FK(s) negócio)
 - **AulaEventoAnotacoes** (PK: `Id`, 1 FK(s) negócio)
 - **AulaEventoConfiguracao** (PK: `Id`, 2 FK(s) negócio)
@@ -46,20 +50,26 @@
 - **Aula_LancamentoComportamento** (PK: `Id`, 5 FK(s) negócio)
 - **BaseDeLancamentoNotas** (PK: `Id`, 0 FK(s) negócio)
 - **Chamada** (PK: `Id`, 0 FK(s) negócio)
+- **DadosImportacaoFrequencia** (PK: `Id`, 0 FK(s) negócio)
 - **DiaSemAula** (PK: `Id`, 1 FK(s) negócio)
 - **DiaSemAulaMotivo** (PK: `Id`, 3 FK(s) negócio)
 - **DiaSemAulaTipo** (PK: `Id`, 0 FK(s) negócio)
 - **DiaSemAulaTurma** (PK: `Id`, 2 FK(s) negócio)
 - **DuracaoTempoAula** (PK: `Id`, 1 FK(s) negócio)
+- **FilaImportacaoFrequencia** (PK: `Id`, 0 FK(s) negócio)
 - **FrequenciaProfessor** (PK: `Id`, 3 FK(s) negócio)
 - **FrequenciaProfessorSubstituto** (PK: `Id`, 3 FK(s) negócio)
 - **FuncionalidadeTipoPresenca** (PK: `Id`, 2 FK(s) negócio)
 - **HistoricoHoraAulaPgto** (PK: `—`, 1 FK(s) negócio) — Histórico das alterações da tabela ClassificacaoClassePgto. Os dados são inseridos automáticamente por meio da trigger TrgSalvarHistorico
 - **HistoricoHoraAulaSegmentoPgto** (PK: `—`, 1 FK(s) negócio)
-- **HoraAulaPadrao** (PK: `Id`, 4 FK(s) negócio)
+- **HoraAulaEspecial** (PK: `Id`, 5 FK(s) negócio)
+- **HoraAulaPadrao** (PK: `Id`, 6 FK(s) negócio)
 - **HoraAulaPgto** (PK: `Id`, 3 FK(s) negócio) — Associação entre o fluxo de classificação e a sua classe de pagamento. Opcionalmente, são declaradas as variáveis para compor o cálculo da folha de pagamento
+- **HoraAulaSegmento** (PK: `Id`, 6 FK(s) negócio)
 - **HoraAulaSegmentoPgto** (PK: `Id`, 4 FK(s) negócio)
+- **HoraAulaTabelada** (PK: `Id`, 5 FK(s) negócio)
 - **ImportacaoFrequencia** (PK: `Id`, 0 FK(s) negócio)
+- **JustificativaHoraAula** (PK: `Id`, 0 FK(s) negócio)
 - **LIV_FeedbackAula** (PK: `Id`, 5 FK(s) negócio)
 - **LIV_FeedbackAulaRespostas** (PK: `Id`, 2 FK(s) negócio)
 - **LIV_FeedbackCadastroAulas** (PK: `Id`, 0 FK(s) negócio)
@@ -70,8 +80,16 @@
 - **LancamentoNotasStatusPorTurma** (PK: `Id`, 3 FK(s) negócio)
 - **LogAulaOnlineAssistida** (PK: `Id`, 0 FK(s) negócio)
 - **MonitoriaMonitorPresenca** (PK: `Id`, 4 FK(s) negócio)
+- **MotivoAlteracaoHoraAula** (PK: `Id`, 1 FK(s) negócio)
 - **MotivoFrequenciaProfessor** (PK: `Id`, 1 FK(s) negócio)
 - **MotivoFrequenciaProfessorTipoPresenca** (PK: `Id`, 3 FK(s) negócio)
+- **MovimentacaoHoraAula** (PK: `Id`, 2 FK(s) negócio)
+- **MovimentacaoHoraAula_Backup_20260721113925** (PK: `—`, 0 FK(s) negócio)
+- **MovimentacaoHoraAula_Backup_20260721114218** (PK: `—`, 0 FK(s) negócio)
+- **MovimentacaoHoraAula_Backup_20260721114430** (PK: `—`, 0 FK(s) negócio)
+- **MovimentacaoHoraAula_Backup_20260721114651** (PK: `—`, 0 FK(s) negócio)
+- **MovimentacaoHoraAula_Backup_20260721114956** (PK: `—`, 0 FK(s) negócio)
+- **MovimentacaoHoraAula_Backup_20260721120617** (PK: `—`, 0 FK(s) negócio)
 - **POANaoPossuiAula** (PK: `Id`, 0 FK(s) negócio)
 - **POANaoPossuiAula_Modulo** (PK: `—`, 0 FK(s) negócio)
 - **PercentualFrequencia** (PK: `Id`, 3 FK(s) negócio)
@@ -95,7 +113,8 @@
 - **TipoAulaOnlineRedeSerie** (PK: `Id`, 2 FK(s) negócio)
 - **TipoChamada** (PK: `Id`, 0 FK(s) negócio)
 - **TipoFrequencia** (PK: `Id`, 0 FK(s) negócio)
-- **TipoHoraAula** (PK: `Id`, 0 FK(s) negócio) — Armazenamento dos fluxos para cálculo da folha do professor
+- **TipoHoraAula** (PK: `Id`, 0 FK(s) negócio)
+- **TipoHoraAula_Excluir** (PK: `Id`, 0 FK(s) negócio) — Armazenamento dos fluxos para cálculo da folha do professor
 - **TipoPresenca** (PK: `Id`, 0 FK(s) negócio)
 
 ## Views disponíveis

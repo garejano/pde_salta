@@ -1,0 +1,153 @@
+COMO CRIAR O PROJETO DE TESTES E2E E CONFIGURAR A AUTENTICACAO DO USUARIO,
+COM ABERTURA DO NAVEGADOR
+============================================================================
+
+PASSO 1 - ESTRUTURAR O PROJETO
+----------------------------------------------------------------------------
+Crie uma pasta tests/e2e/ na raiz do repositorio, com essa organizacao:
+
+tests/e2e/
+├── tests/          # specs de teste, organizados por app/feature
+├── pages/          # Page Objects (elementos e acoes de cada tela)
+├── flows/          # fluxos de negocio reutilizaveis (combinam varias pages)
+├── fixtures/        # fixtures do Playwright (auth, api, massa de dados)
+├── data/           # massa de teste estatica
+├── helpers/        # utilitarios: auth/, api/, date/, assertions/
+├── config/         # app.ts, environments.ts, load-env.ts, paths.ts
+├── docs/           # documentacao da estrategia de automacao
+├── global-setup.ts
+├── playwright.config.ts
+├── package.json
+├── tsconfig.json
+├── .env.example
+└── .gitignore
+
+Instale as dependencias minimas: @playwright/test, typescript, @types/node
+(nao precisa de dotenv se voce for seguir o passo 2).
+
+
+PASSO 2 - RESOLVER VARIAVEIS DE AMBIENTE ANTES DE TUDO
+----------------------------------------------------------------------------
+Crie config/load-env.ts e garanta que ele seja o PRIMEIRO import tanto de
+playwright.config.ts quanto de global-setup.ts. Isso evita bugs de baseURL
+"congelada" em localhost por causa de import-time vs runtime.
+
+- Use process.loadEnvFile() nativo (Node >= 20.6).
+- Adicione um fallback manual (parse de KEY=VALUE linha a linha, ignorando
+  comentarios, so populando se a chave ainda nao existir) para rodar em
+  Node mais antigo.
+
+No .env, defina no minimo:
+
+BASE_URL_<APP>=https://homolog-...
+SALTA_ID_BASE_URL=...
+SALTA_ID_CLIENT_ID=
+SALTA_ID_CLIENT_SECRET=
+SALTA_ID_E2E_USER_ID=<uuid do usuario e2e>
+
+
+PASSO 3 - CRIAR UM USUARIO E2E DEDICADO (NAO USAR CONTA PESSOAL)
+----------------------------------------------------------------------------
+Nao reutilize credenciais de uma pessoa real. Crie uma migration que insira
+um usuario de pipeline dedicado no servico de identidade (SaltaId/ElevaId),
+com um SALTA_ID_E2E_USER_ID fixo. Esse e o usuario que os testes vao
+autenticar automaticamente, sem UI de login.
+
+
+PASSO 4 - IMPLEMENTAR O HELPER DE TOKEN (CLIENT CREDENTIALS)
+----------------------------------------------------------------------------
+Em helpers/auth/salta-id-auth.ts, monte a autenticacao em 2 chamadas HTTP
+(sem navegador ainda):
+
+1. POST {SALTA_ID_BASE_URL}/api/login com grant_type=client_credentials,
+   client_id, client_secret -> retorna o token da aplicacao.
+
+2. POST {SALTA_ID_BASE_URL}/user/authenticate/{SALTA_ID_E2E_USER_ID}
+   ?expiresInMinutes=60&scope=... usando Authorization: Bearer
+   {token da aplicacao} -> retorna o token do usuario e2e.
+
+Cacheie esse token em memoria ate expirar, para nao gerar um novo a cada
+teste.
+
+
+PASSO 5 - ABRIR O NAVEGADOR E LOGAR DE FATO (global-setup.ts)
+----------------------------------------------------------------------------
+Este e o globalSetup referenciado no playwright.config.ts - roda uma unica
+vez antes da suite:
+
+1. Determine qual app testar (ex.: via APP_KEY em config/app.ts) e valide
+   que ele existe num catalogo conhecido - se nao existir, ABORTE (nao
+   deixe passar silenciosamente).
+
+2. Abra o Chromium manualmente:
+
+   const browser = await chromium.launch({
+     headless: process.env.GLOBAL_SETUP_HEADED !== 'true',
+     args: ['--disable-features=FedCm,FedCmWithoutThirdPartyCookies'],
+   });
+   const context = await browser.newContext();
+   const page = await context.newPage();
+
+3. Pegue o token do Passo 4 e navegue para a URL de autenticacao da app:
+
+   const token = await getSaltaIdToken();
+   await page.goto(`${baseUrl}/auth/eleva-id?access_token=${encodeURIComponent(token)}`, {
+     waitUntil: 'load',
+     timeout: 30_000,
+   });
+
+4. Aguarde o redirect sair da rota /auth/ - isso confirma que a app aceitou
+   o token e criou a sessao.
+
+5. Se o app usar login Google/OAuth em vez de token direto, faca isso COM
+   O NAVEGADOR EM MODO HEADED (GLOBAL_SETUP_HEADED=true), porque o Google
+   bloqueia login automatizado em headless (bot-detection).
+
+6. Salve a sessao resultante:
+
+   await context.storageState({ path: '.auth/session.json' });
+
+7. TRATE FALHA COMO ERRO FATAL: se a autenticacao nao completar, lance
+   excecao e nao grave o storageState - assim nenhum teste roda com sessao
+   invalida mascarada de "flaky".
+
+
+PASSO 6 - REAPROVEITAR A SESSAO NOS TESTES
+----------------------------------------------------------------------------
+No playwright.config.ts, aponte o projeto de testes para o arquivo de
+sessao salvo:
+
+export default defineConfig({
+  globalSetup: './global-setup.ts',
+  workers: 1,            // ambiente compartilhado/mutavel - nao paralelize
+  fullyParallel: false,
+  use: { headless: true },
+  projects: [{
+    name: APP_KEY,
+    use: {
+      ...devices['Desktop Chrome'],
+      baseURL: APP_URLS[APP_KEY],
+      storageState: '.auth/session.json',
+    },
+  }],
+});
+
+Assim, cada spec ja abre o navegador JA AUTENTICADO, sem repetir o login.
+
+
+PASSO 7 (OPCIONAL) - TESTAR OUTROS PERFIS SEM SENHA PROPRIA
+----------------------------------------------------------------------------
+Se precisar simular aluno/professor sem ter a senha deles, use
+impersonacao por API a partir da sessao de gestao ja logada: chame o
+endpoint de "autenticar como" (page.evaluate fazendo fetch com
+credentials: 'include'), grave o usuario retornado no localStorage e
+recarregue a pagina. Nunca impersonifique o proprio usuario da sessao
+atual (o backend rejeita).
+
+
+PASSO 8 - DOCUMENTAR OS PADROES
+----------------------------------------------------------------------------
+Registre num CLAUDE.md/README do projeto as regras que voce fixou (um modo
+de auth por app via APP_KEY, load-env sempre primeiro import, fail-fast no
+setup, workers: 1, segredos so em .env), para que quem for replicar isso
+em outro repositorio siga o mesmo caminho.

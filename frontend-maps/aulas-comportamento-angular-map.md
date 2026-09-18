@@ -1,5 +1,5 @@
 # Angular Map — aulas-comportamento
-> Gerado em: 2026-05-21  
+> Gerado em: 2026-07-30  
 > Fonte: `C:\projects\aulas\frontend-comportamento`
 
 ## Módulos

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/colors_and_type.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<script src="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/_ds_bundle.js"></script>
+<style>
+  @keyframes cbDraw { from { stroke-dashoffset: 30; } to { stroke-dashoffset: 0; } }
+  @keyframes cbPop  { 0% { transform: scale(0.72); } 60% { transform: scale(1.06); } 100% { transform: scale(1); } }
+  @keyframes cbDash { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  .cbx { outline: none; transition: background 160ms cubic-bezier(0.16,1,0.3,1), border-color 160ms cubic-bezier(0.16,1,0.3,1), box-shadow 160ms cubic-bezier(0.16,1,0.3,1); }
+  .cbrow { transition: background 120ms ease-out; }
+  .cbrow:hover { background: #F8F9FB; }
+  .cbx:not([data-dis="1"]):hover { box-shadow: 0 0 0 4px rgba(36,44,194,0.10); }
+  .cbx:focus-visible { box-shadow: 0 0 0 3px rgba(36,44,194,0.28) !important; }
+  a { color: #242CC2; text-decoration: none; }
+  a:hover { color: #1E258F; }
+</style>
+</helmet>
+<div style="min-height:100vh;background:#F8F9FB;font-family:Nunito,sans-serif;color:#0F0F10;padding:48px 40px 80px;display:flex;gap:32px;align-items:flex-start;justify-content:center;">
+  <div style="flex:1;max-width:1080px;">
+
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:36px;">
+      <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#242CC2;">Eleva · Grupo Salta</span>
+      <h1 style="font-family:'Archivo',sans-serif;font-weight:600;font-size:40px;line-height:1.15;margin:0;">Checkbox Suave — exemplos de uso</h1>
+      <p style="font-family:Nunito,sans-serif;font-size:16px;line-height:1.5;color:#4A4E57;margin:0;max-width:680px;">Aplicações reais do estilo escolhido para implementação: preenchimento sólido indigo, cantos 6px e marca animada. Todos os exemplos são interativos.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start;">
+
+      <!-- SELECT-ALL LIST -->
+      <div style="grid-column:1 / -1;background:#fff;border:1px solid #EBEDF1;border-radius:12px;box-shadow:0 1px 3px rgba(0,23,31,0.10);overflow:hidden;">
+        <div class="cbrow" style="display:flex;align-items:center;gap:14px;padding:16px 24px;border-bottom:1px solid #EBEDF1;background:#F8F9FB;cursor:pointer;" onClick="{{ toggleAll }}">
+          {{ headBox }}
+          <div style="display:flex;flex-direction:column;">
+            <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:16px;">Selecionar todos os alunos</span>
+            <span style="font-family:Nunito,sans-serif;font-size:13px;color:#8A8F99;">{{ selCount }} de {{ totalCount }} selecionados</span>
+          </div>
+        </div>
+        <sc-for list="{{ students }}" as="st" hint-placeholder-count="4">
+          <div class="cbrow" style="display:flex;align-items:center;gap:14px;padding:14px 24px;border-bottom:1px solid #F0F1F4;cursor:pointer;" onClick="{{ st.toggle }}">
+            {{ st.box }}
+            <div style="width:36px;height:36px;border-radius:8px;background:#E3E5FB;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <span class="material-symbols-outlined" style="font-size:20px;color:#242CC2;">perm_identity</span>
+            </div>
+            <div style="display:flex;flex-direction:column;min-width:0;">
+              <span style="font-family:Nunito,sans-serif;font-weight:700;font-size:15px;">{{ st.name }}</span>
+              <span style="font-family:Nunito,sans-serif;font-size:13px;color:#8A8F99;">{{ st.klass }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- FORM WITH VALIDATION -->
+      <div style="background:#fff;border:1px solid #EBEDF1;border-radius:12px;box-shadow:0 1px 3px rgba(0,23,31,0.10);padding:24px;display:flex;flex-direction:column;gap:20px;">
+        <h2 style="font-family:'Archivo',sans-serif;font-weight:600;font-size:18px;margin:0;">Confirmação de matrícula</h2>
+        <div class="cbrow" style="display:flex;align-items:flex-start;gap:12px;padding:8px;margin:-8px;border-radius:8px;cursor:pointer;" onClick="{{ terms.toggle }}">
+          {{ terms.box }}
+          <div style="display:flex;flex-direction:column;gap:2px;">
+            <span style="font-family:Nunito,sans-serif;font-size:15px;line-height:1.4;">Li e aceito os termos de responsabilidade</span>
+            {{ termsMsg }}
+          </div>
+        </div>
+        <div class="cbrow" style="display:flex;align-items:flex-start;gap:12px;padding:8px;margin:-8px;border-radius:8px;cursor:pointer;" onClick="{{ data.toggle }}">
+          {{ data.box }}
+          <span style="font-family:Nunito,sans-serif;font-size:15px;line-height:1.4;">Autorizo o uso dos dados para comunicação escolar</span>
+        </div>
+        <div class="cbrow" style="display:flex;align-items:flex-start;gap:12px;padding:8px;margin:-8px;border-radius:8px;cursor:pointer;" onClick="{{ news.toggle }}">
+          {{ news.box }}
+          <span style="font-family:Nunito,sans-serif;font-size:15px;line-height:1.4;color:#4A4E57;">Desejo receber o boletim informativo <span style="color:#8A8F99;">(opcional)</span></span>
+        </div>
+        <div style="border-top:1px solid #F0F1F4;padding-top:16px;">{{ submitBtn }}</div>
+      </div>
+
+      <!-- TASK CHECKLIST -->
+      <div style="background:#fff;border:1px solid #EBEDF1;border-radius:12px;box-shadow:0 1px 3px rgba(0,23,31,0.10);padding:24px;display:flex;flex-direction:column;gap:6px;">
+        <h2 style="font-family:'Archivo',sans-serif;font-weight:600;font-size:18px;margin:0 0 8px;">Pendências do dia</h2>
+        <sc-for list="{{ tasks }}" as="tk" hint-placeholder-count="4">
+          <div class="cbrow" style="display:flex;align-items:center;gap:12px;padding:10px 8px;margin:0 -8px;border-radius:8px;cursor:pointer;" onClick="{{ tk.toggle }}">
+            {{ tk.box }}
+            <span style="font-family:Nunito,sans-serif;font-size:15px;">{{ tk.text }}</span>
+          </div>
+        </sc-for>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SIDE PANEL -->
+  <aside style="width:340px;flex-shrink:0;position:sticky;top:48px;background:#fff;border:1px solid #EBEDF1;border-radius:12px;box-shadow:0 8px 24px rgba(0,23,31,0.12);overflow:hidden;">
+    <div style="padding:20px 24px;border-bottom:1px solid #EBEDF1;display:flex;align-items:center;gap:10px;">
+      <span class="material-symbols-outlined" style="font-size:22px;color:{{ panelAccent }};">tune</span>
+      <div style="display:flex;flex-direction:column;">
+        <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:17px;">Filtros do relatório</span>
+        <span style="font-family:Nunito,sans-serif;font-size:13px;color:#8A8F99;">Accent independente da tela</span>
+      </div>
+    </div>
+    <div style="padding:20px 24px;display:flex;flex-direction:column;gap:22px;">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:#8A8F99;">Situação</span>
+        <sc-for list="{{ panelStatus }}" as="p" hint-placeholder-count="3">
+          <div class="cbrow" style="display:flex;align-items:center;gap:12px;padding:8px;margin:0 -8px;border-radius:8px;cursor:pointer;" onClick="{{ p.toggle }}">
+            {{ p.box }}
+            <span style="font-family:Nunito,sans-serif;font-size:15px;">{{ p.text }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid #F0F1F4;padding-top:18px;">
+        <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:#8A8F99;">Turmas</span>
+        <sc-for list="{{ panelClasses }}" as="p" hint-placeholder-count="4">
+          <div class="cbrow" style="display:flex;align-items:center;gap:12px;padding:8px;margin:0 -8px;border-radius:8px;cursor:pointer;" onClick="{{ p.toggle }}">
+            {{ p.box }}
+            <span style="font-family:Nunito,sans-serif;font-size:15px;">{{ p.text }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="border-top:1px solid #F0F1F4;padding-top:18px;">{{ panelBtn }}</div>
+    </div>
+  </aside>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1160,&quot;height&quot;:900},&quot;accent&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;#242CC2&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#242CC2&quot;,&quot;#30B7BE&quot;,&quot;#9D0364&quot;,&quot;#774BB0&quot;,&quot;#E65637&quot;,&quot;#28975A&quot;],&quot;section&quot;:&quot;Aparência&quot;},&quot;panelAccent&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;#9D0364&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#242CC2&quot;,&quot;#30B7BE&quot;,&quot;#9D0364&quot;,&quot;#774BB0&quot;,&quot;#E65637&quot;,&quot;#28975A&quot;],&quot;section&quot;:&quot;Aparência&quot;}}">
+class Component extends DCLogic {
+  state = {
+    students: { s1: false, s2: false, s3: false, s4: false },
+    terms: false, data: true, news: false, submitted: false,
+    tasks: { t1: true, t2: true, t3: false, t4: false },
+    panel: { situacao: true, atrasados: false, sem_docs: false, t1a: true, t2b: false, t3c: false, t4d: false }
+  };
+
+  box(opts) {
+    const { checked, indeterminate, disabled, invalid, valid, animate = true } = opts;
+    const sz = 20;
+    const accent = opts.accent || this.props.accent || '#242CC2';
+    const base = invalid ? '#E65637' : valid ? '#28975A' : accent;
+    const marked = checked || indeterminate;
+
+    let border, bg, markCol, bw = 1.5, shadow = 'none';
+    if (disabled) { border = '#EBEDF1'; bg = '#F8F9FB'; markCol = '#C3C8D1'; }
+    else if (!marked) { border = invalid ? '#E65637' : valid ? '#28975A' : '#C3C8D1'; bg = '#fff'; markCol = base; }
+    else { bg = base; border = base; markCol = '#fff'; }
+
+    let inner = null;
+    if (indeterminate && !checked) {
+      inner = React.createElement('svg', { width: 13, height: 13, viewBox: '0 0 24 24', fill: 'none' },
+        React.createElement('path', { d: 'M6 12 H18', stroke: markCol, strokeWidth: 2.6, strokeLinecap: 'round',
+          style: { transformOrigin: 'center', transformBox: 'fill-box', animation: animate ? 'cbDash 200ms cubic-bezier(0.16,1,0.3,1)' : 'none' } }));
+    } else if (checked) {
+      inner = React.createElement('svg', { width: 13, height: 13, viewBox: '0 0 24 24', fill: 'none',
+        style: { animation: animate ? 'cbPop 240ms cubic-bezier(0.16,1,0.3,1)' : 'none' } },
+        React.createElement('path', { d: 'M5 12.5 L10 17.5 L19 6.5', stroke: markCol, strokeWidth: 2.6, strokeLinecap: 'round', strokeLinejoin: 'round',
+          style: { strokeDasharray: 30, strokeDashoffset: animate ? 30 : 0, animation: animate ? 'cbDraw 260ms cubic-bezier(0.16,1,0.3,1) forwards' : 'none' } }));
+    }
+
+    return React.createElement('div', {
+      className: 'cbx', 'data-dis': disabled ? '1' : '0', role: 'checkbox', tabIndex: disabled ? -1 : 0,
+      'aria-checked': indeterminate ? 'mixed' : String(!!checked),
+      onClick: (e) => e.stopPropagation ? null : null,
+      style: { width: sz, height: sz, borderRadius: 6, border: `${bw}px solid ${border}`, background: bg,
+        boxShadow: shadow, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+        cursor: disabled ? 'not-allowed' : 'pointer' }
+    }, inner);
+  }
+
+  toggleKey(group, key) {
+    this.setState(s => ({ [group]: { ...s[group], [key]: !s[group][key] } }));
+  }
+  toggleFlag(key) { this.setState(s => ({ [key]: !s[key], submitted: false })); }
+
+  renderVals() {
+    const st = this.state;
+    const studentDefs = [
+      { id: 's1', name: 'Wanderson Uchiha', klass: '1 ano A — Militar' },
+      { id: 's2', name: 'Mariana Alves', klass: '1 ano A — Militar' },
+      { id: 's3', name: 'Pedro Nakamura', klass: '2 ano B — Integral' },
+      { id: 's4', name: 'Júlia Ferreira', klass: '2 ano B — Integral' }
+    ];
+    const sel = Object.values(st.students).filter(Boolean).length;
+    const total = studentDefs.length;
+
+    const students = studentDefs.map(d => ({
+      name: d.name, klass: d.klass,
+      box: this.box({ checked: st.students[d.id] }),
+      toggle: () => this.toggleKey('students', d.id)
+    }));
+
+    const headBox = this.box({ checked: sel === total, indeterminate: sel > 0 && sel < total });
+    const toggleAll = () => {
+      const all = sel === total;
+      this.setState(s => {
+        const next = {}; studentDefs.forEach(d => next[d.id] = !all);
+        return { students: next };
+      });
+    };
+
+    const termsMissing = st.submitted && !st.terms;
+    const terms = { box: this.box({ checked: st.terms, invalid: termsMissing }), toggle: () => this.toggleFlag('terms') };
+    const data = { box: this.box({ checked: st.data }), toggle: () => this.toggleFlag('data') };
+    const news = { box: this.box({ checked: st.news }), toggle: () => this.toggleFlag('news') };
+
+    const termsMsg = termsMissing
+      ? React.createElement('span', { style: { fontFamily: 'Nunito', fontSize: 13, color: '#E65637' } }, 'Obrigatório para concluir a matrícula')
+      : null;
+
+    const submitBtn = React.createElement('button', {
+      onClick: () => this.setState({ submitted: true }),
+      style: {
+        fontFamily: 'Archivo', fontWeight: 700, fontSize: 16, color: '#fff',
+        background: st.submitted && st.terms ? '#28975A' : '#242CC2', border: 'none',
+        borderRadius: 8, padding: '10px 20px', cursor: 'pointer', width: '100%',
+        transition: 'background 160ms cubic-bezier(0.16,1,0.3,1)'
+      }
+    }, st.submitted && st.terms ? 'Matrícula confirmada' : 'Confirmar matrícula');
+
+    const taskDefs = [
+      { id: 't1', text: 'Lançar frequência da 1ª aula' },
+      { id: 't2', text: 'Aprovar upload de documentos' },
+      { id: 't3', text: 'Gerar link de anamnese' },
+      { id: 't4', text: 'Responder mensagem dos responsáveis' }
+    ];
+    const tasks = taskDefs.map(d => ({
+      text: st.tasks[d.id]
+        ? React.createElement('span', { style: { color: '#ADB2BA', textDecoration: 'line-through' } }, d.text)
+        : d.text,
+      box: this.box({ checked: st.tasks[d.id] }),
+      toggle: () => this.toggleKey('tasks', d.id)
+    }));
+
+    const pAccent = this.props.panelAccent || '#9D0364';
+    const pbox = (id) => ({
+      box: this.box({ checked: st.panel[id], accent: pAccent }),
+      toggle: () => this.toggleKey('panel', id)
+    });
+    const statusDefs = [
+      { id: 'situacao', text: 'Matrícula ativa' },
+      { id: 'atrasados', text: 'Com atrasos' },
+      { id: 'sem_docs', text: 'Documentos pendentes' }
+    ];
+    const classDefs = [
+      { id: 't1a', text: '1 ano A — Militar' },
+      { id: 't2b', text: '2 ano B — Integral' },
+      { id: 't3c', text: '3 ano C — Regular' },
+      { id: 't4d', text: '3 ano D — Regular' }
+    ];
+    const panelStatus = statusDefs.map(d => ({ text: d.text, ...pbox(d.id) }));
+    const panelClasses = classDefs.map(d => ({ text: d.text, ...pbox(d.id) }));
+
+    const panelBtn = React.createElement('button', {
+      style: {
+        fontFamily: 'Archivo', fontWeight: 700, fontSize: 15, color: '#fff',
+        background: pAccent, border: 'none', borderRadius: 8, padding: '10px 20px',
+        cursor: 'pointer', width: '100%', transition: 'background 160ms cubic-bezier(0.16,1,0.3,1)'
+      }
+    }, 'Aplicar filtros');
+
+    return {
+      students, headBox, toggleAll, selCount: sel, totalCount: total,
+      terms, data, news, termsMsg, submitBtn, tasks,
+      panelStatus, panelClasses, panelBtn, panelAccent: pAccent
+    };
+  }
+}
+</script>
+</body>
+</html>

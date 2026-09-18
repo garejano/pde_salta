@@ -12,7 +12,7 @@
 **Palavras-chave de cards:** GestaoMaster, Configurador, gestão, relatório, portal, hub, módulo, integração central  
 **Remote:** https://github.com/gruposaltaedu/atlas  
 **Run/Build:** `npm run atlas` *(inicia o proxy Caddy que serve backend + frontend)*
-**Frontend Map:** [`frontend-maps/atlas-angular-map.md`](frontend-maps/atlas-angular-map.md) *(escaneado em: 2026-05-21)*
+**Frontend Map:** [`frontend-maps/atlas-angular-map.md`](frontend-maps/atlas-angular-map.md) *(escaneado em: 2026-07-30)*
 
 O projeto tem um `backend/` com projetos C# (`GestaoMaster.Api`, `GestaoMaster.Application`, `GestaoMaster.Domain`) e um `frontend/` Angular compilado para `wwwroot`. O namespace `GestaoMaster` é o identificador principal no código.
 
@@ -42,12 +42,14 @@ Estrutura completa de camadas: `BarramentoPedagogico.Api`, `Domain`, `Domain.Ser
 
 ## documentacao-pedagogica
 
-**Stack:** .NET 8 · Entity Framework Core · Angular 20 · PostgreSQL · Hangfire · AWS (Secrets Manager, S3)
+**Stack:** .NET 8 · Entity Framework Core · Angular 20 · **PostgreSQL (banco próprio)** · Hangfire · AWS (Secrets Manager, S3)
 **Responsabilidade:** Gestão de documentação pedagógica — Ficha Individual, Diário de Classe, Histórico de Séries, Resultado Final, Ata de Resultados Finais, Certificados e Atestados.
 **Palavras-chave de cards:** DocumentacaoPedagogica, FichaIndividual, DiarioClasse, Histórico, ResultadoFinal, Ata, Certificado, Atestado, impressão, geração PDF, sincronização, importação
 **Remote:** https://github.com/gruposaltaedu/documentacao-pedagogica.git
 **Run/Build:** `dotnet run --project backend/DocumentacaoPedagogica.Api` (backend) / `ng build --watch` (frontend ou frontend-diario-classe)
-**Frontend Map:** [`frontend-maps/documentacao-pedagogica-angular-map.md`](frontend-maps/documentacao-pedagogica-angular-map.md) *(escaneado em: 2026-05-21)*
+**Frontend Map:** [`frontend-maps/documentacao-pedagogica-angular-map.md`](frontend-maps/documentacao-pedagogica-angular-map.md) *(escaneado em: 2026-07-30)*
+
+> ⚠️ **Banco separado do SQL Server compartilhado.** Usa PostgreSQL próprio (`homologationdocumentacaopedagogica`) em AWS RDS — **não é o `ElevaPortalHomolog`**. O MCP `sqlserver` não acessa esse banco. Tabelas como `HistoricoSerie` (com `ObservacoesAluno`), `Historico`, `Usuario`, `Aluno` existem nesse PostgreSQL com schema próprio. No `ElevaPortalHomolog` há apenas cópias de sincronização em `ModuloDocumentacaoPedagogica` (10 colunas, sem dados operacionais completos).
 
 Possui dois frontends Angular: `frontend/` (documentação pedagógica) e `frontend-diario-classe/`. Backend com estrutura `DocumentacaoPedagogica.Api`, `Application`, `Domain`, `Domain.Services`, `Infra`, `Extensions`, `Test`. Banco PostgreSQL gerenciado via EF Migrations. Integra-se com: `estrutura-pedagogica` (FichaIndividual, sync), `frequencia` (chamadas), `barramento-pedagogico` (sync via Hangfire). Chamadas HTTP externas via `ApiRepository` (`WebRequest`) com `SettingsGetter.Instance.<Modulo>.ApiUrl`.
 
@@ -84,7 +86,7 @@ Ferramenta de desenvolvedor — não é um módulo pedagógico. Usado para obter
 **Remote:** https://github.com/gruposaltaedu/estrutura-pedagogica.git  
 **Run/Build:** `dotnet run --project backend/EstruturaPedagogica.Api` / `cd frontend && ng serve`  
 **Skills:** `analisar-pr`, `criar-entidade`, `criar-exportacao`, `criar-filtro`, `criar-service`, `criar-testes`, `executar-plano`, `identificar-bug`, `merge-branch`, `planejar-implementacao`, `refinar-feature`
-**Frontend Map:** [`frontend-maps/estrutura-pedagogica-angular-map.md`](frontend-maps/estrutura-pedagogica-angular-map.md) *(escaneado em: 2026-05-21)*
+**Frontend Map:** [`frontend-maps/estrutura-pedagogica-angular-map.md`](frontend-maps/estrutura-pedagogica-angular-map.md) *(escaneado em: 2026-07-30)*
 
 Frontend Angular compilado para `backend/EstruturaPedagogica.Api/wwwroot`. Banco sem EF Migrations — schema gerenciado via scripts SQL manuais (ver `scripts-db-pedagogico`). Possui `CLAUDE.md` e `Docs/` por feature.
 
@@ -97,7 +99,7 @@ Frontend Angular compilado para `backend/EstruturaPedagogica.Api/wwwroot`. Banco
 **Palavras-chave de cards:** Frequencia, Falta, Atraso, Presença, Justificativa, frequência diária, abono  
 **Remote:** https://github.com/gruposaltaedu/frequencia  
 **Run/Build:** `npm run dev` (frontend) + IIS Local (backend em `https://localhost/Frequencia`)
-**Frontend Map:** [`frontend-maps/frequencia-angular-map.md`](frontend-maps/frequencia-angular-map.md) *(escaneado em: 2026-05-21)*
+**Frontend Map:** [`frontend-maps/frequencia-angular-map.md`](frontend-maps/frequencia-angular-map.md) *(escaneado em: 2026-07-30)*
 
 Autenticação via cookies do Portal (ElevaId). Backend com estrutura `Frequencia.Api`, `Application`, `Domain`, `Infra`.
 
@@ -110,7 +112,7 @@ Autenticação via cookies do Portal (ElevaId). Backend com estrutura `Frequenci
 **Palavras-chave de cards:** Notas, Avaliacao, Lancamento, nota, conceito, média, disciplina, etapa, boletim (lançamento)  
 **Remote:** https://github.com/gruposaltaedu/notas  
 **Run/Build:** `dotnet run --project backend/Notas.Api` (backend) / `npm run start` (frontend dev com SSL) / `npm run dev` (frontend watch build)
-**Frontend Map:** [`frontend-maps/notas-angular-map.md`](frontend-maps/notas-angular-map.md) *(escaneado em: 2026-05-21)*
+**Frontend Map:** [`frontend-maps/notas-angular-map.md`](frontend-maps/notas-angular-map.md) *(escaneado em: 2026-07-30)*
 
 Backend com estrutura `Notas.Api`, `Notas.Application`, `Notas.Domain`, `Notas.Domain.Services`, `Notas.Extensions`, `Notas.Infra`, `Notas.Test`. Frontend Angular em `frontend/`. Usa gitflow padrão com branches `develop`, `master`, `homolog`.
 

@@ -1,5 +1,5 @@
 # Angular Map — documentacao-pedagogica
-> Gerado em: 2026-05-21  
+> Gerado em: 2026-07-30  
 > Fonte: `C:\projects\documentacao-pedagogica\frontend`
 
 ## Módulos

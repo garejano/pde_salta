@@ -22,7 +22,7 @@ VALUES (
     1,                                                              -- Desktop
     1,                                                              -- Mobile
     NEWID(),                                                        -- Hash
-    0,                                                              -- Ativo (começa inativo)
+    1,                                                              -- Ativo (começa ativo)
     1097334,                                                        -- UsuarioInclusao (Gustavo)
     GETDATE(),                                                      -- DataInclusao
     NULL,                                                           -- UsuarioUltimaAlteracao
@@ -38,5 +38,5 @@ VALUES (
     NULL                                                            -- NomeCurto
 );
 
--- Após confirmar o Id gerado, ativar com:
-UPDATE MenuItem SET Ativo = 1 WHERE Id = SCOPE_IDENTITY();
+
+

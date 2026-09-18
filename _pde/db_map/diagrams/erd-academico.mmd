@@ -22,6 +22,7 @@ graph TD
   AlunoOcorrencia --> AlunoEscola
   AlunoParentesco --> AlunoEscola
   AlunoProvaResposta --> AlunoProva
+  AlunoSaidaAntecipada --> Escola
   AlunoTendencia --> Turma
   AnoLetivoProduto --> AnoLetivo
   AnoLetivoSemanas --> AnoLetivo
@@ -61,6 +62,9 @@ graph TD
   EscolaPagamentoEscola --> AnoLetivo
   EscolaPagamentoEscola --> Escola
   EscolaPagamentoEscola --> EscolaPagamento
+  EscolaPagamentoEscolaGerencial --> AnoLetivo
+  EscolaPagamentoEscolaGerencial --> EscolaGerencial
+  EscolaPagamentoEscolaGerencial --> EscolaPagamento
   EscolaSerie --> AnoLetivo
   EscolaSerie --> Escola
   EscolaSerie --> Serie
@@ -172,6 +176,8 @@ graph TD
   RedeSerieDisciplinaAssunto --> RedeSerieDisciplina
   RedeSerieDisciplinaCiclo --> RedeSerieCiclo
   RedeSerieDisciplinaCiclo --> RedeSerieDisciplina
+  RedeSerieDisciplinaEscola --> Escola
+  RedeSerieDisciplinaEscola --> RedeSerieDisciplina
   RedeSerieDisciplinaFrente --> RedeSerieDisciplina
   RedeSerieDisciplinaLinha --> RedeSerieDisciplina
   RedeSerieVersaoAnamnese --> RedeSerie

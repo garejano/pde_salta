@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Handoff para Desenvolvedores — Portal do Aluno</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<style>doc-page:not(:defined){visibility:hidden}</style>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  doc-page {
+    font-family: 'Nunito', -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    color: #1A1B1E;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Archivo', -apple-system, sans-serif;
+    color: #0F0F10;
+    letter-spacing: -0.01em;
+    margin: 0 0 8px;
+  }
+  h1 { font-size: 34px; font-weight: 700; margin-bottom: 4px; }
+  .subtitle { font-size: 16px; color: #65686E; margin: 0 0 28px; }
+  h2 {
+    font-size: 21px; font-weight: 700; margin-top: 40px; padding-bottom: 8px;
+    border-bottom: 2px solid #242CC2; color: #242CC2;
+  }
+  h2 .num { color: #ADB2BA; font-weight: 600; margin-right: 8px; }
+  h3 { font-size: 16px; font-weight: 700; margin-top: 24px; color: #0F0F10; }
+  h4 { font-size: 13px; font-weight: 700; margin-top: 16px; text-transform: uppercase; letter-spacing: 0.04em; color: #65686E; }
+  p { margin: 0 0 12px; text-wrap: pretty; }
+  ul, ol { margin: 0 0 12px; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  code {
+    font-family: 'Inconsolata', monospace; background: #F2F2F2; border-radius: 4px;
+    padding: 1px 5px; font-size: 0.9em; color: #191F88;
+  }
+  pre {
+    background: #16171A; color: #E8E9EB; border-radius: 8px; padding: 14px 16px;
+    overflow-x: auto; font-family: 'Inconsolata', monospace; font-size: 13px; line-height: 1.55;
+    margin: 0 0 14px; break-inside: avoid;
+  }
+  pre code { background: none; padding: 0; color: inherit; }
+  table { width: 100%; border-collapse: collapse; margin: 0 0 16px; font-size: 13.5px; }
+  th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid #EBEDF1; vertical-align: top; }
+  th { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 12px; color: #65686E; text-transform: uppercase; letter-spacing: 0.03em; border-bottom: 1.5px solid #C3C8D1; }
+  tr { break-inside: avoid; }
+  .swatch-row td:first-child { width: 30%; }
+  .swatch { display: inline-flex; align-items: center; gap: 8px; }
+  .dot { width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.08); display: inline-block; }
+  .callout {
+    border-left: 4px solid #242CC2; background: #F7F8FF; border-radius: 6px;
+    padding: 12px 16px; margin: 0 0 16px; break-inside: avoid;
+  }
+  .callout.warn { border-left-color: #FFAC30; background: #FFF9EF; }
+  .callout.rule { border-left-color: #9D0364; background: #FDF3F9; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout strong { color: #0F0F10; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .card {
+    border: 1px solid #EBEDF1; border-radius: 8px; padding: 14px 16px; break-inside: avoid;
+  }
+  .card h4 { margin-top: 0; }
+  .tag { display: inline-block; font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 11px; padding: 2px 8px; border-radius: 999px; background: #EBEDF1; color: #65686E; margin-right: 4px; }
+  .file-tree { font-family: 'Inconsolata', monospace; font-size: 13px; background: #F8F9FB; border: 1px solid #EBEDF1; border-radius: 8px; padding: 14px 18px; line-height: 1.7; break-inside: avoid; }
+  .file-tree .dir { color: #191F88; font-weight: 700; }
+  .file-tree .comment { color: #65686E; }
+  .toc { columns: 2; gap: 24px; list-style: none; padding: 0; margin: 0 0 16px; }
+  .toc li { break-inside: avoid; margin-bottom: 6px; }
+  .toc a { color: #242CC2; text-decoration: none; font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 14px; }
+  hr.section-break { border: none; border-top: 1px solid #EBEDF1; margin: 32px 0; }
+  .flow-row { display: flex; align-items: stretch; gap: 6px; margin-bottom: 10px; }
+  .flow-step { flex: 1; min-width: 0; border-radius: 10px; padding: 12px 12px; display: flex; flex-direction: column; gap: 5px; break-inside: avoid; }
+  .flow-step .step-num { width: 22px; height: 22px; border-radius: 999px; display: flex; align-items: center; justify-content: center; font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 11px; flex-shrink: 0; }
+  .flow-step .step-title { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 13px; color: #0F0F10; }
+  .flow-step .step-desc { font-family: 'Nunito', sans-serif; font-size: 12px; color: #4A4D52; line-height: 1.4; }
+  .flow-arrow { display: flex; align-items: center; justify-content: center; font-size: 18px; color: #C3C8D1; flex: 0 0 14px; }
+  .flow-happy .flow-step { background: #EAF7EF; border: 1px solid #BFE7CE; }
+  .flow-happy .step-num { background: #28975A; color: #fff; }
+  .flow-sad .flow-step { background: #FDF0EE; border: 1px solid #F5C7BC; }
+  .flow-sad .step-num { background: #E65637; color: #fff; }
+  .flow-label { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 14px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+</style>
+</head>
+<body>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#242CC2"/>
+    <rect x="30" y="24" width="40" height="52" rx="3" fill="#fff"/>
+    <rect x="36" y="34" width="28" height="3" rx="1.5" fill="#242CC2"/>
+    <rect x="36" y="42" width="28" height="3" rx="1.5" fill="#C3C8D1"/>
+    <rect x="36" y="50" width="20" height="3" rx="1.5" fill="#C3C8D1"/>
+    <rect x="36" y="60" width="28" height="3" rx="1.5" fill="#28975A"/>
+    <rect x="36" y="66" width="16" height="3" rx="1.5" fill="#28975A"/>
+  </svg>
+</template>
+
+<doc-page size="letter" margin="0.85in">
+
+  <h1>Portal do Aluno — Manual de Handoff</h1>
+  <p class="subtitle">Guia de referência para desenvolvimento: regras visuais, regras de negócio, padrões de interação e convenções de código. Atualizado em Julho de 2026.</p>
+
+  <div class="callout">
+    <p><strong>Escopo do protótipo.</strong> Este documento cobre as duas superfícies construídas até aqui: a <strong>Lista de Alunos</strong> (<code>lista-alunos/</code>) e o <strong>Painel do Aluno</strong> (<code>painel-aluno/</code>), ambas parte do produto <strong>Eleva</strong>, do <strong>Grupo Salta</strong>. O protótipo usa dados fictícios (mock) para fins de design — nenhuma integração com backend real está implementada.</p>
+  </div>
+
+  <ul class="toc">
+    <li><a href="#fundacoes">1. Fundações visuais</a></li>
+    <li><a href="#componentes">2. Padrões de componentes e interação</a></li>
+    <li><a href="#negocio">3. Regras de negócio</a></li>
+    <li><a href="#codigo">4. Convenções de código</a></li>
+    <li><a href="#estados">5. Estados vazios e tweaks</a></li>
+    <li><a href="#fluxo-anotado">6. Exemplo de fluxo anotado</a></li>
+    <li><a href="#fluxo-feliz-triste">7. Fluxo de telas: feliz vs. triste</a></li>
+  </ul>
+
+  <h2 id="fundacoes"><span class="num">1</span>Fundações visuais</h2>
+  <p>O sistema de design é o <strong>Eleva Design System</strong> (Grupo Salta). Toda tela nova deve carregar <code>colors_and_type.css</code> e consumir os tokens abaixo via <code>var(--*)</code> — nunca hardcode um hex que já tenha token equivalente.</p>
+
+  <h3>Cor</h3>
+  <table>
+    <tr><th>Uso</th><th>Token / valor</th><th></th></tr>
+    <tr class="swatch-row"><td>Ação primária (botões, foco, seleção)</td><td><span class="swatch"><span class="dot" style="background:#242CC2"></span><code>--color-primary #242CC2</code></span></td></tr>
+    <tr class="swatch-row"><td>Hover / press do primário</td><td><span class="swatch"><span class="dot" style="background:#1E258F"></span> hover · <span class="dot" style="background:#191F88"></span> press</span></td></tr>
+    <tr class="swatch-row"><td>Secundário (ex.: botão Filtro na lista)</td><td><span class="swatch"><span class="dot" style="background:#9D0364"></span><code>--color-secondary #9D0364</code> (magenta)</span></td></tr>
+    <tr class="swatch-row"><td>Sucesso / positivo</td><td><span class="swatch"><span class="dot" style="background:#28975A"></span> #28975A</span></td></tr>
+    <tr class="swatch-row"><td>Erro / abaixo da base</td><td><span class="swatch"><span class="dot" style="background:#E65637"></span> #E65637</span></td></tr>
+    <tr class="swatch-row"><td>Alerta / atenção</td><td><span class="swatch"><span class="dot" style="background:#FFAC30"></span> #FFAC30</span></td></tr>
+    <tr class="swatch-row"><td>Texto principal</td><td><span class="swatch"><span class="dot" style="background:#0F0F10"></span> #0F0F10 (nunca preto puro)</span></td></tr>
+    <tr class="swatch-row"><td>Texto secundário</td><td><span class="swatch"><span class="dot" style="background:#65686E"></span> #65686E</span></td></tr>
+    <tr class="swatch-row"><td>Borda padrão / desabilitada</td><td><span class="swatch"><span class="dot" style="background:#C3C8D1"></span> #C3C8D1 · <span class="dot" style="background:#EBEDF1"></span> #EBEDF1</span></td></tr>
+    <tr class="swatch-row"><td>Superfície alternativa</td><td><span class="swatch"><span class="dot" style="background:#F8F9FB"></span> #F8F9FB</span></td></tr>
+  </table>
+  <div class="callout warn"><p><strong>O gradiente teal→verde é só do logo.</strong> Nunca usar como fundo de botão, card ou superfície de produto.</p></div>
+
+  <h3>Tipografia</h3>
+  <p><strong>Archivo</strong> (local, pesos 400–900) para títulos, botões e labels. <strong>Nunito</strong> (Google Fonts) para corpo de texto, tabelas e listas. Ambos referenciados no CSS do projeto como <code>var(--font-display-family)</code> e <code>var(--font-body-family)</code>.</p>
+  <table>
+    <tr><th>Token</th><th>Fonte</th><th>Tamanho/altura</th><th>Uso típico</th></tr>
+    <tr><td>title2 / title3</td><td>Archivo SemiBold</td><td>32/48 · 24/32</td><td>Título de seção (ex. "Situação do aluno")</td></tr>
+    <tr><td>title4</td><td>Archivo SemiBold</td><td>18/22</td><td>Título de card, modal</td></tr>
+    <tr><td>text</td><td>Nunito</td><td>16/24</td><td>Corpo, inputs</td></tr>
+    <tr><td>text-small</td><td>Nunito</td><td>14/24</td><td>Metadados, células de tabela</td></tr>
+    <tr><td>description</td><td>Nunito</td><td>12/20</td><td>Legendas, hints</td></tr>
+    <tr><td>button1 / button2</td><td>Archivo Bold</td><td>16/16 · 14/14</td><td>Texto de botão</td></tr>
+  </table>
+  <p>Casing: <strong>sentence case</strong> em botões e títulos ("Gerar link de anamnese"), nunca title case ou ALL CAPS. Sem emoji, sem exclamação, sem "nós/nosso" — tom administrativo e direto.</p>
+
+  <h3>Espaçamento, raio e sombra</h3>
+  <div class="grid2">
+    <div class="card">
+      <h4>Espaçamento (grid de 4px)</h4>
+      <p style="margin-bottom:0">4 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48 · 56 · 64 · 72 · 80. Padding interno padrão de componentes: <code>8 16</code> (botões/inputs) ou <code>16</code> (cards).</p>
+    </div>
+    <div class="card">
+      <h4>Raio de borda</h4>
+      <p style="margin-bottom:0"><code>8px</code> é o valor padrão (botões, inputs, cards, modais). <code>999px</code> (pill) só para tags/badges/chips. Nunca usar cantos vivos (0) em superfícies clicáveis.</p>
+    </div>
+  </div>
+  <p>Sombras seguem a matriz <code>--shadow-{down|center|up}-{small|medium|large|xlarge}</code>, sempre sobre <code>rgba(0,23,31,0.15)</code>. Cards e toasts usam <em>down</em>; modais usam <em>center</em>. Motion padrão: <code>160–240ms ease-out</code> (<code>cubic-bezier(0.16,1,0.3,1)</code>), sem bounce/spring.</p>
+
+  <hr class="section-break">
+
+  <h2 id="componentes"><span class="num">2</span>Padrões de componentes e interação</h2>
+
+  <h3>Ícones</h3>
+  <p>Todos os ícones são <strong>Material Symbols Outlined</strong> (CDN), 24px, <code>currentColor</code>. Um helper <code>MS</code> (ou <code>MS_L</code> na lista) encapsula o <code>&lt;span className="material-symbols-outlined"&gt;</code>. Nunca usar emoji ou unicode decorativo.</p>
+
+  <h3>Tabs</h3>
+  <p>Linha de abas horizontal com indicador inferior de 3px na cor primária (componente <code>TabsRow</code>). Aba ativa em Archivo Bold cor primária; inativas em cinza <code>#65686E</code>. Badges numéricos (pill cheio na cor primária) indicam contagem de itens — hoje usados em <strong>Atendimento</strong> (total de registros) e <strong>Ocorrências</strong> (total de ocorrências). Some quando a contagem é zero, para não conflitar com o estado vazio da aba.</p>
+
+  <h3>Segmented control</h3>
+  <p>Não existe um primitivo formal no design system — o padrão adotado no protótipo é: fundo <code>#F8F9FB</code>, borda 1px <code>#C3C8D1</code>, raio 8px, botões internos com raio 6px e 2px de respiro entre eles. Opção ativa vira preenchimento sólido <code>--color-primary</code> com texto branco; inativa é transparente com texto <code>#65686E</code> e hover <code>#EBEDF1</code>. Usado hoje em dois lugares:</p>
+  <ul>
+    <li><strong>Frequência → Ver detalhes</strong>: alterna Frequência / Comportamento (segmented full-width, cada opção <code>flex:1</code>). Os detalhes de frequência abrem sempre inline, abaixo do toggle — não existe mais variante "pro lado" (removida).</li>
+    <li><strong>Situação do aluno</strong>: alterna Ciclo fechado / Boletim (segmented compacto, alinhado à direita do título — ver seção 3.2).</li>
+  </ul>
+  <p>Use o full-width quando o controle ocupa um card estreito e sozinho; use o compacto quando ele convive com um título na mesma linha.</p>
+
+  <h3>Dropdown com opção desabilitada + tooltip</h3>
+  <p>Padrão introduzido no seletor de <strong>Etapa</strong> (ao lado do segmented control de Situação do aluno): dropdown customizado (não é um <code>&lt;select&gt;</code> nativo) para permitir estilizar cada opção individualmente. Uma opção pode vir com <code>disabled: true</code> — nesse caso ela fica acinzentada, com <code>cursor: not-allowed</code>, um ícone <code>schedule</code> à direita, e um atributo <code>title</code> (tooltip nativo do navegador) explicando o motivo (ex.: "Este trimestre ainda não começou"). Use esse padrão sempre que uma opção existir mas não puder ser selecionada ainda — nunca simplesmente omita a opção da lista.</p>
+
+  <h3>Modal de placeholder (funcionalidade ainda não implementada)</h3>
+  <p>Quando uma ação abre uma tela que ainda não foi desenhada em detalhe (ex.: "Exibir Boletim"), o protótipo usa um modal com um bloco cinza (<code>#F2F2F2</code>) centralizado contendo um ícone 64px + título + descrição curta explicando o que apareceria ali. Não invente conteúdo de exemplo (uma tabela de notas fake, por ex.) só porque o modal parece vazio — o placeholder deixa claro, para quem está revisando, que aquele conteúdo é responsabilidade de uma tela futura.</p>
+
+  <h3>Modais</h3>
+  <p>Overlay <code>rgba(0,23,31,0.45)</code>, fecha ao clicar fora (<code>onClick</code> no overlay comparando <code>e.target === e.currentTarget</code>). Painel branco, raio 12px, <code>shadow-center-large</code>, largura fixa com <code>max-width: 92vw</code>. Header do modal: título Archivo 18px + botão fechar (ícone <code>close</code>, 20px, hover <code>#F8F9FB</code>).</p>
+
+  <h3>Upload de arquivo (dropzone)</h3>
+  <p>Padrão introduzido no modal de Documentos: área tracejada (<code>1px dashed #C3C8D1</code>, raio 8px, fundo <code>#F8F9FB</code>) que aceita clique (abre <code>&lt;input type="file"&gt;</code> oculto) e drag-and-drop (<code>onDragOver</code>/<code>onDrop</code>). Estado de arrasto-sobre destaca borda e fundo na cor primária. Depois de selecionado, o arquivo vira um card com ícone, nome, tamanho e botão de remover. O botão de confirmar (ex. "Enviar documento") fica desabilitado até haver um arquivo anexado.</p>
+
+  <h3>Link com underline restrito ao conteúdo</h3>
+  <p>Links de ação com ícone (ex. "Ver detalhes") usam <code>border-bottom</code> no hover, não <code>text-decoration: underline</code> — e o elemento fica com <code>width: fit-content</code>. Isso evita dois problemas comuns: o underline "esticar" para preencher o container flex, e a linha não cobrir o ícone ao lado do texto. Centralize com <code>alignSelf: 'center'</code> quando o botão estiver sozinho num container em coluna.</p>
+
+  <h3>Estados vazios</h3>
+  <p>Padrão consistente em toda a aplicação: ícone 24–32px em container 56×56 arredondado (<code>#F8F9FB</code>), título Archivo 16px, descrição Nunito 14px cor <code>#65686E</code>, tudo centralizado. Hoje isso cobre dois níveis:</p>
+  <ul>
+    <li><strong>Lista de Alunos:</strong> alguns alunos do mock representam casos de borda diretamente nos dados — um aluno recém-matriculado sem frequência/anamnese ainda (chip tracejado "Sem frequência registrada" e "Anamnese pendente"), e um aluno sem nenhuma ocorrência (texto discreto substituindo os ícones de contagem). Use esse padrão — estado vazio explícito com copy própria — em vez de exibir "0" ou um campo em branco.</li>
+    <li><strong>Painel do Aluno:</strong> cada aba (Pedagógico, Atendimento, Ocorrências, Anamnese, Documentos) tem uma versão vazia dedicada, hoje acessível via <strong>Tweaks</strong> (seção "Estados vazios") para facilitar QA visual sem depender de dados reais. Ao integrar com a API, esses mesmos estados devem aparecer quando a resposta vier com lista vazia — não construa um estado vazio novo do zero.</li>
+  </ul>
+
+  <h3>Chips e badges</h3>
+  <p>Chips de filtro/contexto: pill (raio 999), borda 1px na cor semântica, texto na mesma cor, ícone opcional à esquerda. Badges de contagem (ex. aba Ocorrências): círculo/pill mínimo 22px, fundo sólido quando destacado.</p>
+
+  <hr class="section-break">
+
+  <h2 id="negocio"><span class="num">3</span>Regras de negócio</h2>
+
+  <h3>3.1 Frequência</h3>
+  <p>A aba de frequência (dentro do card do aluno) tem duas visualizações alternadas por tweak/toggle <code>viewMode</code>:</p>
+  <ul>
+    <li><strong>Por dia</strong> — cada falta conta um dia letivo inteiro.</li>
+    <li><strong>Por tempo de aula</strong> — a ausência é contabilizada por tempo/disciplina (um aluno pode faltar a 2 tempos no mesmo dia e isso conta separadamente).</li>
+  </ul>
+  <p>Percentual de presença define a cor do indicador: <strong>≥90% verde</strong>, <strong>83–89% âmbar</strong>, <strong>&lt;83% vermelho</strong> (ver <code>presencaBadge()</code>). O mesmo corte é usado na badge de frequência da Lista de Alunos, mas com limites levemente diferentes (≥90 verde, ≥80 âmbar, abaixo vermelho) — mantenha os dois em sincronia se o corte de negócio mudar.</p>
+  <p>"Ver detalhes" expande uma tabela por período (Jan–Mar, Abr–Jun, Jul–Set, Out–Dez) com atrasos, faltas, saídas e justificadas — sempre inline, abaixo do segmented control (a variante "pro lado", em painel lateral, foi descartada; não recrie essa opção).</p>
+
+  <h3>3.2 Situação do aluno — Ciclo fechado vs. Boletim</h3>
+  <div class="callout rule">
+    <p><strong>Regra central:</strong> são a mesma visualização (gráfico de barras com a nota do aluno por disciplina + linha de média da turma), mas representando <strong>dois momentos diferentes</strong> de apuração da nota.</p>
+    <ul style="margin-bottom:0">
+      <li><strong>Boletim</strong> mostra as notas conforme elas vão sendo <em>liberadas</em> — lançamento parcial e incremental ao longo do período.</li>
+      <li><strong>Ciclo fechado</strong> (padrão) só mostra a nota depois que o ciclo avaliativo é <em>finalizado</em> — é a apuração consolidada.</li>
+    </ul>
+  </div>
+  <p>Como as fontes de dado e o momento de corte são diferentes, os números podem <strong>não bater</strong> entre as duas visões (ex.: o ciclo fechado mostra média 30 numa disciplina, mas no boletim, com lançamentos parciais, a mesma disciplina aparece com 40). Isso é esperado — não é bug de dado, é a natureza das duas fontes.</p>
+  <p>No protótipo, isso é representado assim: no ciclo fechado, as últimas disciplinas da lista podem aparecer sem barra (nota nula/cinza) — o ciclo ainda não fechou para elas. No boletim, todas as disciplinas têm nota (já que os lançamentos vão sendo liberados aos poucos), mas os valores diferem do ciclo fechado. O botão <strong>Exibir Boletim</strong>, abaixo do gráfico, é um atalho que muda o segmented control para a visão Boletim e permanece visível nas duas visões; hoje ele abre um modal de placeholder (ver seção 2) até a tela real de boletim ser desenhada.</p>
+  <p>Barra vermelha = nota abaixo da base de aprovação (60); barra verde = aprovado; linha tracejada vermelha = referência da base; área/linha laranja = média da turma.</p>
+  <p>Ao lado esquerdo do segmented control fica o seletor de <strong>Etapa</strong> (Ano letivo / 1º / 2º / 3º trimestre) — hoje sem efeito real sobre os dados do gráfico (é um placeholder de navegação entre períodos). A opção do trimestre corrente que ainda não começou fica desabilitada com tooltip explicativo (ver seção 2). Ao implementar de verdade, essa seleção deve refiltrar tanto o ciclo fechado quanto o boletim pela etapa escolhida.</p>
+
+  <h3>3.3 Ocorrências</h3>
+  <p>Registros classificados como <strong>positivos</strong> ou <strong>negativos</strong>, cada um valendo pontos (exibidos como "<code>Ocorrência (Npts)</code>" na Lista de Alunos, somando positivos + negativos). Também existe uma contagem separada de <strong>observações</strong> (neutras, tipo anotação). Um aluno pode não ter nenhuma ocorrência — estado vazio positivo ("nenhuma ocorrência registrada"), tratado como bom sinal, não como dado faltante.</p>
+  <p>Nem toda escola usa pontuação (algumas registram ocorrências só como histórico qualitativo — ver seção 6). Quando o campo <code>pontos</code> vem nulo, a linha "Pontos" simplesmente não é exibida no card. <strong>O valor de pontos, quando existe, não muda a cor do card ou do número</strong> — é sempre texto neutro (<code>#0F0F10</code>). Não reintroduza cores de alerta por faixa de pontuação.</p>
+
+  <h3>3.4 Atendimento</h3>
+  <p>Histórico de atendimentos (reuniões/conversas) com campos: data, tipo (Acadêmico, Psicossocial, Rotina), atendente, solicitante, "atendimento a" (Aluno/Responsável), motivo. Card de detalhe de cada atendimento organiza o conteúdo em 4 painéis: <strong>Norteadores, Resumo da conversa, Comentários, Próximos passos</strong>. Novo atendimento é criado por formulário inline (não modal) acima da lista.</p>
+
+  <h3>3.5 Anamnese</h3>
+  <p>Questionário estruturado (saúde, comportamento, família) preenchido por seções expansíveis (accordion). A <strong>Lista de Alunos</strong> mostra o percentual de completude da anamnese como badge (ex. "Anamnese: 100%") — abaixo de 100% sinaliza formulário incompleto e é um dado de acompanhamento pedagógico, não bloqueia navegação.</p>
+
+  <h3>3.6 Documentos</h3>
+  <p>Documentos são organizados por <strong>grupo</strong> (Médico, Escolar, Pessoal, Financeiro, Jurídico), cada grupo com sua lista fixa de <strong>tipos</strong> aceitos (ex. grupo Médico → Atestado Médico, Laudo, Receita, Exame). O campo Tipo só habilita depois que um Grupo é selecionado. Envio exige arquivo anexado (ver dropzone, seção 2); data de emissão e grupo/tipo são obrigatórios, descrição é opcional.</p>
+
+  <h3>3.7 Lista de Alunos</h3>
+  <p>Ponto de entrada do produto — lista todos os alunos da rede/escola/turma filtrada, cada um como um card clínico (não uma linha de tabela).</p>
+  <h4>Busca e ordenação</h4>
+  <p>Campo de busca livre filtra por <strong>nome ou RA/matrícula</strong> (client-side no protótipo). O dropdown de ordenação tem 6 critérios: ordem alfabética (padrão), maior/menor frequência, mais ocorrências, e menor/maior número de atendimentos. Alunos sem frequência registrada (<code>freq: null</code>) vão para o fim da lista nas ordenações por frequência, nunca para o topo.</p>
+  <h4>Filtros</h4>
+  <p>Abrem em modal ("Escolha seus filtros"): <strong>Ano letivo, Rede e Escola são obrigatórios</strong>; Série e Turma refinam o resultado mas são opcionais. Cada filtro aplicado vira um chip removable acima da lista. O botão "Filtro" mostra um contador (pill branco com texto magenta) quando há filtros ativos.</p>
+  <h4>Anatomia do card</h4>
+  <p>Avatar + nome + tags de status (Novo/Antigo, NEE) → matrícula e turma → badges de contexto (Matriculado, Anamnese: N%) → linha de indicadores (Frequência, Positivos/Negativos/Observações) → ações rápidas. Os indicadores usam os mesmos estados vazios do card de detalhe (chip tracejado "Sem frequência registrada", texto discreto "Nenhuma ocorrência registrada") — nunca mostre "0" ou um espaço em branco onde não há dado.</p>
+  <h4>Ações rápidas e navegação</h4>
+  <p>Cada card tem 3 atalhos de texto (Boletim, Ocorrências, Atendimento) que levam direto à aba correspondente do Painel do Aluno, mais um botão circular de seta que abre o Painel na aba padrão (Pedagógico). No Painel, os controles "Anterior"/"Próximo" no topo navegam entre os alunos da mesma lista filtrada sem voltar à tela anterior — mantendo o contexto de filtro/ordenação.</p>
+  <h4>Sem resultados</h4>
+  <p>Quando a busca ou os filtros não retornam nenhum aluno: estado vazio centralizado (ícone + "Nenhum aluno encontrado" + "Verifique os filtros aplicados ou tente um nome diferente") — mesmo padrão visual dos estados vazios do Painel.</p>
+  <h4>Sinalizações</h4>
+  <table>
+    <tr><th>Sinal</th><th>Significado</th></tr>
+    <tr><td><span class="tag">NOVO</span> / <span class="tag">ANTIGO</span></td><td>Status de matrícula do aluno na rede/escola atual.</td></tr>
+    <tr><td>NEE</td><td>Aluno com necessidade educacional especial (PCD) — indicador textual ao lado do nome.</td></tr>
+    <tr><td><code>dependencia</code></td><td>Aluno cursando em regime de dependência em uma ou mais disciplinas.</td></tr>
+    <tr><td><code>conselho</code></td><td>Caso em pauta de conselho de classe.</td></tr>
+  </table>
+
+  <h3>3.8 Permissões de exclusão</h3>
+  <div class="callout rule">
+    <p><strong>Nem todo usuário pode excluir um atendimento ou uma ocorrência já registrados.</strong> Essa é uma verificação de permissão (RBAC) que precisa vir do backend — o front-end não deve assumir que todo usuário autenticado tem esse direito.</p>
+  </div>
+  <p>No protótipo, isso é simulado por uma única flag <code>podeExcluir</code> (hoje exposta como tweak "Pode excluir atendimentos/ocorrências", padrão desligado) passada para <code>AtendimentoTab</code> e <code>OcorrenciasTab</code>. Quando <code>false</code>, o ícone de lixeira em cada card fica com opacidade reduzida, <code>cursor: not-allowed</code> e um <code>title</code> explicando o motivo — o ícone continua visível (não é removido da tela) para deixar claro que a ação existe mas está bloqueada. O botão de impressão ao lado não tem essa restrição. Ao integrar, troque a flag única por uma verificação real por registro (pode haver regras como "só quem criou o atendimento pode excluí-lo", ou uma janela de tempo para exclusão).</p>
+
+  <h3>3.9 Resumo Inteligente</h3>
+  <p>Bloco de resumo gerado por IA no topo da coluna direita do Painel do Aluno. Tem <strong>quatro estados</strong>, controlados hoje pela prop <code>status</code> (tweak "Resumo Inteligente → Estado"):</p>
+  <ul>
+    <li><strong>ok</strong> (padrão): texto do resumo com trechos destacados (positivo/atenção/informativo) + chips de pergunta rápida + aviso <strong>"Dados com até 1 dia de defasagem"</strong> no canto superior direito do card. Esse aviso existe porque o resumo é gerado a partir de um snapshot processado, não em tempo real — sempre exiba essa ressalva quando o resumo estiver visível, para o usuário não achar que uma alteração feita agora há pouco já está refletida ali.</li>
+    <li><strong>loading</strong>: skeleton de 3 linhas com pulso de opacidade + texto "Gerando resumo com IA… isso pode levar alguns segundos." Use sempre que a chamada de geração estiver em voo.</li>
+    <li><strong>error</strong>: cartão com borda/ícone de erro, mensagem explicando possíveis causas (instabilidade do serviço de IA ou timeout) e botão <strong>"Tentar novamente"</strong>. Nunca falhe silenciosamente nem deixe o card em branco — sempre ofere§a o retry.</li>
+    <li><strong>empty</strong>: quando o aluno ainda não tem dado suficiente (sem notas, frequência ou ocorrências) para gerar um resumo útil — card tracejado com ícone apagado e copy explicando o motivo, sem chips de pergunta.</li>
+  </ul>
+
+  <hr class="section-break">
+
+  <h2 id="codigo"><span class="num">4</span>Convenções de código</h2>
+
+  <h3>Stack</h3>
+  <p>React 18 + Babel standalone (JSX inline, sem build step), Recharts para gráficos, componentes escritos como <code>.jsx</code> soltos carregados via <code>&lt;script type="text/babel" src="..."&gt;</code> em ordem de dependência dentro de um <code>index.html</code> por superfície.</p>
+
+  <h3>Estrutura de pastas</h3>
+  <div class="file-tree">
+<span class="dir">lista-alunos/</span><br>
+&nbsp;&nbsp;index.html <span class="comment">— shell que carrega os scripts</span><br>
+&nbsp;&nbsp;ListaApp.jsx <span class="comment">— toda a superfície da lista (auto-contida)</span><br>
+<br>
+<span class="dir">painel-aluno/</span><br>
+&nbsp;&nbsp;index.html<br>
+&nbsp;&nbsp;colors_and_type.css <span class="comment">— cópia local dos tokens do DS</span><br>
+&nbsp;&nbsp;primitives.jsx <span class="comment">— MS (ícone), useBreakpoint, helpers compartilhados</span><br>
+&nbsp;&nbsp;TopNav.jsx / PageHeader.jsx<br>
+&nbsp;&nbsp;StudentInfoCard.jsx <span class="comment">— coluna esquerda: identificação + frequência</span><br>
+&nbsp;&nbsp;RightColumn.jsx <span class="comment">— Resumo Inteligente + Tabs + gráfico Pedagógico</span><br>
+&nbsp;&nbsp;AtendimentoTab.jsx / AnamneseTab.jsx / OcorrenciasTab.jsx / DocumentosTab.jsx<br>
+&nbsp;&nbsp;ChatDrawer.jsx <span class="comment">— assistente lateral (IA)</span><br>
+&nbsp;&nbsp;App.jsx <span class="comment">— composição final + TweaksPanel + render root</span><br>
+&nbsp;&nbsp;tweaks-panel.jsx <span class="comment">— protocolo de tweaks (copiado do starter)</span>
+  </div>
+
+  <h3>Como os arquivos se conectam</h3>
+  <p><code>index.html</code> carrega React/ReactDOM/Babel/Recharts, depois cada <code>.jsx</code> em sequência, terminando em <code>App.jsx</code> que monta a árvore com <code>ReactDOM.createRoot</code>. Cada arquivo de componente termina com:</p>
+  <pre><code>Object.assign(window, { NomeDoComponente, OutroComponente });</code></pre>
+  <p>— isso expõe os componentes no escopo global porque <strong>cada tag <code>&lt;script type="text/babel"&gt;</code> tem seu próprio escopo isolado</strong> ao ser transpilada. Sem esse padrão, um arquivo não consegue enxergar componentes definidos em outro. Ao criar um novo arquivo de componente, sempre feche com esse <code>Object.assign</code>.</p>
+
+  <h3>Responsividade</h3>
+  <p>Grid oficial do design system (4 breakpoints):</p>
+  <table>
+    <tr><th>Breakpoint</th><th>Faixa</th><th>Colunas</th><th>Margem</th><th>Gutter</th></tr>
+    <tr><td>Celular retrato</td><td>0–575px</td><td>4</td><td>24</td><td>16</td></tr>
+    <tr><td>Tablet (retrato/paisagem)</td><td>576–1365px</td><td>12</td><td>24</td><td>16</td></tr>
+    <tr><td>Desktop</td><td>1366–1439px</td><td>12</td><td>32</td><td>24</td></tr>
+    <tr><td>Desktop grande</td><td>1440px+</td><td>12</td><td>32</td><td>24</td></tr>
+  </table>
+  <p>Hook compartilhado <code>useBreakpoint()</code> (em <code>primitives.jsx</code>, versão <code>useBreakpointL()</code> na lista) expõe <code>isMobile</code> / <code>isCompact</code> / <code>width</code> a partir de <code>window.innerWidth</code> com listener de <code>resize</code> — hoje uma leitura simplificada em 2 cortes (não os 4 oficiais), o suficiente para o nível de fidelidade do protótipo:</p>
+  <ul>
+    <li><strong><code>isCompact</code></strong> (≤ 1100px aprox.): o grid principal do Painel do Aluno colapsa de <code>360px 1fr</code> para <strong>1 coluna</strong> — o card do aluno empilha acima do conteúdo das abas.</li>
+    <li><strong><code>isMobile</code></strong> (≤ 640px aprox.): paddings externos reduzem, o botão "Filtro" da Lista de Alunos esconde o rótulo de texto (fica só ícone + contador), e o campo de busca ocupa 100% da largura.</li>
+  </ul>
+  <p>Ao construir uma tela nova, sempre teste nesses dois cortes antes de considerar pronto — não existe layout mobile totalmente separado, é o mesmo componente se reorganizando.</p>
+
+  <h3>Estilo inline vs. classes</h3>
+  <p>A maior parte do styling é feita com objetos de estilo inline diretamente nos componentes (não há CSS-in-JS nem módulos CSS) — hover/press são simulados com <code>onMouseOver</code>/<code>onMouseOut</code> mutando <code>e.currentTarget.style</code> diretamente. Mantenha esse padrão para consistência ao adicionar novos componentes; evite introduzir uma segunda abordagem de estilo no mesmo arquivo.</p>
+
+  <hr class="section-break">
+
+  <h2 id="estados"><span class="num">5</span>Estados vazios e tweaks</h2>
+  <p>O Painel do Aluno inclui um painel de <strong>Tweaks</strong> (visível via toolbar do host) que permite alternar, em tempo real, entre estados que representam cenários reais de produto — útil para QA visual sem precisar de dados de backend:</p>
+  <ul>
+    <li><strong>Frequência → Visualização</strong>: Por dia / Por tempo de aula.</li>
+    <li><strong>Estados vazios → Frequência vazia</strong>: simula aluno sem nenhum registro de falta/atraso.</li>
+    <li><strong>Estados vazios → Pedagógico vazio</strong>: simula ciclo sem nenhuma nota lançada ainda.</li>
+    <li><strong>Estados vazios → Atendimento vazio / Ocorrências vazio / Documentos vazio</strong>: escondem os registros seed de cada aba e mostram o estado vazio correspondente.</li>
+    <li><strong>Estados vazios → Anamnese não respondida</strong>: troca o formulário preenchido (usado por padrão) pelo formulário em branco, com o aviso "Anamnese não respondida".</li>
+    <li><strong>Permissões → Pode excluir atendimentos/ocorrências</strong>: liga/desliga o ícone de exclusão nos cards de Atendimento e Ocorrências (ver seção 3.8). Desligado por padrão — representa o caso mais restritivo.</li>
+    <li><strong>Resumo Inteligente → Estado</strong>: alterna entre os 4 estados do bloco de IA (ok / loading / error / empty) — ver seção 3.9.</li>
+  </ul>
+  <p>Ao implementar a integração real, cada tweak equivalente deve virar uma derivação do dado vindo da API (ex.: array de disciplinas vazio → renderizar o mesmo estado vazio já desenhado) ou da permissão do usuário autenticado, em vez de um novo estado visual do zero.</p>
+
+  <hr class="section-break">
+
+  <h2 id="fluxo-anotado"><span class="num">6</span>Exemplo de fluxo anotado</h2>
+  <p>Referência de como documentamos um fluxo com anotações sobre screenshots reais do próprio protótipo — use esse formato (balões azuis + linha apontando para o elemento) para descrever interações que não são óbvias só olhando o layout estático.</p>
+
+  <div class="card" style="margin-bottom:16px">
+    <h4 style="margin-top:0">Situação do aluno — escolher etapa e alternar a visão</h4>
+    <img src="flow-annotated-1.png" alt="Etapa e segmented control anotados" style="width:100%; border-radius:8px; display:block;">
+  </div>
+
+  <div class="card">
+    <h4 style="margin-top:0">Exibir Boletim — abre modal de placeholder</h4>
+    <img src="flow-annotated-2.png" alt="Modal de boletim anotado" style="width:100%; border-radius:8px; display:block;">
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h4 style="margin-top:0">Para que serve cada aba</h4>
+    <img src="flow-abas.png" alt="Visão geral das abas" style="width:100%; border-radius:8px; display:block;">
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h4 style="margin-top:0">Ver detalhes — Por dia vs. Por tempo de aula</h4>
+    <img src="flow-frequencia.png" alt="Diferença entre Por dia e Por tempo de aula" style="width:100%; border-radius:8px; display:block;">
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h4 style="margin-top:0">Escolas sem rastreio de comportamento</h4>
+    <img src="flow-comportamento.png" alt="Comportamento presente vs ausente" style="width:100%; border-radius:8px; display:block;">
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h4 style="margin-top:0">Ocorrências com pontuação vs. sem pontuação</h4>
+    <img src="flow-ocorrencia-pontos.png" alt="Ocorrência com e sem pontos" style="width:100%; border-radius:8px; display:block;">
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h4 style="margin-top:0">Nome social</h4>
+    <img src="flow-nomesocial.png" alt="Fluxo de edição do nome social" style="width:100%; border-radius:8px; display:block;">
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h4 style="margin-top:0">Select de Ano Letivo no detalhe do aluno</h4>
+    <img src="flow-anoletivo.png" alt="Dropdown de ano letivo" style="width:100%; border-radius:8px; display:block;">
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h4 style="margin-top:0">Estados vazios por aba</h4>
+    <img src="flow-estadovazio.png" alt="Exemplo de estado vazio" style="width:100%; border-radius:8px; display:block;">
+  </div>
+
+  <hr class="section-break">
+
+  <h2 id="fluxo-feliz-triste"><span class="num">7</span>Fluxo de telas: feliz vs. triste</h2>
+  <p>O mesmo caminho de navegação — Lista de Alunos → Painel do Aluno → abas — se comporta de forma bem diferente dependendo dos dados do aluno e das permissões do usuário. Use esta referência para garantir que toda tela nova pense nos dois caminhos, não só no caso ideal.</p>
+
+  <div class="flow-label" style="color:#0E5E2E"><span style="width:10px;height:10px;border-radius:999px;background:#28975A;display:inline-block"></span>Fluxo feliz — aluno com histórico completo, usuário com permissões plenas</div>
+  <img src="userflow-feliz-vertical.png" alt="Userflow feliz" style="width:100%; max-width:900px; display:block; margin:0 auto 32px;">
+
+  <div class="flow-label" style="color:#A13C26"><span style="width:10px;height:10px;border-radius:999px;background:#E65637;display:inline-block"></span>Fluxo triste — aluno recém-matriculado, usuário com permissões restritas</div>
+  <img src="userflow-triste-vertical.png" alt="Userflow triste" style="width:100%; max-width:900px; display:block; margin:0 auto;">
+
+  <div class="callout" style="margin-top:16px">
+    <p>Todo fluxo novo do produto deveria ser desenhado pensando nas duas versões acima antes de ir para desenvolvimento — o estado vazio/triste não é um "extra", é parte do mesmo fluxo.</p>
+  </div>
+
+</doc-page>
+
+<script src="doc-page.js"></script>
+</body>
+</html>

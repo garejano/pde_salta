@@ -1,0 +1,23 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Alerts" subtitle="Info / success / warning / error" viewport="700x400" -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<style>
+  body { margin:0; padding:20px; background:#fff; font-family:'Nunito'; display:flex; flex-direction:column; gap:10px; }
+  .alert { display:flex; gap:12px; padding:16px; border-radius:8px; background:#EBEDF1; position:relative; overflow:hidden; }
+  .alert::before { content:""; position:absolute; left:0; top:0; bottom:0; width:8px; }
+  .alert.info::before { background:#242CC2; }
+  .alert.succ::before { background:#28975A; }
+  .alert.warn::before { background:#FFAC30; }
+  .alert.err::before { background:#E65637; }
+  .alert .material-symbols-outlined { font-size:24px; color:#0F0F10; flex-shrink:0; }
+  .alert .body { flex:1; padding-left:8px; }
+  .alert h4 { margin:0 0 4px; font-family:'Nunito'; font-weight:700; font-size:16px; color:#0F0F10; }
+  .alert p { margin:0; font-family:'Nunito'; font-size:14px; color:#3D3F42; }
+</style></head><body>
+<div class="alert info"><span class="material-symbols-outlined">info</span><div class="body"><h4>Informação</h4><p>A ficha do aluno foi atualizada com os novos dados.</p></div></div>
+<div class="alert succ"><span class="material-symbols-outlined" style="color:#28975A">check_circle</span><div class="body"><h4>Sucesso</h4><p>Link de anamnese gerado com sucesso.</p></div></div>
+<div class="alert warn"><span class="material-symbols-outlined" style="color:#E6901F">warning</span><div class="body"><h4>Atenção</h4><p>Verifique os dados antes de continuar.</p></div></div>
+<div class="alert err"><span class="material-symbols-outlined" style="color:#E65637">error</span><div class="body"><h4>Erro</h4><p>Não foi possível salvar. Tente novamente.</p></div></div>
+</body></html>

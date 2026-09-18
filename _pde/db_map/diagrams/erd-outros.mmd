@@ -33,7 +33,6 @@ graph TD
   AutorSegmentoDisciplina --> Segmento
   BaseDeDatasFeriados --> BaseDeDatas
   BaseDeDatasFeriados --> Cidade
-  BloqueioBoletim --> Ciclo
   BloqueioMaterialComplementar --> Agrupamento
   BloqueioMaterialComplementar --> ConteudoOnline
   BloqueioMaterialComplementar --> Disciplina
@@ -124,6 +123,7 @@ graph TD
   CoordenadorDisciplina --> Disciplina
   DataEspecificaDeUmaRecorrencia --> CalendarioEventoRecorrencia
   DiarioClasseConfiguracao --> Rede
+  DiarioDeClasseConfiguracao --> Rede
   Disciplina --> Disciplina
   Disciplina --> GrupoDisciplina
   Disciplina --> Rede
@@ -211,6 +211,7 @@ graph TD
   HisCargaHoraria --> Rede
   HisHistorico --> HisFundamentacaoLegal
   HisNucleoComum --> HisDisciplina
+  HistoricoAlocacaoValidador --> Redacao
   IconDisciplinaPladGame --> Disciplina
   ImportacaoTRI --> ProvaModelo
   ImportacaoTRILinha --> ImportacaoTRI
@@ -479,8 +480,11 @@ graph TD
   Redacao --> Redacao
   Redacao --> StatusRedacao
   Redacao --> GradeRedacao
+  RedacaoAspectoCritico --> Redacao
   RedacaoCompetencia --> Competencia
   RedacaoCompetencia --> Redacao
+  RedacaoCompetenciaValidacaoIA --> Competencia
+  RedacaoCompetenciaValidacaoIA --> Redacao
   RedacaoCorrecaoIAAcompanhamento --> Redacao
   RedacaoCorrecaoIAAcompanhamento --> StatusCorrecaoIA
   RedacaoCorrecaoIAAcompanhamento --> TipoErroCorrecaoIA
@@ -533,6 +537,7 @@ graph TD
   SimuladoTRIAreaConhecimento --> AreaConhecimento
   SimuladoTRIAreaConhecimento --> SimuladoTRI
   SimuladoTRICalculo --> SimuladoTRI
+  SimuladoTRICalculoLog --> SimuladoTRICalculo
   SimuladoTRIGabaritoOficial --> SimuladoTRI
   SimuladoTRIProvaCodigo --> ProvaCodigo
   SimuladoTRIProvaCodigo --> SimuladoTRI
@@ -574,12 +579,14 @@ graph TD
   TipoRedeFuncionalidadePadrao --> TipoRede
   TipoRedeResultado --> TipoRede
   TipoRedeResultado --> TipoResultado
+  TipoTranstorno --> TipoTranstorno
   TRI --> SimuladoTRI
   TRILinha --> TRI
   TwilioFilaEnvio --> TwilioRemetente
   TwilioFilaEnvio --> TwilioTemplate
   TwilioFilaEnvioParametro --> TwilioFilaEnvio
   TwilioFilaEnvioParametro --> TwilioTemplateParametro
+  TwilioRemetente --> TwilioFilaEnvio
   TwilioRemetenteRede --> Rede
   TwilioRemetenteRede --> TwilioRemetente
   TwilioTemplate --> Funcionalidade
@@ -599,6 +606,7 @@ graph TD
   AlocacaoCorretor
   AlocacaoFeriados
   AlocacaoProfessoresStatus
+  AlocacaoValidadorStatus
   AnoQuestao
   AtendimentoMeta2019
   AtendimentoTipoRelatorio
@@ -621,6 +629,7 @@ graph TD
   BaseEstrelasPlataforma
   BaseLivroDigital
   BaseMonitoriaOnline
+  BloqueioBoletim
   BonusPlataformaAdaptativa
   BuscaQuery
   CabecalhoBoletim
@@ -647,6 +656,7 @@ graph TD
   Curso
   CustomClassroom
   DATAS
+  DadosJustificativa
   DashboardEditora
   Data
   DiaLetivoExtra
@@ -654,8 +664,10 @@ graph TD
   DisciplinaLinha
   Disciplina_Origem
   Disciplinas
+  DisparoCorrecaoIAPendente
   DispositivoConectado
   Dissidio
+  DocumentoCarometroConfiguracao
   Dummy
   EscopoBoletim
   EtapaDeResultadosSemelhante
@@ -794,7 +806,9 @@ graph TD
   ServicosContratadosTipoRelatorio
   Set
   SimuladoDetalhe
+  Sindicato
   SituacaoQuestoesLaplace
+  StatusAprovacao
   StatusAtividadeClassroom
   StatusBoletim
   StatusControleEmail

@@ -1,5 +1,5 @@
 # Angular Map — notas
-> Gerado em: 2026-05-21  
+> Gerado em: 2026-07-30  
 > Fonte: `C:\projects\notas\frontend`
 
 ## Módulos
@@ -112,7 +112,7 @@
   - @Input: title: string
   - Injeta: Title
 - **TooltipComponent** `app-tooltip`
-  - @Input: position: string
+  - @Input: position: string, icon: string
 - **VisualizarComoSelectComponent** `app-visualizar-como-select`
   - @Input: loading: boolean, enabled: boolean
   - @Output: onSelect
@@ -258,7 +258,7 @@
   - Injeta: AlunoNeeService, ImpressaoDocumentoService, Router
 - **EdicaoNeeComponent** `app-edicao-nee`
   - @Input: lista: AlunoLaudoMedicoGetResponse[]
-  - Injeta: AlunoNeeService, FormBuilder, NotificationService, Router
+  - Injeta: AlunoNeeService, FormBuilder, NotificationService, Router, TipoTranstornoService
 - **EditorRelatorioNEEComponent** `editor-relatorio-nee-component`
   - Injeta: AlunoNeeService, FormBuilder, NotificationService, Router
 - **LancarNotaComponent** `app-lancar-nota`
@@ -565,6 +565,9 @@
 - **TipoNotaFormativaService** (root)
   - Injeta: ApiClient, HandleApiError
   - Métodos: getPorRede
+- **TipoTranstornoService** (root)
+  - Injeta: ApiClient, HandleApiError
+  - Métodos: getAll
 - **User** (root)
   - Injeta: ApiClient
   - Métodos: getUserName
@@ -711,6 +714,7 @@
 - **TemposPorSegmentoSaveRequest** (interface)
 - **TemposPorSegmentoUpdateRequest** (interface)
 - **TipoNotaFormativaRequest** (type): HashRede: string, HashAvaliacao: string, HashTurma: string
+- **TipoTranstornoResponse** (interface): id: number, codigo: string, descricao: string, parentId: number, subitens: TipoTranstornoResponse[]
 - **TurmaParaAlocacao** (interface): hash: string, hashRede: string, nomeRede: string, nomeEscola: string, nomeSegmento: string, ... +3
 - **UsuarioAutenticadoModel** (interface): PossuiUsuarioAutenticado: boolean, AcessosUsuario: AcessoUsuarioModel[], ElevaId: ElevaIdModel, Email: string, Id: number, ... +3
 
@@ -720,4 +724,4 @@
 - `https://localhost/notas/api`
 
 ---
-*102 componentes · 53 services · 11 módulos · 145 models · 20 rotas*
+*102 componentes · 54 services · 11 módulos · 146 models · 20 rotas*

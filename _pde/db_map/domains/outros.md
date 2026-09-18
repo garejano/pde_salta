@@ -31,6 +31,7 @@
 - **AlocacaoProfessoresLinha** (PK: `Id`, 5 FK(s) negócio)
 - **AlocacaoProfessoresStatus** (PK: `Id`, 0 FK(s) negócio)
 - **AlocacaoRede** (PK: `Id`, 1 FK(s) negócio)
+- **AlocacaoValidadorStatus** (PK: `Id`, 0 FK(s) negócio)
 - **AnoQuestao** (PK: `Id`, 0 FK(s) negócio)
 - **AprovacaoQuestao** (PK: `Id`, 0 FK(s) negócio)
 - **AreaConhecimento** (PK: `Id`, 0 FK(s) negócio)
@@ -69,7 +70,7 @@
 - **BaseEstrelasPlataforma** (PK: `Id`, 0 FK(s) negócio)
 - **BaseLivroDigital** (PK: `Id`, 0 FK(s) negócio)
 - **BaseMonitoriaOnline** (PK: `Id`, 0 FK(s) negócio)
-- **BloqueioBoletim** (PK: `Id`, 3 FK(s) negócio)
+- **BloqueioBoletim** (PK: `Id`, 2 FK(s) negócio)
 - **BloqueioMaterialComplementar** (PK: `Id`, 5 FK(s) negócio)
 - **BonusCriterio** (PK: `Id`, 1 FK(s) negócio)
 - **BonusCriterioPublico** (PK: `Id`, 4 FK(s) negócio)
@@ -118,7 +119,7 @@
 - **Ciclo** (PK: `Id`, 2 FK(s) negócio)
 - **Cidade** (PK: `Id`, 1 FK(s) negócio)
 - **ClasseExemplo** (PK: `Id`, 2 FK(s) negócio)
-- **ClassePagamento** (PK: `Id`, 1 FK(s) negócio)
+- **ClassePagamento** (PK: `Id`, 2 FK(s) negócio)
 - **ClassePgto** (PK: `Id`, 0 FK(s) negócio) — Armazenamento das classes para cálculo da folha do professor
 - **Classroom** (PK: `Id`, 2 FK(s) negócio)
 - **ClassroomBoletim** (PK: `Id`, 3 FK(s) negócio)
@@ -165,11 +166,13 @@
 - **Curso** (PK: `Id`, 0 FK(s) negócio)
 - **CustomClassroom** (PK: `Id`, 0 FK(s) negócio)
 - **DATAS** (PK: `—`, 0 FK(s) negócio)
+- **DadosJustificativa** (PK: `Id`, 0 FK(s) negócio)
 - **DashboardEditora** (PK: `Id`, 0 FK(s) negócio)
 - **Data** (PK: `Id`, 1 FK(s) negócio)
 - **DataEspecificaDeUmaRecorrencia** (PK: `Id`, 1 FK(s) negócio)
 - **DiaLetivoExtra** (PK: `Id`, 2 FK(s) negócio)
 - **DiarioClasseConfiguracao** (PK: `Id`, 1 FK(s) negócio)
+- **DiarioDeClasseConfiguracao** (PK: `Id`, 1 FK(s) negócio)
 - **Disciplina** (PK: `Id, Id, Id, Id`, 7 FK(s) negócio)
 - **DisciplinaCargaHoraria** (PK: `Id`, 0 FK(s) negócio)
 - **DisciplinaDeParaImportacao** (PK: `—`, 1 FK(s) negócio)
@@ -179,8 +182,10 @@
 - **DisciplinaPadrao** (PK: `Id`, 1 FK(s) negócio)
 - **Disciplina_Origem** (PK: `—`, 0 FK(s) negócio)
 - **Disciplinas** (PK: `—`, 2 FK(s) negócio)
+- **DisparoCorrecaoIAPendente** (PK: `Id`, 0 FK(s) negócio)
 - **DispositivoConectado** (PK: `Id`, 1 FK(s) negócio)
 - **Dissidio** (PK: `Id`, 0 FK(s) negócio) — Armazenamento dos parâmetros do dissídio. No mundo corporativo, ele se aplica aos desentendimentos que ocorrem entre a contratante e um colaborador, ou entre a contratante e um sindicato de trabalhadores. 
+- **DocumentoCarometroConfiguracao** (PK: `Id`, 0 FK(s) negócio)
 - **DocumentoPedagogico** (PK: `Id`, 0 FK(s) negócio)
 - **DocumentoPedagogicoRede** (PK: `Id`, 3 FK(s) negócio)
 - **Dummy** (PK: `Id`, 0 FK(s) negócio)
@@ -250,6 +255,7 @@
 - **HisHistorico** (PK: `Id`, 2 FK(s) negócio)
 - **HisNucleoComum** (PK: `Id`, 2 FK(s) negócio)
 - **HisResultadoFinal** (PK: `Id`, 0 FK(s) negócio)
+- **HistoricoAlocacaoValidador** (PK: `Id`, 2 FK(s) negócio)
 - **HistoricoCargaProfessorEntrando** (PK: `—`, 0 FK(s) negócio)
 - **HistoricoCargaProfessorSaindo** (PK: `—`, 0 FK(s) negócio)
 - **HistoricoLiberacaoPedido** (PK: `Id`, 0 FK(s) negócio)
@@ -564,7 +570,9 @@
 - **QuestaoTipoErro** (PK: `Id`, 0 FK(s) negócio)
 - **RA_Maracaju_20180405** (PK: `—`, 0 FK(s) negócio)
 - **Redacao** (PK: `Id, Id`, 15 FK(s) negócio)
+- **RedacaoAspectoCritico** (PK: `Id`, 1 FK(s) negócio)
 - **RedacaoCompetencia** (PK: `Id`, 2 FK(s) negócio)
+- **RedacaoCompetenciaValidacaoIA** (PK: `Id`, 2 FK(s) negócio)
 - **RedacaoCompetencia_BKP** (PK: `—`, 0 FK(s) negócio)
 - **RedacaoCorrecaoIAAcompanhamento** (PK: `Id`, 3 FK(s) negócio)
 - **RedacaoDigital** (PK: `Id`, 2 FK(s) negócio)
@@ -626,9 +634,11 @@
 - **SimuladoTRI** (PK: `Id`, 1 FK(s) negócio)
 - **SimuladoTRIAreaConhecimento** (PK: `Id`, 2 FK(s) negócio)
 - **SimuladoTRICalculo** (PK: `Id`, 1 FK(s) negócio)
+- **SimuladoTRICalculoLog** (PK: `Id`, 1 FK(s) negócio)
 - **SimuladoTRIGabaritoOficial** (PK: `Id`, 1 FK(s) negócio)
 - **SimuladoTRIProvaCodigo** (PK: `Id`, 2 FK(s) negócio)
 - **SimuladoTRIStatusCalculo** (PK: `Id`, 1 FK(s) negócio)
+- **Sindicato** (PK: `Id`, 0 FK(s) negócio)
 - **SiteInstitucionalWhiteList** (PK: `Id`, 1 FK(s) negócio)
 - **Situacao** (PK: `Id, Id`, 2 FK(s) negócio)
 - **SituacaoProfessor** (PK: `Id`, 0 FK(s) negócio)
@@ -636,6 +646,7 @@
 - **SolicitanteAtendimento** (PK: `Id`, 0 FK(s) negócio)
 - **SolicitanteAtendimentoPorTipoRede** (PK: `Id`, 2 FK(s) negócio)
 - **State** (PK: `JobId, Id`, 1 FK(s) negócio)
+- **StatusAprovacao** (PK: `Id`, 0 FK(s) negócio)
 - **StatusAtividadeClassroom** (PK: `Id`, 0 FK(s) negócio)
 - **StatusBoletim** (PK: `Id`, 0 FK(s) negócio)
 - **StatusControleEmail** (PK: `Id`, 0 FK(s) negócio)
@@ -701,11 +712,12 @@
 - **TipoSanguineo** (PK: `Id`, 0 FK(s) negócio)
 - **TipoSituacaoBinaria** (PK: `Id`, 0 FK(s) negócio)
 - **TipoSubstituicao** (PK: `Id`, 0 FK(s) negócio)
+- **TipoTranstorno** (PK: `Id`, 1 FK(s) negócio)
 - **ToDoTarefa** (PK: `Id`, 0 FK(s) negócio)
 - **Turno** (PK: `Id`, 0 FK(s) negócio)
 - **TwilioFilaEnvio** (PK: `Id`, 2 FK(s) negócio)
 - **TwilioFilaEnvioParametro** (PK: `Id`, 2 FK(s) negócio)
-- **TwilioRemetente** (PK: `Id`, 0 FK(s) negócio)
+- **TwilioRemetente** (PK: `Id`, 1 FK(s) negócio)
 - **TwilioRemetenteRede** (PK: `Id`, 2 FK(s) negócio)
 - **TwilioTemplate** (PK: `Id`, 1 FK(s) negócio)
 - **TwilioTemplateParametro** (PK: `Id`, 1 FK(s) negócio)
@@ -752,8 +764,8 @@
 - **ViewAgendamentoProvas** — colunas: `Id`, `IdProva`, `NomeProva`, `DataAplicacao`, `Ementa`, `IdRede`, `NomeRede`, `IdEscola`, `NomeEscola`, `IdAnoLetivo`, `HashCiclo`, `IdTipoAvaliacao`, `NomeTipoAvaliacao`, `OrdemAvaliacao`, `IdSerie`, `NomeSerie`, `IdTurma`, `NomeTurma`, `IdDisciplina`, `NomeDisciplina`, `Boletim`, `Formativa`
 - **ViewAlocacaoProfessorEletivaExcelencia** — colunas: `Id`, `IdRede`, `HashRede`, `NomeRede`, `IdAnoLetivo`, `HashAnoLetivo`, `NomeAnoLetivo`, `IdAgrupamento`, `HashAgrupamento`, `NomeAgrupamento`, `IdDisciplina`, `HashDisciplina`, `NomeDisciplina`, `IdDisciplinaBase`, `HashDisciplinaBase`, `NomeDisciplinaBase`, `ProfessorAlocado`, `IdPessoa`, `HashPessoa`, `NomePessoa`
 - **ViewAlocacaoProfessores** — colunas: `IdRede`, `NomeRede`, `IdAnoLetivo`, `IdEscola`, `NomeEscola`, `IdSerie`, `NomeSerie`, `IdTurma`, `NomeTurma`, `PossuiSelecaoDisciplinaEscolaSerie`, `PossuiSelecaoDisciplina`, `TotalDisciplinas`, `TotalProfessores`, `TotalMonitores`, `TotalPendencias`, `IdPOATurma`, `ParticipaDaPOA`, `PermiteMultiplosProfessoresParaMesmaDisciplina`, `IdPOAStatus`, `NomePOAStatus`, `PodeAlocar`, `PodeConfirmarPOA`
-- **ViewAlocacaoRedacao** — colunas: `IdEnvioLeitura`, `Codigo`, `IdAnoLetivo`, `HashAnoLetivo`, `NomeAnoLetivo`, `IdRede`, `HashRede`, `NomeRede`, `IdEscola`, `HashEscola`, `NomeEscola`, `IdAgrupamento`, `HashAgrupamento`, `NomeAgrupamento`, `IdAvaliacao`, `HashAvaliacao`, `NomeAvaliacao`, `NomeProva`, `DataAplicacao`, `DataProvaParaExibicao`, `DataEnvio`, `LeituraTipoRedacao`, `DataEnvioParaExibicao`, `DataProcessamento`, `DataProcessamentoParaExibicao`, `QuantidadeCartoes`, `QuantidadeAlocada`, `QuantidadeCorrigida`, `QuantidadeBranco`, `IdGradeRedacao`, `NomeGradeRedacao`, `HashGradeRedacao`
-- **ViewAlocacaoValidadoresRedacao** — colunas: `IdEnvioLeitura`, `Codigo`, `IdAnoLetivo`, `HashAnoLetivo`, `NomeAnoLetivo`, `IdRede`, `HashRede`, `NomeRede`, `IdEscola`, `HashEscola`, `NomeEscola`, `IdAgrupamento`, `HashAgrupamento`, `NomeAgrupamento`, `IdAvaliacao`, `HashAvaliacao`, `NomeAvaliacao`, `NomeProva`, `DataAplicacao`, `DataProvaParaExibicao`, `DataEnvio`, `LeituraTipoRedacao`, `DataEnvioParaExibicao`, `DataProcessamento`, `DataProcessamentoParaExibicao`, `QuantidadeCartoes`, `QuantidadeAlocada`, `QuantidadeCorrigida`, `QuantidadeBranco`, `IdGradeRedacao`, `NomeGradeRedacao`, `HashGradeRedacao`
+- **ViewAlocacaoRedacao** — colunas: `IdEnvioLeitura`, `Codigo`, `IdAnoLetivo`, `HashAnoLetivo`, `NomeAnoLetivo`, `IdRede`, `HashRede`, `NomeRede`, `IdEscola`, `HashEscola`, `NomeEscola`, `IdAgrupamento`, `HashAgrupamento`, `NomeAgrupamento`, `IdAvaliacao`, `HashAvaliacao`, `NomeAvaliacao`, `NomeProva`, `DataAplicacao`, `DataProvaParaExibicao`, `DataEnvio`, `LeituraTipoRedacao`, `DataEnvioParaExibicao`, `DataProcessamento`, `DataProcessamentoParaExibicao`, `QuantidadeCartoes`, `QuantidadeAlocada`, `QuantidadeCorrigida`, `QuantidadeBranco`, `IdGradeRedacao`, `NomeGradeRedacao`, `HashGradeRedacao`, `EnvioIA`, `DataEnvioIA`
+- **ViewAlocacaoValidadoresRedacao** — colunas: `IdEnvioLeitura`, `Codigo`, `IdAnoLetivo`, `HashAnoLetivo`, `NomeAnoLetivo`, `IdRede`, `HashRede`, `NomeRede`, `IdEscola`, `HashEscola`, `NomeEscola`, `IdAgrupamento`, `HashAgrupamento`, `NomeAgrupamento`, `IdAvaliacao`, `HashAvaliacao`, `NomeAvaliacao`, `NomeProva`, `DataAplicacao`, `DataProvaParaExibicao`, `DataEnvio`, `LeituraTipoRedacao`, `DataEnvioParaExibicao`, `DataProcessamento`, `DataProcessamentoParaExibicao`, `QuantidadeCartoes`, `QuantidadeAlocada`, `QuantidadeCorrigida`, `QuantidadeDisponivelAlocacao`, `QuantidadeBranco`, `QuantidadeFluxoHumano`, `QuantidadeCorrigidaFluxoHumano`, `IdGradeRedacao`, `NomeGradeRedacao`, `HashGradeRedacao`
 - **ViewAtendimentoPainel** — colunas: `Id`, `IdPessoaAluno`, `HashPessoaAluno`, `NomeAluno`, `IdAnoLetivo`, `DataAtendimento`, `IdAtendimento`, `HashAtendimento`, `IdPessoaEscolaAcesso`, `MatriculaAluno`, `HashAlunoEscola`, `HashPessoaEscolaAcesso`, `IdSolicitanteAtendimento`, `NomeSolicitanteAtendimento`, `IdTipoPublicoAtendido`, `NomeTipoPublicoAtendido`, `IdTipoAtendimento`, `NomeTipoAtendimento`, `IdMotivoAtendimento`, `NomeMotivoAtendimento`, `Observacoes`, `Comentarios`, `ProximosPassos`, `DataProximosPassos`, `Confidencial`, `Importante`, `DeveEnviarEmail`, `DataInclusao`, `NomeUsuarioInclusao`, `TipoAtendimentoPessoa`, `NomeAtendimentoPessoa`
 - **ViewAtendimentoProximosPassos** — colunas: `Id`, `IdMotivoAtendimento`, `DescricaoMotivoAtendimento`, `DataAtendimento`, `ProximosPassos`, `DataProximosPassos`, `IdUsuarioAtendente`, `IdPessoaAtendente`, `IdPessoaAluno`, `NomeAluno`, `MatriculaAluno`
 - **ViewAtendimentoResultadoFinal** — colunas: `Id`, `IdAtendimentoEnfermaria`, `AnoLetivo`, `IdProcedimento`, `Procedimento`, `ProcedimentoTipoComplemento`, `ProcedimentoRealizado`, `ComplementoTempo`, `ComplementoTexto`, `NomeMedicamento`, `FormatoMedicamento`, `DoseMinistrada`, `HashEscola`, `NomeEscola`, `HashSerie`, `NomeSerie`, `HashTurma`, `NomeTurma`, `Matricula`, `NomeAluno`, `QueixaPrincipal`, `DataHoraChegada`, `DataHoraSaida`, `DataInclusao`, `Ativo`
@@ -763,6 +775,7 @@
 - **ViewAtualidadeVigente** — colunas: `Id`, `IdUsuario`, `NomeAssunto`, `VigenciaInicio`, `DataInclusao`
 - **ViewBancoDeQuestoesTags** — colunas: `Id`, `RedeNome`, `RedeId`, `RedeHash`, `RedeTipo`, `RedePropria`, `SerieNome`, `SerieId`, `SerieHash`, `SerieOrdem`, `SegmentoNome`, `SegmentoId`, `SegmentoHash`, `SegmentoSigla`, `PermiteCriarQuestoes`, `MinimoQuestoesMultiplaEscolha`, `SegmentoOrdem`, `DisciplinaNome`, `DisciplinaId`, `DisciplinaHash`, `DisciplinaSigla`, `DisciplinaIcone`
 - **ViewBaseDeSituacao** — colunas: `Id`, `IdAnoLetivo`, `NomeAnoLetivo`, `IdRede`, `NomeRede`, `IdEscola`, `NomeEscola`, `IdSegmento`, `NomeSegmento`, `IdAgrupamento`, `NomeAgrupamento`, `IdSerie`, `NomeSerie`, `OrdemSerie`, `IdTurma`, `HashTurma`, `NomeTurma`, `IdAluno`, `HashAlunoEscola`, `NomeAluno`, `HashUsuario`, `Matricula`, `IdDisciplinaMae`, `HashDisciplinaMae`, `NomeDisciplinaMae`, `OrdemDisciplinaMae`, `EhItinerarioFormativo`, `TotalAnual`, `TotalFinal`, `Recuperacao`, `TotalFinalRecuperado`, `ResultadoFinal`, `PercentualFrequencia`, `StatusCOC`, `Situacao`, `Detalhamento`
+- **ViewBaseDetalhadaErrosCorrecaoIA** — colunas: `IdRedacao`, `DataCriacaoRedacao`, `IdAcompanhamento`, `IdTentativaCorrecaoIA`, `DataEnvioCorrecaoIA`, `DataRegistroErro`, `TempoDecorridoSegundos`, `MensagemApresentadaUsuario`, `StatusInicialTentativa`, `IdStatusFinalTentativa`, `StatusFinalTentativa`, `IdStatusRedacaoAtual`, `DescricaoStatusRedacaoAtual`, `IdTipoErroCorrecaoIA`, `CodigoTipoErroCorrecaoIA`, `DescricaoTipoErroCorrecaoIA`, `CodigoHttp`, `ClassificacaoErroCorrecaoIA`, `DetalheErro`, `EtapaProcessamentoErro`, `DetalheErroEssayGraderErro`, `CorrecaoResultEssayGraderErro`, `DataRegistroEssayGraderErro`, `IdAnoLetivo`, `NomeAvaliacao`, `NomeRede`, `NomeEscola`, `NomeAgrupamento`, `RA`, `NomeAluno`, `NomeTurma`, `NomeSerie`, `NomeGradeRedacao`
 - **ViewBloqueioBoletim** — colunas: `Id`, `IdRede`, `NomeRede`, `IdEscola`, `NomeEscola`, `IdAnoLetivo`, `IdSegmento`, `NomeSegmento`, `IdSerie`, `NomeSerie`, `OrdemSerie`, `IdTurma`, `NomeTurma`, `IdEtapa`, `NomeEtapa`, `OrdemEtapa`, `IdCiclo`, `NomeCiclo`, `OrdemCiclo`, `IdTipoAvaliacao`, `NomeTipoAvaliacao`, `SiglaTipoAvaliacao`, `OrdemTipoAvaliacao`, `Bloqueado`
 - **ViewBoletimAtendimentoEnfermaria** — colunas: `Id`, `IdAtendimento`, `IdRede`, `NomeRede`, `TipoRede`, `IdPessoa`, `IdAlunoEscola`, `NomePessoa`, `AnoLetivo`, `Matricula`, `IdTurma`, `NomeTurma`, `CodPessoaTOTVS`, `PossuiFoto`, `FotoAluno`, `DataHoraChegada`, `QueixaPrincipal`, `PacienteChegouAcompanhadoPor`, `NomeDisciplina`, `HashEscolaSerieDisciplina`, `NomeTipoDeIntervalo`, `IdTipoDeIntervalo`, `EnviarResponsavel`, `IdAtendimentoSV`, `PressaoArterialAlta`, `PressaoArterialBaixa`, `Pulso`, `GlicemiaCapilar`, `Peso`, `Temperatura`, `Respiracao`, `SaturacaoOxigenio`, `IdAtendimentoAvaliacao`, `IdAtendimentoAvaliacaoItem`, `IdAvaliacaoMedica`, `NomeAvaliacaoMedica`, `LocalFerimentoDorAlteracao`, `LocalFerimentoDorAlteracaoOutro`, `IdAtendimentoProcedimentoEnfermagem`, `IdAtendimentoProcedimentoEnfermagemItem`, `IdProcedimentoEnfermagem`, `NomeProcedimentoEnfermagem`, `TipoComplementoProcedimentoEnfermagem`, `ComplementoTexto`, `ComplementoTempo`, `IdAtendimentoResultadoFinal`, `RetornoSalaDeAula`, `LiberacaoParaCasa`, `EncaminharParaEmergencia`, `IsentoDeAtividadeFisica`, `DataHoraSaida`, `EncaminharPediatra`, `EncaminharOrtopedista`, `PacienteSeraAcompanhadoPor`
 - **ViewBonusListagem** — colunas: `Id`, `IdCriterio`, `HashCriterio`, `IdCriterioPublico`, `HashCriterioPublico`, `NomeCriterio`, `IdRede`, `HashRede`, `NomeRede`, `IdAnoLetivo`, `HashAnoLetivo`, `NomeAnoLetivo`, `IdSegmento`, `HashSegmento`, `NomeSegmento`, `OrdemSegmento`, `IdEtapa`, `HashEtapa`, `NomeEtapa`, `OrdemEtapa`, `IdVolume`, `HashVolume`, `NomeVolume`, `DataFoto`, `DataFotoParaExibicao`, `HoraDataFotoParaExibicao`, `DataLiberacao`, `DataLiberacaoParaExibicao`, `HoraDataLiberacaoParaExibicao`, `RelatorioGerado`
@@ -788,7 +801,7 @@
 - **ViewCargaHorariaSubstituicoesParaExtracao** — colunas: `Id`, `IdRede`, `RedeNome`, `UnidadeNome`, `TurmaAlocado`, `CpfProfessor`, `NomeNovoProfessor`, `CpfProfessorSaida`, `ProfessorSaida`, `DisciplinaNome`, `MotivoSaida`, `CargaSubstituicao`, `DataPrimeiraAula`, `DataUltimaAula`, `DataInclusao`, `NumeroTempos`, `ExibicaoRelatorioPermanente`, `NomeInclusao`
 - **ViewCartaoResposta** — colunas: `Id`, `IdRede`, `HashRede`, `NomeRede`, `IdAnoLetivo`, `HashAnoLetivo`, `NomeAnoLetivo`, `IdEscola`, `HashEscola`, `NomeEscola`, `IdAgrupamento`, `HashAgrupamento`, `NomeAgrupamento`, `IdSerie`, `HashSerie`, `NomeSerie`, `OrdemSerie`, `IdTurma`, `HashTurma`, `NomeTurma`, `IdPessoa`, `Hashpessoa`, `NomePessoa`, `Matricula`, `IdTipoAvaliacao`, `HashTipoAvaliacao`, `NomeTipoAvaliacao`, `SiglaTipoAvaliacao`, `IdProva`, `HashProva`, `NomeProva`, `DataAplicacao`, `DataAplicacaoParaOrdenacao`, `IdProvaCodigo`, `CodigoProva`, `IdEnvioLeitura`, `IdEnvioLeituraCartao`, `Marcacoes`
 - **ViewCartaoRespostaFiltro** — colunas: `Id`, `HashProva`, `NomeProva`, `IdRede`, `HashRede`, `NomeRede`, `IdAnoLetivo`, `HashAnoLetivo`, `NomeAnoLetivo`, `IdAgrupamento`, `HashAgrupamento`, `NomeAgrupamento`, `SiglaTipoAvaliacao`, `DataAplicacao`, `DataAplicacaoParaOrdenacao`, `TotalAlunos`, `TotalAlunosComCartao`
-- **ViewCarteirinhaVirtual** — colunas: `IdPessoaEscolaAcesso`, `Matricula`, `NomeUnidade`, `NomeAluno`, `NomeSerie`, `Validade`, `DataNascimento`, `Marca`, `HashAlunoEscola`, `SaidaAutorizada`, `CodPessoaTotvs`, `logoRedeURL`, `LogoRedeMarcaAguaURL`
+- **ViewCarteirinhaVirtual** — colunas: `IdPessoaEscolaAcesso`, `Matricula`, `NomeUnidade`, `NomeAluno`, `NomeSerie`, `Validade`, `DataNascimento`, `Marca`, `HashAlunoEscola`, `SaidaAutorizada`, `CodPessoaTotvs`, `logoRedeURL`, `LogoRedeMarcaAguaURL`, `Email`
 - **ViewCicloInfantilFundamental** — colunas: `Id`, `IdRede`, `AnoLetivo`, `IdSerie`, `NomeSerie`, `HashSerie`, `IdSegmento`, `IdCiclo`, `NomeCiclo`, `IdEtapa`, `SiglaCiclo`, `OrdemCiclo`, `IdRedeSerie`, `IdRedeSerieCiclo`
 - **ViewCicloMedioFundamental** — colunas: `Id`, `IdRede`, `HashRede`, `AnoLetivo`, `Simulados`, `IdSerie`, `NomeSerie`, `HashSerie`, `IdSegmento`, `HashSegmento`, `IdCiclo`, `HashCiclo`, `NomeCiclo`, `IdEtapa`, `HashEtapa`, `SiglaCiclo`, `NotaMaxima`, `EhMediaFinal`, `EhMediaAnual`, `EhSituacao`, `DataInicio`, `DataTermino`, `DataFechamento`, `EhRecuperacao`, `OrdemCiclo`, `IdRedeSerie`, `IdRedeSerieCiclo`, `HashRedeSerieCiclo`
 - **ViewColaboradorPlurall** — colunas: `IdRede`, `IdPessoa`, `Nome`, `IdEscola`, `IdSegmento`, `CargoTOTVS`, `IdPerfilAcesso`, `PerfilAcesso`, `Ativo`
@@ -825,6 +838,7 @@
 - **ViewEventosProfessorConsolidado** — colunas: `CPF`, `MesEvento`, `Valor`, `ValorHoraAulaEspecial`, `QuantidadeValor`, `NrTempos`, `IdMacroTurma`, `MacroTurma`, `IdMacroTurmaIntelpedTurma`, `AnoLetivo`, `IdMarca`, `IdRede`
 - **ViewExemplo** — colunas: `Id`, `IdExemplo`, `HashExemplo`, `NomeExemplo`, `IdRede`, `HashRede`, `NomeRede`, `IdAnoLetivo`, `HashAnoLetivo`, `NomeAnoLetivo`, `IdEscola`, `HashEscola`, `NomeEscola`, `Ordem`, `Importante`, `InicioVigencia`, `InicioVigenciaParaExibicao`
 - **ViewExtrairDisponibilidadeFicha** — colunas: `Id`, `Nome`, `SegundaFeira`, `TercaFeira`, `QuartaFeira`, `QuintaFeira`, `SextaFeira`, `Sabado`, `Rede`, `IdRede`, `Serie`, `Unidades`, `Disciplinas`, `Intensao`, `Bairro`, `Cidade`, `Email`, `TelefoneResidencial`, `TelefoneCelular`, `TransporteResidencial`, `TransporteEscolar`, `CPF`, `Observacao`, `AnoLetivoProduto`
+- **ViewFilaLoteEnvioIA** — colunas: `IdEnvioLeitura`, `Codigo`, `IdAnoLetivo`, `IdRede`, `IdEscola`, `IdAgrupamento`, `IdAvaliacao`, `DataEnvio`, `EnvioIA`, `DataEnvioIA`, `IdGradeRedacao`, `GradeIsEnem`, `LoteIsBloqueado`, `QuantidadeCartoes`, `EnviadosParaIA`, `QuantidadeAlocada`
 - **ViewFuncionalidadeAcessada** — colunas: `Id`, `IdUsuario`, `IdPerfilAcesso`, `Rota`, `Link`, `Icone`, `Nome`, `Permissao`, `UltimoAcesso`
 - **ViewGabaritoParaCalculoTRI** — colunas: `Id`, `IdSimuladoTRI`, `id_questao`, `gabarito`
 - **ViewGoogleClassroomProfessorEmail** — colunas: `Id`, `IdRede`, `NomeRede`, `DominioEmailFuncionario`, `IdPessoa`, `NomePessoa`, `EmailPessoa`, `IdUsuario`, `EmailUsuario`
@@ -843,8 +857,8 @@
 - **ViewLogMaterialComplementarAcessado** — colunas: `HashConteudo`, `IdUsuario`
 - **ViewMarcaIntelped** — colunas: `IdMarca`, `NomeMarcaIntelped`
 - **ViewMarcacaoParaCalculoTRI** — colunas: `Id`, `IdSimuladoTRI`, `ra_aluno`, `marcacao`, `disciplina`, `id_questao`
-- **ViewMaterialComplementar** — colunas: `Id`, `Id`, `IdTipoRede`, `IdMaterial`, `IdAnoLetivo`, `HashTipoRede`, `NomeTipoRede`, `NomeRede`, `IdEscolaSerie`, `IdRede`, `HashRede`, `NomeEscola`, `NomeSerie`, `NomeRede`, `IdEscola`, `Descricao`, `Arquivo`, `HashEscola`, `NomeEscola`, `DataDe`, `DataAte`, `IdAnoLetivo`, `HashAnoLetivo`, `Prazo`, `IdRede`, `NomeAnoLetivo`, `IdSerie`, `IdEscola`, `IdSerie`, `HashSerie`, `NomeSerie`, `OrdemSerie`, `IdTurma`, `HashTurma`, `NomeTurma`, `IdPessoa`, `HashPessoa`, `NomePessoa`, `Matricula`, `IdDisciplina`, `HashDisciplina`, `NomeDisciplina`, `EhEletiva`, `IdConteudoOnline`, `HashConteudoOnline`, `NomeConteudoOnline`, `VideoIniciado`, `Progresso`, `DataPrimeiroAcesso`, `DataUltimaAtualizacao`
-- **ViewMaterialComplementar** — colunas: `Id`, `Id`, `IdTipoRede`, `IdMaterial`, `IdAnoLetivo`, `HashTipoRede`, `NomeTipoRede`, `NomeRede`, `IdEscolaSerie`, `IdRede`, `HashRede`, `NomeEscola`, `NomeSerie`, `NomeRede`, `IdEscola`, `Descricao`, `Arquivo`, `HashEscola`, `NomeEscola`, `DataDe`, `DataAte`, `IdAnoLetivo`, `HashAnoLetivo`, `Prazo`, `IdRede`, `NomeAnoLetivo`, `IdSerie`, `IdEscola`, `IdSerie`, `HashSerie`, `NomeSerie`, `OrdemSerie`, `IdTurma`, `HashTurma`, `NomeTurma`, `IdPessoa`, `HashPessoa`, `NomePessoa`, `Matricula`, `IdDisciplina`, `HashDisciplina`, `NomeDisciplina`, `EhEletiva`, `IdConteudoOnline`, `HashConteudoOnline`, `NomeConteudoOnline`, `VideoIniciado`, `Progresso`, `DataPrimeiroAcesso`, `DataUltimaAtualizacao`
+- **ViewMaterialComplementar** — colunas: `Id`, `Id`, `IdMaterial`, `IdTipoRede`, `HashTipoRede`, `IdAnoLetivo`, `NomeRede`, `NomeTipoRede`, `IdRede`, `IdEscolaSerie`, `NomeEscola`, `HashRede`, `NomeRede`, `NomeSerie`, `Descricao`, `IdEscola`, `HashEscola`, `Arquivo`, `DataDe`, `NomeEscola`, `IdAnoLetivo`, `DataAte`, `Prazo`, `HashAnoLetivo`, `NomeAnoLetivo`, `IdRede`, `IdEscola`, `IdSerie`, `HashSerie`, `IdSerie`, `NomeSerie`, `OrdemSerie`, `IdTurma`, `HashTurma`, `NomeTurma`, `IdPessoa`, `HashPessoa`, `NomePessoa`, `Matricula`, `IdDisciplina`, `HashDisciplina`, `NomeDisciplina`, `EhEletiva`, `IdConteudoOnline`, `HashConteudoOnline`, `NomeConteudoOnline`, `VideoIniciado`, `Progresso`, `DataPrimeiroAcesso`, `DataUltimaAtualizacao`
+- **ViewMaterialComplementar** — colunas: `Id`, `Id`, `IdMaterial`, `IdTipoRede`, `HashTipoRede`, `IdAnoLetivo`, `NomeRede`, `NomeTipoRede`, `IdRede`, `IdEscolaSerie`, `NomeEscola`, `HashRede`, `NomeRede`, `NomeSerie`, `Descricao`, `IdEscola`, `HashEscola`, `Arquivo`, `DataDe`, `NomeEscola`, `IdAnoLetivo`, `DataAte`, `Prazo`, `HashAnoLetivo`, `NomeAnoLetivo`, `IdRede`, `IdEscola`, `IdSerie`, `HashSerie`, `IdSerie`, `NomeSerie`, `OrdemSerie`, `IdTurma`, `HashTurma`, `NomeTurma`, `IdPessoa`, `HashPessoa`, `NomePessoa`, `Matricula`, `IdDisciplina`, `HashDisciplina`, `NomeDisciplina`, `EhEletiva`, `IdConteudoOnline`, `HashConteudoOnline`, `NomeConteudoOnline`, `VideoIniciado`, `Progresso`, `DataPrimeiroAcesso`, `DataUltimaAtualizacao`
 - **ViewMaterialDidaticoMonitoriaRelatorio** — colunas: `IdAnoLetivo`, `NomeAnoLetivo`, `IdMaterialDidatico`, `IdSerie`, `NomeSerie`, `EhSerieMilitar`, `IdDisciplina`, `NomeDisciplina`, `IdVolume`, `NomeVolume`, `IdModulo`, `NomeModulo`, `IdTipoQuestao`, `NomeTipoQuestao`, `IdQuestao`, `NomeQuestao`, `TotalPendentes`, `TotalLikes`, `TotalDislikes`, `TotalPedidos`, `TotalComentarios`
 - **ViewMaterialDidaticoProblema** — colunas: `Id`, `SerieId`, `SerieNome`, `DisciplinaId`, `DisciplinaNome`, `Volume`, `Pagina`, `Comentario`, `UsuarioNome`, `Email`, `Data`, `Arquivo`, `AnoLetivo`, `EscolaNome`
 - **ViewMaterialDidaticoProdutosPorContrato** — colunas: `Escola`, `CnpjEscola`, `Escola_Fornecedora`, `CnpjEscola_Fornecedora`, `Serie`, `Volume`, `id_produto`, `Produto`, `Quantidade`, `Desconto`, `Cortesia`, `AnoLetivo`, `IdEscola`
@@ -891,7 +905,7 @@
 - **ViewQuestaoLaplace** — colunas: `IdQuestao`, `HashQuestao`, `HashDisciplina`, `NomeDisciplina`, `HashSegmento`, `NomeSegmento`, `HashTag`, `NomeTag`, `Aprovada`, `Comentarios`, `Enunciado`, `QuestaoEhObjetiva`, `OpcaoA_Conteudo`, `OpcaoA_EhAOpcaoCorreta`, `OpcaoB_Conteudo`, `OpcaoB_EhAOpcaoCorreta`, `OpcaoC_Conteudo`, `OpcaoC_EhAOpcaoCorreta`, `OpcaoD_Conteudo`, `OpcaoD_EhAOpcaoCorreta`, `OpcaoE_Conteudo`, `OpcaoE_EhAOpcaoCorreta`, `GabaritoComentado`, `NomeAprovador`
 - **ViewRedacaoDigital** — colunas: `Id`, `IdUsuarioAluno`, `IdPessoaAluno`, `HashPessoaAluno`, `IdAnoletivo`, `HashAnoLetivo`, `NomeAnoLetivo`, `IdEscola`, `IdAgrupamento`, `IdSerie`, `IdProva`, `IdProvaCodigo`, `Matricula`, `IdProvaAvaliacao`, `HashProvaAvaliacao`, `NomeAvaliacao`, `NomeChamada`, `DataAplicacao`, `DataAplicacaoParaExibicao`, `DataLimiteEntregaRedacao`, `DataLimiteEntregaRedacaoParaExibicao`, `RedacaoIniciada`, `RedacaoEntregue`, `TemaRedacao`, `ConteudoRedacao`, `NomeImagem`, `CartaoCriado`, `Ativo`, `IdRedacaoDigital`, `HashTurma`
 - **ViewRedacaoOnlineEnvioLeitura** — colunas: `PossuiGabaritoSomatorio`, `IdLeitura`, `IdTipo`, `NomeTipo`, `IdRede`, `NomeRede`, `IdEscola`, `NomeEscola`, `IdAgrupamento`, `NomeAgrupamento`, `NomeArquivo`, `IdAnoLetivo`, `IdProva`, `NomeProva`, `IdTurno`, `NomeTurno`, `IdPOAPeriodo`, `IdPOATurma`, `SiglaPOAPeriodo`, `NomeTurma`, `IdStatus`, `NomeStatus`, `DataStatusParaBusca`, `NomeUsuarioStatus`, `DataStatus`, `DataStatusParaLog`, `EscolaPodeVisualizarCartoes`, `EscolaPodeTrocarStatus`, `RedePodeVisualizarCartoes`, `RedePodeTrocarStatus`, `ObservacoesEnvio`, `ObservacoesStatus`, `DataProva`, `DataEnvio`, `HoraEnvio`, `DataProcessamento`, `HoraProcessamento`, `DataProvaParaBusca`, `DataEnvioParaBusca`, `DataProcessamentoParaBusca`, `QuantidadeInformada`, `QuantidadeProcessada`, `QuantidadeIdentificada`, `QuantidadeAValidar`, `QuantidadeRAInvalido`, `QuantidadeCodigoProvaInvalido`, `QuantidadeDuplicidade`, `StatusRedacao`, `PendenteAlocacao`, `PendenteCorrecao`, `CorrecaoAndamento`, `CorrecaoConcluida`, `RedacaoLiberadaParaAutor`, `RedacaoPendentedeRevisao`, `RedacaoRevisada`, `NomeAvaliacao`, `DescricaoStausRedacao`, `PercentualValido`, `EhCartaoPadrao`, `EhCartaoSomatorio`, `EhCartaoPAS`
-- **ViewRedacaoRevisao** — colunas: `IdRedacaoRevisao`, `HashRedacaoRevisao`, `IdRedacao`, `HashRedacao`, `IdAnoLetivo`, `HashAnoLetivo`, `NomeAnoLetivo`, `IdRede`, `HashRede`, `NomeRede`, `IdEscola`, `HashEscola`, `NomeEscola`, `IdAgrupamento`, `HashAgrupamento`, `NomeAgrupamento`, `SiglaAgrupamento`, `NomeAgrupamentoFormatado`, `IdProva`, `HashProva`, `NomeProva`, `DataAplicacao`, `DataAplicacaoParaExibicao`, `IdAvaliacao`, `HashAvaliacao`, `NomeAvaliacao`, `IdPessoaAluno`, `HashPessoaAluno`, `NomePessoaAluno`, `Nota`, `IdUsuarioCorretor`, `HashUsuarioCorretor`, `NomePessoaCorretor`, `IdUsuarioSolicitante`, `HashUsuarioSolicitante`, `NomePessoaSolicitante`, `DataSolicitacaoRevisao`, `DataSolicitacaoRevisaoParaExibicao`, `IdStatusRedacaoRevisao`, `HashStatusRedacaoRevisao`, `NomeStatusRevisao`, `Aprovado`, `Negado`, `Finalizado`, `JustificativaSolicitante`, `JustificativaCorretor`
+- **ViewRedacaoRevisao** — colunas: `IdRedacaoRevisao`, `HashRedacaoRevisao`, `IdRedacao`, `HashRedacao`, `CorrecaoIA`, `NomeValidador`, `IdAnoLetivo`, `HashAnoLetivo`, `NomeAnoLetivo`, `IdRede`, `HashRede`, `NomeRede`, `IdEscola`, `HashEscola`, `NomeEscola`, `IdAgrupamento`, `HashAgrupamento`, `NomeAgrupamento`, `SiglaAgrupamento`, `NomeAgrupamentoFormatado`, `IdProva`, `HashProva`, `NomeProva`, `DataAplicacao`, `DataAplicacaoParaExibicao`, `IdAvaliacao`, `HashAvaliacao`, `NomeAvaliacao`, `IdPessoaAluno`, `HashPessoaAluno`, `NomePessoaAluno`, `Nota`, `IdUsuarioCorretor`, `HashUsuarioCorretor`, `NomePessoaCorretor`, `IdUsuarioSolicitante`, `HashUsuarioSolicitante`, `NomePessoaSolicitante`, `DataSolicitacaoRevisao`, `DataSolicitacaoRevisaoParaExibicao`, `IdStatusRedacaoRevisao`, `HashStatusRedacaoRevisao`, `NomeStatusRevisao`, `Aprovado`, `Negado`, `Finalizado`, `JustificativaSolicitante`, `JustificativaCorretor`
 - **ViewRegistroComportamento** — colunas: `Id`, `IdRede`, `HashRede`, `NomeRede`, `IdEscola`, `HashEscola`, `NomeEscola`, `IdAnoLetivo`, `IdSerie`, `HashSerie`, `NomeSerie`, `IdTurma`, `HashTurma`, `NomeTurma`, `IdDisciplina`, `HashDisciplina`, `NomeDisciplina`, `IdPessoaProfessor`, `HashPessoaProfessor`, `NomePessoaProfessor`, `IdTipoComportamento`, `HashTipoComportamento`, `NomeTipoComportamento`, `Positivo`, `Negativo`, `Informativo`, `IdAluno`, `HashAluno`, `NomeAluno`, `DataComportamento`
 - **ViewRegraDeAprovacao** — colunas: `Id`, `IdRede`, `HashRede`, `NomeRede`, `IdAnoLetivo`, `HashAnoLetivo`, `NomeAnoLetivo`, `IdAgrupamento`, `HashAgrupamento`, `NomeAgrupamento`, `IdEscola`, `HashEscola`, `NomeEscola`, `IdEstruturaSituacao`, `HashEstruturaSituacao`, `IdEstruturaRecuperacao`, `HashEstruturaRecuperacao`, `SiglaEtapaRecuperacao`, `NomeCicloRecuperacao`, `SiglaTipoAvaliacaoRecuperacao`, `OrdemCicloRecuperacao`, `NotaMinimaParaSerElegivel`, `NaoPossuiLimiteDeDisciplinas`, `MaximoDeDisciplinas`, `MinimoParaAprovacao`, `FazMediaComTotalCorrespondente`, `FazMediaComTotalAnual`, `ResultadoNaoPodeSerPiorQueAnterior`, `ResultadoNaoPodeSerMaiorQueMinimoParaAprovacao`, `PesoRecuperacao`, `OrdemEstruturaAvaliacao`
 - **ViewRelatorioAlteracoesCarga** — colunas: `Id`, `IdRede`, `HashRede`, `Marca`, `IdEscola`, `HashEscola`, `Unidade`, `Evento`, `MesOcorrencia`, `DataAlteracao`, `DataLancamento`, `IdTurma`, `NomeTurma`, `IdDisciplina`, `NomeDisciplina`, `QuantidadeTempos`, `IdPessoaProfessor`, `NomeProfessor`, `CPF`, `TipoCarga`, `IdMotivo`, `Motivo`, `IdUsuarioResponsavelLancamento`, `ResponsavelLancamento`, `Semanas`

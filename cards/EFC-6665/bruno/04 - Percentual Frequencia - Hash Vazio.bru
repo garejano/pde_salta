@@ -1,0 +1,24 @@
+meta {
+  name: 04 - Percentual Frequencia - Hash Vazio (espera erro de validacao)
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/aluno/percentualfrequencia-aluno?hashUsuarioOrigem=00000000-0000-0000-0000-000000000000
+  body: none
+  auth: none
+}
+
+params:query {
+  hashUsuarioOrigem: 00000000-0000-0000-0000-000000000000
+}
+
+headers {
+  x-api-key: {{apiKey}}
+}
+
+docs {
+  Guid.Empty — ConsultaPercentualFrequenciaService.ValidarRequest deve rejeitar
+  sem lançar exceção não tratada (erro de validação, não 500).
+}

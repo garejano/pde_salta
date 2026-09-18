@@ -1,0 +1,26 @@
+meta {
+  name: 03 - Percentual Frequencia - API Key Errada (espera 401)
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/aluno/percentualfrequencia-aluno?hashUsuarioOrigem={{hashUsuarioOrigem}}
+  body: none
+  auth: none
+}
+
+params:query {
+  hashUsuarioOrigem: {{hashUsuarioOrigem}}
+}
+
+headers {
+  x-api-key: chave-invalida-de-teste
+}
+
+docs {
+  Header presente mas com valor errado. Deve retornar 401 também.
+  Útil para descartar "secret não propagado" quando comparado com a request 01:
+  se essa der 401 e a 01 der 200, a chave configurada em documentacao-pedagogica
+  está correta para esse ambiente.
+}

@@ -1,0 +1,28 @@
+meta {
+  name: 01 - Percentual Frequencia - Aluno (sucesso)
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/aluno/percentualfrequencia-aluno?hashUsuarioOrigem={{hashUsuarioOrigem}}
+  body: none
+  auth: none
+}
+
+params:query {
+  hashUsuarioOrigem: {{hashUsuarioOrigem}}
+}
+
+headers {
+  x-api-key: {{apiKey}}
+}
+
+docs {
+  Endpoint machine-to-machine consumido por documentacao-pedagogica (SyncPercentualFrequenciaService).
+  Espera 200 com ServiceResult<List<PercentualFrequenciaAlunoResponse>> — lista vazia é sucesso
+  válido (aluno sem percentual calculado ainda, CA-06), não é erro.
+
+  Troque hashUsuarioOrigem no environment para o Usuario.HashOrigem do aluno testado
+  (esse valor muda entre Local e Homolog, são bases de dados diferentes).
+}

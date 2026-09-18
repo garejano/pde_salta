@@ -1,5 +1,5 @@
 # Angular Map — documentacao-pedagogica-diario
-> Gerado em: 2026-05-21  
+> Gerado em: 2026-07-30  
 > Fonte: `C:\projects\documentacao-pedagogica\frontend-diario-classe`
 
 ## Módulos

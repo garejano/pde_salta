@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/colors_and_type.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+  <style>@keyframes pill-spin { to { transform: rotate(360deg); } }</style>
+</helmet>
+
+<button onClick="{{ onClick }}" style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:{{ bg }};border:1px solid {{ border }};color:{{ textColor }};cursor:{{ cursor }};font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;" style-hover="background:{{ hoverBg }}">
+  <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}"><span class="material-symbols-outlined" style="font-size:16px;animation:pill-spin 0.8s linear infinite;">progress_activity</span></sc-if>
+  <sc-if value="{{ showLeadIcon }}" hint-placeholder-val="{{ false }}"><span class="material-symbols-outlined" style="font-size:16px;color:{{ leadIconColor }};">{{ leadIcon }}</span></sc-if>
+  {{ label }}<sc-if value="{{ showAsterisk }}" hint-placeholder-val="{{ false }}"><span style="color:#E65637;font-weight:800;margin-left:1px;">*</span></sc-if>
+  <sc-if value="{{ showSwitch }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;width:30px;height:16px;border-radius:999px;background:{{ trackColor }};position:relative;margin-left:2px;transition:background 160ms cubic-bezier(0.16,1,0.3,1);"><span style="position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:999px;background:#fff;transition:transform 160ms cubic-bezier(0.16,1,0.3,1);transform:{{ knobTransform }};box-shadow:0 1px 2px rgba(0,23,31,.2);"></span></span></sc-if>
+</button>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:200,&quot;height&quot;:140},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Opção&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;plain&quot;,&quot;check&quot;,&quot;circle&quot;,&quot;onoff&quot;],&quot;default&quot;:&quot;plain&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;defaultOn&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;required&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;loading&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;disabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;color&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#242CC2&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { on: false };
+
+  componentDidMount() {
+    this.setState({ on: !!this.props.defaultOn });
+  }
+
+  toggle() {
+    if (this.props.disabled || this.props.loading) return;
+    this.setState(s => ({ on: !s.on }));
+  }
+
+  renderVals() {
+    const color = this.props.color || '#242CC2';
+    const variant = this.props.variant || 'plain';
+    const on = !!this.state.on;
+    const disabled = !!this.props.disabled;
+    const loading = !!this.props.loading;
+    const required = !!this.props.required;
+    const isCheck = variant === 'check';
+    const isCircle = variant === 'circle';
+    const isOnOff = variant === 'onoff';
+    const needsFill = required && !on && !disabled;
+
+    let bg, border, textColor;
+    if (disabled) {
+      bg = '#EBEDF1'; border = '#EBEDF1'; textColor = '#ADB2BA';
+    } else if (isOnOff || isCircle) {
+      bg = '#fff';
+      if (needsFill) { border = textColor = '#E65637'; }
+      else if (on) { border = color; textColor = color; }
+      else { border = '#C3C8D1'; textColor = '#65686E'; }
+    } else {
+      if (on) { bg = color; border = color; textColor = '#fff'; }
+      else if (needsFill) { bg = '#fff'; border = textColor = '#E65637'; }
+      else { bg = '#fff'; border = color; textColor = color; }
+    }
+
+    const trackColor = disabled ? '#C3C8D1' : (on ? color : '#C3C8D1');
+
+    return {
+      onClick: () => this.toggle(),
+      bg, border, textColor,
+      cursor: disabled ? 'not-allowed' : (loading ? 'default' : 'pointer'),
+      hoverBg: (disabled || loading) ? bg : ((on && !isOnOff) ? bg : '#F8F9FB'),
+      label: this.props.label ?? 'Opção',
+      loading,
+      showLeadIcon: (isCheck || isCircle) && !loading,
+      leadIcon: isCircle ? (on ? 'check_circle' : 'radio_button_unchecked') : (on ? 'check' : 'add'),
+      leadIconColor: disabled ? '#ADB2BA' : (isCircle ? (on ? color : (needsFill ? '#E65637' : '#ADB2BA')) : 'currentColor'),
+      showSwitch: isOnOff && !loading,
+      trackColor,
+      knobTransform: on ? 'translateX(14px)' : 'translateX(0)',
+      showAsterisk: needsFill
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/colors_and_type.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+  <script src="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/_ds_bundle.js"></script>
+  <style>
+    body{margin:0}
+    .msi{font-family:"Material Symbols Outlined";font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;-webkit-font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
+  </style>
+</helmet>
+<div style="position:relative;width:100%;min-height:840px;background:#EEF0F3;font-family:'Nunito',system-ui,sans-serif;overflow:hidden;display:flex;justify-content:flex-end">
+
+  <sc-if value="{{ showBackdrop }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;inset:0;padding:28px 32px;filter:blur(1.5px);opacity:.7">
+      <div style="height:22px;width:280px;background:#D6DAE1;border-radius:6px;margin-bottom:20px"></div>
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:12px">
+        <div style="height:14px;background:#D6DAE1;border-radius:4px"></div>
+        <div style="height:14px;background:#D6DAE1;border-radius:4px"></div>
+        <div style="height:14px;background:#D6DAE1;border-radius:4px"></div>
+        <div style="height:14px;background:#D6DAE1;border-radius:4px"></div>
+      </div>
+      <div style="margin-top:16px;display:flex;flex-direction:column;gap:10px">
+        <div style="height:44px;background:#E2E5EA;border-radius:8px"></div>
+        <div style="height:44px;background:#E2E5EA;border-radius:8px"></div>
+        <div style="height:44px;background:#E2E5EA;border-radius:8px"></div>
+        <div style="height:44px;background:#E2E5EA;border-radius:8px"></div>
+        <div style="height:44px;background:#E2E5EA;border-radius:8px"></div>
+        <div style="height:44px;background:#E2E5EA;border-radius:8px"></div>
+      </div>
+    </div>
+    <div style="position:absolute;inset:0;background:rgba(15,15,16,.42)"></div>
+  </sc-if>
+
+  <!-- SIDE PANEL -->
+  <aside data-screen-label="Editar disciplina na Matriz" style="{{ panelStyle }}">
+
+    <!-- Header (fixed) -->
+    <header style="flex:none;padding:18px 20px 14px;border-bottom:1px solid #EBEDF1;display:flex;align-items:flex-start;gap:12px">
+      <div style="flex:1;min-width:0">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="msi" style="font-size:20px;color:#242CC2">menu_book</span>
+          <h2 style="margin:0;font-family:'Archivo';font-weight:600;font-size:17px;line-height:22px;color:#0F0F10">Editar disciplina na Matriz</h2>
+        </div>
+        <p style="margin:5px 0 0 28px;font-family:'Nunito';font-size:12px;line-height:16px;color:#65686E">Matriz Curricular 2025 · Ensino Médio</p>
+      </div>
+      <button style="flex:none;width:32px;height:32px;border:0;background:transparent;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#65686E">
+        <span class="msi" style="font-size:22px">close</span>
+      </button>
+    </header>
+
+    <!-- Scroll body -->
+    <div style="flex:1;min-height:0;overflow-y:auto;padding:16px 20px 20px;display:flex;flex-direction:column;gap:18px">
+
+      <!-- IDENTIFICAÇÃO -->
+      <section style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:7px">
+          <span style="width:3px;height:14px;background:#242CC2;border-radius:2px"></span>
+          <h3 style="margin:0;font-family:'Archivo';font-weight:600;font-size:13px;color:#0F0F10">Identificação</h3>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;border:1px solid #EBEDF1;border-radius:8px;padding:12px;background:#fff">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-family:'Inter';font-weight:500;font-size:11px;color:#65686E;flex:none">Disciplina</span>
+            <span style="font-family:'Archivo';font-weight:700;font-size:15px;color:#0F0F10">Biologia</span>
+          </div>
+          <div>
+            <div style="font-family:'Inter';font-weight:500;font-size:11px;color:#65686E;margin-bottom:4px">Área do conhecimento</div>
+            <div style="height:36px;border:1px solid #C3C8D1;border-radius:8px;padding:0 10px 0 12px;display:flex;align-items:center;justify-content:space-between;background:#fff">
+              <span style="font-family:'Nunito';font-size:13px;color:#0F0F10">Ciências da Natureza</span>
+              <span class="msi" style="font-size:20px;color:#65686E">expand_more</span>
+            </div>
+          </div>
+          <label style="display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none">
+            <span style="width:16px;height:16px;border-radius:4px;border:1.5px solid #C3C8D1;background:#fff;flex:none"></span>
+            <span style="font-family:'Nunito';font-size:13px;color:#0F0F10">Enriquecimento curricular</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- CONFIGURAÇÃO POR SÉRIE -->
+      <section style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+          <div style="display:flex;align-items:center;gap:7px">
+            <span style="width:3px;height:14px;background:#242CC2;border-radius:2px"></span>
+            <h3 style="margin:0;font-family:'Archivo';font-weight:600;font-size:13px;color:#0F0F10">Configuração por série</h3>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-family:'Archivo';font-weight:700;font-size:11px;color:#242CC2;background:#ECEDFF;border-radius:999px;padding:3px 9px">{{ selCount }} de {{ totalCount }}</span>
+            <div style="display:flex;border:1px solid #C3C8D1;border-radius:6px;overflow:hidden">
+              <button onClick="{{ showCards }}" style="{{ segCardsStyle }}"><span class="msi" style="font-size:16px">grid_view</span></button>
+              <button onClick="{{ showTable }}" style="{{ segTableStyle }}"><span class="msi" style="font-size:16px">table_rows</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bulk apply (compact inset) -->
+        <div style="background:#F2F2F2;border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:8px">
+          <span style="font-family:'Inter';font-weight:600;font-size:11px;color:#3D3F42">Aplicar a todas as séries selecionadas</span>
+          <div style="display:flex;gap:6px">
+            <div style="flex:1;height:32px;border:1px solid #C3C8D1;border-radius:8px;padding:0 10px;display:flex;align-items:center;background:#fff">
+              <span style="font-family:'Nunito';font-size:13px;color:#ADB2BA">Nome da matriz</span>
+            </div>
+            <button style="flex:none;height:32px;padding:0 12px;border:1px solid #242CC2;border-radius:8px;background:#fff;color:#242CC2;font-family:'Archivo';font-weight:700;font-size:12px;cursor:pointer">Aplicar</button>
+          </div>
+          <div style="display:flex;gap:6px">
+            <div style="flex:1;height:32px;border:1px solid #C3C8D1;border-radius:8px;padding:0 10px;display:flex;align-items:center;background:#fff">
+              <span style="font-family:'Nunito';font-size:13px;color:#ADB2BA">Carga horária — ex: 60, 60.50 ou 1.5</span>
+            </div>
+            <button style="flex:none;height:32px;padding:0 12px;border:1px solid #242CC2;border-radius:8px;background:#fff;color:#242CC2;font-family:'Archivo';font-weight:700;font-size:12px;cursor:pointer">Aplicar</button>
+          </div>
+        </div>
+
+        <!-- Select helper -->
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 2px">
+          <label style="display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none">
+            <span style="width:16px;height:16px;border-radius:4px;border:1.5px solid #242CC2;background:#242CC2;display:flex;align-items:center;justify-content:center;flex:none"><span class="msi" style="font-size:12px;color:#fff">remove</span></span>
+            <span style="font-family:'Nunito';font-size:13px;color:#0F0F10">Selecionar todas</span>
+          </label>
+          <div style="display:flex;gap:6px">
+            <span style="font-family:'Archivo';font-weight:700;font-size:11px;color:#3D3F42;border:1px solid #C3C8D1;border-radius:999px;padding:3px 10px;cursor:pointer">Militar</span>
+            <span style="font-family:'Archivo';font-weight:700;font-size:11px;color:#3D3F42;border:1px solid #C3C8D1;border-radius:999px;padding:3px 10px;cursor:pointer">Regular</span>
+          </div>
+        </div>
+
+        <!-- Série cards grid -->
+        <sc-if value="{{ isCards }}" hint-placeholder-val="{{ true }}">
+        <div style="{{ gridStyle }}">
+          <sc-for list="{{ series }}" as="s" hint-placeholder-count="6">
+            <div style="{{ s.cardStyle }}">
+              <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;user-select:none">
+                <span style="{{ s.boxStyle }}">
+                  <sc-if value="{{ s.sel }}" hint-placeholder-val="{{ true }}"><span class="msi" style="font-size:12px;color:#fff">check</span></sc-if>
+                </span>
+                <span style="font-family:'Archivo';font-weight:600;font-size:12.5px;line-height:15px;color:#0F0F10;flex:1">{{ s.serie }}</span>
+              </label>
+              <div>
+                <div style="font-family:'Inter';font-weight:500;font-size:10.5px;color:#65686E;margin-bottom:3px">Nome da matriz</div>
+                <div style="{{ s.fieldStyle }}"><span style="font-family:'Nunito';font-size:13px;color:{{ s.textColor }};overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ s.nome }}</span></div>
+              </div>
+              <div>
+                <div style="font-family:'Inter';font-weight:500;font-size:10.5px;color:#65686E;margin-bottom:3px">Carga horária</div>
+                <div style="{{ s.fieldStyle }};justify-content:space-between">
+                  <span style="font-family:'Nunito';font-size:13px;color:{{ s.textColor }}">{{ s.carga }}</span>
+                  <span style="font-family:'Nunito';font-weight:700;font-size:11px;color:#ADB2BA">h/ano</span>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        </sc-if>
+
+        <!-- Série tabela compacta (editável) -->
+        <sc-if value="{{ isTable }}" hint-placeholder-val="{{ true }}">
+        <div style="border:1px solid #EBEDF1;border-radius:8px;overflow:hidden">
+          <div style="{{ tableHeaderStyle }}">
+            <span></span>
+            <span style="font-family:'Archivo';font-weight:700;font-size:11px;color:#3D3F42">Série</span>
+            <span style="font-family:'Archivo';font-weight:700;font-size:11px;color:#3D3F42">Nome da matriz</span>
+            <span style="font-family:'Archivo';font-weight:700;font-size:11px;color:#3D3F42;text-align:right">Carga</span>
+          </div>
+          <sc-for list="{{ series }}" as="s" hint-placeholder-count="6">
+            <div style="{{ s.rowStyle }}">
+              <span onClick="{{ s.onToggle }}" style="{{ s.boxStyle }}">
+                <sc-if value="{{ s.sel }}" hint-placeholder-val="{{ true }}"><span class="msi" style="font-size:12px;color:#fff">check</span></sc-if>
+              </span>
+              <span style="font-family:'Archivo';font-weight:600;font-size:12px;line-height:15px;color:{{ s.textColor }}">{{ s.serie }}</span>
+              <input value="{{ s.nome }}" onChange="{{ s.onNome }}" style="{{ s.inputStyle }}">
+              <input value="{{ s.carga }}" onChange="{{ s.onCarga }}" style="{{ s.cargaInputStyle }}">
+            </div>
+          </sc-for>
+        </div>
+        </sc-if>
+      </section>
+    </div>
+
+    <!-- Footer (fixed) -->
+    <footer style="flex:none;border-top:1px solid #EBEDF1;padding:12px 20px 14px;display:flex;flex-direction:column;gap:12px;box-shadow:0 -2px 4px 0 rgba(0,23,31,.06)">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;background:#ECEDFF;border:1px solid #A7ABE6;border-radius:8px;padding:8px 12px">
+        <span style="display:flex;align-items:center;gap:7px;font-family:'Nunito';font-weight:700;font-size:13px;color:#191F88"><span class="msi" style="font-size:18px;color:#242CC2">functions</span>Total da matriz</span>
+        <span><span style="font-family:'Archivo';font-weight:700;font-size:18px;color:#242CC2">{{ total }}</span><span style="font-family:'Nunito';font-weight:700;font-size:11px;color:#666BD4;margin-left:3px">h/ano</span></span>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+        <button style="height:36px;padding:0 12px;border:1px solid #E65637;border-radius:8px;background:#fff;color:#E65637;font-family:'Archivo';font-weight:700;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
+          <span class="msi" style="font-size:18px">delete</span>Remover da Matriz
+        </button>
+        <div style="display:flex;gap:8px">
+          <button style="height:36px;padding:0 16px;border:0;border-radius:8px;background:transparent;color:#242CC2;font-family:'Archivo';font-weight:700;font-size:13px;cursor:pointer">Cancelar</button>
+          <button style="height:36px;padding:0 18px;border:0;border-radius:8px;background:#242CC2;color:#fff;font-family:'Archivo';font-weight:700;font-size:13px;cursor:pointer">Salvar</button>
+        </div>
+      </div>
+    </footer>
+  </aside>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1100,&quot;height&quot;:840},&quot;serieLayout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;cards&quot;,&quot;tabela&quot;],&quot;default&quot;:&quot;cards&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Séries&quot;},&quot;panelWidth&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:380,&quot;min&quot;:360,&quot;max&quot;:640,&quot;step&quot;:10,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;columns&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;1&quot;,&quot;2&quot;],&quot;default&quot;:&quot;2&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;showBackdrop&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      viewMode: props.serieLayout ?? "cards",
+      series: [
+        { serie: "1ª Série INEJ/TA",      nome: "Biologia", carga: "60.00",  sel: true  },
+        { serie: "1ª Série Medicina",     nome: "Biologia", carga: "120.00", sel: true  },
+        { serie: "1ª Série Preparatória", nome: "Biologia", carga: "60.00",  sel: true  },
+        { serie: "1ª Série EsPCEx",       nome: "Biologia", carga: "60.00",  sel: true  },
+        { serie: "2ª Série INEJ/TA",      nome: "Biologia", carga: "60.00",  sel: true  },
+        { serie: "2ª Série Medicina",     nome: "Biologia", carga: "120.00", sel: true  },
+        { serie: "2ª Série Regular",      nome: "Biologia", carga: "120.00", sel: true  },
+        { serie: "2ª Série Preparatória", nome: "Biologia", carga: "",       sel: false },
+        { serie: "3ª Série ATA/EFOMM",    nome: "Biologia", carga: "240.00", sel: true  },
+        { serie: "3ª Série Regular",      nome: "Biologia", carga: "240.00", sel: true  },
+      ],
+    };
+  }
+
+  componentDidUpdate(prev) {
+    if (prev.serieLayout !== this.props.serieLayout && this.props.serieLayout) {
+      this.setState({ viewMode: this.props.serieLayout });
+    }
+  }
+
+  _patch(i, patch) {
+    this.setState(st => {
+      const s = st.series.slice();
+      s[i] = { ...s[i], ...patch };
+      return { series: s };
+    });
+  }
+
+  renderVals() {
+    const pw = this.props.panelWidth ?? 380;
+    const cols = parseInt(this.props.columns ?? "2", 10) || 2;
+    const showBackdrop = this.props.showBackdrop ?? true;
+    const view = this.state.viewMode;
+    const isCards = view !== "tabela";
+    const isTable = view === "tabela";
+    const base = this.state.series;
+
+    const series = base.map((s, i) => {
+      const tc = s.sel ? "#0F0F10" : "#ADB2BA";
+      return {
+        ...s,
+        textColor: tc,
+        onToggle: () => this._patch(i, { sel: !s.sel }),
+        onNome:  (e) => this._patch(i, { nome: e.target.value }),
+        onCarga: (e) => this._patch(i, { carga: e.target.value }),
+        cardStyle: {
+          border: `1px solid ${s.sel ? "#C3C8D1" : "#EBEDF1"}`,
+          background: s.sel ? "#fff" : "#F8F9FB",
+          borderRadius: 8, padding: 10,
+          display: "flex", flexDirection: "column", gap: 9,
+          opacity: s.sel ? 1 : 0.7,
+        },
+        boxStyle: {
+          width: 16, height: 16, borderRadius: 4,
+          border: `1.5px solid ${s.sel ? "#242CC2" : "#C3C8D1"}`,
+          background: s.sel ? "#242CC2" : "#fff",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          flexShrink: 0, marginTop: 1, cursor: "pointer",
+        },
+        fieldStyle: {
+          height: 30, border: "1px solid #C3C8D1", borderRadius: 8,
+          padding: "0 10px", display: "flex", alignItems: "center",
+          background: s.sel ? "#fff" : "#F2F2F2",
+        },
+        rowStyle: {
+          display: "grid", gridTemplateColumns: "18px minmax(0,1fr) 100px 60px",
+          gap: 8, alignItems: "center", padding: "7px 10px",
+          borderBottom: "1px solid #EBEDF1", opacity: s.sel ? 1 : 0.6,
+        },
+        inputStyle: {
+          height: 28, width: "100%", boxSizing: "border-box",
+          border: "1px solid #C3C8D1", borderRadius: 6, padding: "0 8px",
+          fontFamily: "Nunito", fontSize: 12.5, color: tc,
+          background: s.sel ? "#fff" : "#F2F2F2", outline: "none",
+        },
+        cargaInputStyle: {
+          height: 28, width: "100%", boxSizing: "border-box",
+          border: "1px solid #C3C8D1", borderRadius: 6, padding: "0 8px",
+          fontFamily: "Nunito", fontSize: 12.5, color: tc,
+          background: s.sel ? "#fff" : "#F2F2F2", outline: "none", textAlign: "right",
+        },
+      };
+    });
+
+    const total = base.filter(s => s.sel)
+      .reduce((a, s) => a + (parseFloat(s.carga) || 0), 0)
+      .toFixed(2);
+
+    const seg = active => ({
+      width: 30, height: 26, border: 0, cursor: "pointer",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      background: active ? "#242CC2" : "#fff", color: active ? "#fff" : "#65686E",
+    });
+
+    return {
+      series, showBackdrop, isCards, isTable,
+      selCount: base.filter(s => s.sel).length,
+      totalCount: base.length,
+      total,
+      showCards: () => this.setState({ viewMode: "cards" }),
+      showTable: () => this.setState({ viewMode: "tabela" }),
+      segCardsStyle: seg(isCards),
+      segTableStyle: { ...seg(isTable), borderLeft: "1px solid #C3C8D1" },
+      panelStyle: {
+        width: pw, flex: "none", background: "#fff",
+        display: "flex", flexDirection: "column",
+        height: 840, maxHeight: "100%",
+        boxShadow: "0 0 32px 0 rgba(0,23,31,.18)",
+        position: "relative", zIndex: 2,
+      },
+      gridStyle: {
+        display: "grid",
+        gridTemplateColumns: `repeat(${cols}, minmax(0,1fr))`,
+        gap: 10,
+      },
+      tableHeaderStyle: {
+        display: "grid", gridTemplateColumns: "18px minmax(0,1fr) 100px 60px",
+        gap: 8, alignItems: "center", padding: "8px 10px",
+        background: "#F8F9FB", borderBottom: "1px solid #ADB2BA",
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

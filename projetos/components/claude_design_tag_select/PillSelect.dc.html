@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/colors_and_type.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+  <style>
+    @keyframes pill-spin { to { transform: rotate(360deg); } }
+    .pill-menu { scrollbar-width: thin; scrollbar-color: #C3C8D1 transparent; }
+    .pill-menu::-webkit-scrollbar { width: 6px; }
+    .pill-menu::-webkit-scrollbar-track { background: transparent; }
+    .pill-menu::-webkit-scrollbar-thumb { background: #C3C8D1; border-radius: 999px; }
+    .pill-menu::-webkit-scrollbar-thumb:hover { background: #ADB2BA; }
+  </style>
+</helmet>
+
+<div ref="{{ rootRef }}" style="position:relative;display:inline-block;font-family:Archivo;">
+  <button onClick="{{ toggle }}" style="display:inline-flex;align-items:center;gap:6px;padding:4px 8px 4px 12px;border-radius:999px;background:{{ btnBg }};cursor:{{ cursor }};font-family:Archivo;font-weight:700;font-size:13px;white-space:nowrap;border:1px solid {{ borderColor }};color:{{ textColor }};" style-hover="background:{{ hoverBg }}">
+    <sc-if value="{{ showIcon }}" hint-placeholder-val="{{ false }}"><span class="material-symbols-outlined" style="font-size:16px;">{{ icon }}</span></sc-if>{{ display }}<sc-if value="{{ showRequired }}" hint-placeholder-val="{{ false }}"><span style="color:#E65637;font-weight:800;margin-left:1px;">*</span></sc-if>
+    <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}"><span class="material-symbols-outlined" style="font-size:18px;animation:pill-spin 0.8s linear infinite;">progress_activity</span></sc-if>
+    <sc-if value="{{ notLoading }}" hint-placeholder-val="{{ true }}"><span class="material-symbols-outlined" style="font-size:18px;transition:transform 160ms cubic-bezier(0.16,1,0.3,1);transform:{{ chevronTransform }};">expand_more</span></sc-if>
+  </button>
+
+  <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+    <div class="pill-menu" style="{{ menuStyle }}">
+      <sc-for list="{{ items }}" as="opt" hint-placeholder-count="3">
+        <div onClick="{{ opt.onSelect }}" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;cursor:pointer;font-family:Nunito;font-size:14px;white-space:nowrap;color:{{ opt.color }};font-weight:{{ opt.weight }};" style-hover="background:#EBEDF1">
+          <span class="material-symbols-outlined" style="font-size:18px;visibility:{{ opt.checkVis }};color:{{ borderColor }};">check</span>
+          {{ opt.label }}
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:260,&quot;height&quot;:220},&quot;prefix&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Ano&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;placeholder&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;icon&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;required&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;loading&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;disabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;maxVisible&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:8,&quot;min&quot;:3,&quot;max&quot;:20,&quot;tsType&quot;:&quot;number&quot;},&quot;color&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#242CC2&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;direction&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;down&quot;,&quot;up&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  state = { open: false, value: null, flip: false };
+
+  componentDidMount() {
+    const opts = this.props.options || [];
+    const initial = this.props.value ?? (this.props.placeholder ? null : (opts[0] ?? null));
+    this.setState({ value: initial });
+    this._onDoc = (e) => {
+      if (this.rootRef.current && !this.rootRef.current.contains(e.target)) {
+        this.setState({ open: false });
+      }
+    };
+    document.addEventListener('mousedown', this._onDoc);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this._onDoc);
+  }
+
+  toggle() {
+    if (this.props.disabled || this.props.loading) return;
+    const dir = this.props.direction || 'auto';
+    let flip = dir === 'up';
+    if (dir === 'auto' && this.rootRef.current) {
+      const r = this.rootRef.current.getBoundingClientRect();
+      const below = window.innerHeight - r.bottom;
+      const mv = this.props.maxVisible || 8;
+      const need = Math.min(Math.min((this.props.options || []).length, mv) * 38 + 16, 320);
+      flip = below < need && r.top > below;
+    }
+    this.setState(s => ({ open: !s.open, flip }));
+  }
+
+  select(opt) {
+    this.setState({ value: opt, open: false });
+  }
+
+  renderVals() {
+    const opts = this.props.options || [];
+    const prefix = this.props.prefix ? this.props.prefix + ': ' : '';
+    const color = this.props.color || '#242CC2';
+    const hasVal = this.state.value != null;
+    const val = hasVal ? this.state.value : null;
+    const empty = !hasVal && !!this.props.placeholder;
+    const disabled = !!this.props.disabled;
+    const loading = !!this.props.loading;
+    let borderColor, textColor;
+    if (disabled) { borderColor = '#EBEDF1'; textColor = '#ADB2BA'; }
+    else if (empty && this.props.required) { borderColor = textColor = '#E65637'; }
+    else if (empty) { borderColor = '#C3C8D1'; textColor = '#65686E'; }
+    else { borderColor = textColor = color; }
+    const maxVisible = this.props.maxVisible || 8;
+    const rowH = 38;
+    const menuStyle = [
+      'position:absolute', 'left:0', 'min-width:100%', 'z-index:50',
+      'background:#fff', 'border:1px solid #C3C8D1', 'border-radius:8px',
+      'box-shadow:0 8px 24px rgba(0,23,31,.15)', 'padding:4px',
+      'overflow-y:auto',
+      (opts.length > maxVisible) ? ('max-height:' + (maxVisible * rowH + 8) + 'px') : '',
+      this.state.flip ? 'bottom:calc(100% + 6px)' : 'top:calc(100% + 6px)'
+    ].filter(Boolean).join(';');
+    return {
+      rootRef: this.rootRef,
+      toggle: () => this.toggle(),
+      open: this.state.open,
+      borderColor,
+      textColor,
+      btnBg: disabled ? '#EBEDF1' : '#fff',
+      cursor: disabled ? 'not-allowed' : (loading ? 'default' : 'pointer'),
+      hoverBg: (disabled || loading) ? (disabled ? '#EBEDF1' : '#fff') : '#F8F9FB',
+      loading,
+      notLoading: !loading,
+      showRequired: !!(empty && this.props.required && !disabled),
+      icon: this.props.icon,
+      showIcon: !!this.props.icon,
+      display: empty ? this.props.placeholder : (prefix + val),
+      chevronTransform: this.state.open ? 'rotate(180deg)' : 'rotate(0deg)',
+      menuStyle,
+      items: opts.map(o => {
+        const sel = o === val;
+        return {
+          label: o,
+          onSelect: () => this.select(o),
+          color: sel ? color : '#3D3F42',
+          weight: sel ? 700 : 400,
+          checkVis: sel ? 'visible' : 'hidden'
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

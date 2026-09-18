@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "EFC-6665 - Percentual Frequencia (estrutura-pedagogica)",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

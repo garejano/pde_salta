@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/colors_and_type.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+  <script src="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/_ds_bundle.js"></script>
+  <style>
+    body{margin:0;background:#fff;}
+    a{color:#242CC2;text-decoration:none;}
+    a:hover{color:#1E258F;text-decoration:underline;}
+    @keyframes pulseDot{0%,80%,100%{opacity:.25;}40%{opacity:1;}}
+  </style>
+</helmet>
+<div style="font-family:'Nunito',sans-serif;color:#0F0F10;min-height:100vh;background:#fff;">
+  <div style="padding:32px 40px 0;">
+    <h1 style="margin:0 0 20px;font-family:'Archivo';font-weight:700;font-size:32px;line-height:1.2;color:#0F0F10;">Documentação Pedagógica</h1>
+    <x-import component-from-global-scope="Tabs" tabs="{{ tabs }}" activeId="{{ tab }}" onChange="{{ setTab }}" hint-size="100%,48px"></x-import>
+  </div>
+
+  <sc-if value="{{ isAlunos }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:24px 40px 40px;" data-screen-label="Alunos">
+      <p style="font-family:Nunito;font-size:14px;color:#65686E;margin:0 0 16px;">Lista de alunos matriculados na rede selecionada.</p>
+      <x-import component-from-global-scope="Table" columns="{{ alunosColumns }}" rows="{{ alunosRows }}" hint-size="100%,320px"></x-import>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isTurmas }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:24px 40px 40px;display:flex;gap:16px;flex-wrap:wrap;" data-screen-label="Turmas">
+      <sc-for list="{{ turmas }}" as="t" hint-placeholder-count="3">
+        <div style="border:1px solid #C3C8D1;border-radius:8px;padding:20px;min-width:200px;">
+          <div style="font-family:Archivo;font-weight:700;font-size:18px;color:#0F0F10;">{{ t.nome }}</div>
+          <div style="font-family:Nunito;font-size:14px;color:#65686E;margin-top:4px;">{{ t.alunos }} alunos</div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isConfig }}" hint-placeholder-val="{{ true }}">
+    <div style="max-width:1280px;margin:0 auto;padding:24px 40px 64px;" data-screen-label="Configurações">
+      <h2 style="margin:0 0 20px;font-family:Archivo;font-weight:700;font-size:24px;color:#0F0F10;">Configurações</h2>
+
+      <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:center;gap:10px;padding:40px 0;">
+          <span style="width:8px;height:8px;border-radius:50%;background:#242CC2;animation:pulseDot 1s infinite;"></span>
+          <span style="width:8px;height:8px;border-radius:50%;background:#242CC2;animation:pulseDot 1s infinite 0.15s;"></span>
+          <span style="width:8px;height:8px;border-radius:50%;background:#242CC2;animation:pulseDot 1s infinite 0.3s;"></span>
+          <span style="font-family:Nunito;font-size:14px;color:#65686E;margin-left:6px;">Carregando...</span>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ contentVisible }}" hint-placeholder-val="{{ true }}">
+        <div style="display:grid;grid-template-columns:minmax(320px,380px) 1fr;gap:20px;align-items:start;">
+
+          <div style="display:flex;flex-direction:column;gap:16px;padding:20px;border:1px solid #C3C8D1;border-radius:12px;background:#fff;position:relative;">
+            <div style="position:relative;">
+              <label style="display:block;font-family:Inter;font-weight:600;font-size:12px;color:#0F0F10;margin-bottom:6px;">Rede</label>
+              <div onClick="{{ toggleRedeOpen }}" style="display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border:1px solid #C3C8D1;border-radius:8px;background:#fff;cursor:pointer;">
+                <span style="flex:1;font-family:Nunito;font-size:14px;color:#0F0F10;">{{ redeSelecionada.nome }}</span>
+                <sc-if value="{{ redeSelecionada }}" hint-placeholder-val="{{ true }}">
+                  <span onClick="{{ clearRede }}" style="font-family:'Material Symbols Outlined';font-size:18px;color:#65686E;cursor:pointer;">close</span>
+                </sc-if>
+                <span style="font-family:'Material Symbols Outlined';font-size:20px;color:#65686E;">expand_more</span>
+              </div>
+              <sc-if value="{{ redeOpen }}" hint-placeholder-val="{{ false }}">
+                <div onClick="{{ toggleRedeOpen }}" style="position:fixed;inset:0;z-index:9;"></div>
+                <div style="position:absolute;top:100%;left:0;right:0;margin-top:4px;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);overflow:hidden;z-index:10;">
+                  <sc-for list="{{ redes }}" as="rd" hint-placeholder-count="3">
+                    <div onClick="{{ rd.onSelect }}" style="padding:10px 12px;font-family:Nunito;font-size:14px;color:#0F0F10;cursor:pointer;">{{ rd.nome }}</div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+
+            <div style="height:1px;background:#EBEDF1;"></div>
+
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="width:28px;height:28px;border-radius:8px;background:#ECEDFF;color:#242CC2;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Material Symbols Outlined';font-size:18px;">description</span>
+                <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#3D3F42;">Documento</h3>
+              </div>
+              <label style="display:block;font-family:Inter;font-weight:500;font-size:12px;color:#0F0F10;margin-bottom:8px;">Alinhamento do título</label>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;background:#EBEDF1;border-radius:10px;">
+                <sc-for list="{{ alinhamentoOptions }}" as="ao" hint-placeholder-count="2">
+                  <button type="button" onClick="{{ ao.onSelect }}" style="{{ ao.style }}">{{ ao.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="width:28px;height:28px;border-radius:8px;background:#ECEDFF;color:#242CC2;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Material Symbols Outlined';font-size:18px;">rule</span>
+                <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#3D3F42;">Notas e status</h3>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <sc-for list="{{ geralChecksLeft }}" as="gc" hint-placeholder-count="3">
+                  <x-import component-from-global-scope="Checkbox" label="{{ gc.label }}" checked="{{ gc.checked }}" onChange="{{ gc.onChange }}" hint-size="auto,24px"></x-import>
+                </sc-for>
+              </div>
+            </div>
+
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="width:28px;height:28px;border-radius:8px;background:#ECEDFF;color:#242CC2;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Material Symbols Outlined';font-size:18px;">badge</span>
+                <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#3D3F42;">Nomenclatura por série</h3>
+              </div>
+              <div style="max-height:180px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;border:1px solid #EBEDF1;border-radius:8px;padding:10px 12px;background:#F8F9FB;">
+                <sc-for list="{{ geralSeries }}" as="sr2" hint-placeholder-count="3">
+                  <div style="display:flex;align-items:center;gap:8px;font-family:Nunito;font-size:13px;">
+                    <span style="color:#65686E;">{{ sr2.serie }}</span>
+                    <span style="font-family:'Material Symbols Outlined';font-size:16px;color:#ADB2BA;">arrow_forward</span>
+                    <span style="color:#0F0F10;font-weight:600;">{{ sr2.nomenclatura }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="margin-top:10px;">
+                <x-import component-from-global-scope="Button" variant="outline" size="sm" onClick="{{ openSeriesPanel }}" hint-size="140px,32px">Editar nomenclatura</x-import>
+              </div>
+            </div>
+          </div>
+
+          <sc-if value="{{ seriesPanelOpen }}" hint-placeholder-val="{{ false }}">
+            <div onClick="{{ closeSeriesPanelCancel }}" style="position:fixed;inset:0;background:rgba(15,15,16,0.4);z-index:19;"></div>
+            <div style="position:fixed;top:0;right:0;bottom:0;width:400px;max-width:92vw;background:#fff;z-index:20;box-shadow:-4px 0 16px rgba(0,23,31,0.15);display:flex;flex-direction:column;">
+              <div style="padding:20px 24px;border-bottom:1px solid #EBEDF1;display:flex;align-items:center;justify-content:space-between;">
+                <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:18px;color:#0F0F10;">Nomenclatura por série</h3>
+                <span onClick="{{ closeSeriesPanelCancel }}" style="cursor:pointer;font-family:'Material Symbols Outlined';font-size:22px;color:#65686E;">close</span>
+              </div>
+              <div style="flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:16px;">
+                <p style="margin:0;font-family:Nunito;font-size:13px;color:#65686E;">Defina como cada série é nomeada nos documentos gerados.</p>
+                <sc-for list="{{ geralSeries }}" as="srp" hint-placeholder-count="4">
+                  <div style="display:flex;flex-direction:column;gap:6px;">
+                    <label style="font-family:Inter;font-weight:600;font-size:12px;color:#0F0F10;">{{ srp.serie }}</label>
+                    <x-import component-from-global-scope="Input" value="{{ srp.nomenclatura }}" onChange="{{ srp.onChange }}" hint-size="100%,40px"></x-import>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="padding:16px 24px;border-top:1px solid #EBEDF1;display:flex;justify-content:flex-end;gap:8px;">
+                <x-import component-from-global-scope="Button" variant="ghost" size="sm" onClick="{{ closeSeriesPanelCancel }}" hint-size="90px,32px">Cancelar</x-import>
+                <x-import component-from-global-scope="Button" variant="fill" size="sm" onClick="{{ saveSeriesPanel }}" hint-size="90px,32px">Salvar</x-import>
+              </div>
+            </div>
+          </sc-if>
+
+          <div style="border:1px solid #C3C8D1;border-radius:12px;background:#fff;overflow:hidden;">
+            <div style="display:flex;gap:28px;padding:0 20px;border-bottom:1px solid #EBEDF1;">
+              <sc-for list="{{ rightTabs }}" as="rt" hint-placeholder-count="3">
+                <button type="button" onClick="{{ rt.onSelect }}" style="{{ rt.style }}">{{ rt.label }}</button>
+              </sc-for>
+            </div>
+
+            <div style="padding:20px;">
+            <sc-if value="{{ isRedeTab }}" hint-placeholder-val="{{ true }}">
+
+          <sc-if value="{{ docsListVisible }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;">
+            <sc-for list="{{ sections }}" as="secCard" hint-placeholder-count="5">
+              <button type="button" onClick="{{ secCard.onOpenDoc }}" style="display:flex;flex-direction:column;gap:10px;align-items:flex-start;text-align:left;padding:16px;border:1px solid #C3C8D1;border-radius:10px;background:#fff;cursor:pointer;">
+                <span style="width:36px;height:36px;border-radius:9px;background:#ECEDFF;color:#242CC2;display:inline-flex;align-items:center;justify-content:center;font-family:'Material Symbols Outlined';font-size:20px;">{{ secCard.icon }}</span>
+                <div>
+                  <div style="font-family:Archivo;font-weight:700;font-size:14px;color:#0F0F10;">{{ secCard.title }}</div>
+                  <div style="font-family:Nunito;font-size:12px;color:#65686E;margin-top:2px;">{{ secCard.description }}</div>
+                </div>
+              </button>
+            </sc-for>
+          </div>
+          </sc-if>
+
+          <sc-for list="{{ sections }}" as="sec" hint-placeholder-count="5">
+            <sc-if value="{{ sec.isActiveDoc }}" hint-placeholder-val="{{ false }}">
+              <div>
+                <button type="button" onClick="{{ backToDocs }}" style="display:inline-flex;align-items:center;gap:6px;border:0;background:transparent;color:#242CC2;font-family:Archivo;font-weight:700;font-size:14px;cursor:pointer;padding:0 0 16px;">
+                  <span style="font-family:'Material Symbols Outlined';font-size:18px;">arrow_back</span>
+                  Voltar aos documentos
+                </button>
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+                  <span style="width:32px;height:32px;border-radius:9px;background:#ECEDFF;color:#242CC2;display:inline-flex;align-items:center;justify-content:center;font-family:'Material Symbols Outlined';font-size:18px;">{{ sec.icon }}</span>
+                  <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:18px;color:#0F0F10;">{{ sec.title }}</h3>
+                </div>
+                <div>
+                      <sc-if value="{{ sec.isRead }}" hint-placeholder-val="{{ true }}">
+                        <div style="display:flex;flex-direction:column;gap:14px;">
+                          <sc-for list="{{ sec.readRows }}" as="row" hint-placeholder-count="4">
+                            <div>
+                              <div style="font-family:Inter;font-weight:600;font-size:12px;color:#65686E;margin-bottom:2px;">{{ row.label }}</div>
+                              <div style="font-family:Nunito;font-size:15px;color:#0F0F10;white-space:pre-wrap;">{{ row.value }}</div>
+                            </div>
+                          </sc-for>
+                          <div style="padding-top:8px;">
+                            <x-import component-from-global-scope="Button" variant="outline" size="sm" onClick="{{ sec.onEdit }}" hint-size="100px,32px">Editar</x-import>
+                          </div>
+                        </div>
+                      </sc-if>
+
+                      <sc-if value="{{ sec.isEdit }}" hint-placeholder-val="{{ false }}">
+                        <div style="display:flex;flex-direction:column;gap:20px;">
+                          <sc-for list="{{ sec.radios }}" as="rg" hint-placeholder-count="2">
+                            <x-import component-from-global-scope="RadioGroup" options="{{ rg.options }}" value="{{ rg.value }}" onChange="{{ rg.onChange }}" label="{{ rg.label }}" hint-size="100%,90px"></x-import>
+                          </sc-for>
+
+                          <sc-if value="{{ sec.isHistorico }}" hint-placeholder-val="{{ false }}">
+                            <div style="display:flex;flex-direction:column;gap:12px;">
+                              <x-import component-from-global-scope="Checkbox" label="Possui critérios de avaliação" checked="{{ historicoShowObs }}" onChange="{{ onObsToggle }}" hint-size="auto,24px"></x-import>
+                              <sc-if value="{{ historicoShowObs }}" hint-placeholder-val="{{ false }}">
+                                <textarea value="{{ historico.observacao }}" onChange="{{ onObsChangeEvt }}" placeholder="Descreva os critérios de avaliação" style="width:100%;min-height:80px;border:1px solid #C3C8D1;border-radius:8px;padding:10px 12px;font-family:Nunito;font-size:14px;color:#0F0F10;box-sizing:border-box;resize:vertical;"></textarea>
+                              </sc-if>
+                              <x-import component-from-global-scope="Checkbox" label="Possui certificado de conclusão" checked="{{ historicoShowCert }}" onChange="{{ onCertToggle }}" hint-size="auto,24px"></x-import>
+                              <sc-if value="{{ historicoShowCert }}" hint-placeholder-val="{{ false }}">
+                                <div style="display:flex;flex-direction:column;gap:16px;">
+                                  <div style="display:flex;flex-direction:column;gap:6px;">
+                                    <label style="font-family:Inter;font-weight:600;font-size:12px;color:#0F0F10;">Tipo de certificado</label>
+                                    <select value="{{ historico.tipoCertificado }}" onChange="{{ onCertTipoChangeEvt }}" style="height:40px;padding:0 12px;border:1px solid #C3C8D1;border-radius:8px;font-family:Nunito;font-size:14px;color:#0F0F10;background:#fff;">
+                                      <sc-for list="{{ TIPOS_CERT }}" as="tc" hint-placeholder-count="2">
+                                        <option value="{{ tc.value }}">{{ tc.label }}</option>
+                                      </sc-for>
+                                    </select>
+                                  </div>
+                                  <x-import component-from-global-scope="RadioGroup" options="{{ FUND_LEGAL }}" value="{{ historico.fundamentacaoLegal }}" onChange="{{ onFundLegalChange }}" label="Fundamentação legal" hint-size="100%,90px"></x-import>
+                                </div>
+                              </sc-if>
+                            </div>
+                          </sc-if>
+
+                          <sc-for list="{{ sec.checks }}" as="ck" hint-placeholder-count="4">
+                            <x-import component-from-global-scope="Checkbox" label="{{ ck.label }}" checked="{{ ck.checked }}" onChange="{{ ck.onChange }}" hint-size="auto,24px"></x-import>
+                          </sc-for>
+
+                          <sc-if value="{{ sec.isAta }}" hint-placeholder-val="{{ false }}">
+                            <textarea value="{{ ata.complemento }}" onChange="{{ onAtaComplementoEvt }}" placeholder="Complemento" style="width:100%;min-height:90px;border:1px solid #C3C8D1;border-radius:8px;padding:10px 12px;font-family:Nunito;font-size:14px;color:#0F0F10;box-sizing:border-box;resize:vertical;"></textarea>
+                          </sc-if>
+
+                          <sc-if value="{{ sec.isCertificado }}" hint-placeholder-val="{{ false }}">
+                            <div style="display:flex;flex-direction:column;gap:16px;">
+                              <textarea value="{{ certificado.leiTermo }}" onChange="{{ onCertLeiTermoEvt }}" placeholder="Lei e/ou termos inclusos no certificado" style="width:100%;min-height:80px;border:1px solid #C3C8D1;border-radius:8px;padding:10px 12px;font-family:Nunito;font-size:14px;color:#0F0F10;box-sizing:border-box;resize:vertical;"></textarea>
+                              <textarea value="{{ certificado.complemento }}" onChange="{{ onCertComplementoEvt }}" placeholder="Complemento" style="width:100%;min-height:80px;border:1px solid #C3C8D1;border-radius:8px;padding:10px 12px;font-family:Nunito;font-size:14px;color:#0F0F10;box-sizing:border-box;resize:vertical;"></textarea>
+                            </div>
+                          </sc-if>
+
+                          <div style="display:flex;justify-content:flex-end;gap:8px;padding-top:8px;border-top:1px solid #EBEDF1;">
+                            <x-import component-from-global-scope="Button" variant="ghost" size="sm" onClick="{{ sec.onCancel }}" hint-size="90px,32px">Cancelar</x-import>
+                            <x-import component-from-global-scope="Button" variant="fill" size="sm" onClick="{{ sec.onSave }}" hint-size="90px,32px">Salvar</x-import>
+                          </div>
+                        </div>
+                      </sc-if>
+                </div>
+              </div>
+            </sc-if>
+          </sc-for>
+        </sc-if>
+
+        <sc-if value="{{ isEscolasTab }}" hint-placeholder-val="{{ false }}">
+          <sc-if value="{{ schoolsListVisible }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;">
+            <sc-for list="{{ schools }}" as="scCard" hint-placeholder-count="2">
+              <button type="button" onClick="{{ scCard.onOpenSchool }}" style="display:flex;flex-direction:column;gap:10px;align-items:flex-start;text-align:left;padding:16px;border:1px solid #C3C8D1;border-radius:10px;background:#fff;cursor:pointer;">
+                <span style="width:36px;height:36px;border-radius:9px;background:#ECEDFF;color:#242CC2;display:inline-flex;align-items:center;justify-content:center;font-family:'Material Symbols Outlined';font-size:20px;">school</span>
+                <div>
+                  <div style="font-family:Archivo;font-weight:700;font-size:14px;color:#0F0F10;">{{ scCard.descricao }}</div>
+                  <div style="font-family:Nunito;font-size:12px;color:#65686E;margin-top:2px;">{{ scCard.cidade }}/{{ scCard.uf }}</div>
+                </div>
+              </button>
+            </sc-for>
+          </div>
+          </sc-if>
+
+          <sc-for list="{{ schools }}" as="sc_" hint-placeholder-count="2">
+            <sc-if value="{{ sc_.isOpen }}" hint-placeholder-val="{{ false }}">
+              <div>
+                <button type="button" onClick="{{ backToSchools }}" style="display:inline-flex;align-items:center;gap:6px;border:0;background:transparent;color:#242CC2;font-family:Archivo;font-weight:700;font-size:14px;cursor:pointer;padding:0 0 16px;">
+                  <span style="font-family:'Material Symbols Outlined';font-size:18px;">arrow_back</span>
+                  Voltar às escolas
+                </button>
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+                  <span style="width:32px;height:32px;border-radius:9px;background:#ECEDFF;color:#242CC2;display:inline-flex;align-items:center;justify-content:center;font-family:'Material Symbols Outlined';font-size:18px;">school</span>
+                  <div>
+                    <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:18px;color:#0F0F10;">{{ sc_.descricao }}</h3>
+                    <div style="font-family:Nunito;font-size:13px;color:#65686E;">{{ sc_.cidade }}/{{ sc_.uf }}</div>
+                  </div>
+                </div>
+                  <div style="display:flex;flex-direction:column;gap:24px;">
+                    <div style="background:#fff;border:1px solid #EBEDF1;border-radius:8px;padding:16px;">
+                      <div style="font-family:Archivo;font-weight:700;font-size:14px;color:#0F0F10;margin-bottom:12px;">Dados da unidade</div>
+                      <sc-if value="{{ sc_.dadosReadMode }}" hint-placeholder-val="{{ true }}">
+                        <div>
+                          <div style="font-family:Nunito;font-size:14px;color:#0F0F10;">{{ sc_.nomeOficial }} — {{ sc_.endereco }}, {{ sc_.bairro }} — {{ sc_.cidadeEnd }}</div>
+                          <div style="font-family:Nunito;font-size:13px;color:#65686E;margin-top:4px;">CEP: {{ sc_.cep }} · Telefone: {{ sc_.telefone }} · CNPJ: {{ sc_.cnpj }}</div>
+                          <div style="margin-top:12px;">
+                            <x-import component-from-global-scope="Button" variant="outline" size="sm" onClick="{{ sc_.onEditDados }}" hint-size="110px,32px">Editar dados</x-import>
+                          </div>
+                        </div>
+                      </sc-if>
+                      <sc-if value="{{ sc_.editingDados }}" hint-placeholder-val="{{ false }}">
+                        <div style="display:flex;flex-direction:column;gap:12px;">
+                          <x-import component-from-global-scope="Input" label="Nome da escola" value="{{ sc_.nomeOficial }}" onChange="{{ sc_.onNomeOficial }}" hint-size="100%,60px"></x-import>
+                          <x-import component-from-global-scope="Input" label="Endereço" value="{{ sc_.endereco }}" onChange="{{ sc_.onEndereco }}" hint-size="100%,60px"></x-import>
+                          <x-import component-from-global-scope="Input" label="Bairro" value="{{ sc_.bairro }}" onChange="{{ sc_.onBairro }}" hint-size="100%,60px"></x-import>
+                          <x-import component-from-global-scope="Input" label="Cidade" value="{{ sc_.cidadeEnd }}" onChange="{{ sc_.onCidadeEnd }}" hint-size="100%,60px"></x-import>
+                          <x-import component-from-global-scope="Input" label="CEP" value="{{ sc_.cep }}" onChange="{{ sc_.onCep }}" hint-size="100%,60px"></x-import>
+                          <x-import component-from-global-scope="Input" label="Telefone" value="{{ sc_.telefone }}" onChange="{{ sc_.onTelefone }}" hint-size="100%,60px"></x-import>
+                          <x-import component-from-global-scope="Input" label="CNPJ" value="{{ sc_.cnpj }}" onChange="{{ sc_.onCnpj }}" hint-size="100%,60px"></x-import>
+                          <x-import component-from-global-scope="Input" label="Data de fim do ano letivo" value="{{ sc_.dataConclusao }}" onChange="{{ sc_.onDataConclusao }}" hint-size="100%,60px"></x-import>
+                          <div style="display:flex;justify-content:flex-end;gap:8px;">
+                            <x-import component-from-global-scope="Button" variant="ghost" size="sm" onClick="{{ sc_.onCancelDados }}" hint-size="90px,32px">Cancelar</x-import>
+                            <x-import component-from-global-scope="Button" variant="fill" size="sm" onClick="{{ sc_.onSaveDados }}" hint-size="120px,32px">Salvar dados</x-import>
+                          </div>
+                        </div>
+                      </sc-if>
+                    </div>
+
+                    <div style="background:#fff;border:1px solid #EBEDF1;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:20px;">
+                      <div>
+                        <div style="font-family:Archivo;font-weight:700;font-size:14px;color:#0F0F10;margin-bottom:12px;">Cabeçalho</div>
+                        <div style="display:flex;flex-direction:column;gap:12px;">
+                          <x-import component-from-global-scope="Checkbox" label="Possui cabeçalho" checked="{{ sc_.mostrarCabecalho }}" onChange="{{ sc_.onCabecalhoToggle }}" hint-size="auto,24px"></x-import>
+                          <sc-if value="{{ sc_.mostrarCabecalho }}" hint-placeholder-val="{{ false }}">
+                            <x-import component-from-global-scope="Checkbox" label="Informações adicionais no cabeçalho" checked="{{ sc_.possuiCabecalho }}" onChange="{{ sc_.onCabecalhoExtraToggle }}" hint-size="auto,24px"></x-import>
+                          </sc-if>
+                          <sc-if value="{{ sc_.showCabecalhoTexto }}" hint-placeholder-val="{{ false }}">
+                            <textarea value="{{ sc_.textoCabecalho }}" onChange="{{ sc_.onCabecalhoTextoEvt }}" placeholder="Texto adicional" style="width:100%;min-height:70px;border:1px solid #C3C8D1;border-radius:8px;padding:10px 12px;font-family:Nunito;font-size:14px;color:#0F0F10;box-sizing:border-box;resize:vertical;"></textarea>
+                          </sc-if>
+                        </div>
+                      </div>
+                      <div>
+                        <div style="font-family:Archivo;font-weight:700;font-size:14px;color:#0F0F10;margin-bottom:12px;">Assinatura</div>
+                        <div style="display:flex;flex-direction:column;gap:16px;">
+                          <sc-for list="{{ sc_.assinaturas }}" as="asn" hint-placeholder-count="4">
+                            <div style="display:flex;flex-direction:column;gap:8px;">
+                              <div style="display:flex;align-items:center;gap:6px;">
+                                <x-import component-from-global-scope="Checkbox" label="{{ asn.label }}" checked="{{ asn.checked }}" onChange="{{ asn.onToggle }}" hint-size="auto,24px"></x-import>
+                                <sc-if value="{{ asn.hint }}" hint-placeholder-val="{{ false }}">
+                                  <span style="font-family:Nunito;font-size:12px;color:#65686E;">{{ asn.hint }}</span>
+                                </sc-if>
+                              </div>
+                              <sc-for list="{{ asn.textareas }}" as="ta" hint-placeholder-count="1">
+                                <textarea value="{{ ta.value }}" onChange="{{ ta.onChangeEvt }}" placeholder="{{ ta.label }}" style="width:100%;min-height:50px;border:1px solid #C3C8D1;border-radius:8px;padding:8px 12px;font-family:Nunito;font-size:14px;color:#0F0F10;box-sizing:border-box;resize:vertical;"></textarea>
+                              </sc-for>
+                            </div>
+                          </sc-for>
+                        </div>
+                      </div>
+                      <sc-for list="{{ sc_.radios }}" as="rg2" hint-placeholder-count="3">
+                        <x-import component-from-global-scope="RadioGroup" options="{{ rg2.options }}" value="{{ rg2.value }}" onChange="{{ rg2.onChange }}" label="{{ rg2.label }}" hint-size="100%,90px"></x-import>
+                      </sc-for>
+                      <div style="display:flex;justify-content:flex-end;gap:8px;padding-top:8px;border-top:1px solid #EBEDF1;">
+                        <x-import component-from-global-scope="Button" variant="ghost" size="sm" onClick="{{ sc_.onCancel }}" hint-size="90px,32px">Cancelar</x-import>
+                        <x-import component-from-global-scope="Button" variant="fill" size="sm" onClick="{{ sc_.onSave }}" hint-size="90px,32px">Salvar</x-import>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </sc-if>
+            </sc-for>
+          </sc-if>
+
+        <sc-if value="{{ isFundTab }}" hint-placeholder-val="{{ false }}">
+          <sc-if value="{{ fundReadMode }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <sc-for list="{{ fundList }}" as="fr" hint-placeholder-count="2">
+                <div style="border:1px solid #C3C8D1;border-radius:8px;background:#fff;padding:12px 16px;">
+                  <span style="font-family:Nunito;font-size:14px;color:#0F0F10;">{{ fr.descricao }}</span>
+                </div>
+              </sc-for>
+              <div style="margin-top:8px;">
+                <x-import component-from-global-scope="Button" variant="outline" size="sm" onClick="{{ onFundEdit }}" hint-size="220px,32px">Editar fundamentações legais</x-import>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ fundEditing }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <sc-if value="{{ fundEmpty }}" hint-placeholder-val="{{ false }}">
+                <p style="text-align:center;font-family:Nunito;font-size:14px;color:#65686E;">Lista sem informação. Clique em <b>Salvar</b> para confirmar a operação.</p>
+              </sc-if>
+              <sc-for list="{{ fundList }}" as="fe" hint-placeholder-count="2">
+                <div>
+                  <sc-if value="{{ fe.isConfirming }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid #E65637;border-radius:8px;background:#FDEDEA;">
+                      <span style="flex:1;font-family:Nunito;font-size:14px;color:#0F0F10;">Remover esta fundamentação legal?</span>
+                      <x-import component-from-global-scope="Button" variant="ghost" size="sm" onClick="{{ fe.onCancelRemove }}" hint-size="90px,32px">Cancelar</x-import>
+                      <x-import component-from-global-scope="Button" variant="danger" size="sm" onClick="{{ fe.onConfirmRemove }}" hint-size="100px,32px">Remover</x-import>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ fe.isNotConfirming }}" hint-placeholder-val="{{ true }}">
+                    <div style="display:flex;gap:10px;align-items:flex-start;">
+                      <textarea value="{{ fe.descricao }}" onChange="{{ fe.onChangeEvt }}" placeholder="Fundamentação legal" style="flex:1;min-height:48px;border:1px solid #C3C8D1;border-radius:8px;padding:10px 12px;font-family:Nunito;font-size:14px;color:#0F0F10;box-sizing:border-box;resize:vertical;"></textarea>
+                      <span onClick="{{ fe.onRemove }}" style="flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid #C3C8D1;border-radius:8px;cursor:pointer;font-family:'Material Symbols Outlined';font-size:20px;color:#65686E;">remove</span>
+                    </div>
+                  </sc-if>
+                </div>
+              </sc-for>
+              <div>
+                <span onClick="{{ onFundAdd }}" style="display:inline-flex;width:40px;height:40px;align-items:center;justify-content:center;border:1px solid #C3C8D1;border-radius:8px;cursor:pointer;font-family:'Material Symbols Outlined';font-size:20px;color:#242CC2;">add</span>
+              </div>
+              <div style="display:flex;justify-content:flex-end;gap:8px;padding-top:12px;border-top:1px solid #EBEDF1;">
+                <x-import component-from-global-scope="Button" variant="ghost" size="sm" onClick="{{ onFundCancel }}" hint-size="90px,32px">Cancelar</x-import>
+                <x-import component-from-global-scope="Button" variant="fill" size="sm" onClick="{{ onFundSave }}" hint-size="90px,32px">Salvar</x-import>
+              </div>
+            </div>
+          </sc-if>
+        </sc-if>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+    <x-import component-from-global-scope="Toast" title="{{ toast.title }}" onClose="{{ clearToast }}" hint-size="328px,120px"></x-import>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const ALINHAMENTO=[{value:'centro',label:'Centro'},{value:'esquerda',label:'Esquerda'}];
+const BRASAO_HIST=[{value:'nao',label:'Não incluir'},{value:'unesco',label:'Sim, da Unesco'},{value:'pais',label:'Sim, do país'},{value:'estado',label:'Sim, do estado'}];
+const FUND_LEGAL=[{value:'com',label:'Exibir com certificado de conclusão'},{value:'separada',label:'Exibir separadamente'}];
+const RESULT_PARCIAL=[{value:'ocultar',label:'Ocultar'},{value:'exibir',label:'Exibir'}];
+const MODELO_HIST=[{value:'separado',label:'Documento separado por segmento'},{value:'unico',label:'Documento único'}];
+const MODELO_FICHA=[{value:'resumido',label:'Resumido'},{value:'detalhado',label:'Detalhado'}];
+const AGRUPAMENTO_ATA=[{value:'serie',label:'Por série'},{value:'turma',label:'Por turma'}];
+const NUM_MATRICULA=[{value:'inep',label:'Código INEP'},{value:'radigital',label:'RA Digital'},{value:'matricula',label:'Matrícula'}];
+const ORDEM_LIVRO=[{value:'data',label:'Data de matrícula'},{value:'alfabetica',label:'Ordem alfabética'}];
+const BRASAO_CERT=[{value:'esquerda',label:'Esquerda'},{value:'centro',label:'Centro'},{value:'direita',label:'Direita'},{value:'nao',label:'Não incluído'}];
+const MOLDURA=[{value:'nao',label:'Não incluído'},{value:'linhas',label:'Linhas'},{value:'cinza',label:'Linear Cinza'},{value:'dourado',label:'Linear Dourado'}];
+const CPFRG=[{value:'cpf',label:'CPF'},{value:'rg',label:'RG'}];
+const ASSIN_SEC=[{value:'frenteverso',label:'Na frente e verso'},{value:'verso',label:'No verso'}];
+const LOCAL_ASSIN=[{value:'todas',label:'Em todas as folhas'},{value:'ultima',label:'Apenas na última folha'}];
+const CARGA_HOR=[{value:'disciplina',label:'Por disciplina e série'},{value:'serie',label:'Apenas por série'}];
+const FILIACAO=[{value:'exibir',label:'Exibir'},{value:'ocultar',label:'Ocultar'}];
+const TIPOS_CERT=[{value:'conclusao-em',label:'Conclusão do Ensino Médio'},{value:'conclusao-ef',label:'Conclusão do Ensino Fundamental'}];
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+
+class Component extends DCLogic {
+  state = {
+    tab: 'config', rightTab: 'rede', loading: false, redeOpen: false, redeId: 'alfa',
+    redes: [{id:'alfa',nome:'Alfa'},{id:'beta',nome:'Beta'},{id:'gama',nome:'Gama'}],
+    openSection: null, activeDoc: null, modes: {}, snapshots: {}, seriesPanelOpen: false, seriesSnapshot: null,
+    geral: {alinhamento:'centro', decimais:true, conselho:true, transferencia:false,
+      series:[
+        {serie:'Infantil I',nomenclatura:'Infantil I'},
+        {serie:'Infantil II',nomenclatura:'Infantil II'},
+        {serie:'Infantil III',nomenclatura:'Infantil III'},
+        {serie:'Infantil IV',nomenclatura:'Infantil IV'},
+        {serie:'Infantil V',nomenclatura:'Infantil V'},
+        {serie:'1º ano EF',nomenclatura:'1º ano'},
+        {serie:'2º ano EF',nomenclatura:'2º ano'},
+        {serie:'3º ano EF',nomenclatura:'3º ano'},
+        {serie:'4º ano EF',nomenclatura:'4º ano'},
+        {serie:'5º ano EF',nomenclatura:'5º ano'},
+        {serie:'6º ano EF',nomenclatura:'6º ano'},
+        {serie:'7º ano EF',nomenclatura:'7º ano'},
+        {serie:'8º ano EF',nomenclatura:'8º ano'},
+        {serie:'9º ano EF',nomenclatura:'9º ano'},
+        {serie:'1º ano EM',nomenclatura:'1ª série'},
+        {serie:'2º ano EM',nomenclatura:'2ª série'},
+        {serie:'3º ano EM',nomenclatura:'3ª série'},
+      ]},
+    historico: {brasao:'estado', possuiObservacao:true,
+      observacao:'O aluno deverá ter frequência mínima de 75% e nota mínima 6,0 em todas as disciplinas.',
+      possuiCertificado:true, tipoCertificado:'conclusao-em', fundamentacaoLegal:'com',
+      resultadosParciais:'exibir', modelo:'unico', realcarImpressao:false, agruparArea:true,
+      imprimirMinimo:true, itinerarioSeparado:false, cargaHorariaTotalEM:true, registroPublicacaoEM:true},
+    ficha: {agruparArea:true, modelo:'detalhado', resultadosParciais:'ocultar', cargaHorariaTotal:true, raDigital:false},
+    ata: {agrupamento:'turma', numeroMatricula:'matricula', cargaHorariaDisciplina:true,
+      transferidosSituacaoFinal:true, percentualFrequencia:false, resultadoAbreviado:false,
+      apenasAtivos:true, complemento:''},
+    livro: {ordem:'alfabetica', exibirRA:true, exibirRADigital:false, exibirCodigoInep:false},
+    certificado: {brasaoRede:'centro', brasaoEstado:'nao', brasaoPais:'nao', brasaoUnesco:'nao',
+      leiTermo:'Certificamos que o(a) aluno(a) concluiu o Ensino Médio nos termos da LDB 9.394/96.',
+      moldura:'linhas', agruparArea:false, infoRegistro:true, cargaHorariaMinutos:false,
+      nomeResponsaveis:false, cpfRg:'cpf', duasColunas:true, assinaturaSecretario:'frenteverso', complemento:''},
+    openSchoolId: null,
+    schools: [
+      {id:'esc1', descricao:'Colégio Alfa Centro', cidade:'São Paulo', uf:'SP',
+        nomeOficial:'Colégio Alfa Centro', endereco:'Rua das Acácias, 120', bairro:'Centro',
+        cidadeEnd:'São Paulo', cep:'01310-000', telefone:'(11) 3456-7890', cnpj:'12.345.678/0001-90',
+        dataConclusao:'2026-12-18', mostrarCabecalho:true, possuiCabecalho:true,
+        textoCabecalho:'Documento emitido eletronicamente.',
+        assinaturas:[
+          {key:'secretario', label:'Assinatura do(a) secretário(a)', hint:null, checked:true, textareas:[{label:'Assinatura', value:'Maria Aparecida Souza — Secretária Escolar'}]},
+          {key:'diretor', label:'Assinatura do(a) diretor(a)', hint:null, checked:true, textareas:[{label:'Assinatura', value:'João Pedro Lima — Diretor'}]},
+          {key:'inspetor', label:'Assinatura do(a) professor(a) inspetor(a)', hint:'(apenas na Ata de Resultados Finais)', checked:false, textareas:[{label:'Assinatura', value:''}]},
+          {key:'coordenador', label:'Assinatura do(a) coordenador(a) pedagógico(a)', hint:'(apenas na Ata de Resultados Finais)', checked:true, textareas:[{label:'Assinatura | Ensino Fundamental', value:'Carla Menezes'},{label:'Assinatura | Ensino Médio', value:'Carla Menezes'}]},
+        ],
+        localizacaoAssinatura:'ultima', cargaHoraria:'disciplina', exibirFiliacao:'exibir',
+        editingDados:false},
+      {id:'esc2', descricao:'Colégio Alfa Zona Sul', cidade:'São Paulo', uf:'SP',
+        nomeOficial:'Colégio Alfa Zona Sul', endereco:'Av. Interlagos, 3400', bairro:'Jardim Marajoara',
+        cidadeEnd:'São Paulo', cep:'04660-000', telefone:'(11) 5678-1234', cnpj:'12.345.678/0002-71',
+        dataConclusao:'2026-12-18', mostrarCabecalho:false, possuiCabecalho:false, textoCabecalho:'',
+        assinaturas:[
+          {key:'secretario', label:'Assinatura do(a) secretário(a)', hint:null, checked:true, textareas:[{label:'Assinatura', value:'Renata Alves — Secretária Escolar'}]},
+          {key:'diretor', label:'Assinatura do(a) diretor(a)', hint:null, checked:true, textareas:[{label:'Assinatura', value:'Marcos Vinícius Prado — Diretor'}]},
+          {key:'inspetor', label:'Assinatura do(a) professor(a) inspetor(a)', hint:'(apenas na Ata de Resultados Finais)', checked:false, textareas:[{label:'Assinatura', value:''}]},
+          {key:'coordenador', label:'Assinatura do(a) coordenador(a) pedagógico(a)', hint:'(apenas na Ata de Resultados Finais)', checked:false, textareas:[{label:'Assinatura | Ensino Fundamental', value:''},{label:'Assinatura | Ensino Médio', value:''}]},
+        ],
+        localizacaoAssinatura:'todas', cargaHoraria:'serie', exibirFiliacao:'ocultar',
+        editingDados:false},
+    ],
+    schoolSnapshots: {}, dadosSnapshots: {},
+    fundamentacoes: [{id:1, descricao:'Resolução CEE nº 45/2021'},{id:2, descricao:'Parecer CNE/CEB nº 11/2010'}],
+    fundEditing:false, fundConfirmId:null, fundCounter:0, fundSnapshot:null,
+    toast: null,
+  };
+
+  setTab = (t) => this.setState({tab:t});
+  setRightTab = (t) => this.setState({rightTab:t});
+  toggleRedeOpen = () => this.setState(s=>({redeOpen:!s.redeOpen}));
+  selectRede = (id) => {
+    this.setState(s => ({redeId:id, redeOpen:false, openSection:null, activeDoc:null, modes:{}, loading:true,
+      schools: s.schools.map(sc=>({...sc, editingDados:false})), openSchoolId:null,
+      fundEditing:false, fundConfirmId:null}));
+    setTimeout(()=>this.setState({loading:false}), 550);
+  };
+  clearRede = () => this.setState({redeId:null, redeOpen:false, openSection:null});
+
+  toggleSection = (key) => this.setState(s => s.openSection===key ? {openSection:null} : {openSection:key, modes:{...s.modes,[key]:'read'}});
+  openDoc = (key) => this.setState(s => ({ activeDoc:key, modes: {...s.modes, [key]: s.modes[key] || 'read'} }));
+  backToDocs = () => this.setState({activeDoc:null});
+  updateSection = (key, field, value) => this.setState(s => ({ [key]: {...s[key], [field]: value} }));
+  updateSeries = (idx, value) => this.setState(s => ({ geral: {...s.geral, series: s.geral.series.map((x,i)=> i===idx?{...x,nomenclatura:value}:x)} }));
+  openSeriesPanel = () => this.setState(s => ({ seriesPanelOpen:true, seriesSnapshot: clone(s.geral.series) }));
+  closeSeriesPanelCancel = () => this.setState(s => ({ seriesPanelOpen:false, geral: {...s.geral, series: clone(s.seriesSnapshot)} }));
+  saveSeriesPanel = () => { this.setState({seriesPanelOpen:false}); this.showToast('Nomenclatura por série salva com sucesso.'); };
+  enterEdit = (key) => this.setState(s => ({ snapshots: {...s.snapshots, [key]: clone(s[key])}, modes: {...s.modes, [key]:'edit'} }));
+  cancelEdit = (key) => this.setState(s => ({ [key]: clone(s.snapshots[key]), modes: {...s.modes, [key]:'read'} }));
+  saveEdit = (key, message) => { this.setState(s => ({ modes: {...s.modes, [key]:'read'} })); this.showToast(message); };
+  showToast = (title) => this.setState({toast:{title}});
+  clearToast = () => this.setState({toast:null});
+
+  toggleSchool = (id) => this.setState(s => s.openSchoolId===id ? {openSchoolId:null} :
+    {openSchoolId:id, schoolSnapshots:{...s.schoolSnapshots,[id]:clone(s.schools.find(x=>x.id===id))}});
+  openSchool = (id) => this.setState(s => ({ openSchoolId:id, schoolSnapshots:{...s.schoolSnapshots,[id]:clone(s.schools.find(x=>x.id===id))} }));
+  backToSchools = () => this.setState({openSchoolId:null});
+  updateSchool = (id, field, value) => this.setState(s => ({ schools: s.schools.map(sc => sc.id===id ? {...sc,[field]:value} : sc) }));
+  updateSchoolAssinatura = (id, akey, field, value) => this.setState(s => ({ schools: s.schools.map(sc => sc.id!==id ? sc : {...sc, assinaturas: sc.assinaturas.map(a => a.key!==akey ? a : {...a,[field]:value})}) }));
+  updateSchoolAssinaturaText = (id, akey, idx, value) => this.setState(s => ({ schools: s.schools.map(sc => sc.id!==id ? sc : {...sc, assinaturas: sc.assinaturas.map(a => a.key!==akey ? a : {...a, textareas: a.textareas.map((t,i)=> i===idx ? {...t,value} : t)})}) }));
+  cancelSchool = (id) => this.setState(s => ({ schools: s.schools.map(sc => sc.id===id ? {...clone(s.schoolSnapshots[id]), editingDados:false} : sc), openSchoolId:null }));
+  saveSchool = (id) => { this.setState(s => ({openSchoolId:null})); this.showToast('Configurações da escola salvas com sucesso.'); };
+  enterDadosEdit = (id) => this.setState(s => ({ dadosSnapshots: {...s.dadosSnapshots, [id]: clone(s.schools.find(x=>x.id===id))},
+    schools: s.schools.map(sc=>sc.id===id?{...sc,editingDados:true}:sc) }));
+  cancelDados = (id) => this.setState(s => { const snap = s.dadosSnapshots[id];
+    return { schools: s.schools.map(sc => sc.id!==id ? sc : {...sc, nomeOficial:snap.nomeOficial, endereco:snap.endereco, bairro:snap.bairro, cidadeEnd:snap.cidadeEnd, cep:snap.cep, telefone:snap.telefone, cnpj:snap.cnpj, dataConclusao:snap.dataConclusao, editingDados:false}) }; });
+  saveDados = (id) => { this.setState(s => ({ schools: s.schools.map(sc=>sc.id===id?{...sc,editingDados:false}:sc) })); this.showToast('Informações da escola salvas com sucesso.'); };
+
+  enterFundEdit = () => this.setState(s => ({ fundSnapshot: clone(s.fundamentacoes), fundEditing:true }));
+  cancelFundEdit = () => this.setState(s => ({ fundamentacoes: clone(s.fundSnapshot), fundEditing:false, fundConfirmId:null }));
+  addFund = () => this.setState(s => ({ fundamentacoes: [...s.fundamentacoes, {id:'novo-'+(s.fundCounter+1), descricao:'', novo:true}], fundCounter: s.fundCounter+1 }));
+  updateFund = (id, value) => this.setState(s => ({ fundamentacoes: s.fundamentacoes.map(f=>f.id===id?{...f,descricao:value}:f) }));
+  requestRemoveFund = (id) => this.setState({fundConfirmId:id});
+  cancelRemoveFund = () => this.setState({fundConfirmId:null});
+  confirmRemoveFund = (id) => this.setState(s => ({ fundamentacoes: s.fundamentacoes.filter(f=>f.id!==id), fundConfirmId:null }));
+  saveFund = () => { this.setState(s => ({ fundamentacoes: s.fundamentacoes.filter(f => !f.novo || f.descricao.trim() !== ''), fundEditing:false, fundConfirmId:null }));
+    this.showToast('Fundamentações legais salvas com sucesso.'); };
+
+  renderVals() {
+    const s = this.state;
+    const yn = v => v ? 'Sim' : 'Não';
+    const lbl = (opts,val) => (opts.find(o=>o.value===val)||{}).label || '—';
+    const R = (key,label,options,value,onChange) => ({key,label,options,value,onChange});
+    const C = (key,label,checked,onChange) => ({key,label,checked,onChange});
+
+    const geralReadRows = [
+      {label:'Alinhamento do título nos documentos', value: lbl(ALINHAMENTO,s.geral.alinhamento)},
+      {label:'Exibir notas com casas decimais?', value: yn(s.geral.decimais)},
+      {label:'Deve exibir status "Aprovado pelo conselho"?', value: yn(s.geral.conselho)},
+      {label:'Deve mostrar transferência interna?', value: yn(s.geral.transferencia)},
+    ];
+    const geralRadios = [ R('alinhamento','Alinhamento do título nos documentos',ALINHAMENTO,s.geral.alinhamento, v=>this.updateSection('geral','alinhamento',v)) ];
+    const geralChecks = [
+      C('decimais','Exibir notas com casas decimais', s.geral.decimais, v=>this.updateSection('geral','decimais',v)),
+      C('conselho','Exibir status "Aprovado pelo conselho"', s.geral.conselho, v=>this.updateSection('geral','conselho',v)),
+      C('transferencia','Mostrar transferência interna', s.geral.transferencia, v=>this.updateSection('geral','transferencia',v)),
+    ];
+    const geralSeries = s.geral.series.map((x,i)=>({idx:i, serie:x.serie, nomenclatura:x.nomenclatura, onChange:v=>this.updateSeries(i,v)}));
+
+    const historicoReadRows = [
+      {label:'Incluir brasão', value: lbl(BRASAO_HIST,s.historico.brasao)},
+      {label:'Critérios de avaliação', value: s.historico.possuiObservacao ? s.historico.observacao : 'Sem critérios de avaliação definidos.'},
+      {label:'Certificado de conclusão', value: s.historico.possuiCertificado ? ('Incluso — ' + lbl(TIPOS_CERT,s.historico.tipoCertificado)) : 'Não incluso'},
+      {label:'Resultados parciais do ano', value: lbl(RESULT_PARCIAL,s.historico.resultadosParciais)},
+    ].concat(s.historico.possuiCertificado ? [{label:'Fundamentação legal', value: lbl(FUND_LEGAL,s.historico.fundamentacaoLegal)}] : []).concat([
+      {label:'Modelo do Histórico Escolar', value: lbl(MODELO_HIST,s.historico.modelo)},
+      {label:'Realçar impressão', value: yn(s.historico.realcarImpressao)},
+      {label:'Agrupar por área do conhecimento', value: yn(s.historico.agruparArea)},
+      {label:'Imprimir linha "Mínimo para aprovação"', value: yn(s.historico.imprimirMinimo)},
+      {label:'Exibir itinerário formativo separadamente', value: yn(s.historico.itinerarioSeparado)},
+      {label:'Exibir carga horária total para o Ensino Médio', value: yn(s.historico.cargaHorariaTotalEM)},
+      {label:'Exibir registro de publicação do Ensino Médio', value: yn(s.historico.registroPublicacaoEM)},
+    ]);
+    const historicoRadios = [
+      R('brasao','Incluir brasão',BRASAO_HIST,s.historico.brasao,v=>this.updateSection('historico','brasao',v)),
+      R('resultadosParciais','Resultados parciais do ano',RESULT_PARCIAL,s.historico.resultadosParciais,v=>this.updateSection('historico','resultadosParciais',v)),
+      R('modelo','Modelo do Histórico Escolar',MODELO_HIST,s.historico.modelo,v=>this.updateSection('historico','modelo',v)),
+    ];
+    const historicoChecks = [
+      C('realcarImpressao','Realçar impressão', s.historico.realcarImpressao, v=>this.updateSection('historico','realcarImpressao',v)),
+      C('agruparArea','Agrupar por área do conhecimento', s.historico.agruparArea, v=>this.updateSection('historico','agruparArea',v)),
+      C('imprimirMinimo','Imprimir linha "Mínimo para aprovação"', s.historico.imprimirMinimo, v=>this.updateSection('historico','imprimirMinimo',v)),
+      C('itinerarioSeparado','Exibir itinerário formativo separadamente', s.historico.itinerarioSeparado, v=>this.updateSection('historico','itinerarioSeparado',v)),
+      C('cargaHorariaTotalEM','Exibir carga horária total para o Ensino Médio', s.historico.cargaHorariaTotalEM, v=>this.updateSection('historico','cargaHorariaTotalEM',v)),
+      C('registroPublicacaoEM','Exibir registro de publicação do Ensino Médio', s.historico.registroPublicacaoEM, v=>this.updateSection('historico','registroPublicacaoEM',v)),
+    ];
+
+    const fichaReadRows = [
+      {label:'Agrupar por área do conhecimento', value: yn(s.ficha.agruparArea)},
+      {label:'Modelo da Ficha Individual', value: lbl(MODELO_FICHA,s.ficha.modelo)},
+      {label:'Resultados parciais do ano', value: lbl(RESULT_PARCIAL,s.ficha.resultadosParciais)},
+      {label:'Exibir carga horária total', value: yn(s.ficha.cargaHorariaTotal)},
+      {label:'Exibir RA digital do aluno', value: yn(s.ficha.raDigital)},
+    ];
+    const fichaRadios = [
+      R('modelo','Modelo da Ficha Individual',MODELO_FICHA,s.ficha.modelo,v=>this.updateSection('ficha','modelo',v)),
+      R('resultadosParciais','Resultados parciais do ano',RESULT_PARCIAL,s.ficha.resultadosParciais,v=>this.updateSection('ficha','resultadosParciais',v)),
+    ];
+    const fichaChecks = [
+      C('agruparArea','Agrupar por área do conhecimento', s.ficha.agruparArea, v=>this.updateSection('ficha','agruparArea',v)),
+      C('cargaHorariaTotal','Exibir carga horária total', s.ficha.cargaHorariaTotal, v=>this.updateSection('ficha','cargaHorariaTotal',v)),
+      C('raDigital','Exibir RA digital do aluno', s.ficha.raDigital, v=>this.updateSection('ficha','raDigital',v)),
+    ];
+
+    const ataReadRows = [
+      {label:'Agrupamento dos alunos', value: lbl(AGRUPAMENTO_ATA,s.ata.agrupamento)},
+      {label:'Número de matrícula', value: lbl(NUM_MATRICULA,s.ata.numeroMatricula)},
+      {label:'Exibir carga horária por disciplina', value: yn(s.ata.cargaHorariaDisciplina)},
+      {label:'Exibir transferidos como situação final', value: yn(s.ata.transferidosSituacaoFinal)},
+      {label:'Exibir % de frequência', value: yn(s.ata.percentualFrequencia)},
+      {label:'Exibir resultado final abreviado', value: yn(s.ata.resultadoAbreviado)},
+      {label:'Exibir apenas alunos ativos', value: yn(s.ata.apenasAtivos)},
+      {label:'Complemento', value: s.ata.complemento.trim() ? s.ata.complemento : 'Nenhum complemento definido.'},
+    ];
+    const ataRadios = [
+      R('agrupamento','Agrupamento dos alunos',AGRUPAMENTO_ATA,s.ata.agrupamento,v=>this.updateSection('ata','agrupamento',v)),
+      R('numeroMatricula','Número de matrícula',NUM_MATRICULA,s.ata.numeroMatricula,v=>this.updateSection('ata','numeroMatricula',v)),
+    ];
+    const ataChecks = [
+      C('cargaHorariaDisciplina','Exibir carga horária por disciplina', s.ata.cargaHorariaDisciplina, v=>this.updateSection('ata','cargaHorariaDisciplina',v)),
+      C('transferidosSituacaoFinal','Exibir transferidos como situação final', s.ata.transferidosSituacaoFinal, v=>this.updateSection('ata','transferidosSituacaoFinal',v)),
+      C('percentualFrequencia','Exibir % de frequência', s.ata.percentualFrequencia, v=>this.updateSection('ata','percentualFrequencia',v)),
+      C('resultadoAbreviado','Exibir resultado final abreviado', s.ata.resultadoAbreviado, v=>this.updateSection('ata','resultadoAbreviado',v)),
+      C('apenasAtivos','Exibir apenas alunos ativos', s.ata.apenasAtivos, v=>this.updateSection('ata','apenasAtivos',v)),
+    ];
+
+    const livroReadRows = [
+      {label:'Ordem do documento', value: lbl(ORDEM_LIVRO,s.livro.ordem)},
+      {label:'Exibir RA do aluno', value: yn(s.livro.exibirRA)},
+      {label:'Exibir RA digital do aluno', value: yn(s.livro.exibirRADigital)},
+      {label:'Exibir código Inep do aluno', value: yn(s.livro.exibirCodigoInep)},
+    ];
+    const livroRadios = [ R('ordem','Ordem do documento',ORDEM_LIVRO,s.livro.ordem,v=>this.updateSection('livro','ordem',v)) ];
+    const livroChecks = [
+      C('exibirRA','Exibir RA do aluno', s.livro.exibirRA, v=>this.updateSection('livro','exibirRA',v)),
+      C('exibirRADigital','Exibir RA digital do aluno', s.livro.exibirRADigital, v=>this.updateSection('livro','exibirRADigital',v)),
+      C('exibirCodigoInep','Exibir código Inep do aluno', s.livro.exibirCodigoInep, v=>this.updateSection('livro','exibirCodigoInep',v)),
+    ];
+
+    const certificadoReadRows = [
+      {label:'Brasão da rede', value: lbl(BRASAO_CERT,s.certificado.brasaoRede)},
+      {label:'Brasão do estado', value: lbl(BRASAO_CERT,s.certificado.brasaoEstado)},
+      {label:'Brasão do país', value: lbl(BRASAO_CERT,s.certificado.brasaoPais)},
+      {label:'Brasão da Unesco', value: lbl(BRASAO_CERT,s.certificado.brasaoUnesco)},
+      {label:'Lei e/ou termos inclusos no certificado', value: s.certificado.leiTermo.trim() ? s.certificado.leiTermo : 'Nenhuma lei ou termo definido.'},
+      {label:'Incluir moldura', value: lbl(MOLDURA,s.certificado.moldura)},
+      {label:'Agrupar por área do conhecimento', value: yn(s.certificado.agruparArea)},
+      {label:'Exibir informações de registro do documento', value: yn(s.certificado.infoRegistro)},
+      {label:'Exibir carga horária com minutos', value: yn(s.certificado.cargaHorariaMinutos)},
+      {label:'Exibir nome dos responsáveis', value: yn(s.certificado.nomeResponsaveis)},
+      {label:'Exibir CPF ou RG', value: lbl(CPFRG,s.certificado.cpfRg)},
+      {label:'Exibir disciplinas em duas colunas', value: yn(s.certificado.duasColunas)},
+      {label:'Exibir assinatura do(a) secretário(a) escolar', value: lbl(ASSIN_SEC,s.certificado.assinaturaSecretario)},
+      {label:'Complemento', value: s.certificado.complemento.trim() ? s.certificado.complemento : 'Nenhum complemento definido.'},
+    ];
+    const certificadoRadios = [
+      R('brasaoRede','Brasão da rede',BRASAO_CERT,s.certificado.brasaoRede,v=>this.updateSection('certificado','brasaoRede',v)),
+      R('brasaoEstado','Brasão do estado',BRASAO_CERT,s.certificado.brasaoEstado,v=>this.updateSection('certificado','brasaoEstado',v)),
+      R('brasaoPais','Brasão do país',BRASAO_CERT,s.certificado.brasaoPais,v=>this.updateSection('certificado','brasaoPais',v)),
+      R('brasaoUnesco','Brasão da Unesco',BRASAO_CERT,s.certificado.brasaoUnesco,v=>this.updateSection('certificado','brasaoUnesco',v)),
+      R('moldura','Incluir moldura',MOLDURA,s.certificado.moldura,v=>this.updateSection('certificado','moldura',v)),
+      R('cpfRg','Exibir CPF ou RG',CPFRG,s.certificado.cpfRg,v=>this.updateSection('certificado','cpfRg',v)),
+      R('assinaturaSecretario','Exibir assinatura do(a) secretário(a) escolar',ASSIN_SEC,s.certificado.assinaturaSecretario,v=>this.updateSection('certificado','assinaturaSecretario',v)),
+    ];
+    const certificadoChecks = [
+      C('agruparArea','Agrupar por área do conhecimento', s.certificado.agruparArea, v=>this.updateSection('certificado','agruparArea',v)),
+      C('infoRegistro','Exibir informações de registro do documento', s.certificado.infoRegistro, v=>this.updateSection('certificado','infoRegistro',v)),
+      C('cargaHorariaMinutos','Exibir carga horária com minutos', s.certificado.cargaHorariaMinutos, v=>this.updateSection('certificado','cargaHorariaMinutos',v)),
+      C('nomeResponsaveis','Exibir nome dos responsáveis', s.certificado.nomeResponsaveis, v=>this.updateSection('certificado','nomeResponsaveis',v)),
+      C('duasColunas','Exibir disciplinas em duas colunas', s.certificado.duasColunas, v=>this.updateSection('certificado','duasColunas',v)),
+    ];
+
+    const defs = [
+      {key:'historico', title:'Histórico Escolar', icon:'history_edu', description:'Brasão, certificado e regras de exibição.', readRows:historicoReadRows, radios:historicoRadios, checks:historicoChecks, isHistorico:true, isAta:false, isCertificado:false},
+      {key:'ficha', title:'Ficha Individual', icon:'assignment_ind', description:'Modelo e agrupamento por área.', readRows:fichaReadRows, radios:fichaRadios, checks:fichaChecks, isHistorico:false, isAta:false, isCertificado:false},
+      {key:'ata', title:'Ata de Resultados Finais', icon:'fact_check', description:'Agrupamento, matrícula e complemento.', readRows:ataReadRows, radios:ataRadios, checks:ataChecks, isHistorico:false, isAta:true, isCertificado:false},
+      {key:'livro', title:'Livro de Matrícula', icon:'menu_book', description:'Ordem e identificação do aluno.', readRows:livroReadRows, radios:livroRadios, checks:livroChecks, isHistorico:false, isAta:false, isCertificado:false},
+      {key:'certificado', title:'Certificado de Conclusão', icon:'workspace_premium', description:'Brasões, moldura e assinaturas.', readRows:certificadoReadRows, radios:certificadoRadios, checks:certificadoChecks, isHistorico:false, isAta:false, isCertificado:true},
+    ];
+    const saveMsg = { historico:'Configurações do Histórico Escolar salvas com sucesso.', ficha:'Configurações da Ficha Individual salvas com sucesso.', ata:'Configurações da Ata de Resultados Finais salvas com sucesso.', livro:'Configurações do Livro de Matrícula salvas com sucesso.', certificado:'Configurações do Certificado de Conclusão salvas com sucesso.' };
+
+    const sections = defs.map((d) => {
+      const mode = s.modes[d.key] || 'read';
+      const isActiveDoc = s.activeDoc === d.key;
+      return { ...d, isActiveDoc, isRead: mode==='read', isEdit: mode==='edit',
+        onOpenDoc: () => this.openDoc(d.key), onEdit: () => this.enterEdit(d.key),
+        onCancel: () => this.cancelEdit(d.key), onSave: () => this.saveEdit(d.key, saveMsg[d.key]),
+      };
+    });
+
+    const schools = s.schools.map(sc => {
+      const radios = [
+        R('localizacaoAssinatura','Localização da assinatura',LOCAL_ASSIN,sc.localizacaoAssinatura,v=>this.updateSchool(sc.id,'localizacaoAssinatura',v)),
+        R('cargaHoraria','Carga horária',CARGA_HOR,sc.cargaHoraria,v=>this.updateSchool(sc.id,'cargaHoraria',v)),
+        R('exibirFiliacao','Exibir filiação no histórico escolar',FILIACAO,sc.exibirFiliacao,v=>this.updateSchool(sc.id,'exibirFiliacao',v)),
+      ];
+      const assinaturas = sc.assinaturas.map((a,ai) => ({ ...a,
+        onToggle: v => this.updateSchoolAssinatura(sc.id, a.key, 'checked', v),
+        textareas: a.textareas.map((t,ti) => ({...t, onChangeEvt: e => this.updateSchoolAssinaturaText(sc.id, a.key, ti, e.target.value)})),
+      }));
+      return { ...sc, radios, assinaturas,
+        isOpen: s.openSchoolId===sc.id, dadosReadMode: !sc.editingDados,
+        showCabecalhoTexto: sc.mostrarCabecalho && sc.possuiCabecalho,
+        onOpenSchool: () => this.openSchool(sc.id),
+        onToggle: () => this.toggleSchool(sc.id), onEditDados: () => this.enterDadosEdit(sc.id),
+        onCancelDados: () => this.cancelDados(sc.id), onSaveDados: () => this.saveDados(sc.id),
+        onCancel: () => this.cancelSchool(sc.id), onSave: () => this.saveSchool(sc.id),
+        onCabecalhoToggle: v => this.updateSchool(sc.id,'mostrarCabecalho',v),
+        onCabecalhoExtraToggle: v => this.updateSchool(sc.id,'possuiCabecalho',v),
+        onCabecalhoTextoEvt: e => this.updateSchool(sc.id,'textoCabecalho',e.target.value),
+        onNomeOficial: v => this.updateSchool(sc.id,'nomeOficial',v), onEndereco: v => this.updateSchool(sc.id,'endereco',v),
+        onBairro: v => this.updateSchool(sc.id,'bairro',v), onCidadeEnd: v => this.updateSchool(sc.id,'cidadeEnd',v),
+        onCep: v => this.updateSchool(sc.id,'cep',v), onTelefone: v => this.updateSchool(sc.id,'telefone',v),
+        onCnpj: v => this.updateSchool(sc.id,'cnpj',v), onDataConclusao: v => this.updateSchool(sc.id,'dataConclusao',v),
+      };
+    });
+
+    const fundList = s.fundamentacoes.map(f => ({ ...f,
+      isConfirming: s.fundConfirmId === f.id, isNotConfirming: s.fundConfirmId !== f.id,
+      onChangeEvt: e => this.updateFund(f.id, e.target.value),
+      onRemove: () => this.requestRemoveFund(f.id), onConfirmRemove: () => this.confirmRemoveFund(f.id),
+      onCancelRemove: () => this.cancelRemoveFund(),
+    }));
+
+    const redesView = s.redes.map(r => ({...r, onSelect: () => this.selectRede(r.id)}));
+    const redeSelecionada = s.redes.find(r=>r.id===s.redeId) || null;
+    const showContent = !!s.redeId;
+
+    const segStyle = on => ({ border:0, background: on?'#fff':'transparent', color: on?'#242CC2':'#3D3F42',
+      cursor:'pointer', padding:'8px 10px', borderRadius:8, fontFamily:'Archivo', fontWeight:700, fontSize:13,
+      boxShadow: on?'0 2px 4px rgba(0,23,31,0.15)':'none', transition:'background 160ms cubic-bezier(0.16,1,0.3,1)' });
+    const alinhamentoOptions = ALINHAMENTO.map(o => ({ ...o, style: segStyle(s.geral.alinhamento===o.value),
+      onSelect: () => this.updateSection('geral','alinhamento',o.value) }));
+
+    const rightTabDefs = [
+      {id:'rede', label:'Configurações da Rede'},
+      {id:'escolas', label:'Escolas da Rede'},
+      {id:'fundamentacao', label:'Fundamentação Legal'},
+    ];
+    const rightTabs = rightTabDefs.map(t => ({ ...t, onSelect: () => this.setRightTab(t.id),
+      style: { border:0, background:'transparent', cursor:'pointer', padding:'14px 0', fontFamily:'Archivo', fontWeight:700, fontSize:14,
+        color: s.rightTab===t.id ? '#242CC2' : '#65686E', borderBottom: s.rightTab===t.id ? '2px solid #242CC2' : '2px solid transparent' } }));
+
+    return {
+      tab: s.tab, setTab: this.setTab, tabs: [{id:'alunos',label:'Alunos'},{id:'turmas',label:'Turmas'},{id:'config',label:'Configurações'}],
+      isAlunos: s.tab==='alunos', isTurmas: s.tab==='turmas', isConfig: s.tab==='config',
+      loading: s.loading, contentVisible: showContent && !s.loading,
+      redeOpen: s.redeOpen, redes: redesView, redeSelecionada, toggleRedeOpen: this.toggleRedeOpen, clearRede: this.clearRede,
+      alinhamentoOptions,
+      geralChecksLeft: geralChecks,
+      seriesPanelOpen: s.seriesPanelOpen, openSeriesPanel: this.openSeriesPanel,
+      closeSeriesPanelCancel: this.closeSeriesPanelCancel, saveSeriesPanel: this.saveSeriesPanel,
+      rightTabs, isRedeTab: s.rightTab==='rede', isEscolasTab: s.rightTab==='escolas', isFundTab: s.rightTab==='fundamentacao',
+      docsListVisible: !s.activeDoc, backToDocs: this.backToDocs,
+      schoolsListVisible: !s.openSchoolId, backToSchools: this.backToSchools,
+      sections, geralSeries,
+      historico: s.historico, historicoShowObs: s.historico.possuiObservacao, historicoShowCert: s.historico.possuiCertificado,
+      onObsToggle: v => this.updateSection('historico','possuiObservacao',v),
+      onObsChangeEvt: e => this.updateSection('historico','observacao',e.target.value),
+      onCertToggle: v => this.updateSection('historico','possuiCertificado',v),
+      onCertTipoChangeEvt: e => this.updateSection('historico','tipoCertificado',e.target.value),
+      onFundLegalChange: v => this.updateSection('historico','fundamentacaoLegal',v),
+      TIPOS_CERT, FUND_LEGAL,
+      ata: s.ata, onAtaComplementoEvt: e => this.updateSection('ata','complemento',e.target.value),
+      certificado: s.certificado,
+      onCertLeiTermoEvt: e => this.updateSection('certificado','leiTermo',e.target.value),
+      onCertComplementoEvt: e => this.updateSection('certificado','complemento',e.target.value),
+      schools,
+      fundList, fundEditing: s.fundEditing, fundReadMode: !s.fundEditing, fundEmpty: fundList.length===0,
+      onFundEdit: this.enterFundEdit, onFundCancel: this.cancelFundEdit, onFundSave: this.saveFund, onFundAdd: this.addFund,
+      toast: s.toast, clearToast: this.clearToast,
+      alunosColumns: [{key:'nome',label:'Nome'},{key:'turma',label:'Turma'},{key:'situacao',label:'Situação'}],
+      alunosRows: [
+        {nome:'Maria Silva Santos', turma:'3º ano A', situacao:'Cursando'},
+        {nome:'Pedro Henrique Costa', turma:'2º ano B', situacao:'Cursando'},
+        {nome:'Ana Beatriz Oliveira', turma:'1º ano A', situacao:'Transferido'},
+        {nome:'Lucas Gabriel Ferreira', turma:'3º ano A', situacao:'Cursando'},
+      ],
+      turmas: [{nome:'1º ano A', alunos:32},{nome:'2º ano B', alunos:29},{nome:'3º ano A', alunos:27}],
+    };
+  }
+}
+</script>
+</body>
+</html>

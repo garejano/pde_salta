@@ -1,0 +1,103 @@
+<!-- @dsCard group="Components" name="Counter" subtitle="Badge numérico — 1 dígito, 2 dígitos, 9+ · Primary e Secondary" viewport="700x280" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:24px; background:#fff; font-family:'Nunito',sans-serif; display:flex; flex-direction:column; gap:28px; }
+  .section-label { font-family:'Archivo'; font-weight:700; font-size:11px; color:#65686E; text-transform:uppercase; letter-spacing:.06em; margin-bottom:12px; }
+
+  /* ── Counter base ── */
+  .counter {
+    display:inline-flex; align-items:center; justify-content:center;
+    min-width:24px; height:24px; border-radius:999px;
+    font-family:'Nunito'; font-weight:700; font-size:14px; line-height:24px;
+    padding:0 6px; box-sizing:border-box; flex-shrink:0;
+  }
+
+  /* Colors */
+  .counter.primary   { background:#242CC2; color:#fff; }
+  .counter.secondary { background:#9D0364; color:#fff; }
+  .counter.on-white  { background:#fff;    color:#9D0364; }
+  .counter.neutral   { background:#EBEDF1; color:#3D3F42; }
+  .counter.positive  { background:#28975A; color:#fff; }
+  .counter.error     { background:#E65637; color:#fff; }
+  .counter.warning   { background:#FFAC30; color:#3D3F42; }
+
+  /* Sizes */
+  .counter.sm { min-width:20px; height:20px; font-size:12px; padding:0 5px; }
+  .counter.lg { min-width:28px; height:28px; font-size:16px; padding:0 8px; }
+
+  /* ── Demo rows ── */
+  .demo-row  { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .demo-item { display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .demo-cap  { font-family:'Inter'; font-size:11px; color:#ADB2BA; }
+
+  /* ── In context ── */
+  .tab-example {
+    display:inline-flex; align-items:center; gap:6px;
+    padding:0 16px; height:40px;
+    font-family:'Archivo'; font-weight:700; font-size:13px; color:#242CC2;
+    border-bottom:2px solid #242CC2;
+  }
+  .btn-example {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:0 16px; height:40px; border-radius:8px;
+    background:#fff; border:1px solid #C3C8D1;
+    font-family:'Archivo'; font-weight:700; font-size:14px; color:#3D3F42;
+  }
+  .colored-bg { background:#242CC2; border-radius:8px; padding:12px 16px; display:inline-flex; gap:8px; align-items:center; }
+  .colored-bg span { font-family:'Archivo'; font-weight:700; font-size:14px; color:#fff; }
+</style>
+</head>
+<body>
+
+<!-- Variantes de cor -->
+<div>
+  <div class="section-label">Cores</div>
+  <div class="demo-row">
+    <div class="demo-item"><div class="counter primary">3</div><span class="demo-cap">primary</span></div>
+    <div class="demo-item"><div class="counter secondary">3</div><span class="demo-cap">secondary</span></div>
+    <div class="demo-item"><div class="counter neutral">3</div><span class="demo-cap">neutral</span></div>
+    <div class="demo-item"><div class="counter positive">3</div><span class="demo-cap">positive</span></div>
+    <div class="demo-item"><div class="counter error">3</div><span class="demo-cap">error</span></div>
+    <div class="demo-item"><div class="counter warning">3</div><span class="demo-cap">warning</span></div>
+    <div class="demo-item" style="background:#242CC2;border-radius:8px;padding:8px 10px;">
+      <div class="counter on-white">3</div><span class="demo-cap" style="color:#fff;">on-primary</span>
+    </div>
+  </div>
+</div>
+
+<!-- Tipos de valor -->
+<div>
+  <div class="section-label">Valores</div>
+  <div class="demo-row">
+    <div class="demo-item"><div class="counter primary">1</div><span class="demo-cap">1 dígito</span></div>
+    <div class="demo-item"><div class="counter primary">9</div><span class="demo-cap">1 dígito</span></div>
+    <div class="demo-item"><div class="counter primary">12</div><span class="demo-cap">2 dígitos</span></div>
+    <div class="demo-item"><div class="counter primary">99</div><span class="demo-cap">2 dígitos</span></div>
+    <div class="demo-item"><div class="counter primary">+9</div><span class="demo-cap">overflow</span></div>
+    <div class="demo-item"><div class="counter primary">99+</div><span class="demo-cap">overflow</span></div>
+  </div>
+</div>
+
+<!-- Tamanhos -->
+<div>
+  <div class="section-label">Tamanhos</div>
+  <div class="demo-row" style="align-items:flex-end;">
+    <div class="demo-item"><div class="counter secondary sm">3</div><span class="demo-cap">sm · 20px</span></div>
+    <div class="demo-item"><div class="counter secondary">3</div><span class="demo-cap">md · 24px</span></div>
+    <div class="demo-item"><div class="counter secondary lg">3</div><span class="demo-cap">lg · 28px</span></div>
+  </div>
+</div>
+
+<!-- Em contexto -->
+<div>
+  <div class="section-label">Em contexto</div>
+  <div class="demo-row">
+    <div class="tab-example">Não lidas <span class="counter secondary sm">3</span></div>
+    <div class="btn-example">Notificações <span class="counter primary sm">12</span></div>
+    <div class="colored-bg"><span>Mensagens</span><span class="counter on-white">5</span></div>
+  </div>
+</div>
+
+</body></html>

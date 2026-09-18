@@ -1,0 +1,182 @@
+
+globalCallback @ zone__js.js?v=aa57029d:967
+globalZoneAwareCallback @ zone__js.js?v=aa57029d:984
+Navigated to http://localhost:4200/exemplos/diario-classe
+debug_node.mjs:18315 Angular is running in development mode.
+content_script_bundle.js:1 Attempting handshake with backend Tue Jun 16 2026 16:36:03 GMT-0300 (Horário Padrão de Brasília)
+doc-grid-conteudo.component.ts:146 [DocGridConteudo] Medição — 118 linhas | colWidths=[35,1068] | textWidths=[23,1056]
+doc-grid-conteudo.component.ts:150 Row  0 02/03 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'02/03'2323false11411'Continuação da aula anterior. Rotina Permanente - Calendário, agenda e explicaçã'18551035true22821'Atividade: Lição de casa Poliedro páginas 38 e 40.'2031035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row  1 28/01 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'28/01'2323false11411'Semana de adaptação Roda de conversa - apresentação individual. Fotos da turma c'6201035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row  2 29/01 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'29/01'2323false11411'Semana de Adaptação  Parque Leitura do livro: A fantástica máquina dos bichos - '5261035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row  3 30/01 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'30/01'2323false11411'Atividade permanente.'911035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row  4 02/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'02/02'2323false11411'Semana de Adaptação:   - Entrada coletiva - cantar no pátio.  - Sondagem desenho'7131035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row  5 03/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'03/02'2323false11411'Atividade permanente.'911035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row  6 04/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'04/02'2323false11411'Semana de Adaptação:  - Sondagem de Matemática  - Leitura: Livro Perigoso - Tim '5751035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row  7 05/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'05/02'2323false11411'Semana de Adaptação:  - Entrada Coletiva: cantar no pátio.  - Leitura - Livro: A'6341035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row  8 06/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'06/02'2323false11411'Atividade permanente.'911035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row  9 09/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'09/02'2323false11411'Abertura da Unidade  Roda de conversa - O que é cirandar? Poliedro páginas 10, 1'3851035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 10 09/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'09/02'2323false11411'Brincadeira :Ciranda Cirandinha Interpretação da obra " Crianças na praça". - Iv'3551035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 11 10/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'10/02'2323false11411'Atividade permanente.'911035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 12 10/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'10/02'2323false11411'Levantar hipóteses sobre a palavra: CIRANDAR Organizar ideias verbalmente Interp'6211035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 13 11/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'11/02'2223false11411'Atividade Caderno de linguagem -  Lista da Turma - Ordem alfabética e localizaçã'3711035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 14 11/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'11/02'2223false11411'Capa do caderno de caligrafia  Leitura: Livro Chapeuzinho amarelo Chico Buarque'3311035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 15 12/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'12/02'2323false11411'Atividade de Carnaval:  Construção e decoração Máscara de Carnaval - Painel Desf'3951035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 16 13/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'13/02'2323false11411'Atividade Permanente'891035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 17 19/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'19/02'2323false11411'Atividade caderno: Este(a) sou eu... Reconhecimento da própria identidade: atrav'6201035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 18 20/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'20/02'2323false11411'Atividade Permanente.'921035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 19 23/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'23/02'2323false11411'Continuação da aula anterior. Unidade 1 -Apreciação Artística da obra de Ivan Cr'8641035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 20 23/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'23/02'2323false11411'Unidade 1 - Apreciação Artística da obra de Ivan Cruz e sua biografia. Levantame'7471035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 21 24/02 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'24/02'2323false11411'Atividade Caderno: Lista da turma Localizar e encontrar o nome na lista. Compree'7661035false11421'Atividade: Lição de casa Poliedro página 18.'1801035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 22 24/02 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'24/02'2323false11411'Continuação da aula anterior. Atividade Caderno: Lista da turma Localizar e enco'8861035false11421'Atividade: Lição de casa Poliedro página 18.'1801035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 23 25/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'25/02'2323false11411'Brincadeira: Cantiga do Caranguejo. Construir coletivamente a palavra CARANGUEJO'5881035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 24 25/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'25/02'2323false11411'Continuação da atividade anterior. Brincadeira: Cantiga do Caranguejo. Construir'7281035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 25 26/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'26/02'2323false11411'Biblioteca'411035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 26 26/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'26/02'2323false11411'Parlenda "Caranguejo peixe é". Leitura da cantiga, acompanhando com o dedinho. L'6531035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 27 27/02 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'27/02'2323false11411'Brinquedoteca'581035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 28 02/03 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'02/03'2323false11411'Rotina Permanente - Calendário, agenda e explicação da lição de casa. Abertura U'8601035false11421'Atividade: Lição de casa Poliedro página 38 e 40.'1991035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 29 03/03 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'03/03'2323false11411'Continuação da aula anterior. Leitura e interpretação de texto. Ideias em Constr'7871035false11421'Atividade: Lição de casa Poliedro páginas 38 e 40.'2031035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 30 03/03 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'03/03'2323false11411'Rotina permanente - Calendário, Agenda e Explicação da lição de casa. Poliedro p'14051035true22821'Atividade: Lição de casa Poliedro páginas 38 e 40'2001035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 31 04/03 | pretextH=37 gambiarraH=51 finalH=51 ⚠ CORRIGIDO
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'04/03'2323false11411'Continuação da aula anterior. Poliedro páginas 41 e 42. Confecção telefone sem f'9581035false11421'Atividade: Lição de casa Poliedro páginas 46 e 47.'2031035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 32 04/03 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'04/03'2323false11411'Rotina permanente - Calendário, Agenda e Explicação da lição de casa. Poliedro p'11271035true22821'Atividade: Lição de casa Poliedro páginas 46 e 47.'2031035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 33 05/03 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'05/03'2323false11411'Rotina permanente - Calendário, Agenda e Explicação da lição de casa. Poliedro p'6661035false11421'Atividade: Lição de casa recortar as letras do Alfabeto do material complementar'3871035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 34 05/03 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'05/03'2323false11411'Rotina permanente - Calendário, Agenda e Explicação da lição de casa. Poliedro p'6661035false11421'Atividade: Lição de casa recortar as letras do alfabeto no material complementar'3851035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 35 06/03 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'06/03'2323false11411'Biblioteca: Projeto Mania de Ler Conversa na biblioteca de regras do uso e combi'3541035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 36 09/03 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'09/03'2323false11411'Continuação da aula anterior. Poliedro página 52. Os alunos em duplas organizara'8271035false11421'Atividade: Lição de casa Poliedro página 51.'1801035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 37 09/03 | pretextH=37 gambiarraH=51 finalH=51 ⚠ CORRIGIDO
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'09/03'2323false11411'Rotina permanente - Calendário, Agenda e Explicação da lição de casa. Poliedro p'9961035false11421'Atividade: Lição de casa Poliedro página 51.'1801035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 38 10/03 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'10/03'2323false11411'Continuação da aula anterior. Rotina permanente - Calendário, Agenda e Explicaçã'11561035true228Array(2)
+doc-grid-conteudo.component.ts:150 Row 39 10/03 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'10/03'2323false11411'Rotina permanente - Calendário, Agenda e Explicação da lição de casa. Gênero tex'10371035true228Array(2)
+doc-grid-conteudo.component.ts:150 Row 40 11/03 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'11/03'2223false11411'Continuação da aula anterior. Rotina permanente - Calendário, Agenda e Explicaçã'8881035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 41 11/03 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'11/03'2223false11411'Rotina permanente - Calendário, Agenda e Explicação da lição de casa. Gênero tex'10371035true228Array(2)
+doc-grid-conteudo.component.ts:150 Row 42 12/03 | pretextH=37 gambiarraH=51 finalH=51 ⚠ CORRIGIDO
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'12/03'2323false11411'Rotina permanente - Calendário, Agenda e Explicação da lição de casa. Unidade 3 '9991035false11421'Atividade: Lição de casa Poliedro página 65.'1801035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 43 13/03 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'13/03'2323false11411'Biblioteca.'441035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 44 16/03 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'16/03'2323false11411'Continuação da aula anterior. Gênero textual: lista (leitura e produção de lista'8271035false11421'Atividade: Lição de casa Poliedro páginas 97 e 98.'2031035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 45 16/03 | pretextH=37 gambiarraH=51 finalH=51 ⚠ CORRIGIDO
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'16/03'2323false11411'Rotina permanente - Agenda, calendário e correção da lição de casa. Gênero textu'9831035false11421'Atividade: Lição de casa Poliedro Páginas 97 e 98.'2041035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 46 17/03 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'17/03'2323false11411'Atividade permanente - Agenda, calendário e explicação da lição de casa. Sondage'6821035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 47 17/03 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'17/03'2323false11411'Continuação da aula anterior Sondagem: Palavras: GELATINA, COCADA, BALA, MEL. Fr'5031035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 48 18/03 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'18/03'2323false11411'Continuação da aula anterior Gênero Textual: Convite Análise  dos elementos comp'11321035true22821'Atividade: Lição de casa Poliedro página 150'1821035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 49 18/03 | pretextH=37 gambiarraH=51 finalH=51 ⚠ CORRIGIDO
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'18/03'2323false11411'Gênero Textual: Convite Análise  dos elementos composicionais do convite ( desti'10131035false11421'Atividade: Lição de casa Poliedro página 150.'1851035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 50 19/03 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'19/03'2323false11411'Rotina permanente  Calendário (mês, dia e dia da semana) Rotina do Lousa ( rotin'14471035true22821'Atividade: Lição de casa = Poliedro páginas 65 e 66.'2111035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 51 19/03 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'19/03'2323false11411'Rotina permanente  Calendário (mês, dia e dia da semana) Rotina do Lousa ( rotin'14471035true22821'Atividade: Lição de casa Poliedro páginas 65 e 66.'2031035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 52 23/03 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 53 23/03 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:150 Row 54 24/03 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 55 24/03 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 56 25/03 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:150 Row 57 25/03 | pretextH=51 gambiarraH=65 finalH=65 ⚠ CORRIGIDO
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'25/03'2323false11411'Rotina permanente  Calendário (mês, dia e dia da semana) Rotina do Lousa ( palav'20371035true22821'Atividade: Lição de casa Poliedro página 86.'1801035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 58 26/03 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:150 Row 59 26/03 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:150 Row 60 27/03 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 61 30/03 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 62 30/03 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 63 31/03 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 64 31/03 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 65 01/04 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:150 Row 66 01/04 | pretextH=65 gambiarraH=65 finalH=65 ✓
+doc-grid-conteudo.component.ts:150 Row 67 02/04 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:150 Row 68 06/04 | pretextH=37 gambiarraH=51 finalH=51 ⚠ CORRIGIDO
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'06/04'2323false11411'Continuação da aula anterior Leitura coletiva de trava-língua para desenvolvimen'9601035false11421'Atividade: Lição de casa Poliedro página 81'1771035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 69 06/04 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:150 Row 70 07/04 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 71 07/04 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 72 08/04 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 73 08/04 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:150 Row 74 09/04 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:150 Row 75 09/04 | pretextH=65 gambiarraH=65 finalH=65 ✓
+doc-grid-conteudo.component.ts:150 Row 76 10/04 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 77 13/04 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 78 13/04 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 79 14/04 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 80 14/04 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 81 15/04 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 82 15/04 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:150 Row 83 16/04 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:150 Row 84 16/04 | pretextH=37 gambiarraH=51 finalH=51 ⚠ CORRIGIDO
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'16/04'2323false11411'Projeto Mania de ler: Retomar a leitura da história: Perigoso! Este livro contém'9861035false11421'Atividade: Folha de atividade - Projeto mania de ler.'2101035false114Array(3)
+doc-grid-conteudo.component.ts:150 Row 85 17/04 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 86 22/04 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 87 22/04 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:150 Row 88 23/04 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 89 23/04 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 90 24/04 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 91 27/04 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 92 27/04 | pretextH=51 gambiarraH=51 finalH=51 ✓
+doc-grid-conteudo.component.ts:150 Row 93 28/04 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 94 28/04 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 95 29/04 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 96 29/04 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 97 30/04 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 98 30/04 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 99 04/05 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 100 04/05 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 101 05/05 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 102 05/05 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 103 06/05 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 104 06/05 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 105 07/05 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 106 07/05 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 107 08/05 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 108 11/05 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 109 11/05 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 110 12/05 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 111 12/05 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 112 13/05 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 113 13/05 | pretextH=37 gambiarraH=37 finalH=37 ✓
+doc-grid-conteudo.component.ts:150 Row 114 14/05 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 115 14/05 | pretextH=23 gambiarraH=37 finalH=37 ⚠ CORRIGIDO
+doc-grid-conteudo.component.ts:151 (index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH(index)coltexto (80)naturalWtextWnaturalW > textWpretextLinespretextH00'14/05'2323false11411'Rotina permanente  Calendário (mês, dia e dia da semana) Rotina do Lousa ( palav'10261035false114Array(2)
+doc-grid-conteudo.component.ts:150 Row 116 15/05 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:150 Row 117 18/05 | pretextH=23 gambiarraH=23 finalH=23 ✓
+doc-grid-conteudo.component.ts:165 9 linha(s) corrigidas pela gambiarra: rows 31, 37, 42, 45, 49, 57, 68, 84, 115

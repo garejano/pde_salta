@@ -3,6 +3,10 @@ graph TD
   AlunoAvaliacaoPresenca --> TipoPresenca
   AlunoFalta --> TipoPresenca
   AlunoFrequencia --> TipoFrequencia
+  AtualizacaoHoraAulaClasseItem --> HoraAulaPadrao
+  AtualizacaoHoraAulaClasseItem --> AtualizacaoHoraAulaLote
+  AtualizacaoHoraAulaSegmentoItem --> HoraAulaSegmento
+  AtualizacaoHoraAulaSegmentoItem --> AtualizacaoHoraAulaLote
   Aula_LancamentoComportamento --> LancamentoComportamento
   AulaEvento --> TipoAulaEvento
   AulaEventoAnotacoes --> AulaEvento
@@ -20,17 +24,28 @@ graph TD
   FuncionalidadeTipoPresenca --> TipoPresenca
   HistoricoHoraAulaPgto --> HoraAulaPgto
   HistoricoHoraAulaSegmentoPgto --> HoraAulaSegmentoPgto
-  HoraAulaPgto --> TipoHoraAula
-  HoraAulaSegmentoPgto --> TipoHoraAula
+  HoraAulaEspecial --> JustificativaHoraAula
+  HoraAulaEspecial --> MotivoAlteracaoHoraAula
+  HoraAulaEspecial --> MovimentacaoHoraAula
+  HoraAulaPadrao --> MotivoAlteracaoHoraAula
+  HoraAulaPadrao --> MovimentacaoHoraAula
+  HoraAulaPgto --> TipoHoraAula_Excluir
+  HoraAulaSegmento --> MotivoAlteracaoHoraAula
+  HoraAulaSegmento --> MovimentacaoHoraAula
+  HoraAulaSegmentoPgto --> TipoHoraAula_Excluir
+  HoraAulaTabelada --> MotivoAlteracaoHoraAula
   LancamentoNotasBusca --> Chamada
   LancamentoNotasStatusPorTurma --> Chamada
   LIV_FeedbackAula --> LIV_FeedbackCadastroAulas
   LIV_FeedbackAulaRespostas --> LIV_FeedbackAula
   MonitoriaMonitorPresenca --> TipoAbonoFalta
   MonitoriaMonitorPresenca --> TipoPresenca
+  MotivoAlteracaoHoraAula --> TipoHoraAula
   MotivoFrequenciaProfessor --> MotivoFrequenciaProfessor
   MotivoFrequenciaProfessorTipoPresenca --> MotivoFrequenciaProfessor
   MotivoFrequenciaProfessorTipoPresenca --> TipoPresenca
+  MovimentacaoHoraAula --> MotivoAlteracaoHoraAula
+  MovimentacaoHoraAula --> TipoHoraAula
   ProtocoloLancamento --> Chamada
   ProtocoloLancamentoAluno --> ProtocoloLancamento
   ProtocoloLancamentoAluno --> ProtocoloLancamentoStatus
@@ -41,19 +56,27 @@ graph TD
   AlunoAvaliacaoPresenca_bkp2
   AlunoFaltas
   AlunoJustificativaFalta
+  AlunoPercentualFrequencia
   AulaEventoConfiguracao
   AulaEventoPautaMensal
   AulaEventoPautaSemanal
   AulaEventoUltimaAlteracao
   Aula_ComentarioComportamento
   BaseDeLancamentoNotas
+  DadosImportacaoFrequencia
   DiaSemAula
   DuracaoTempoAula
-  HoraAulaPadrao
+  FilaImportacaoFrequencia
   ImportacaoFrequencia
   LIV_MaterialPlanoAula
   LIV_StatusPlanoAula
   LogAulaOnlineAssistida
+  MovimentacaoHoraAula_Backup_20260721113925
+  MovimentacaoHoraAula_Backup_20260721114218
+  MovimentacaoHoraAula_Backup_20260721114430
+  MovimentacaoHoraAula_Backup_20260721114651
+  MovimentacaoHoraAula_Backup_20260721114956
+  MovimentacaoHoraAula_Backup_20260721120617
   POANaoPossuiAula
   POANaoPossuiAula_Modulo
   PercentualFrequencia

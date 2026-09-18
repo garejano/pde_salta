@@ -1,0 +1,552 @@
+{
+  "app-button": {
+    "file": "shared/components/button/button.component.ts",
+    "category": "shared",
+    "folder": "button",
+    "usages": [
+      "app/features/cargas-iniciais/alocacao-professores/alocacao-professores.component.html",
+      "app/features/cargas-iniciais/importar-alocacao-professores/importar-alocacao-professores.component.html",
+      "app/features/escolas-gerenciais/cadastro/cadastro-escola-gerencial.component.html",
+      "app/features/escolas-gerenciais/editar/editar-escola-gerencial.component.html",
+      "app/features/escolas-publicas/detalhes/detalhes.component.html",
+      "app/features/escolas-publicas/listar/listar.component.html",
+      "app/features/escolas-publicas/modals/cadastro-escola-publica/cadastro-escola-publica.component.html",
+      "app/features/escolas-publicas/modals/cadastro-turma/cadastro-turma.component.html",
+      "app/features/escolas-publicas/modals/cadastro-turma-servico/cadastro-turma-servico.component.html",
+      "app/features/escolas-publicas/modals/editar-escola-publica/editar-escola-publica.component.html",
+      "app/features/escolas-publicas/modals/editar-turma/editar-turma.component.html",
+      "app/features/escolas-publicas/modals/remover-turma/remover-turma.component.html",
+      "app/features/folha/gestao-pagamento/cadastro-escola/cadastro-escola.component.html",
+      "app/features/folha/gestao-pagamento/configuracao-chapa/configuracao-chapa.component.html",
+      "app/features/folha/gestao-pagamento/editar-escola/editar-escola.component.html",
+      "app/features/folha/gestao-pagamento/editar-macroturmas/editar-macroturmas.component.html",
+      "app/features/folha/listar-checklist/listar-checklist.component.html",
+      "app/features/folha/previa-carga/envio-previa/novo-envio-previa.component.html",
+      "app/features/folha/previa-carga/envio-teste/envio-teste.component.html",
+      "app/features/folha/previa-carga/listar/listar.component.html",
+      "app/features/folha/previa-carga/modals/testar-envio/testar-envio.component.html",
+      "app/features/itinerario-formativo/editar-itinerario/editar-itinerario.component.html",
+      "app/features/itinerario-formativo/listar-itinerarios/listar-itinerarios.component.html",
+      "app/features/itinerario-formativo/selecao-itinerario/selecao-itinerario.component.html",
+      "app/features/lancamento-frequencia/lancamento/lancamento.component.html",
+      "app/features/lancamento-frequencia/lancamento/saida-antecipada-modal/saida-antecipada-modal.component.html",
+      "app/features/movimentacao-pedagogica/alteracao-carga/alteracao-carga.component.html",
+      "app/features/movimentacao-pedagogica/alteracao-carga-detalhes/alteracao-carga-detalhes.component.html",
+      "app/features/movimentacao-pedagogica/components/info-lancamento-evento/info-lancamento-evento.component.html",
+      "app/features/movimentacao-pedagogica/components/modal-alteracao-carga/modal-alteracao-carga.component.html",
+      "app/features/movimentacao-pedagogica/components/tipo-evento-atraso-edit/tipo-evento-atraso-edit.component.html",
+      "app/features/movimentacao-pedagogica/components/tipo-evento-atraso-view/tipo-evento-atraso-view.component.html",
+      "app/features/movimentacao-pedagogica/components/tipo-evento-base-form/tipo-evento-base-form.component.html",
+      "app/features/movimentacao-pedagogica/components/tipo-evento-extra-view/tipo-evento-extra-view.component.html",
+      "app/features/movimentacao-pedagogica/components/tipo-evento-falta-view/tipo-evento-falta-view.component.html",
+      "app/features/movimentacao-pedagogica/components/tipo-evento-outros-view/tipo-evento-outros-view.component.html",
+      "app/features/movimentacao-pedagogica/lancamento-eventos-detalhes/lancamento-eventos-detalhes.component.html",
+      "app/features/ocorrencia/listar/listar.component.html",
+      "app/features/periodo-letivo/editar/editar.component.html"
+    ]
+  },
+  "app-card-info": {
+    "file": "shared/components/card-info/card-info.component.ts",
+    "category": "shared",
+    "folder": "card-info",
+    "usages": [
+      "app/features/folha/listar-checklist/listar-checklist.component.html"
+    ]
+  },
+  "app-card-message": {
+    "file": "shared/components/card-message/card-message.component.ts",
+    "category": "shared",
+    "folder": "card-message",
+    "usages": [
+      "app/features/cargas-iniciais/importar-alocacao-professores/importar-alocacao-professores.component.html"
+    ]
+  },
+  "app-circle-icon-button": {
+    "file": "shared/components/circle-icon-button/circle-icon-button.component.ts",
+    "category": "shared",
+    "folder": "circle-icon-button",
+    "usages": [
+      "app/features/folha/previa-carga/envio-previa/novo-envio-previa.component.html"
+    ]
+  },
+  "date-field": {
+    "file": "shared/components/date-field/date-field.component.ts",
+    "category": "shared",
+    "folder": "date-field",
+    "usages": [
+      "app/features/movimentacao-pedagogica/alteracao-carga-detalhes/alteracao-carga-detalhes.component.html",
+      "app/features/movimentacao-pedagogica/alteracao-carga-detalhes/carga-editor/carga-editor.component.html",
+      "app/features/movimentacao-pedagogica/components/tipo-evento-atraso-edit/tipo-evento-atraso-edit.component.html",
+      "app/features/movimentacao-pedagogica/components/tipo-evento-base-form/tipo-evento-base-form.component.html"
+    ]
+  },
+  "app-datepicker": {
+    "file": "shared/components/datepicker/datepicker.component.ts",
+    "category": "shared",
+    "folder": "datepicker",
+    "usages": []
+  },
+  "app-dropdown-actions": {
+    "file": "shared/components/dropdown-actions/dropdown-actions.component.ts",
+    "category": "shared",
+    "folder": "dropdown-actions",
+    "usages": []
+  },
+  "app-filtro": {
+    "file": "shared/components/filtro/filtro.component.ts",
+    "category": "shared",
+    "folder": "filtro",
+    "usages": []
+  },
+  "app-icon-button": {
+    "file": "shared/components/icon-button/icon-button.component.ts",
+    "category": "shared",
+    "folder": "icon-button",
+    "usages": []
+  },
+  "app-listbox-transfer": {
+    "file": "shared/components/listbox-transfer/listbox-transfer.component.ts",
+    "category": "shared",
+    "folder": "listbox-transfer",
+    "usages": [
+      "app/features/dias-sem-aula/formulario/formulario.component.html",
+      "app/features/exemplos/tela-base/tela-base.component.html",
+      "app/features/folha/gestao-pagamento/cadastro-cargo-pagamento/cadastro-cargo-pagamento.component.html",
+      "app/features/folha/gestao-pagamento/editar-turma-macroturmas/editar-turma-macroturmas.component.html"
+    ]
+  },
+  "app-loading": {
+    "file": "shared/components/loading/loading.component.ts",
+    "category": "shared",
+    "folder": "loading",
+    "usages": [
+      "app/features/boletim/processamento/processamento.component.html",
+      "app/features/cargas-iniciais/alocacao-professores/alocacao-professores.component.html",
+      "app/features/cargas-iniciais/importar-alocacao-professores/importar-alocacao-professores.component.html",
+      "app/features/diario-de-classe/configuracao/configuracao.component.html",
+      "app/features/diario-de-classe/listar/listar.component.html",
+      "app/features/dias-sem-aula/listar/listar.component.html",
+      "app/features/escolas-gerenciais/listar/listar-escola-gerencial.component.html",
+      "app/features/escolas-publicas/detalhes/detalhes.component.html",
+      "app/features/escolas-publicas/listar/listar.component.html",
+      "app/features/escolas-publicas/modals/cadastro-escola-publica/cadastro-escola-publica.component.html",
+      "app/features/escolas-publicas/modals/cadastro-turma/cadastro-turma.component.html",
+      "app/features/escolas-publicas/modals/cadastro-turma-servico/cadastro-turma-servico.component.html",
+      "app/features/etapas/listar/listar.component.html",
+      "app/features/exemplos/tela-base/tela-base.component.html",
+      "app/features/folha/gestao-pagamento/configuracao-chapa/configuracao-chapa.component.html",
+      "app/features/folha/gestao-pagamento/edicao-chapa/edicao-chapa.component.html",
+      "app/features/folha/gestao-pagamento/listar-cargos-pagamento/listar-cargos-pagamento.component.html",
+      "app/features/folha/gestao-pagamento/listar-classes/listar-classes.component.html",
+      "app/features/folha/gestao-pagamento/listar-escolas/listar.component.html",
+      "app/features/folha/gestao-pagamento/listar-eventos/listar-eventos.component.html",
+      "app/features/folha/gestao-pagamento/listar-macroturmas/listar-macroturmas.component.html",
+      "app/features/folha/gestao-pagamento/listar-segmentos-pagamento/listar-segmentos-pagamento.component.html",
+      "app/features/folha/gestao-pagamento/listar-segmentos-sindical/listar-segmentos-sindical.component.html",
+      "app/features/folha/gestao-pagamento/listar-turmas-macroturmas/listar-turmas-macroturmas.component.html",
+      "app/features/folha/listar-checklist/listar-checklist.component.html",
+      "app/features/folha/previa-carga/envio-previa/novo-envio-previa.component.html",
+      "app/features/folha/previa-carga/listar/listar.component.html",
+      "app/features/grade-horaria/configurador-tempo-padrao/configurador-tempo-padrao.component.html",
+      "app/features/itinerario-formativo/listar-itinerarios/listar-itinerarios.component.html",
+      "app/features/itinerario-formativo/selecao-itinerario/selecao-itinerario.component.html",
+      "app/features/lancamento-frequencia/justificativas/justificativas.component.html",
+      "app/features/lancamento-frequencia/lancamento/justificativa-modal/justificativa-modal.component.html",
+      "app/features/lancamento-frequencia/lancamento/lancamento.component.html",
+      "app/features/lancamento-frequencia/lista-presenca/lista-presenca.component.html",
+      "app/features/lancamento-frequencia/listar/listar.component.html",
+      "app/features/movimentacao-pedagogica/alteracao-carga/alteracao-carga.component.html",
+      "app/features/movimentacao-pedagogica/alteracao-carga-detalhes/alteracao-carga-detalhes.component.html",
+      "app/features/movimentacao-pedagogica/lancamento-eventos/lancamento-eventos.component.html",
+      "app/features/movimentacao-pedagogica/lancamento-eventos-detalhes/lancamento-eventos-detalhes.component.html",
+      "app/features/ocorrencia/listar/listar.component.html",
+      "app/features/periodo-letivo/editar/editar.component.html"
+    ]
+  },
+  "app-modal": {
+    "file": "shared/components/modal/modal.component.ts",
+    "category": "shared",
+    "folder": "modal",
+    "usages": [
+      "app/features/dias-sem-aula/detalhe/detalhe.component.html",
+      "app/features/dias-sem-aula/formulario/formulario.component.html",
+      "app/features/escolas-gerenciais/cadastro/cadastro-escola-gerencial.component.html",
+      "app/features/escolas-gerenciais/editar/editar-escola-gerencial.component.html",
+      "app/features/escolas-publicas/modals/cadastro-escola-publica/cadastro-escola-publica.component.html",
+      "app/features/escolas-publicas/modals/cadastro-turma/cadastro-turma.component.html",
+      "app/features/escolas-publicas/modals/cadastro-turma-servico/cadastro-turma-servico.component.html",
+      "app/features/escolas-publicas/modals/editar-escola-publica/editar-escola-publica.component.html",
+      "app/features/escolas-publicas/modals/editar-turma/editar-turma.component.html",
+      "app/features/escolas-publicas/modals/remover-turma/remover-turma.component.html",
+      "app/features/etapas/modals/editar-etapas/editar-etapas.component.html",
+      "app/features/exemplos/tela-base/tela-base.component.html",
+      "app/features/folha/gestao-pagamento/cadastro-cargo-pagamento/cadastro-cargo-pagamento.component.html",
+      "app/features/folha/gestao-pagamento/cadastro-classe/cadastro-classe.component.html",
+      "app/features/folha/gestao-pagamento/cadastro-escola/cadastro-escola.component.html",
+      "app/features/folha/gestao-pagamento/cadastro-evento/cadastro-evento.component.html",
+      "app/features/folha/gestao-pagamento/cadastro-segmento-pagamento/cadastro-segmento-pagamento.component.html",
+      "app/features/folha/gestao-pagamento/cadastro-segmento-sindical/cadastro-segmento-sindical.component.html",
+      "app/features/folha/gestao-pagamento/editar-escola/editar-escola.component.html",
+      "app/features/folha/gestao-pagamento/editar-macroturmas/editar-macroturmas.component.html",
+      "app/features/folha/gestao-pagamento/editar-turma-macroturmas/editar-turma-macroturmas.component.html",
+      "app/features/folha/previa-carga/envio-previa/novo-envio-previa.component.html",
+      "app/features/folha/previa-carga/envio-teste/envio-teste.component.html",
+      "app/features/folha/previa-carga/listar/listar.component.html",
+      "app/features/folha/previa-carga/modals/testar-envio/testar-envio.component.html",
+      "app/features/grade-horaria/configurador-tempo-padrao/configurador-tempo-padrao.component.html",
+      "app/features/itinerario-formativo/editar-itinerario/editar-itinerario.component.html",
+      "app/features/itinerario-formativo/listar-itinerarios/listar-itinerarios.component.html",
+      "app/features/lancamento-frequencia/justificativas/justificativas.component.html",
+      "app/features/lancamento-frequencia/lancamento/justificativa-modal/justificativa-modal.component.html",
+      "app/features/lancamento-frequencia/lancamento/lancamento.component.html",
+      "app/features/lancamento-frequencia/lancamento/saida-antecipada-modal/saida-antecipada-modal.component.html",
+      "app/features/movimentacao-pedagogica/alteracao-carga-detalhes/alteracao-carga-detalhes.component.html",
+      "app/features/movimentacao-pedagogica/components/modal-alteracao-carga/modal-alteracao-carga.component.html",
+      "app/features/movimentacao-pedagogica/components/tipo-evento-base-form/tipo-evento-base-form.component.html",
+      "app/features/movimentacao-pedagogica/lancamento-eventos-detalhes/lancamento-eventos-detalhes.component.html",
+      "app/features/ocorrencia/cadastro/cadastro.component.html",
+      "app/features/ocorrencia/listar/listar.component.html",
+      "app/features/periodo-letivo/editar/editar.component.html"
+    ]
+  },
+  "multi-select": {
+    "file": "shared/components/multi-select/multi-select.component.ts",
+    "category": "shared",
+    "folder": "multi-select",
+    "usages": [
+      "app/features/escolas-gerenciais/cadastro/cadastro-escola-gerencial.component.html",
+      "app/features/escolas-gerenciais/editar/editar-escola-gerencial.component.html",
+      "app/features/escolas-publicas/modals/cadastro-escola-publica/cadastro-escola-publica.component.html",
+      "app/features/escolas-publicas/modals/cadastro-turma/cadastro-turma.component.html",
+      "app/features/exemplos/formularios/formularios.component.html",
+      "app/features/folha/gestao-pagamento/cadastro-escola/cadastro-escola.component.html",
+      "app/features/folha/gestao-pagamento/editar-escola/editar-escola.component.html",
+      "app/features/folha/previa-carga/envio-previa/novo-envio-previa.component.html",
+      "app/features/itinerario-formativo/editar-itinerario/editar-itinerario.component.html",
+      "app/features/itinerario-formativo/selecao-itinerario/selecao-itinerario.component.html",
+      "app/features/ocorrencia/cadastro/cadastro.component.html"
+    ]
+  },
+  "app-paginacao": {
+    "file": "shared/components/paginacao/paginacao.component.ts",
+    "category": "shared",
+    "folder": "paginacao",
+    "usages": [
+      "app/features/boletim/processamento/processamento.component.html",
+      "app/features/folha/gestao-pagamento/configuracao-chapa/configuracao-chapa.component.html",
+      "app/features/folha/gestao-pagamento/listar-macroturmas/listar-macroturmas.component.html",
+      "app/features/movimentacao-pedagogica/alteracao-carga/alteracao-carga.component.html",
+      "app/features/movimentacao-pedagogica/lancamento-eventos/lancamento-eventos.component.html",
+      "app/features/ocorrencia/listar/listar.component.html"
+    ]
+  },
+  "app-salvar": {
+    "file": "shared/components/salvar/salvar.component.ts",
+    "category": "shared",
+    "folder": "salvar",
+    "usages": [
+      "app/features/boletim/processamento/processamento.component.html",
+      "app/features/cargas-iniciais/alocacao-professores/alocacao-professores.component.html",
+      "app/features/cargas-iniciais/importar-alocacao-professores/importar-alocacao-professores.component.html",
+      "app/features/diario-de-classe/listar/listar.component.html",
+      "app/features/dias-sem-aula/listar/listar.component.html",
+      "app/features/escolas-gerenciais/listar/listar-escola-gerencial.component.html",
+      "app/features/escolas-publicas/detalhes/detalhes.component.html",
+      "app/features/escolas-publicas/listar/listar.component.html",
+      "app/features/exemplos/tela-base/tela-base.component.html",
+      "app/features/folha/gestao-pagamento/edicao-chapa/edicao-chapa.component.html",
+      "app/features/folha/gestao-pagamento/listar-classes/listar-classes.component.html",
+      "app/features/folha/gestao-pagamento/listar-escolas/listar.component.html",
+      "app/features/folha/gestao-pagamento/listar-eventos/listar-eventos.component.html",
+      "app/features/folha/gestao-pagamento/listar-macroturmas/listar-macroturmas.component.html",
+      "app/features/folha/gestao-pagamento/listar-segmentos-pagamento/listar-segmentos-pagamento.component.html",
+      "app/features/folha/gestao-pagamento/listar-segmentos-sindical/listar-segmentos-sindical.component.html",
+      "app/features/folha/gestao-pagamento/listar-turmas-macroturmas/listar-turmas-macroturmas.component.html",
+      "app/features/folha/previa-carga/envio-previa/novo-envio-previa.component.html",
+      "app/features/folha/previa-carga/listar/listar.component.html",
+      "app/features/grade-horaria/configurador-tempo-padrao/configurador-tempo-padrao.component.html",
+      "app/features/itinerario-formativo/listar-itinerarios/listar-itinerarios.component.html",
+      "app/features/lancamento-frequencia/lista-presenca/lista-presenca.component.html",
+      "app/features/ocorrencia/listar/listar.component.html"
+    ]
+  },
+  "app-search-field": {
+    "file": "shared/components/search-field/search-field.component.ts",
+    "category": "shared",
+    "folder": "search-field",
+    "usages": []
+  },
+  "single-select": {
+    "file": "shared/components/select-field/select-field.component.ts",
+    "category": "shared",
+    "folder": "select-field",
+    "usages": [
+      "app/features/cargas-iniciais/form-etapa-importacao/form-etapa-importacao.component.html",
+      "app/features/dias-sem-aula/formulario/formulario.component.html",
+      "app/features/escolas-gerenciais/cadastro/cadastro-escola-gerencial.component.html",
+      "app/features/folha/gestao-pagamento/cadastro-classe/cadastro-classe.component.html",
+      "app/features/folha/gestao-pagamento/cadastro-escola/cadastro-escola.component.html",
+      "app/features/folha/gestao-pagamento/cadastro-evento/cadastro-evento.component.html",
+      "app/features/folha/gestao-pagamento/cadastro-segmento-pagamento/cadastro-segmento-pagamento.component.html",
+      "app/features/folha/gestao-pagamento/cadastro-segmento-sindical/cadastro-segmento-sindical.component.html",
+      "app/features/folha/gestao-pagamento/configuracao-chapa/configuracao-chapa.component.html",
+      "app/features/folha/gestao-pagamento/edicao-chapa/edicao-chapa.component.html",
+      "app/features/folha/gestao-pagamento/editar-macroturmas/editar-macroturmas.component.html",
+      "app/features/folha/previa-carga/envio-previa/novo-envio-previa.component.html",
+      "app/features/folha/previa-carga/modals/testar-envio/testar-envio.component.html",
+      "app/features/itinerario-formativo/editar-itinerario/editar-itinerario.component.html",
+      "app/features/lancamento-frequencia/lancamento/lancamento.component.html",
+      "app/features/movimentacao-pedagogica/alteracao-carga-detalhes/alteracao-carga-detalhes.component.html",
+      "app/features/movimentacao-pedagogica/alteracao-carga-detalhes/carga-editor/carga-editor.component.html",
+      "app/features/movimentacao-pedagogica/components/tipo-evento-atraso-edit/tipo-evento-atraso-edit.component.html",
+      "app/features/movimentacao-pedagogica/components/tipo-evento-base-form/tipo-evento-base-form.component.html",
+      "app/features/ocorrencia/cadastro/cadastro.component.html"
+    ]
+  },
+  "app-sem-conteudo": {
+    "file": "shared/components/sem-conteudo/sem-conteudo.component.ts",
+    "category": "shared",
+    "folder": "sem-conteudo",
+    "usages": []
+  },
+  "app-side-panel": {
+    "file": "shared/components/side-panel/side-panel.component.ts",
+    "category": "shared",
+    "folder": "side-panel",
+    "usages": [
+      "app/features/exemplos/side-panel-exemplo/side-panel-exemplo.component.html"
+    ]
+  },
+  "app-skeleton-text": {
+    "file": "shared/components/skeleton-text/skeleton-text.component.ts",
+    "category": "shared",
+    "folder": "skeleton-text",
+    "usages": []
+  },
+  "app-tab-navigator": {
+    "file": "shared/components/tab-navigator/tab-navigator.component.ts",
+    "category": "shared",
+    "folder": "tab-navigator",
+    "usages": [
+      "app/components/tab-periodo-letivo/tab-periodo-letivo.component.html",
+      "app/features/diario-de-classe/diario-de-classe-tab-navigator/diario-de-classe-tab-navigator.component.html",
+      "app/features/folha/gestao-pagamento/gestao-tab-navigator/gestao-tab-navigator.component.html",
+      "app/features/folha/listar-checklist/listar-checklist.component.html",
+      "app/features/lancamento-frequencia/frequencia-tab-navigator/frequencia-tab-navigator.component.html",
+      "app/features/movimentacao-pedagogica/movimentacao-tab-navigator/movimentacao-tab-navigator.component.html"
+    ]
+  },
+  "app-table-wrapper": {
+    "file": "shared/components/table-wrapper/table-wrapper.component.ts",
+    "category": "shared",
+    "folder": "table-wrapper",
+    "usages": []
+  },
+  "app-titulo-page": {
+    "file": "shared/components/titulo-page/titulo-page.component.ts",
+    "category": "shared",
+    "folder": "titulo-page",
+    "usages": [
+      "app/features/boletim/processamento/processamento.component.html",
+      "app/features/cargas-iniciais/alocacao-professores/alocacao-professores.component.html",
+      "app/features/cargas-iniciais/grade-horaria/grade-horaria.component.html",
+      "app/features/cargas-iniciais/importar-alocacao-professores/importar-alocacao-professores.component.html",
+      "app/features/diario-de-classe/diario-de-classe.component.html",
+      "app/features/dias-sem-aula/listar/listar.component.html",
+      "app/features/escolas-gerenciais/listar/listar-escola-gerencial.component.html",
+      "app/features/escolas-publicas/detalhes/detalhes.component.html",
+      "app/features/escolas-publicas/listar/listar.component.html",
+      "app/features/etapas/listar/listar.component.html",
+      "app/features/exemplos/info-base/info-base.component.html",
+      "app/features/exemplos/tela-base/tela-base.component.html",
+      "app/features/folha/gestao-pagamento/configuracao-chapa/configuracao-chapa.component.html",
+      "app/features/folha/gestao-pagamento/listar-cargos-pagamento/listar-cargos-pagamento.component.html",
+      "app/features/folha/gestao-pagamento/listar-classes/listar-classes.component.html",
+      "app/features/folha/gestao-pagamento/listar-escolas/listar.component.html",
+      "app/features/folha/gestao-pagamento/listar-eventos/listar-eventos.component.html",
+      "app/features/folha/gestao-pagamento/listar-macroturmas/listar-macroturmas.component.html",
+      "app/features/folha/gestao-pagamento/listar-segmentos-pagamento/listar-segmentos-pagamento.component.html",
+      "app/features/folha/gestao-pagamento/listar-segmentos-sindical/listar-segmentos-sindical.component.html",
+      "app/features/folha/listar-checklist/listar-checklist.component.html",
+      "app/features/folha/previa-carga/envio/envio.component.html",
+      "app/features/folha/previa-carga/envio-previa/novo-envio-previa.component.html",
+      "app/features/folha/previa-carga/informacoes-envio/informacoes-envio.component.html",
+      "app/features/folha/previa-carga/listar/listar.component.html",
+      "app/features/grade-horaria/configurador-tempo-padrao/configurador-tempo-padrao.component.html",
+      "app/features/itinerario-formativo/listar-itinerarios/listar-itinerarios.component.html",
+      "app/features/itinerario-formativo/selecao-itinerario/selecao-itinerario.component.html",
+      "app/features/lancamento-frequencia/frequencia/frequencia.component.html",
+      "app/features/movimentacao-pedagogica/alteracao-carga/alteracao-carga.component.html",
+      "app/features/movimentacao-pedagogica/alteracao-carga-detalhes/alteracao-carga-detalhes.component.html",
+      "app/features/movimentacao-pedagogica/lancamento-eventos/lancamento-eventos.component.html",
+      "app/features/movimentacao-pedagogica/lancamento-eventos-detalhes/lancamento-eventos-detalhes.component.html",
+      "app/features/ocorrencia/listar/listar.component.html",
+      "app/features/periodo-letivo/editar/editar.component.html",
+      "app/features/relatorio/disciplinas/disciplinas.component.html"
+    ]
+  },
+  "app-titulo-tela": {
+    "file": "shared/components/titulo-tela/titulo-tela.component.ts",
+    "category": "shared",
+    "folder": "titulo-tela",
+    "usages": [
+      "app/features/cargas-iniciais/importar-alocacao-professores/importar-alocacao-professores.component.html",
+      "app/features/escolas-publicas/detalhes/detalhes.component.html",
+      "app/features/exemplos/info-base/info-base.component.html",
+      "app/features/folha/gestao-pagamento/edicao-chapa/edicao-chapa.component.html",
+      "app/features/folha/gestao-pagamento/listar-turmas-macroturmas/listar-turmas-macroturmas.component.html",
+      "app/features/folha/previa-carga/envio/envio.component.html",
+      "app/features/folha/previa-carga/envio-previa/novo-envio-previa.component.html",
+      "app/features/folha/previa-carga/informacoes-envio/informacoes-envio.component.html",
+      "app/features/movimentacao-pedagogica/alteracao-carga-detalhes/alteracao-carga-detalhes.component.html",
+      "app/features/movimentacao-pedagogica/lancamento-eventos-detalhes/lancamento-eventos-detalhes.component.html"
+    ]
+  },
+  "app-toastr-eleva": {
+    "file": "shared/components/toastr-eleva/toastr-eleva.component.ts",
+    "category": "shared",
+    "folder": "toastr-eleva",
+    "usages": []
+  },
+  "app-toggle-buttons": {
+    "file": "shared/components/toggle-buttons/toggle-buttons.component.ts",
+    "category": "shared",
+    "folder": "toggle-buttons",
+    "usages": [
+      "app/features/movimentacao-pedagogica/alteracao-carga-detalhes/alteracao-carga-detalhes.component.html"
+    ]
+  },
+  "app-tooltip": {
+    "file": "shared/components/tooltip/tooltip.component.ts",
+    "category": "shared",
+    "folder": "tooltip",
+    "usages": []
+  },
+  "app-turno-radio-select": {
+    "file": "shared/components/turno-radio-select/turno-radio-select.component.ts",
+    "category": "shared",
+    "folder": "turno-radio-select",
+    "usages": [
+      "app/features/escolas-publicas/modals/editar-turma/editar-turma.component.html"
+    ]
+  },
+  "app-user-validation": {
+    "file": "shared/components/user-validation/user-validation.component.ts",
+    "category": "shared",
+    "folder": "user-validation",
+    "usages": []
+  },
+  "app-view-toggle": {
+    "file": "shared/components/view-toggle/view-toggle.component.ts",
+    "category": "shared",
+    "folder": "view-toggle",
+    "usages": [
+      "app/features/lancamento-frequencia/justificativas/justificativas.component.html",
+      "app/features/lancamento-frequencia/listar/listar.component.html"
+    ]
+  },
+  "app-checkbox": {
+    "file": "shared/dynamic-components/checkbox/checkbox.component.ts",
+    "category": "dynamic",
+    "folder": "checkbox",
+    "usages": [
+      "app/features/exemplos/tela-base/tela-base.component.html"
+    ]
+  },
+  "app-custom-radio": {
+    "file": "shared/dynamic-components/custom-radio/custom-radio.component.ts",
+    "category": "dynamic",
+    "folder": "custom-radio",
+    "usages": [
+      "app/features/exemplos/tela-base/tela-base.component.html"
+    ]
+  },
+  "app-date-field": {
+    "file": "shared/dynamic-components/date-field/date-field.component.ts",
+    "category": "dynamic",
+    "folder": "date-field",
+    "usages": [
+      "app/features/exemplos/tela-base/tela-base.component.html"
+    ]
+  },
+  "app-files-field": {
+    "file": "shared/dynamic-components/files-field/files-field.component.ts",
+    "category": "dynamic",
+    "folder": "files-field",
+    "usages": [
+      "app/features/exemplos/tela-base/tela-base.component.html"
+    ]
+  },
+  "app-money-field": {
+    "file": "shared/dynamic-components/money-field/money-field.component.ts",
+    "category": "dynamic",
+    "folder": "money-field",
+    "usages": [
+      "app/features/exemplos/tela-base/tela-base.component.html"
+    ]
+  },
+  "app-multi-select-field": {
+    "file": "shared/dynamic-components/multi-select-field/multi-select-field.component.ts",
+    "category": "dynamic",
+    "folder": "multi-select-field",
+    "usages": [
+      "app/features/exemplos/tela-base/tela-base.component.html"
+    ]
+  },
+  "app-number-field": {
+    "file": "shared/dynamic-components/number-field/number-field.component.ts",
+    "category": "dynamic",
+    "folder": "number-field",
+    "usages": [
+      "app/features/exemplos/tela-base/tela-base.component.html"
+    ]
+  },
+  "app-radio-field": {
+    "file": "shared/dynamic-components/radio-field/radio-field.component.ts",
+    "category": "dynamic",
+    "folder": "radio-field",
+    "usages": [
+      "app/features/exemplos/tela-base/tela-base.component.html"
+    ]
+  },
+  "app-select-field": {
+    "file": "shared/dynamic-components/select-field/select-field.component.ts",
+    "category": "dynamic",
+    "folder": "select-field",
+    "usages": [
+      "app/features/exemplos/tela-base/tela-base.component.html"
+    ]
+  },
+  "text-field": {
+    "file": "shared/dynamic-components/text-field/text-field.component.ts",
+    "category": "dynamic",
+    "folder": "text-field",
+    "usages": [
+      "app/features/exemplos/tela-base/tela-base.component.html"
+    ]
+  },
+  "app-textarea-field": {
+    "file": "shared/dynamic-components/textarea-field/textarea-field.component.ts",
+    "category": "dynamic",
+    "folder": "textarea-field",
+    "usages": [
+      "app/features/exemplos/tela-base/tela-base.component.html"
+    ]
+  },
+  "app-time-field": {
+    "file": "shared/dynamic-components/time-field/time-field.component.ts",
+    "category": "dynamic",
+    "folder": "time-field",
+    "usages": [
+      "app/features/exemplos/tela-base/tela-base.component.html"
+    ]
+  },
+  "app-toggle": {
+    "file": "shared/dynamic-components/toggle/toggle.component.ts",
+    "category": "dynamic",
+    "folder": "toggle",
+    "usages": [
+      "app/features/exemplos/tela-base/tela-base.component.html"
+    ]
+  }
+}

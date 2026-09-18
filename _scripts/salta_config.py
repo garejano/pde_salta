@@ -33,7 +33,7 @@ ARCHIVE_DIR:       Path = SALTA_BRAIN / "_archive"
 # Arquivos de saída/índice
 # ---------------------------------------------------------------------------
 
-REPOSITORY_MAP:      Path = SALTA_BRAIN / "repository_map.md"
+REPOSITORY_MAP:      Path = SALTA_BRAIN / "_inbox" / "repository_map.md"
 FRONTEND_CHANGELOG:  Path = FRONTEND_MAPS_DIR / "changelog.md"
 
 # ---------------------------------------------------------------------------

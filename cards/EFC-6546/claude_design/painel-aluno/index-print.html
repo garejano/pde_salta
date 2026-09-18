@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atlas Gestão Escolar — Painel do Aluno</title>
+  <link rel="stylesheet" href="colors_and_type.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <style>
+    html, body, #root { margin: 0; min-height: 100%; }
+    body { background: #F8F9FB; }
+    * { box-sizing: border-box; }
+    @keyframes typing {
+      0%, 80%, 100% { opacity: 0.3; transform: translateY(0); }
+      40% { opacity: 1; transform: translateY(-3px); }
+    }
+    @keyframes fadeSlideDown {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeSlideRight {
+      from { opacity: 0; transform: translateX(-8px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @media print {
+      @page { size: A4 landscape; margin: 1cm; }
+
+      /* Force colors */
+      *, *::before, *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      /* Freeze all animations at end state */
+      *, *::before, *::after {
+        animation-delay: -99s !important;
+        animation-duration: .001s !important;
+        animation-iteration-count: 1 !important;
+        animation-fill-mode: both !important;
+        animation-play-state: running !important;
+        transition-duration: 0s !important;
+      }
+
+      /* Remove sticky header — let it flow */
+      header {
+        position: static !important;
+      }
+
+      /* Remove overflow clipping */
+      aside, div {
+        overflow: visible !important;
+      }
+
+      /* Hide interactive chrome not useful in print */
+      [data-print-hide],
+      button[title="Nova conversa"],
+      .tweaks-panel-root {
+        display: none !important;
+      }
+
+      /* Make the chat FAB and drawer invisible */
+      aside { display: none !important; }
+
+      /* Main layout: keep two columns on landscape A4 */
+      body { background: #F8F9FB !important; }
+
+      /* Avoid breaking cards across pages */
+      .student-card, .right-column-card {
+        break-inside: avoid;
+      }
+    }
+  </style>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/prop-types@15.8.1/prop-types.min.js"></script>
+  <script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js"></script>
+  <script>
+    const _ce = console.error;
+    console.error = (...a) => {
+      if (typeof a[0] === 'string' && a[0].includes('defaultProps')) return;
+      _ce(...a);
+    };
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="primitives.jsx"></script>
+  <script type="text/babel" src="TopNav.jsx"></script>
+  <script type="text/babel" src="PageHeader.jsx"></script>
+  <script type="text/babel" src="StudentInfoCard.jsx"></script>
+  <script type="text/babel" src="RightColumn.jsx"></script>
+  <script type="text/babel" src="ChatDrawer.jsx"></script>
+  <script type="text/babel" src="App.jsx"></script>
+
+  <!-- Auto-print: wait for React + Babel + fonts -->
+  <script type="text/babel">
+    // This runs after all Babel scripts are parsed
+    Promise.all([
+      document.fonts.ready,
+      new Promise(r => setTimeout(r, 1200)),
+    ]).then(() => window.print());
+  </script>
+</body>
+</html>

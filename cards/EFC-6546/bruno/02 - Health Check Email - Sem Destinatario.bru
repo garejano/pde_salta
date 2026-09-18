@@ -1,0 +1,16 @@
+meta {
+  name: 02 - Health Check Email - Sem Destinatario (espera erro de validação)
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/health/email
+  body: none
+  auth: none
+}
+
+docs {
+  Sem o query param "destinatario". Deve retornar ServiceResult com o erro
+  "Informe o e-mail de destino (query string 'destinatario').", sem tentar enviar nada.
+}

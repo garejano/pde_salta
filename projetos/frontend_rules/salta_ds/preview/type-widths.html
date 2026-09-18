@@ -1,0 +1,30 @@
+<!doctype html>
+<!-- @dsCard group="Type" name="Type · Archivo widths" subtitle="Condensed · Normal · Expanded (local fonts)" viewport="700x240" -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 22px 20px; background: #fff; color: #0F0F10; font-family: 'Nunito', sans-serif; }
+  .row { display: grid; grid-template-columns: 170px 1fr; gap: 8px 18px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid #EBEDF1; }
+  .row:last-child { border-bottom: 0; }
+  .token { font-family: 'Inconsolata', monospace; font-size: 11px; color: #65686E; line-height: 1.3; }
+  .t { color: #0F0F10; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 40px; line-height: 1; }
+  .condensed { font-family: "Archivo Condensed", sans-serif; }
+  .normal    { font-family: "Archivo", sans-serif; }
+  .expanded  { font-family: "Archivo Expanded", sans-serif; }
+  .hint { font-family: 'Inconsolata', monospace; font-size: 10px; color: #65686E; margin-top: 10px; }
+</style></head>
+<body>
+  <div class="row">
+    <div class="token">Archivo Condensed<br>weight 700</div>
+    <div class="t condensed" style="font-weight:700;">Gabarito Eleva</div>
+  </div>
+  <div class="row">
+    <div class="token">Archivo (normal)<br>weight 700</div>
+    <div class="t normal" style="font-weight:700;">Gabarito Eleva</div>
+  </div>
+  <div class="row">
+    <div class="token">Archivo Expanded<br>weight 700</div>
+    <div class="t expanded" style="font-weight:700;">Gabarito Eleva</div>
+  </div>
+  <div class="hint">Local @font-face · all widths available in 400 / 500 / 600 / 700</div>
+</body></html>

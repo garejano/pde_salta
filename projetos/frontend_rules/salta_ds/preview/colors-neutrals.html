@@ -1,0 +1,27 @@
+<!doctype html>
+<!-- @dsCard group="Colors" name="Neutral colors" subtitle="Ink scale" viewport="700x140" -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: #fff; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .swatch { min-height: 78px; border-radius: 8px; display: flex; flex-direction: column; justify-content: space-between; padding: 10px 12px; font-family: 'Nunito', sans-serif; }
+  .swatch .name { font-weight: 700; font-family: 'Archivo'; font-size: 11px; line-height: 1.1; }
+  .swatch .hex  { font-family: 'Inconsolata', monospace; font-size: 11px; opacity: .85; }
+  .swatch .token{ font-family: 'Inconsolata', monospace; font-size: 9px; opacity: .7; }
+  .l { color: #0F0F10; }
+  .d { color: #fff; }
+  .b { border: 1px solid #EBEDF1; }
+</style></head>
+<body>
+<div class="grid">
+  <div class="swatch d" style="background:#0F0F10"><span><span class="name">Neutral dark 3</span><br><span class="token">$color-neutral-dark3</span></span><span class="hex">#0F0F10</span></div>
+  <div class="swatch d" style="background:#3D3F42"><span><span class="name">Neutral dark 2</span><br><span class="token">$color-neutral-dark2</span></span><span class="hex">#3D3F42</span></div>
+  <div class="swatch d" style="background:#65686E"><span><span class="name">Neutral dark 1</span><br><span class="token">$color-neutral-dark1</span></span><span class="hex">#65686E</span></div>
+  <div class="swatch l" style="background:#ADB2BA"><span><span class="name">Neutral</span><br><span class="token">$color-neutral</span></span><span class="hex">#ADB2BA</span></div>
+  <div class="swatch l" style="background:#C3C8D1"><span><span class="name">Neutral light 1</span><br><span class="token">$color-neutral-light1</span></span><span class="hex">#C3C8D1</span></div>
+  <div class="swatch l" style="background:#EBEDF1"><span><span class="name">Neutral light 2</span><br><span class="token">$color-neutral-light2</span></span><span class="hex">#EBEDF1</span></div>
+  <div class="swatch l" style="background:#F8F9FB"><span><span class="name">Neutral light 3</span><br><span class="token">$color-neutral-light3</span></span><span class="hex">#F8F9FB</span></div>
+  <div class="swatch l b" style="background:#FFFFFF"><span><span class="name">White</span><br><span class="token">$color-white</span></span><span class="hex">#FFFFFF</span></div>
+</div>
+</body></html>

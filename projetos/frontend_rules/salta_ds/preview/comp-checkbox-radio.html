@@ -1,0 +1,41 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Checkbox & Radio" subtitle="Selecionado · parcial · não selecionado · desativado" viewport="700x180" -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+<style>
+  body { margin:0; padding:20px; background:#fff; font-family:'Nunito',sans-serif; }
+  .row { display:flex; gap:32px; align-items:flex-start; flex-wrap:wrap; }
+  .group { display:flex; flex-direction:column; gap:10px; }
+  .head { font-family:'Archivo'; font-weight:700; font-size:11px; color:#65686E; letter-spacing:.06em; text-transform:uppercase; margin-bottom:2px; }
+  .item { display:flex; align-items:center; gap:10px; font-size:14px; color:#0F0F10; cursor:pointer; user-select:none; }
+  /* Checkbox box */
+  .cb { width:16px; height:16px; border-radius:4px; border:1.5px solid #C3C8D1; background:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 120ms; }
+  .cb.checked  { background:#242CC2; border-color:#242CC2; }
+  .cb.partial  { background:#242CC2; border-color:#242CC2; }
+  .cb.disabled { background:#F8F9FB; border-color:#EBEDF1; }
+  .cb .material-symbols-outlined { font-size:13px; color:#fff; line-height:1; }
+  /* Radio */
+  .rb { width:16px; height:16px; border-radius:50%; border:1.5px solid #C3C8D1; background:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 120ms; }
+  .rb.checked  { border-color:#28975A; }
+  .rb .dot     { width:8px; height:8px; border-radius:50%; background:#28975A; }
+  .rb.disabled { background:#F8F9FB; border-color:#EBEDF1; }
+</style></head>
+<body>
+<div class="row">
+  <div class="group">
+    <div class="head">Checkbox</div>
+    <label class="item"><div class="cb checked"><span class="material-symbols-outlined">check</span></div>Selecionado</label>
+    <label class="item"><div class="cb partial"><span class="material-symbols-outlined">remove</span></div>Parcial</label>
+    <label class="item"><div class="cb"><!-- unselected --></div>Não selecionado</label>
+    <label class="item"><div class="cb disabled checked"><span class="material-symbols-outlined" style="color:#C3C8D1">check</span></div><span style="color:#ADB2BA">Desativado</span></label>
+  </div>
+  <div class="group">
+    <div class="head">Radio</div>
+    <label class="item"><div class="rb checked"><div class="dot"></div></div>Selecionado</label>
+    <label class="item"><div class="rb"></div>Não selecionado</label>
+    <label class="item"><div class="rb checked" style="border-color:#242CC2"><div class="dot" style="background:#242CC2"></div></div>Primário</label>
+    <label class="item"><div class="rb disabled"></div><span style="color:#ADB2BA">Desativado</span></label>
+  </div>
+</div>
+</body></html>

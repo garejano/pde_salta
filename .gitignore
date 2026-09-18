@@ -10,3 +10,13 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+### Dados brutos de migração (grandes, gerados) — manter apenas local
+projetos/migracao_doc_ped/base_doc_ped_csv/
+migracao_justificativas_*.log
+
+### Segredos/credenciais — nunca versionar
+**/secrets_*.json
+**/secrets_*.txt
+estrutura_secrets*.txt
+estrutura_secrets*.json

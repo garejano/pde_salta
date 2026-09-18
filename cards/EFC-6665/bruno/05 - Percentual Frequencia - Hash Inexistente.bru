@@ -1,0 +1,26 @@
+meta {
+  name: 05 - Percentual Frequencia - Hash Inexistente (espera 200 lista vazia)
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/aluno/percentualfrequencia-aluno?hashUsuarioOrigem=11111111-1111-1111-1111-111111111111
+  body: none
+  auth: none
+}
+
+params:query {
+  hashUsuarioOrigem: 11111111-1111-1111-1111-111111111111
+}
+
+headers {
+  x-api-key: {{apiKey}}
+}
+
+docs {
+  Guid válido mas sem correspondência em Pessoa.Usuario.Hash. Deve retornar 200
+  com lista vazia, sem erro (CA-07) — diferencia "hash não encontrado" (sucesso,
+  lista vazia) de falha real de comunicação (que hoje vira exceção do lado
+  documentacao-pedagogica, ver PercentualFrequenciaGetService.cs).
+}

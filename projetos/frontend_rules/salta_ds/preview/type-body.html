@@ -1,0 +1,50 @@
+<!doctype html>
+<!-- @dsCard group="Type" name="Body type" subtitle="Nunito — body" viewport="700x220" -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: #fff; font-family: 'Nunito', sans-serif; color: #0F0F10; }
+  .grid { display: grid; grid-template-columns: 180px 1fr 160px; gap: 4px 16px; align-items: baseline; }
+  .token { font-family: 'Inconsolata', monospace; font-size: 12px; color: #65686E; }
+  .spec  { font-family: 'Inconsolata', monospace; font-size: 11px; color: #65686E; text-align: right; }
+  .s { font-family: 'Nunito', sans-serif; color: #0F0F10; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+</style></head>
+<body>
+<div class="grid">
+  <div class="token">$font-medium</div>
+  <div class="s" style="font-size:24px;line-height:32px;font-weight:400;">The quick brown fox jumps over the lazy dog</div>
+  <div class="spec">Nunito 24/32</div>
+
+  <div class="token">$font-medium-bold</div>
+  <div class="s" style="font-size:24px;line-height:32px;font-weight:700;">The quick brown fox jumps</div>
+  <div class="spec">Nunito Bold 24/32</div>
+
+  <div class="token">$font-text-bold</div>
+  <div class="s" style="font-size:16px;line-height:24px;font-weight:700;">The quick brown fox jumps over the lazy dog — 1234567890</div>
+  <div class="spec">Nunito Bold 16/24</div>
+
+  <div class="token">$font-text</div>
+  <div class="s" style="font-size:16px;line-height:24px;">The quick brown fox jumps over the lazy dog — 1234567890</div>
+  <div class="spec">Nunito 16/24</div>
+
+  <div class="token">$font-text-italic</div>
+  <div class="s" style="font-size:16px;line-height:24px;font-style:italic;">The quick brown fox jumps over the lazy dog</div>
+  <div class="spec">Nunito Italic 16/24</div>
+
+  <div class="token">$font-text-small-bold</div>
+  <div class="s" style="font-size:14px;line-height:24px;font-weight:700;">The quick brown fox jumps over the lazy dog — 14px bold</div>
+  <div class="spec">Nunito Bold 14/24</div>
+
+  <div class="token">$font-text-small</div>
+  <div class="s" style="font-size:14px;line-height:24px;">The quick brown fox jumps over the lazy dog — 14px regular</div>
+  <div class="spec">Nunito 14/24</div>
+
+  <div class="token">$font-description-bold</div>
+  <div class="s" style="font-size:12px;line-height:20px;font-weight:700;">The quick brown fox jumps over the lazy dog — 12px bold</div>
+  <div class="spec">Nunito Bold 12/20</div>
+
+  <div class="token">$font-description</div>
+  <div class="s" style="font-size:12px;line-height:20px;">The quick brown fox jumps over the lazy dog — 12px regular</div>
+  <div class="spec">Nunito 12/20</div>
+</div>
+</body></html>

@@ -47,7 +47,7 @@
 - **AlunoExecucaoProva** (PK: `Id`, 2 FK(s) negócio)
 - **AlunoExecucaoProva2** (PK: `—`, 0 FK(s) negócio)
 - **AlunoLaudoMedico** (PK: `Id`, 1 FK(s) negócio)
-- **AlunoNecessidadesEspeciais** (PK: `Id`, 1 FK(s) negócio)
+- **AlunoNecessidadesEspeciais** (PK: `Id`, 2 FK(s) negócio)
 - **AlunoNecessidadesEspeciaisRelatorio** (PK: `Id`, 3 FK(s) negócio)
 - **AlunoOcorrencia** (PK: `Id`, 2 FK(s) negócio)
 - **AlunoParaSincronizacao** (PK: `Id`, 0 FK(s) negócio)
@@ -56,6 +56,7 @@
 - **AlunoProvaMarcacao** (PK: `Id`, 0 FK(s) negócio)
 - **AlunoProvaQuestaoSomatorio** (PK: `Id`, 0 FK(s) negócio)
 - **AlunoProvaResposta** (PK: `Id`, 2 FK(s) negócio)
+- **AlunoSaidaAntecipada** (PK: `Id`, 3 FK(s) negócio)
 - **AlunoSemNecessidadesEspeciais** (PK: `Id`, 1 FK(s) negócio)
 - **AlunoTendencia** (PK: `Id`, 4 FK(s) negócio)
 - **AnoLetivo** (PK: `Id`, 0 FK(s) negócio)
@@ -99,8 +100,9 @@
 - **EscolaGerencial** (PK: `Id`, 1 FK(s) negócio)
 - **EscolaGerencialEscola** (PK: `Id`, 3 FK(s) negócio)
 - **EscolaMeta** (PK: `Id`, 3 FK(s) negócio)
-- **EscolaPagamento** (PK: `Id`, 1 FK(s) negócio)
+- **EscolaPagamento** (PK: `Id`, 2 FK(s) negócio)
 - **EscolaPagamentoEscola** (PK: `Id`, 3 FK(s) negócio)
+- **EscolaPagamentoEscolaGerencial** (PK: `Id`, 4 FK(s) negócio)
 - **EscolaSerie** (PK: `Id`, 6 FK(s) negócio)
 - **EscolaSerieCargaHoraria** (PK: `Id`, 2 FK(s) negócio)
 - **EscolaSerieDisciplina** (PK: `Id`, 2 FK(s) negócio)
@@ -213,6 +215,7 @@
 - **RedeSerieDisciplina** (PK: `Id, Id, Id`, 10 FK(s) negócio)
 - **RedeSerieDisciplinaAssunto** (PK: `Id`, 3 FK(s) negócio)
 - **RedeSerieDisciplinaCiclo** (PK: `Id`, 2 FK(s) negócio)
+- **RedeSerieDisciplinaEscola** (PK: `Id`, 2 FK(s) negócio)
 - **RedeSerieDisciplinaFrente** (PK: `Id`, 2 FK(s) negócio)
 - **RedeSerieDisciplinaLinha** (PK: `Id`, 1 FK(s) negócio)
 - **RedeSerieVersaoAnamnese** (PK: `Id`, 2 FK(s) negócio)
@@ -342,7 +345,7 @@
 - **ViewAlunoProvaCorrecaoSomatoria** — colunas: `Id`, `IdAluno`, `IdAnoLetivo`, `IdProva`, `IdCartao`, `IdAvaliacao`, `NomeAvaliacao`, `NomeTipoQuestao`, `Questao`, `Anulada`, `Valor`, `PossuiGabarito`, `OpcaoMarcada`, `OpcaoCorreta`, `DetalheMarcadas`, `DetalheCorretas`, `AcertoCompleto`, `AcertoParcial`
 - **ViewAlunoProvaDisciplina** — colunas: `Id`, `IdTurma`, `IdAluno`, `HashAluno`, `IdProva`, `HashProva`, `IdProvaCodigo`, `NomeProva`, `NomeTipoAvaliacao`, `NomeCiclo`, `DataAplicacao`, `DataAplicacaoParaBusca`, `PossuiNotaTRI`, `PossuiGabaritoSomatorio`, `PossuiQuestaoObjetiva`, `PossuiCartaoResposta`, `HashOrigemEnvioLeituraCartao`, `Status`, `Faltou`, `PossuiResultado`, `PossuiNota`, `PossuiFormativa`, `LiberadoParaAluno`, `PossuiCorrecaoOnline`, `EhAvaliacaoDigital`, `PeriodoAplicacao`
 - **ViewAlunoProvaResultado** — colunas: `Id`, `IdAluno`, `IdProva`, `OrdemAvaliacao`, `IdAvaliacao`, `NomeAvaliacao`, `AreaConhecimento`, `Nota`, `NotaMaxima`, `NotaFormativa`, `Conceito`, `NomeConceito`, `SituacaoBinaria`, `NomeSituacaoBinaria`, `Acertos`, `AcertosParciais`, `Comentarios`, `NotaTRI`, `LimiteInferiorTRI`, `LimiteSuperiorTRI`, `QuestoesObjetivas`, `TotalQuestoes`, `Aproveitamento`
-- **ViewAlunoProvaSituacao** — colunas: `Id`, `IdTurma`, `IdAluno`, `HashAluno`, `IdProva`, `HashProva`, `IdProvaCodigo`, `DataAplicacaoParaBusca`, `NomeProva`, `NomeTipoAvaliacao`, `NomeCiclo`, `DataAplicacao`, `PossuiNotaTRI`, `PossuiGabaritoSomatorio`, `PossuiQuestaoObjetiva`, `PossuiCartaoResposta`, `HashOrigemEnvioLeituraCartao`, `Status`, `Faltou`, `PossuiResultado`, `PossuiNota`, `PossuiFormativa`, `LiberadoParaAluno`, `PossuiCorrecaoOnline`, `EhAvaliacaoDigital`, `PeriodoAplicacao`
+- **ViewAlunoProvaSituacao** — colunas: `Id`, `IdOrdenacao`, `IdTurma`, `IdAluno`, `HashAluno`, `IdProva`, `HashProva`, `IdProvaCodigo`, `DataAplicacaoParaBusca`, `NomeProva`, `NomeTipoAvaliacao`, `NomeCiclo`, `DataAplicacao`, `PossuiNotaTRI`, `PossuiGabaritoSomatorio`, `PossuiQuestaoObjetiva`, `PossuiCartaoResposta`, `HashOrigemEnvioLeituraCartao`, `Status`, `Faltou`, `PossuiResultado`, `PossuiNota`, `PossuiFormativa`, `LiberadoParaAluno`, `PossuiCorrecaoOnline`, `EhAvaliacaoDigital`, `PeriodoAplicacao`
 - **ViewAlunoRecuperacaoEleva** — colunas: `Id`, `IdAnoLetivo`, `HashRede`, `HashEscola`, `HashSegmento`, `HashSerie`, `NomeSerie`, `IdTurma`, `HashTurma`, `NomeTurma`, `IdTurmaBase`, `IdDisciplina`, `IdDisciplinaMae`, `HashDisciplina`, `NomeDisciplina`, `IdPessoaEscolaAcesso`, `IdPessoaEscola`, `IdPessoa`, `HashPessoa`, `IdUsuario`, `NomeAluno`, `EmailAluno`, `Matricula`, `StatusMatricula`, `HashAluno`, `IdAvaliacao`, `HashAvaliacao`, `NomeAvaliacao`, `Peso`, `NotaMaxima`, `IdTipoResultado`, `IdTipoAvaliacao`, `NomeTipoAvaliacao`, `SiglaTipoAvaliacao`, `SiglaGlobalTipoAvaliacao`, `Media`, `OrdemCiclo`, `IdCiclo`, `NomeCiclo`, `SiglaCiclo`, `HashCiclo`, `MediaEtapa`, `MediaAnual`, `MediaFinal`, `EtapaDeResultados`, `CicloDeSituacao`, `MinimoParaAprovacao`, `IdAlunoNota`, `Conceito`, `SituacaoBinaria`, `Situacao`, `NotaFormativa`, `UsuarioInclusaoAlunoNota`, `DataInclusaoAlunoNota`
 - **ViewAlunoRedeEmail** — colunas: `Id`, `IdRede`, `NomeRede`, `HashRede`, `IdTurma`, `NomeTurma`, `HashTurma`, `IdAlunoEscola`, `IdAnoLetivo`, `HashAlunoEscola`, `IdDisciplina`, `NomeDisciplina`, `IdPessoaRedeEmail`, `EmailNaRede`, `ContaEhCorporativa`, `PermiteClassroom`, `HashPessoaRedeEmail`, `UserProfileId`
 - **ViewAlunoRedeEmailEletiva** — colunas: `Id`, `IdTurmaAgrupada`, `IdAlunoEscola`, `EmailNaRede`, `UserProfileId`

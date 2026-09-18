@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "EFC-6546 - HealthCheck Email (estrutura-pedagogica)",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

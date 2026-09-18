@@ -1,0 +1,78 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Datepicker & File upload" subtitle="Calendário + drag-and-drop" viewport="700x420" -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+<style>
+  body { margin:0; padding:20px; background:#fff; font-family:'Nunito',sans-serif; display:flex; gap:28px; }
+  /* Datepicker */
+  .dp { width:296px; border:1px solid #C3C8D1; border-radius:8px; overflow:hidden; }
+  .dp-head { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid #EBEDF1; font-family:'Archivo'; font-weight:700; font-size:14px; color:#0F0F10; }
+  .dp-head .material-symbols-outlined { font-size:20px; color:#65686E; cursor:pointer; }
+  .dp-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; padding:8px; }
+  .dp-cell { height:32px; display:flex; align-items:center; justify-content:center; font-size:13px; border-radius:4px; cursor:pointer; color:#3D3F42; }
+  .dp-cell:hover { background:#F8F9FB; }
+  .dp-cell.today { font-weight:700; color:#242CC2; }
+  .dp-cell.selected { background:#242CC2; color:#fff; border-radius:4px; }
+  .dp-cell.range { background:#E3E5FB; color:#242CC2; }
+  .dp-cell.muted { color:#C3C8D1; }
+  .dp-cell.dow { font-family:'Archivo'; font-weight:700; font-size:11px; color:#65686E; text-transform:uppercase; letter-spacing:.04em; cursor:default; }
+  .dp-cell.dow:hover { background:transparent; }
+
+  /* File upload */
+  .fu { width:300px; }
+  .fu-zone { border:1.5px dashed #C3C8D1; border-radius:8px; padding:32px 16px; display:flex; flex-direction:column; align-items:center; gap:8px; background:#F8F9FB; }
+  .fu-zone .material-symbols-outlined { font-size:36px; color:#65686E; }
+  .fu-zone p { margin:0; font-size:13px; color:#65686E; text-align:center; line-height:1.4; }
+  .fu-zone .btn { font-family:'Archivo'; font-weight:700; font-size:13px; padding:7px 16px; border-radius:8px; border:1px solid #242CC2; background:#fff; color:#242CC2; cursor:pointer; }
+  .fu-files { margin-top:12px; display:flex; flex-direction:column; gap:6px; }
+  .fu-file { display:flex; align-items:center; gap:10px; padding:8px 12px; background:#F8F9FB; border-radius:8px; }
+  .fu-file .material-symbols-outlined { font-size:18px; }
+  .fu-file span { flex:1; font-size:13px; color:#0F0F10; }
+  .fu-file .del { font-size:18px; color:#65686E; cursor:pointer; }
+  .fu-help { margin-top:6px; font-size:12px; color:#65686E; }
+</style></head>
+<body>
+
+<!-- Datepicker -->
+<div>
+  <div class="dp">
+    <div class="dp-head">
+      <span class="material-symbols-outlined">chevron_left</span>
+      <span>Maio 2026</span>
+      <span class="material-symbols-outlined">chevron_right</span>
+    </div>
+    <div class="dp-grid">
+      <div class="dp-cell dow">D</div><div class="dp-cell dow">S</div><div class="dp-cell dow">T</div><div class="dp-cell dow">Q</div><div class="dp-cell dow">Q</div><div class="dp-cell dow">S</div><div class="dp-cell dow">S</div>
+      <div class="dp-cell muted">27</div><div class="dp-cell muted">28</div><div class="dp-cell muted">29</div><div class="dp-cell muted">30</div><div class="dp-cell muted">1</div><div class="dp-cell">2</div><div class="dp-cell">3</div>
+      <div class="dp-cell">4</div><div class="dp-cell">5</div><div class="dp-cell">6</div><div class="dp-cell today">7</div><div class="dp-cell">8</div><div class="dp-cell range">9</div><div class="dp-cell range">10</div>
+      <div class="dp-cell range">11</div><div class="dp-cell range">12</div><div class="dp-cell selected">13</div><div class="dp-cell">14</div><div class="dp-cell">15</div><div class="dp-cell">16</div><div class="dp-cell">17</div>
+      <div class="dp-cell">18</div><div class="dp-cell">19</div><div class="dp-cell">20</div><div class="dp-cell">21</div><div class="dp-cell">22</div><div class="dp-cell">23</div><div class="dp-cell">24</div>
+      <div class="dp-cell">25</div><div class="dp-cell">26</div><div class="dp-cell">27</div><div class="dp-cell">28</div><div class="dp-cell">29</div><div class="dp-cell">30</div><div class="dp-cell">31</div>
+    </div>
+  </div>
+</div>
+
+<!-- File upload -->
+<div class="fu">
+  <div class="fu-zone">
+    <span class="material-symbols-outlined">upload_file</span>
+    <p>Arraste e solte arquivos aqui</p>
+    <button class="btn">Selecionar arquivo</button>
+  </div>
+  <div class="fu-files">
+    <div class="fu-file">
+      <span class="material-symbols-outlined" style="color:#242CC2">description</span>
+      <span>Contrato_2026.pdf</span>
+      <span class="del material-symbols-outlined">close</span>
+    </div>
+    <div class="fu-file">
+      <span class="material-symbols-outlined" style="color:#ADB2BA">description</span>
+      <span style="color:#ADB2BA">Foto_aluno.jpg</span>
+      <span class="del material-symbols-outlined" style="color:#ADB2BA">close</span>
+    </div>
+  </div>
+  <div class="fu-help">Formatos aceitos: PDF, JPG, PNG · Máx. 10 MB</div>
+</div>
+
+</body></html>

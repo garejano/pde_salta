@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/colors_and_type.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+</helmet>
+
+<div style="width:max-content; min-width:100%; min-height:100vh; box-sizing:border-box; padding:48px; background:#e7e5df; font-family:'Nunito',sans-serif;">
+
+  <div style="margin-bottom:32px;">
+    <div style="font-family:'Archivo'; font-weight:600; font-size:24px; line-height:32px; color:#0F0F10;">Menu Atlas — redesenho</div>
+    <div style="font-family:'Nunito'; font-size:14px; color:#65686E; margin-top:4px;">Mega-menu reestilizado com o design system Salta · ícones Material Symbols · marca atlas preservada</div>
+  </div>
+
+  <div style="display:flex; gap:48px; align-items:flex-start;">
+
+    <!-- ============ FRAME 1 — DS standard spacing ============ -->
+    <div style="flex:none; width:980px;">
+      <div style="font-family:'Archivo'; font-weight:700; font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:#65686E; margin-bottom:10px;">01 · Espaçamento padrão do DS</div>
+      <div style="position:relative; background:#fff; border-radius:2px; box-shadow:0 1px 3px rgba(0,0,0,.08); overflow:hidden; height:560px;">
+
+        <!-- header -->
+        <div style="height:64px; background:#fff; border-bottom:1px solid #EBEDF1; display:flex; align-items:center; position:relative; z-index:3;">
+          <div style="width:72px; height:64px; display:flex; align-items:center; justify-content:center; border-right:1px solid #EBEDF1; flex-shrink:0;">
+            <div style="position:relative; width:30px; height:30px;">
+              <div style="position:absolute; top:11px; left:0; width:30px; height:8px; border-radius:2px; background:linear-gradient(90deg,#30B7BE 0%,#39D881 100%); transform:rotate(45deg);"></div>
+              <div style="position:absolute; top:11px; left:0; width:30px; height:8px; border-radius:2px; background:linear-gradient(90deg,#39D881 0%,#30B7BE 100%); transform:rotate(-45deg);"></div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; justify-content:center; padding:0 20px 0 16px; border-right:1px solid #EBEDF1; height:64px;">
+            <div style="font-family:'Archivo'; font-weight:800; font-size:22px; line-height:22px; color:#191F88; letter-spacing:-.01em;">atlas</div>
+            <div style="font-family:'Archivo'; font-weight:600; font-size:8px; line-height:10px; letter-spacing:.22em; color:#65686E; margin-top:2px;">GESTÃO ESCOLAR</div>
+          </div>
+
+          <button style="height:40px; margin-left:16px; padding:0 16px; display:flex; align-items:center; gap:10px; border:0; border-radius:8px; background:#ECEDFF; color:#242CC2; font-family:'Archivo'; font-weight:700; font-size:14px; cursor:pointer;">
+            <span class="material-symbols-outlined" style="font-size:20px;">menu</span>
+            Menu
+          </button>
+
+          <div style="margin-left:auto; display:flex; align-items:center; gap:4px; padding-right:20px;">
+            <div style="display:flex; align-items:center; gap:8px; height:40px; padding:0 14px; border:1px solid #C3C8D1; border-radius:8px; color:#65686E; font-family:'Nunito'; font-size:14px; min-width:180px; margin-right:4px;">
+              <span class="material-symbols-outlined" style="font-size:18px;">search</span> Buscar no portal
+            </div>
+            <button style="width:40px; height:40px; border-radius:8px; border:0; background:#fff; color:#65686E; display:flex; align-items:center; justify-content:center; cursor:pointer; position:relative;" style-hover="background:#F8F9FB; color:#0F0F10;">
+              <span class="material-symbols-outlined" style="font-size:20px;">notifications</span>
+              <div style="position:absolute; top:6px; right:6px; width:8px; height:8px; border-radius:50%; background:#E65637; border:2px solid #fff;"></div>
+            </button>
+            <div style="width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,#9D0364,#BA4F93); display:flex; align-items:center; justify-content:center; font-family:'Archivo'; font-weight:700; font-size:14px; color:#fff; margin-left:4px;">JS</div>
+          </div>
+        </div>
+
+        <!-- faint page behind -->
+        <div style="position:absolute; inset:64px 0 0 0; background:#F8F9FB; z-index:1;"></div>
+
+        <!-- mega menu -->
+        <div style="position:absolute; top:72px; left:160px; z-index:2; display:flex; background:#fff; border:1px solid #EBEDF1; border-radius:8px; box-shadow:0 8px 16px 0 rgba(0,23,31,.15); overflow:hidden;">
+          <!-- categories -->
+          <div style="width:264px; padding:8px; border-right:1px solid #EBEDF1; display:flex; flex-direction:column; gap:2px;">
+            <div style="display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:8px; background:#ECEDFF; color:#242CC2; cursor:pointer;">
+              <span class="material-symbols-outlined" style="font-size:20px;">settings</span>
+              <span style="font-family:'Nunito'; font-weight:700; font-size:14px; flex:1;">Administração</span>
+              <span class="material-symbols-outlined" style="font-size:18px;">chevron_right</span>
+            </div>
+            <sc-for list="{{ cats }}" as="cat" hint-placeholder-count="10">
+              <div style="display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:8px; color:#3D3F42; cursor:pointer;" style-hover="background:#F8F9FB; color:#242CC2;">
+                <span class="material-symbols-outlined" style="font-size:20px; color:#65686E;">{{ cat.icon }}</span>
+                <span style="font-family:'Nunito'; font-weight:600; font-size:14px; flex:1;">{{ cat.label }}</span>
+                <span class="material-symbols-outlined" style="font-size:18px; color:#ADB2BA;">chevron_right</span>
+              </div>
+            </sc-for>
+          </div>
+          <!-- submenu -->
+          <div style="width:440px; padding:16px; display:flex; flex-direction:column;">
+            <div style="font-family:'Archivo'; font-weight:600; font-size:18px; line-height:22px; color:#0F0F10; padding:4px 12px 12px;">Administração</div>
+            <div style="display:flex; flex-direction:column; gap:2px;">
+              <sc-for list="{{ admItems }}" as="item" hint-placeholder-count="9">
+                <div style="display:flex; align-items:center; gap:10px; padding:11px 12px; border-radius:8px; color:#3D3F42; cursor:pointer;" style-hover="background:#F8F9FB; color:#242CC2;">
+                  <span class="material-symbols-outlined" style="font-size:18px; color:#ADB2BA;">chevron_right</span>
+                  <span style="font-family:'Nunito'; font-size:14px; line-height:20px;">{{ item }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ FRAME 2 — compact ============ -->
+    <div style="flex:none; width:1000px;">
+      <div style="font-family:'Archivo'; font-weight:700; font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:#65686E; margin-bottom:10px;">02 · Compacto — submenu em duas colunas</div>
+      <div style="position:relative; background:#fff; border-radius:2px; box-shadow:0 1px 3px rgba(0,0,0,.08); overflow:hidden; height:480px;">
+
+        <!-- header -->
+        <div style="height:52px; background:#fff; border-bottom:1px solid #EBEDF1; display:flex; align-items:center; position:relative; z-index:3;">
+          <div style="width:60px; height:52px; display:flex; align-items:center; justify-content:center; border-right:1px solid #EBEDF1; flex-shrink:0;">
+            <div style="position:relative; width:24px; height:24px;">
+              <div style="position:absolute; top:8px; left:0; width:24px; height:6px; border-radius:2px; background:linear-gradient(90deg,#30B7BE 0%,#39D881 100%); transform:rotate(45deg);"></div>
+              <div style="position:absolute; top:8px; left:0; width:24px; height:6px; border-radius:2px; background:linear-gradient(90deg,#39D881 0%,#30B7BE 100%); transform:rotate(-45deg);"></div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; justify-content:center; padding:0 16px 0 12px; border-right:1px solid #EBEDF1; height:52px;">
+            <div style="font-family:'Archivo'; font-weight:800; font-size:18px; line-height:18px; color:#191F88; letter-spacing:-.01em;">atlas</div>
+            <div style="font-family:'Archivo'; font-weight:600; font-size:7px; line-height:9px; letter-spacing:.2em; color:#65686E; margin-top:1px;">GESTÃO ESCOLAR</div>
+          </div>
+
+          <button style="height:32px; margin-left:12px; padding:0 12px; display:flex; align-items:center; gap:8px; border:0; border-radius:8px; background:#ECEDFF; color:#242CC2; font-family:'Archivo'; font-weight:700; font-size:13px; cursor:pointer;">
+            <span class="material-symbols-outlined" style="font-size:18px;">menu</span>
+            Menu
+          </button>
+
+          <div style="margin-left:auto; display:flex; align-items:center; gap:4px; padding-right:16px;">
+            <button style="width:32px; height:32px; border-radius:8px; border:0; background:#fff; color:#65686E; display:flex; align-items:center; justify-content:center; cursor:pointer;" style-hover="background:#F8F9FB; color:#0F0F10;">
+              <span class="material-symbols-outlined" style="font-size:18px;">search</span>
+            </button>
+            <button style="width:32px; height:32px; border-radius:8px; border:0; background:#fff; color:#65686E; display:flex; align-items:center; justify-content:center; cursor:pointer; position:relative;" style-hover="background:#F8F9FB; color:#0F0F10;">
+              <span class="material-symbols-outlined" style="font-size:18px;">notifications</span>
+              <div style="position:absolute; top:4px; right:4px; width:7px; height:7px; border-radius:50%; background:#E65637; border:2px solid #fff;"></div>
+            </button>
+            <div style="width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,#9D0364,#BA4F93); display:flex; align-items:center; justify-content:center; font-family:'Archivo'; font-weight:700; font-size:12px; color:#fff; margin-left:4px;">JS</div>
+          </div>
+        </div>
+
+        <div style="position:absolute; inset:52px 0 0 0; background:#F8F9FB; z-index:1;"></div>
+
+        <!-- mega menu compact -->
+        <div style="position:absolute; top:58px; left:130px; z-index:2; display:flex; background:#fff; border:1px solid #EBEDF1; border-radius:8px; box-shadow:0 8px 16px 0 rgba(0,23,31,.15); overflow:hidden;">
+          <div style="width:212px; padding:6px; border-right:1px solid #EBEDF1; display:flex; flex-direction:column; gap:1px;">
+            <div style="display:flex; align-items:center; gap:10px; padding:7px 10px; border-radius:6px; background:#ECEDFF; color:#242CC2; cursor:pointer;">
+              <span class="material-symbols-outlined" style="font-size:18px;">settings</span>
+              <span style="font-family:'Nunito'; font-weight:700; font-size:13px; flex:1;">Administração</span>
+              <span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span>
+            </div>
+            <sc-for list="{{ cats }}" as="cat" hint-placeholder-count="10">
+              <div style="display:flex; align-items:center; gap:10px; padding:7px 10px; border-radius:6px; color:#3D3F42; cursor:pointer;" style-hover="background:#F8F9FB; color:#242CC2;">
+                <span class="material-symbols-outlined" style="font-size:18px; color:#65686E;">{{ cat.icon }}</span>
+                <span style="font-family:'Nunito'; font-weight:600; font-size:13px; flex:1;">{{ cat.label }}</span>
+                <span class="material-symbols-outlined" style="font-size:16px; color:#ADB2BA;">chevron_right</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="width:512px; padding:8px; display:flex; flex-direction:column;">
+            <div style="font-family:'Archivo'; font-weight:600; font-size:14px; line-height:18px; color:#0F0F10; padding:6px 10px 8px;">Administração</div>
+            <div style="display:grid; grid-template-rows:repeat(5, auto); grid-auto-flow:column; gap:1px 8px;">
+              <sc-for list="{{ admItems }}" as="item" hint-placeholder-count="9">
+                <div style="display:flex; align-items:center; gap:8px; padding:7px 10px; border-radius:6px; color:#3D3F42; cursor:pointer;" style-hover="background:#F8F9FB; color:#242CC2;">
+                  <span class="material-symbols-outlined" style="font-size:16px; color:#ADB2BA;">chevron_right</span>
+                  <span style="font-family:'Nunito'; font-size:13px; line-height:18px;">{{ item }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ FRAME 3 — command palette ============ -->
+    <div style="flex:none; width:780px;">
+      <div style="font-family:'Archivo'; font-weight:700; font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:#65686E; margin-bottom:10px;">03 · Command palette — busca fuzzy nos menus</div>
+      <div style="position:relative; background:#fff; border-radius:2px; box-shadow:0 1px 3px rgba(0,0,0,.08); overflow:hidden; height:540px;">
+
+        <!-- faint app header behind scrim -->
+        <div style="height:64px; background:#fff; border-bottom:1px solid #EBEDF1; display:flex; align-items:center; opacity:.5;">
+          <div style="width:72px; height:64px; display:flex; align-items:center; justify-content:center; border-right:1px solid #EBEDF1;">
+            <div style="position:relative; width:30px; height:30px;">
+              <div style="position:absolute; top:11px; left:0; width:30px; height:8px; border-radius:2px; background:linear-gradient(90deg,#30B7BE,#39D881); transform:rotate(45deg);"></div>
+              <div style="position:absolute; top:11px; left:0; width:30px; height:8px; border-radius:2px; background:linear-gradient(90deg,#39D881,#30B7BE); transform:rotate(-45deg);"></div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; justify-content:center; padding:0 20px 0 16px; border-right:1px solid #EBEDF1; height:64px;">
+            <div style="font-family:'Archivo'; font-weight:800; font-size:22px; line-height:22px; color:#191F88;">atlas</div>
+            <div style="font-family:'Archivo'; font-weight:600; font-size:8px; line-height:10px; letter-spacing:.22em; color:#65686E; margin-top:2px;">GESTÃO ESCOLAR</div>
+          </div>
+        </div>
+        <div style="position:absolute; inset:64px 0 0 0; background:#F8F9FB;"></div>
+
+        <!-- scrim -->
+        <div style="position:absolute; inset:0; background:rgba(15,15,16,.32); z-index:2;"></div>
+
+        <!-- palette -->
+        <div style="position:absolute; top:56px; left:50%; transform:translateX(-50%); width:680px; z-index:3; background:#fff; border-radius:12px; box-shadow:0 16px 32px 0 rgba(0,23,31,.22); overflow:hidden;">
+          <div style="display:flex; align-items:center; gap:12px; padding:16px 18px; border-bottom:1px solid #EBEDF1;">
+            <span class="material-symbols-outlined" style="font-size:22px; color:#65686E;">search</span>
+            <input value="{{ query }}" onChange="{{ onChange }}" placeholder="Buscar menus, cadastros e ações..." style="flex:1; border:0; outline:0; font-family:'Nunito'; font-size:16px; color:#0F0F10; background:transparent;">
+            <span style="font-family:'Inter'; font-size:11px; font-weight:600; color:#65686E; border:1px solid #C3C8D1; border-radius:4px; padding:2px 7px;">⌘K</span>
+          </div>
+
+          <div style="max-height:336px; overflow:auto; padding:8px;">
+            <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex; flex-direction:column; gap:2px;">
+                <div style="display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:8px; background:#ECEDFF; cursor:pointer;">
+                  <span class="material-symbols-outlined" style="font-size:20px; color:#242CC2;">{{ firstResult.icon }}</span>
+                  <span style="flex:1; font-family:'Nunito'; font-size:14px; color:#0F0F10;">{{ firstResult.node }}</span>
+                  <span style="font-family:'Nunito'; font-size:12px; color:#65686E;">{{ firstResult.path }}</span>
+                  <span style="font-family:'Inter'; font-size:12px; font-weight:700; color:#242CC2; border:1px solid #A7ABE6; border-radius:4px; padding:1px 7px;">↵</span>
+                </div>
+                <sc-for list="{{ restResults }}" as="r" hint-placeholder-count="6">
+                  <div style="display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:8px; cursor:pointer;" style-hover="background:#F8F9FB;">
+                    <span class="material-symbols-outlined" style="font-size:20px; color:#65686E;">{{ r.icon }}</span>
+                    <span style="flex:1; font-family:'Nunito'; font-size:14px; color:#3D3F42;">{{ r.node }}</span>
+                    <span style="font-family:'Nunito'; font-size:12px; color:#ADB2BA;">{{ r.path }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:40px 16px; text-align:center;">
+                <div class="material-symbols-outlined" style="font-size:36px; color:#C3C8D1;">search_off</div>
+                <div style="font-family:'Nunito'; font-size:14px; color:#65686E; margin-top:8px;">Nenhum resultado para a busca</div>
+              </div>
+            </sc-if>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:18px; padding:10px 16px; border-top:1px solid #EBEDF1; background:#F8F9FB;">
+            <span style="display:flex; align-items:center; gap:6px; font-family:'Nunito'; font-size:12px; color:#65686E;"><span style="font-family:'Inter'; font-size:11px; font-weight:600; color:#65686E; border:1px solid #C3C8D1; border-radius:4px; padding:1px 6px;">↑↓</span>navegar</span>
+            <span style="display:flex; align-items:center; gap:6px; font-family:'Nunito'; font-size:12px; color:#65686E;"><span style="font-family:'Inter'; font-size:11px; font-weight:600; color:#65686E; border:1px solid #C3C8D1; border-radius:4px; padding:1px 6px;">↵</span>abrir</span>
+            <span style="display:flex; align-items:center; gap:6px; font-family:'Nunito'; font-size:12px; color:#65686E;"><span style="font-family:'Inter'; font-size:11px; font-weight:600; color:#65686E; border:1px solid #C3C8D1; border-radius:4px; padding:1px 6px;">esc</span>fechar</span>
+            <span style="margin-left:auto; font-family:'Nunito'; font-size:12px; color:#ADB2BA;">{{ resultCount }} resultados</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { query: "esc" };
+
+  fold(c) { return c.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase(); }
+
+  menuCats() {
+    return [
+      { icon: "group",        label: "Alunos" },
+      { icon: "event_note",   label: "Rotinas Acadêmicas" },
+      { icon: "payments",     label: "Gestão da Folha" },
+      { icon: "apartment",    label: "Gestão Escolar" },
+      { icon: "fact_check",   label: "Avaliações e Resultados" },
+      { icon: "menu_book",    label: "Materiais e Ferramentas" },
+      { icon: "co_present",   label: "Professores" },
+      { icon: "campaign",     label: "Admissões e Marketing" },
+      { icon: "monitoring",   label: "Indicadores" },
+      { icon: "summarize",    label: "Relatórios" },
+    ];
+  }
+
+  admItemList() {
+    return [
+      "Liberação de Funcionalidades",
+      "Cadastro de Escolas Salta",
+      "Cadastro de Escolas Gerenciais",
+      "Cadastro de Escolas Públicas",
+      "Configuração de Owners do GSA",
+      "Importação de Usuários",
+      "Configuração de Logar Como",
+      "De x Para de Séries",
+      "Remover Usuários do Classroom por Ano Letivo e Rede",
+    ];
+  }
+
+  searchIndex() {
+    const list = [];
+    list.push({ icon: "settings", label: "Administração", path: "Categoria" });
+    this.menuCats().forEach((c) => list.push({ icon: c.icon, label: c.label, path: "Categoria" }));
+    this.admItemList().forEach((t) => list.push({ icon: "settings", label: t, path: "Administração" }));
+    return list;
+  }
+
+  match(query, label) {
+    const qf = [...query].map((c) => this.fold(c)).join("").replace(/\s/g, "");
+    const tf = [...label].map((c) => this.fold(c));
+    if (!qf) return { ok: true, idxs: [] };
+    let qi = 0; const idxs = [];
+    for (let i = 0; i < tf.length && qi < qf.length; i++) {
+      if (tf[i] === qf[qi]) { idxs.push(i); qi++; }
+    }
+    return { ok: qi === qf.length, idxs };
+  }
+
+  node(label, idxs) {
+    const set = new Set(idxs);
+    const kids = [];
+    for (let i = 0; i < label.length; i++) {
+      kids.push(React.createElement("span", {
+        key: i,
+        style: set.has(i) ? { color: "#242CC2", fontWeight: 800 } : null,
+      }, label[i]));
+    }
+    return React.createElement("span", null, kids);
+  }
+
+  renderVals() {
+    const query = this.state.query || "";
+    const scored = [];
+    this.searchIndex().forEach((it) => {
+      const m = this.match(query, it.label);
+      if (m.ok) scored.push({ ...it, idxs: m.idxs, first: m.idxs.length ? m.idxs[0] : 0 });
+    });
+    scored.sort((a, b) => (a.first - b.first) || (a.label.length - b.label.length));
+    const results = scored.map((r, i) => ({
+      key: "r" + i, icon: r.icon, path: r.path, node: this.node(r.label, r.idxs),
+    }));
+
+    return {
+      cats: this.menuCats(),
+      admItems: this.admItemList(),
+      query,
+      onChange: (e) => this.setState({ query: e.target.value }),
+      firstResult: results[0] || null,
+      restResults: results.slice(1),
+      hasResults: results.length > 0,
+      noResults: results.length === 0,
+      resultCount: results.length,
+    };
+  }
+}
+</script>
+</body>
+</html>

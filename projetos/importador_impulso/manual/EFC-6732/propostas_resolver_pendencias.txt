@@ -1,0 +1,113 @@
+Pendências: 55  |  Alta confiança: 48  |  Revisar: 7  |  Sem candidato: 0
+
+ALTA CONFIANÇA — pode colar direto (revisar por cima antes) (48):
+  -- 'Adaile Maria Leite' / '3ºB' (1 aluno(s), score=1.00) -> candidato: '3ª Série Regular B - M' (TurmaId=297496)
+    ('ADAILE MARIA LEITE', '3oB', 'ADAILE M LEITE', N'3ª Série Regular B - M'),
+  -- 'JD EUROPA' / '2°A REGULAR' (1 aluno(s), score=1.00) -> candidato: '2ª Série Regular A - M' (TurmaId=298000)
+    ('JD EUROPA', '2oA REGULAR', 'JARDIM EUROPA', N'2ª Série Regular A - M'),
+  -- 'JD EUROPA' / '3°B TEC' (1 aluno(s), score=1.00) -> candidato: '3ª Série Técnico B - N' (TurmaId=304063)
+    ('JD EUROPA', '3oB TEC', 'JARDIM EUROPA', N'3ª Série Técnico B - N'),
+  -- 'JD EUROPA' / '3°A TEC' (1 aluno(s), score=1.00) -> candidato: '3ª Série Técnico A - N' (TurmaId=298031)
+    ('JD EUROPA', '3oA TEC', 'JARDIM EUROPA', N'3ª Série Técnico A - N'),
+  -- 'JD EUROPA' / '3°C REGULAR' (1 aluno(s), score=1.00) -> candidato: '3ª Série Regular C - N' (TurmaId=303907)
+    ('JD EUROPA', '3oC REGULAR', 'JARDIM EUROPA', N'3ª Série Regular C - N'),
+  -- 'Olavo Bilac' / '3ºB' (1 aluno(s), score=1.00) -> candidato: '3ª Série Regular B - I' (TurmaId=298352)
+    ('OLAVO BILAC', '3oB', 'OLAVO BILAC', N'3ª Série Regular B - I'),
+  -- 'Olavo Bilac' / '2ºB' (1 aluno(s), score=1.00) -> candidato: '2ª Série Regular B - I' (TurmaId=303967)
+    ('OLAVO BILAC', '2oB', 'OLAVO BILAC', N'2ª Série Regular B - I'),
+  -- 'Maria Luiza F. Pacheco' / '3ºB' (2 aluno(s), score=1.00) -> candidato: '3ª Série Regular B - M' (TurmaId=303498)
+    ('MARIA LUIZA F. PACHECO', '3oB', 'MARIA L F PACHECO', N'3ª Série Regular B - M'),
+  -- 'Nossa Senhora da Salete' / '3°A' (1 aluno(s), score=1.00) -> candidato: '3ª Série Regular A - M' (TurmaId=298322)
+    ('NOSSA SENHORA DA SALETE', '3oA', 'NOSSA SRA DA SALETE', N'3ª Série Regular A - M'),
+  -- 'ANCHIETA' / '3ª Série Regular A - M' (6 aluno(s), score=1.00) -> candidato: '3ª Série Regular A - M' (TurmaId=297550)
+    ('ANCHIETA', '3o SERIE REGULAR A - M', 'ANCHIETA', N'3ª Série Regular A - M'),
+  -- 'ANCHIETA' / '2ª Série Regular A - M' (3 aluno(s), score=1.00) -> candidato: '2ª Série Regular A - M' (TurmaId=297549)
+    ('ANCHIETA', '2o SERIE REGULAR A - M', 'ANCHIETA', N'2ª Série Regular A - M'),
+  -- 'IEDA BAGGIO MAYER' / '3ºB' (1 aluno(s), score=1.00) -> candidato: '3ª Série Regular B - M' (TurmaId=297969)
+    ('IEDA BAGGIO MAYER', '3oB', 'IEDA BAGGIO MAYER', N'3ª Série Regular B - M'),
+  -- 'ORIONE' / '3ª Série Regular A - M' (2 aluno(s), score=1.00) -> candidato: '3ª Série Regular A - M' (TurmaId=298395)
+    ('ORIONE', '3o SERIE REGULAR A - M', 'ORIONE', N'3ª Série Regular A - M'),
+  -- 'ORIONE' / '3º Série Regular B - M' (2 aluno(s), score=1.00) -> candidato: '3ª Série Regular B - M' (TurmaId=298396)
+    ('ORIONE', '3o SERIE REGULAR B - M', 'ORIONE', N'3ª Série Regular B - M'),
+  -- 'GENÉSIO MORESCHI' / '2ºA' (2 aluno(s), score=1.00) -> candidato: '2ª Série Regular A - N' (TurmaId=297939)
+    ('GENESIO MORESCHI', '2oA', 'GENESIO MORESCHI', N'2ª Série Regular A - N'),
+  -- 'GENÉSIO MORESCHI' / '2ºB' (5 aluno(s), score=1.00) -> candidato: '2ª Série Regular B - N' (TurmaId=297940)
+    ('GENESIO MORESCHI', '2oB', 'GENESIO MORESCHI', N'2ª Série Regular B - N'),
+  -- 'GENÉSIO MORESCHI' / '2ºC' (1 aluno(s), score=1.00) -> candidato: '2ª Série Regular C - N' (TurmaId=297941)
+    ('GENESIO MORESCHI', '2oC', 'GENESIO MORESCHI', N'2ª Série Regular C - N'),
+  -- 'GENÉSIO MORESCHI' / '2ºD' (5 aluno(s), score=1.00) -> candidato: '2ª Série Regular D - N' (TurmaId=297942)
+    ('GENESIO MORESCHI', '2oD', 'GENESIO MORESCHI', N'2ª Série Regular D - N'),
+  -- 'GENÉSIO MORESCHI' / '3ºA' (1 aluno(s), score=1.00) -> candidato: '3ª Série Regular A - N' (TurmaId=297935)
+    ('GENESIO MORESCHI', '3oA', 'GENESIO MORESCHI', N'3ª Série Regular A - N'),
+  -- 'GENÉSIO MORESCHI' / '3ºB' (2 aluno(s), score=1.00) -> candidato: '3ª Série Regular B - N' (TurmaId=297936)
+    ('GENESIO MORESCHI', '3oB', 'GENESIO MORESCHI', N'3ª Série Regular B - N'),
+  -- 'GENÉSIO MORESCHI' / '3ºC' (2 aluno(s), score=1.00) -> candidato: '3ª Série Regular C - N' (TurmaId=297937)
+    ('GENESIO MORESCHI', '3oC', 'GENESIO MORESCHI', N'3ª Série Regular C - N'),
+  -- 'GENÉSIO MORESCHI' / '3ºE' (1 aluno(s), score=1.00) -> candidato: '3ª Série Regular E - N' (TurmaId=303905)
+    ('GENESIO MORESCHI', '3oE', 'GENESIO MORESCHI', N'3ª Série Regular E - N'),
+  -- 'CARMELO PERRONE' / '3ª Série Regular A - M' (4 aluno(s), score=1.00) -> candidato: '3ª Série Regular A - M' (TurmaId=297719)
+    ('CARMELO PERRONE', '3o SERIE REGULAR A - M', 'CARMELO PERRONE', N'3ª Série Regular A - M'),
+  -- 'PROTÁSIO DE CARVALHO' / '3ª Série Regular B - M' (2 aluno(s), score=1.00) -> candidato: '3ª Série Regular B - M' (TurmaId=298519)
+    ('PROTASIO DE CARVALHO', '3o SERIE REGULAR B - M', 'PROTASIO DE CARVALHO', N'3ª Série Regular B - M'),
+  -- 'PROTÁSIO DE CARVALHO' / '3ª Série Regular C - M' (1 aluno(s), score=1.00) -> candidato: '3ª Série Regular C - M' (TurmaId=298520)
+    ('PROTASIO DE CARVALHO', '3o SERIE REGULAR C - M', 'PROTASIO DE CARVALHO', N'3ª Série Regular C - M'),
+  -- 'PROTÁSIO DE CARVALHO' / '3ª Série Regular D - M' (1 aluno(s), score=1.00) -> candidato: '3ª Série Regular D - M' (TurmaId=298518)
+    ('PROTASIO DE CARVALHO', '3o SERIE REGULAR D - M', 'PROTASIO DE CARVALHO', N'3ª Série Regular D - M'),
+  -- 'QUIELSE CRISÓSTOMO DA SILVA' / '3ª Série Regular A - M' (1 aluno(s), score=1.00) -> candidato: '3ª Série Regular A - M' (TurmaId=303916)
+    ('QUIELSE CRISOSTOMO DA SILVA', '3o SERIE REGULAR A - M', 'QUIELSE CRISOSTOMO DA SILVA', N'3ª Série Regular A - M'),
+  -- 'QUIELSE CRISÓSTOMO DA SILVA' / '3ª Série Regular B - M' (2 aluno(s), score=1.00) -> candidato: '3ª Série Regular B - M' (TurmaId=303930)
+    ('QUIELSE CRISOSTOMO DA SILVA', '3o SERIE REGULAR B - M', 'QUIELSE CRISOSTOMO DA SILVA', N'3ª Série Regular B - M'),
+  -- 'QUIELSE CRISÓSTOMO DA SILVA' / '3ª Série Regular C - M' (3 aluno(s), score=1.00) -> candidato: '3ª Série Regular C - M' (TurmaId=298570)
+    ('QUIELSE CRISOSTOMO DA SILVA', '3o SERIE REGULAR C - M', 'QUIELSE CRISOSTOMO DA SILVA', N'3ª Série Regular C - M'),
+  -- 'QUIELSE CRISÓSTOMO DA SILVA' / '3ª Série Regular D - M' (8 aluno(s), score=1.00) -> candidato: '3ª Série Regular D - M' (TurmaId=298568)
+    ('QUIELSE CRISOSTOMO DA SILVA', '3o SERIE REGULAR D - M', 'QUIELSE CRISOSTOMO DA SILVA', N'3ª Série Regular D - M'),
+  -- 'ELEODORO EBANO PEREIRA' / '3ª Série Regular A - M' (2 aluno(s), score=1.00) -> candidato: '3ª Série Regular A - M' (TurmaId=297833)
+    ('ELEODORO EBANO PEREIRA', '3o SERIE REGULAR A - M', 'ELEODORO E PEREIRA', N'3ª Série Regular A - M'),
+  -- 'ELEODORO EBANO PEREIRA' / '3ª Série Regular D - M' (3 aluno(s), score=1.00) -> candidato: '3ª Série Regular D - M' (TurmaId=297836)
+    ('ELEODORO EBANO PEREIRA', '3o SERIE REGULAR D - M', 'ELEODORO E PEREIRA', N'3ª Série Regular D - M'),
+  -- 'ELEODORO EBANO PEREIRA' / '3ª Série Regular B - M' (3 aluno(s), score=1.00) -> candidato: '3ª Série Regular B - M' (TurmaId=297834)
+    ('ELEODORO EBANO PEREIRA', '3o SERIE REGULAR B - M', 'ELEODORO E PEREIRA', N'3ª Série Regular B - M'),
+  -- 'ELEODORO EBANO PEREIRA' / '2° Série Regular A - M' (4 aluno(s), score=1.00) -> candidato: '2ª Série Regular A - M' (TurmaId=297829)
+    ('ELEODORO EBANO PEREIRA', '2o SERIE REGULAR A - M', 'ELEODORO E PEREIRA', N'2ª Série Regular A - M'),
+  -- 'ELEODORO EBANO PEREIRA' / '2° Série Regular B - M' (4 aluno(s), score=1.00) -> candidato: '2ª Série Regular B - M' (TurmaId=297830)
+    ('ELEODORO EBANO PEREIRA', '2o SERIE REGULAR B - M', 'ELEODORO E PEREIRA', N'2ª Série Regular B - M'),
+  -- 'ELEODORO EBANO PEREIRA' / '2° Série Regular C - M' (4 aluno(s), score=1.00) -> candidato: '2ª Série Regular C - M' (TurmaId=303904)
+    ('ELEODORO EBANO PEREIRA', '2o SERIE REGULAR C - M', 'ELEODORO E PEREIRA', N'2ª Série Regular C - M'),
+  -- 'ELEODORO EBANO PEREIRA' / '2° Série Técninco  Adm A - M' (2 aluno(s), score=1.00) -> candidato: '2ª Série Técnico ADM A - M' (TurmaId=304044)
+    ('ELEODORO EBANO PEREIRA', '2o SERIE TECNINCO ADM A - M', 'ELEODORO E PEREIRA', N'2ª Série Técnico ADM A - M'),
+  -- 'ELEODORO EBANO PEREIRA' / '2° Série Técninco  Adm B - M' (4 aluno(s), score=1.00) -> candidato: '2ª Série Técnico ADM B - M' (TurmaId=304045)
+    ('ELEODORO EBANO PEREIRA', '2o SERIE TECNINCO ADM B - M', 'ELEODORO E PEREIRA', N'2ª Série Técnico ADM B - M'),
+  -- 'ZUMBI DOS PALMARES' / '2ª Série Regular B - M' (2 aluno(s), score=1.00) -> candidato: '2ª Série Regular B - M' (TurmaId=298813)
+    ('ZUMBI DOS PALMARES', '2o SERIE REGULAR B - M', 'ZUMBI DOS PALMARES', N'2ª Série Regular B - M'),
+  -- 'JARDIM INTERLAGOS' / '3ª Série Regular A - M' (12 aluno(s), score=1.00) -> candidato: '3ª Série Regular A - M' (TurmaId=298057)
+    ('JARDIM INTERLAGOS', '3o SERIE REGULAR A - M', 'JARDIM INTERLAGOS', N'3ª Série Regular A - M'),
+  -- 'JARDIM INTERLAGOS' / '3ª série Regular D' (2 aluno(s), score=1.00) -> candidato: '3ª Série Regular D - N' (TurmaId=298060)
+    ('JARDIM INTERLAGOS', '3o SERIE REGULAR D', 'JARDIM INTERLAGOS', N'3ª Série Regular D - N'),
+  -- 'JARDIM INTERLAGOS' / '3ª série Regular B' (2 aluno(s), score=1.00) -> candidato: '3ª Série Regular B - M' (TurmaId=298058)
+    ('JARDIM INTERLAGOS', '3o SERIE REGULAR B', 'JARDIM INTERLAGOS', N'3ª Série Regular B - M'),
+  -- 'JARDIM INTERLAGOS' / '3ª série Regular A' (1 aluno(s), score=1.00) -> candidato: '3ª Série Regular A - M' (TurmaId=298057)
+    ('JARDIM INTERLAGOS', '3o SERIE REGULAR A', 'JARDIM INTERLAGOS', N'3ª Série Regular A - M'),
+  -- 'Teotonio Vilela' / '2°B' (3 aluno(s), score=1.00) -> candidato: '2ª Série Regular B - M' (TurmaId=298679)
+    ('TEOTONIO VILELA', '2oB', 'TEOTONIO VILELA', N'2ª Série Regular B - M'),
+  -- 'Teotonio Vilela' / '2°C' (1 aluno(s), score=1.00) -> candidato: '2ª Série Regular C - M' (TurmaId=298680)
+    ('TEOTONIO VILELA', '2oC', 'TEOTONIO VILELA', N'2ª Série Regular C - M'),
+  -- 'IEDA BAGGIO' / '3ºB' (1 aluno(s), score=1.00) -> candidato: '3ª Série Regular B - M' (TurmaId=297969)
+    ('IEDA BAGGIO', '3oB', 'IEDA BAGGIO MAYER', N'3ª Série Regular B - M'),
+  -- 'Marilis Faria Pirotelli' / '3ª Série Regular A - M' (1 aluno(s), score=1.00) -> candidato: '3ª Série Regular A - M' (TurmaId=298278)
+    ('MARILIS FARIA PIROTELLI', '3o SERIE REGULAR A - M', 'MARILIS F PIROTELLI', N'3ª Série Regular A - M'),
+  -- 'Teotonio Vilela' / '2ª Série Regular A - M' (1 aluno(s), score=1.00) -> candidato: '2ª Série Regular A - M' (TurmaId=298678)
+    ('TEOTONIO VILELA', '2o SERIE REGULAR A - M', 'TEOTONIO VILELA', N'2ª Série Regular A - M'),
+
+REVISAR — ambíguo ou score baixo, conferir manualmente (7):
+  -- 'Gaspar Dutra' / '3º LGG' (2 aluno(s)) -- TIPO PEDIDO (LGG) NÃO EXISTE EM NENHUMA TURMA DESSA ESCOLA — melhor aproximação (NAO confiável): '3ª Série Regular A - T' (TurmaId=297897)
+  -- 'Teotonio Vilela' / '3°A' (3 aluno(s)) -- AMBIGUO, 3 candidatos empatados (score=1.00): '3ª Série Regular A - M' (Id=298674), '3ª Série Técnico A - M' (Id=298682), '3ª Série Técnico ADM A - M' (Id=304116)
+  -- 'Teotonio Vilela' / '2°Alimentos' (1 aluno(s)) -- TIPO PEDIDO (ALIMENTOS) NÃO EXISTE EM NENHUMA TURMA DESSA ESCOLA — melhor aproximação (NAO confiável): '2ª Série Regular A - M' (TurmaId=298678)
+  -- 'ZUMBI DOS PALMARES' / '2ª Série Regular A - I' (1 aluno(s)) -- TURNO PEDIDO (I) NÃO EXISTE EM NENHUMA TURMA DESSA ESCOLA — melhor aproximação (NAO confiável): '2ª Série Regular A - M' (TurmaId=298812)
+  -- 'JARDIM PANORAMA' / '2C' (1 aluno(s), score=0.40) -> candidato: 'PAC' (TurmaId=305920)
+    ('JARDIM PANORAMA', '2C', 'JARDIM PANORAMA', N'PAC'),
+  -- 'BRANCA DA MOTA FERNANDES' / '3A' (3 aluno(s)) -- AMBIGUO, 2 candidatos empatados (score=0.40): 'AEE' (Id=297568), 'PAC' (Id=305912)
+  -- 'BRANCA DA MOTA FERNANDES' / '3B' (1 aluno(s), score=0.18) -> candidato: 'TREINO1BM' (TurmaId=297573)
+    ('BRANCA DA MOTA FERNANDES', '3B', 'BRANCA DA MOTA FERNANDES', N'TREINO1BM'),
+
+SEM CANDIDATO — nada retornado pra essa escola no CSV (0):
+  (nenhum)

@@ -1,0 +1,41 @@
+<!doctype html>
+<!-- @dsCard group="Colors" name="Semantic colors" subtitle="warning · error · inform — each with dark/light" viewport="700x160" -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: #fff; font-family: 'Nunito', sans-serif; }
+  .group { margin-bottom: 12px; }
+  .label { font-family: 'Archivo'; font-weight: 700; font-size: 12px; color: #0F0F10; margin-bottom: 6px; }
+  .row { display: flex; gap: 8px; }
+  .sw { flex: 1; min-height: 72px; border-radius: 8px; padding: 9px 10px; display: flex; flex-direction: column; justify-content: space-between; }
+  .sw .n { font-family: 'Archivo'; font-weight: 700; font-size: 11px; line-height: 1.1; }
+  .sw .h { font-family: 'Inconsolata', monospace; font-size: 10px; opacity: .85; }
+  .sw .t { font-family: 'Inconsolata', monospace; font-size: 9px; opacity: .7; display: block; margin-top: 2px; }
+  .l { color: #0F0F10; } .d { color: #fff; }
+</style></head>
+<body>
+<div class="group">
+  <div class="label">Warning · Error · Inform · Positive</div>
+  <div class="row">
+    <div class="sw d" style="background:#B37822"><span><span class="n">Warning dark</span><span class="t">$color-warning-dark</span></span><span class="h">#B37822</span></div>
+    <div class="sw l" style="background:#FFAC30"><span><span class="n">Warning</span><span class="t">$color-warning</span></span><span class="h">#FFAC30</span></div>
+    <div class="sw l" style="background:#FFDEAC"><span><span class="n">Warning light</span><span class="t">$color-warning-light</span></span><span class="h">#FFDEAC</span></div>
+    <div class="sw d" style="background:#A13C26"><span><span class="n">Error dark</span><span class="t">$color-error-dark</span></span><span class="h">#A13C26</span></div>
+    <div class="sw d" style="background:#E65637"><span><span class="n">Error</span><span class="t">$color-error</span></span><span class="h">#E65637</span></div>
+    <div class="sw l" style="background:#F5BBAF"><span><span class="n">Error light</span><span class="t">$color-error-light</span></span><span class="h">#F5BBAF</span></div>
+    <div class="sw d" style="background:#53347B"><span><span class="n">Inform dark</span><span class="t">$color-inform-dark</span></span><span class="h">#53347B</span></div>
+    <div class="sw d" style="background:#774BB0"><span><span class="n">Inform</span><span class="t">$color-inform</span></span><span class="h">#774BB0</span></div>
+    <div class="sw l" style="background:#C9B7DF"><span><span class="n">Inform light</span><span class="t">$color-inform-light</span></span><span class="h">#C9B7DF</span></div>
+    <div class="sw l" style="background:#F5EDFF"><span><span class="n">Inform light 2</span><span class="t">$color-inform-light2</span></span><span class="h">#F5EDFF</span></div>
+  </div>
+</div>
+<div class="group">
+  <div class="label">Positive</div>
+  <div class="row">
+    <div class="sw d" style="background:#007722"><span><span class="n">Positive dark</span><span class="t">$color-positive-dark</span></span><span class="h">#007722</span></div>
+    <div class="sw d" style="background:#28975A"><span><span class="n">Positive ★</span><span class="t">$color-positive</span></span><span class="h">#28975A</span></div>
+    <div class="sw d" style="background:#96CEB0"><span><span class="n">Positive light</span><span class="t">$color-positive-light</span></span><span class="h">#96CEB0</span></div>
+    <div class="sw l" style="background:#E0F2E9"><span><span class="n">Positive light 2</span><span class="t">$color-positive-light2</span></span><span class="h">#E0F2E9</span></div>
+  </div>
+</div>
+</body></html>

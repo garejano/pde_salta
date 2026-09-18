@@ -1,0 +1,165 @@
+<!-- @dsCard group="Components" name="Accordion" subtitle="Single / Top-Middle-Bottom · Closed, Hover, Open" viewport="700x520" -->
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+<style>
+  body { margin:0; padding:20px; background:#F8F9FB; font-family:'Nunito',sans-serif; display:flex; flex-direction:column; gap:28px; }
+  .section-label { font-family:'Archivo'; font-weight:700; font-size:11px; color:#65686E; text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px; }
+
+  /* ── Accordion item ── */
+  .acc-group { display:flex; flex-direction:column; gap:0; }
+
+  .acc-item { display:flex; flex-direction:column; }
+
+  .acc-trigger {
+    display:flex; flex-direction:row; align-items:center;
+    gap:24px; padding:16px 16px;
+    height:56px; box-sizing:border-box;
+    background:#fff;
+    box-shadow:0px 2px 8px 0px rgba(0,0,0,0.16);
+    border:0; cursor:pointer; text-align:left; width:100%;
+    transition:background 120ms;
+    position:relative; z-index:1;
+  }
+  .acc-trigger:hover { background:#F8F9FB; }
+  .acc-trigger.open  { background:#ECEDFF; box-shadow:0px 2px 8px 0px rgba(0,0,0,0.16); }
+
+  /* Border radius variants */
+  .acc-trigger.single        { border-radius:8px; }
+  .acc-trigger.top           { border-radius:8px 8px 0 0; }
+  .acc-trigger.middle        { border-radius:0; }
+  .acc-trigger.bottom        { border-radius:0 0 8px 8px; }
+  .acc-trigger.open.single   { border-radius:8px 8px 0 0; }
+  .acc-trigger.open.bottom   { border-radius:0; }
+
+  .acc-title {
+    flex:1; font-family:'Archivo'; font-weight:700; font-size:16px;
+    line-height:16px; color:#0F0F10;
+  }
+  .acc-trigger.open .acc-title { color:#242CC2; }
+
+  .acc-chevron {
+    flex-shrink:0; color:#0F0F10; font-size:24px;
+    transition:transform 240ms cubic-bezier(0.16,1,0.3,1);
+    font-family:'Material Symbols Outlined'; font-style:normal;
+  }
+  .acc-trigger.open .acc-chevron { transform:rotate(180deg); color:#242CC2; }
+
+  /* ── Body panel ── */
+  .acc-body {
+    overflow:hidden; max-height:0;
+    transition:max-height 280ms cubic-bezier(0.16,1,0.3,1);
+    background:#fff;
+  }
+  .acc-trigger.single + .acc-body   { border-radius:0 0 8px 8px; }
+  .acc-trigger.bottom + .acc-body   { border-radius:0 0 8px 8px; }
+  .acc-body.open { max-height:300px; box-shadow:0px 4px 8px 0px rgba(0,0,0,0.10); }
+  .acc-body-inner { padding:16px 16px 20px; font-family:'Nunito'; font-size:16px; line-height:24px; color:#3D3F42; }
+</style>
+</head>
+<body>
+
+<!-- Single -->
+<div>
+  <div class="section-label">Type: Single</div>
+  <div class="acc-group">
+    <div class="acc-item">
+      <button class="acc-trigger single open" onclick="toggle(this)">
+        <span class="acc-title">Accordion text</span>
+        <span class="acc-chevron">expand_more</span>
+      </button>
+      <div class="acc-body open">
+        <div class="acc-body-inner">
+          Conteúdo expandido do accordion. Quando o tipo é Single, este item possui border-radius em todos os cantos. O estado open deixa o header com fundo azul claro e ícone rotacionado.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Top / Middle / Bottom -->
+<div>
+  <div class="section-label">Type: Top · Middle · Bottom (grupo)</div>
+  <div class="acc-group">
+
+    <div class="acc-item">
+      <button class="acc-trigger top open" onclick="toggle(this)">
+        <span class="acc-title">Primeiro item (Top)</span>
+        <span class="acc-chevron">expand_more</span>
+      </button>
+      <div class="acc-body open">
+        <div class="acc-body-inner">Conteúdo do primeiro item do grupo. O tipo Top aplica border-radius apenas nos cantos superiores.</div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-trigger middle" onclick="toggle(this)">
+        <span class="acc-title">Segundo item (Middle)</span>
+        <span class="acc-chevron">expand_more</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">Conteúdo do item do meio. O tipo Middle não possui border-radius em nenhum canto.</div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-trigger middle" onclick="toggle(this)">
+        <span class="acc-title">Terceiro item (Middle)</span>
+        <span class="acc-chevron">expand_more</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">Outro item do meio do grupo com conteúdo expandível.</div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-trigger bottom" onclick="toggle(this)">
+        <span class="acc-title">Último item (Bottom)</span>
+        <span class="acc-chevron">expand_more</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">Conteúdo do último item do grupo. O tipo Bottom aplica border-radius apenas nos cantos inferiores quando fechado.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Estados -->
+<div>
+  <div class="section-label">Estados</div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:180px;">
+      <div style="font-family:'Inter';font-size:11px;color:#65686E;margin-bottom:6px;">Closed</div>
+      <div style="display:flex;flex-direction:row;align-items:center;gap:24px;padding:16px;height:56px;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.16);box-sizing:border-box;">
+        <span style="flex:1;font-family:'Archivo';font-weight:700;font-size:16px;color:#0F0F10;">Accordion text</span>
+        <span style="font-family:'Material Symbols Outlined';font-size:24px;color:#0F0F10;">expand_more</span>
+      </div>
+    </div>
+    <div style="flex:1;min-width:180px;">
+      <div style="font-family:'Inter';font-size:11px;color:#65686E;margin-bottom:6px;">Hover</div>
+      <div style="display:flex;flex-direction:row;align-items:center;gap:24px;padding:16px;height:56px;background:#F8F9FB;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.16);box-sizing:border-box;">
+        <span style="flex:1;font-family:'Archivo';font-weight:700;font-size:16px;color:#0F0F10;">Accordion text</span>
+        <span style="font-family:'Material Symbols Outlined';font-size:24px;color:#0F0F10;">expand_more</span>
+      </div>
+    </div>
+    <div style="flex:1;min-width:180px;">
+      <div style="font-family:'Inter';font-size:11px;color:#65686E;margin-bottom:6px;">Open</div>
+      <div style="display:flex;flex-direction:row;align-items:center;gap:24px;padding:16px;height:56px;background:#ECEDFF;border-radius:8px 8px 0 0;box-shadow:0 2px 8px rgba(0,0,0,0.16);box-sizing:border-box;">
+        <span style="flex:1;font-family:'Archivo';font-weight:700;font-size:16px;color:#242CC2;">Accordion text</span>
+        <span style="font-family:'Material Symbols Outlined';font-size:24px;color:#242CC2;transform:rotate(180deg);display:inline-block;">expand_more</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggle(trigger) {
+    const body = trigger.nextElementSibling;
+    const isOpen = trigger.classList.contains('open');
+    trigger.classList.toggle('open', !isOpen);
+    body.classList.toggle('open', !isOpen);
+  }
+</script>
+</body></html>

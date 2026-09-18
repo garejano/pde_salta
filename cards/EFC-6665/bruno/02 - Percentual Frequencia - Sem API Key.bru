@@ -1,0 +1,20 @@
+meta {
+  name: 02 - Percentual Frequencia - Sem API Key (espera 401)
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/aluno/percentualfrequencia-aluno?hashUsuarioOrigem={{hashUsuarioOrigem}}
+  body: none
+  auth: none
+}
+
+params:query {
+  hashUsuarioOrigem: {{hashUsuarioOrigem}}
+}
+
+docs {
+  Sem o header x-api-key. Deve retornar 401 (ApiKeyAuthorizationAttribute) —
+  confirma que o filtro de autenticação está ativo nesse ambiente.
+}

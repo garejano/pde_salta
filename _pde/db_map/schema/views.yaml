@@ -2372,6 +2372,10 @@ views:
       type: varchar
     - name: HashGradeRedacao
       type: uniqueidentifier
+    - name: EnvioIA
+      type: bit
+    - name: DataEnvioIA
+      type: datetime
   ViewAlocacaoValidadoresRedacao:
     domain: outros
     columns:
@@ -2431,7 +2435,13 @@ views:
       type: int
     - name: QuantidadeCorrigida
       type: int
+    - name: QuantidadeDisponivelAlocacao
+      type: int
     - name: QuantidadeBranco
+      type: int
+    - name: QuantidadeFluxoHumano
+      type: int
+    - name: QuantidadeCorrigidaFluxoHumano
       type: int
     - name: IdGradeRedacao
       type: int
@@ -5210,6 +5220,8 @@ views:
     columns:
     - name: Id
       type: uniqueidentifier
+    - name: IdOrdenacao
+      type: nvarchar
     - name: IdTurma
       type: int
     - name: IdAluno
@@ -6875,6 +6887,75 @@ views:
       type: varchar
     - name: Detalhamento
       type: varchar
+  ViewBaseDetalhadaErrosCorrecaoIA:
+    domain: outros
+    columns:
+    - name: IdRedacao
+      type: int
+    - name: DataCriacaoRedacao
+      type: datetime
+    - name: IdAcompanhamento
+      type: int
+    - name: IdTentativaCorrecaoIA
+      type: int
+    - name: DataEnvioCorrecaoIA
+      type: datetime
+    - name: DataRegistroErro
+      type: datetime
+    - name: TempoDecorridoSegundos
+      type: int
+    - name: MensagemApresentadaUsuario
+      type: nvarchar
+    - name: StatusInicialTentativa
+      type: nvarchar
+    - name: IdStatusFinalTentativa
+      type: int
+    - name: StatusFinalTentativa
+      type: nvarchar
+    - name: IdStatusRedacaoAtual
+      type: int
+    - name: DescricaoStatusRedacaoAtual
+      type: nvarchar
+    - name: IdTipoErroCorrecaoIA
+      type: int
+    - name: CodigoTipoErroCorrecaoIA
+      type: nvarchar
+    - name: DescricaoTipoErroCorrecaoIA
+      type: nvarchar
+    - name: CodigoHttp
+      type: int
+    - name: ClassificacaoErroCorrecaoIA
+      type: varchar
+    - name: DetalheErro
+      type: varchar
+    - name: EtapaProcessamentoErro
+      type: nvarchar
+    - name: DetalheErroEssayGraderErro
+      type: varchar
+    - name: CorrecaoResultEssayGraderErro
+      type: nvarchar
+    - name: DataRegistroEssayGraderErro
+      type: datetime
+    - name: IdAnoLetivo
+      type: int
+    - name: NomeAvaliacao
+      type: nvarchar
+    - name: NomeRede
+      type: nvarchar
+    - name: NomeEscola
+      type: nvarchar
+    - name: NomeAgrupamento
+      type: nvarchar
+    - name: RA
+      type: nvarchar
+    - name: NomeAluno
+      type: nvarchar
+    - name: NomeTurma
+      type: nvarchar
+    - name: NomeSerie
+      type: nvarchar
+    - name: NomeGradeRedacao
+      type: varchar
   ViewBloqueioBoletim:
     domain: outros
     columns:
@@ -8236,6 +8317,8 @@ views:
     - name: logoRedeURL
       type: varchar
     - name: LogoRedeMarcaAguaURL
+      type: varchar
+    - name: Email
       type: varchar
   ViewChamadaPorAula:
     domain: frequencia
@@ -11358,6 +11441,41 @@ views:
       type: nvarchar
     - name: DataNascimento
       type: nvarchar
+  ViewFilaLoteEnvioIA:
+    domain: outros
+    columns:
+    - name: IdEnvioLeitura
+      type: int
+    - name: Codigo
+      type: int
+    - name: IdAnoLetivo
+      type: int
+    - name: IdRede
+      type: int
+    - name: IdEscola
+      type: int
+    - name: IdAgrupamento
+      type: int
+    - name: IdAvaliacao
+      type: int
+    - name: DataEnvio
+      type: datetime
+    - name: EnvioIA
+      type: bit
+    - name: DataEnvioIA
+      type: datetime
+    - name: IdGradeRedacao
+      type: int
+    - name: GradeIsEnem
+      type: bit
+    - name: LoteIsBloqueado
+      type: bit
+    - name: QuantidadeCartoes
+      type: int
+    - name: EnviadosParaIA
+      type: int
+    - name: QuantidadeAlocada
+      type: int
   ViewFotoPessoa:
     domain: acesso
     columns:
@@ -13500,58 +13618,56 @@ views:
     domain: outros
     columns:
     - name: Id
-      type: int
-    - name: Id
       type: uniqueidentifier
-    - name: IdTipoRede
+    - name: Id
       type: int
     - name: IdMaterial
       type: int
-    - name: IdAnoLetivo
+    - name: IdTipoRede
       type: int
     - name: HashTipoRede
       type: uniqueidentifier
-    - name: NomeTipoRede
-      type: nvarchar
+    - name: IdAnoLetivo
+      type: int
     - name: NomeRede
       type: nvarchar
-    - name: IdEscolaSerie
-      type: int
+    - name: NomeTipoRede
+      type: nvarchar
     - name: IdRede
       type: int
+    - name: IdEscolaSerie
+      type: int
+    - name: NomeEscola
+      type: nvarchar
     - name: HashRede
       type: uniqueidentifier
-    - name: NomeEscola
+    - name: NomeRede
       type: nvarchar
     - name: NomeSerie
       type: nvarchar
-    - name: NomeRede
+    - name: Descricao
       type: nvarchar
     - name: IdEscola
       type: int
-    - name: Descricao
-      type: nvarchar
-    - name: Arquivo
-      type: nvarchar
     - name: HashEscola
       type: uniqueidentifier
-    - name: NomeEscola
+    - name: Arquivo
       type: nvarchar
     - name: DataDe
       type: datetime
-    - name: DataAte
-      type: datetime
+    - name: NomeEscola
+      type: nvarchar
     - name: IdAnoLetivo
       type: int
-    - name: HashAnoLetivo
-      type: uniqueidentifier
+    - name: DataAte
+      type: datetime
     - name: Prazo
       type: varchar
-    - name: IdRede
-      type: int
+    - name: HashAnoLetivo
+      type: uniqueidentifier
     - name: NomeAnoLetivo
       type: int
-    - name: IdSerie
+    - name: IdRede
       type: int
     - name: IdEscola
       type: int
@@ -13559,6 +13675,8 @@ views:
       type: int
     - name: HashSerie
       type: uniqueidentifier
+    - name: IdSerie
+      type: int
     - name: NomeSerie
       type: nvarchar
     - name: OrdemSerie
@@ -16734,6 +16852,10 @@ views:
       type: int
     - name: HashRedacao
       type: uniqueidentifier
+    - name: CorrecaoIA
+      type: bit
+    - name: NomeValidador
+      type: nvarchar
     - name: IdAnoLetivo
       type: int
     - name: HashAnoLetivo

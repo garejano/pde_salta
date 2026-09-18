@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<template id="__bundler_thumbnail" data-bg-color="#F8F9FB">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#F8F9FB"/>
+    <rect x="0" y="0" width="360" height="800" fill="#ffffff"/>
+    <line x1="360" y1="0" x2="360" y2="800" stroke="#EBEDF1" stroke-width="2"/>
+    <g fill="#C3C8D1"><rect x="60" y="140" width="200" height="34" rx="8"/><rect x="60" y="200" width="240" height="34" rx="8"/><rect x="60" y="260" width="180" height="34" rx="8"/></g>
+    <rect x="60" y="190" width="240" height="54" rx="10" fill="#E3E5FB"/>
+    <rect x="60" y="197" width="220" height="40" rx="8" fill="#E3E5FB"/>
+    <g transform="translate(150 60) scale(0.5)"><linearGradient id="tmk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#30B7BE"/><stop offset="1" stop-color="#39D881"/></linearGradient><path fill="url(#tmk)" d="M 17 37 C 20 27 40 17 65 17 C 87 17 102 23 110 28 C 111 28 112 29 114 29 C 118 29 122 25 122 20 C 122 17 121 15 118 13 C 109 8 91 0 65 0 C 29 0 0 18 0 40 C 0 44 1 48 3 52 C 7 46 12 41 17 37 Z M 46 61 C 39 64 34 69 31 74 C 41 78 52 80 65 80 C 85 80 114 72 114 56 C 114 39 85 31 65 31 C 30 31 2 55 2 85 C 2 90 3 96 4 100 C 8 97 13 93 19 90 C 18 89 18 87 18 85 C 18 64 39 48 65 48 C 79 48 93 52 97 56 C 93 59 79 63 65 63 C 58 63 52 63 46 61 Z"/></g>
+    <rect x="440" y="120" width="360" height="52" rx="8" fill="#242CC2"/>
+    <rect x="820" y="120" width="180" height="52" rx="8" fill="#ffffff" stroke="#242CC2" stroke-width="2"/>
+    <rect x="440" y="260" width="680" height="240" rx="12" fill="#ffffff" stroke="#EBEDF1" stroke-width="2"/>
+    <rect x="440" y="420" width="680" height="80" rx="0" fill="#0F0F10"/>
+  </svg>
+</template>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/colors_and_type.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Nunito:wght@400;600;700&family=Inter:wght@400;500;600&family=Inconsolata:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <script src="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/_ds_bundle.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    a { color: #242CC2; text-decoration: underline; }
+    a:hover { color: #191F88; }
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-thumb { background: #C3C8D1; border-radius: 999px; border: 2px solid transparent; background-clip: content-box; }
+    ::-webkit-scrollbar-thumb:hover { background: #ADB2BA; background-clip: content-box; }
+  </style>
+</helmet>
+<div style="display:flex; height:100vh; width:100%; font-family:'Nunito',sans-serif; color:#0F0F10; overflow:hidden;">
+  <aside style="width:288px; flex-shrink:0; border-right:1px solid #EBEDF1; display:flex; flex-direction:column; background:#F8F9FB;">
+    <div style="padding:20px 20px 18px; display:flex; align-items:center; gap:12px; border-bottom:1px solid #EBEDF1;">
+      <svg width="25" height="34" viewBox="0 0 122.12 170" style="display:block;" aria-label="Eleva">
+        <defs><linearGradient id="elevaMark" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#30B7BE"/><stop offset="1" stop-color="#39D881"/></linearGradient></defs>
+        <path fill="url(#elevaMark)" fill-rule="nonzero" d="M 17.12 37.18 C 20.28 26.97 39.71 16.64 65 16.64 C 87.29 16.64 101.89 22.99 109.62 27.66 C 110.86 28.41 112.29 28.78 113.79 28.78 C 118.39 28.78 122.12 25.05 122.12 20.45 C 122.12 17.43 120.51 14.77 118.07 13.3 C 108.53 7.6 90.97 0 64.99 0 C 28.55 0 0 17.59 0 40.06 C 0 44.2 1.01 48.18 2.81 51.9 C 6.7 46.38 11.54 41.42 17.12 37.18 Z M 45.77 61.34 C 39.16 64.39 33.85 68.93 30.75 74.28 C 40.64 77.99 52.33 80.13 64.99 80.13 C 84.82 80.13 114.17 72.33 114.17 55.59 C 114.18 38.82 84.83 31 64.99 31 C 30.09 31 1.59 55.22 1.59 84.99 C 1.59 90.37 2.53 95.56 4.26 100.47 C 8.33 96.68 13.21 93.33 18.75 90.49 C 18.42 88.7 18.24 86.86 18.24 84.99 C 18.24 64.37 39.34 47.65 64.99 47.65 C 79.32 47.65 92.66 52.32 96.71 55.57 C 92.65 58.81 79.32 63.47 64.99 63.47 C 58.07 63.47 51.61 62.68 45.77 61.34 Z M 113.79 141.21 C 112.28 141.21 110.85 141.58 109.61 142.33 C 101.89 147 87.24 153.35 64.99 153.35 C 37.26 153.35 16.65 140.99 16.65 129.93 C 16.65 118.87 37.32 106.5 64.99 106.5 C 79.32 106.5 92.66 111.17 96.71 114.41 C 92.66 117.67 79.32 122.33 64.99 122.33 C 57.8 122.33 51 121 44.91 118.68 C 35.4 121.35 29.28 125.47 27.09 128.24 C 37.67 134.98 50.79 138.98 64.99 138.98 C 84.82 138.98 114.17 131.17 114.17 114.4 C 114.17 97.66 84.82 89.86 64.99 89.86 C 28.55 89.86 0 107.45 0 129.92 C 0 152.4 28.55 170 64.99 170 C 90.97 170 108.53 162.39 118.06 156.68 C 120.51 155.21 122.11 152.56 122.11 149.53 C 122.12 144.94 118.39 141.21 113.79 141.21 Z"/>
+      </svg>
+      <div style="display:flex; flex-direction:column; gap:2px;">
+        <div style="font-family:'Archivo',sans-serif; font-weight:700; font-size:16px; line-height:1; color:#0F0F10;">Eleva</div>
+        <div style="font-family:'Nunito',sans-serif; font-size:12px; color:#65686E; line-height:1;">Biblioteca de componentes</div>
+      </div>
+    </div>
+    <nav style="flex:1; overflow-y:auto; padding:12px 8px;">
+      <sc-for list="{{ groups }}" as="group" hint-placeholder-count="4">
+        <div style="padding:14px 12px 4px; font-family:'Archivo',sans-serif; font-weight:700; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#8A8F98;">{{ group.label }}</div>
+        <sc-for list="{{ group.items }}" as="item" hint-placeholder-count="5">
+          <button onClick="{{ item.onSelect }}" style="{{ item.style }}">
+            <span class="material-symbols-outlined" style="font-size:20px; color:inherit;">{{ item.icon }}</span>
+            <span style="flex:1;">{{ item.name }}</span>
+          </button>
+        </sc-for>
+      </sc-for>
+    </nav>
+    <div style="padding:14px 20px; border-top:1px solid #EBEDF1; font-family:'Nunito',sans-serif; font-size:11px; color:#8A8F98; line-height:1.5;">Grupo Salta · Design System<br>Construído sobre tokens Eleva</div>
+  </aside>
+
+  <main style="flex:1; overflow-y:auto; background:#fff;">
+    <div style="max-width:940px; margin:0 auto; padding:44px 48px 96px;">
+      <div style="font-family:'Archivo',sans-serif; font-weight:700; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:#242CC2;">{{ current.group }}</div>
+      <h1 style="font-family:'Archivo',sans-serif; font-weight:600; font-size:40px; line-height:1.1; margin:8px 0 0; color:#0F0F10;">{{ current.name }}</h1>
+      <p style="font-family:'Nunito',sans-serif; font-size:16px; color:#3D3F42; max-width:660px; margin:14px 0 0; line-height:1.55; text-wrap:pretty;">{{ current.desc }}</p>
+      <div style="height:1px; background:#EBEDF1; margin:30px 0;"></div>
+
+      <sc-for list="{{ examples }}" as="ex" hint-placeholder-count="2">
+        <section style="margin-bottom:44px;">
+          <h2 style="font-family:'Archivo',sans-serif; font-weight:700; font-size:18px; margin:0 0 14px; color:#0F0F10;">{{ ex.label }}</h2>
+          <div style="border:1px solid #EBEDF1; border-radius:8px; overflow:hidden;">
+            <div style="padding:32px; display:flex; flex-wrap:wrap; gap:20px; align-items:center; background:#fff; min-height:88px;">{{ ex.el }}</div>
+            <sc-if value="{{ showCode }}" hint-placeholder-val="{{ true }}">
+              <div style="position:relative; border-top:1px solid #191F88; background:#0F0F10;">
+                <span style="position:absolute; top:12px; right:16px; font-family:'Archivo',sans-serif; font-weight:700; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:#65686E;">jsx</span>
+                <pre style="margin:0; padding:18px 20px; overflow-x:auto; font-family:'Inconsolata',monospace; font-size:13.5px; line-height:1.65; color:#E4E6EB; white-space:pre;">{{ ex.code }}</pre>
+              </div>
+            </sc-if>
+          </div>
+        </section>
+      </sc-for>
+
+      <sc-if value="{{ notReady }}" hint-placeholder-val="{{ true }}">
+        <div style="padding:48px; text-align:center; font-family:'Nunito',sans-serif; color:#65686E;">Carregando componentes do design system…</div>
+      </sc-if>
+    </div>
+  </main>
+  {{ overlays }}
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:860},&quot;startComponent&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;button&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;button&quot;,&quot;iconButton&quot;,&quot;input&quot;,&quot;tag&quot;,&quot;avatar&quot;,&quot;alert&quot;,&quot;toast&quot;,&quot;skeleton&quot;,&quot;splitButton&quot;,&quot;groupButton&quot;,&quot;checkbox&quot;,&quot;radio&quot;,&quot;toggle&quot;,&quot;datepicker&quot;,&quot;fileupload&quot;,&quot;filterbar&quot;,&quot;listboxTransfer&quot;,&quot;tabs&quot;,&quot;breadcrumb&quot;,&quot;pagination&quot;,&quot;toolbar&quot;,&quot;baseCard&quot;,&quot;avatarCard&quot;,&quot;accordion&quot;,&quot;modal&quot;,&quot;table&quot;,&quot;studentCard&quot;],&quot;section&quot;:&quot;Exibição&quot;},&quot;showCode&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Exibição&quot;}}">
+const R = React, h = React.createElement;
+
+const CATALOG = [
+  { label: 'Primitivos', items: [
+    { id:'button',    name:'Button',      icon:'smart_button',  group:'Primitivos', desc:'Ação principal do sistema. Fundo indigo #242CC2 em todas as variantes preenchidas; nunca usa o gradiente de marca. Suporta ícone, contador e três variantes de ênfase.' },
+    { id:'iconButton',name:'Icon button', icon:'touch_app',     group:'Primitivos', desc:'Botão apenas com ícone, 40×40 (circular) ou 32×32 (quadrado). Usado em barras de ferramentas, cabeçalhos e ações compactas de tabela.' },
+    { id:'input',     name:'Input',       icon:'text_fields',   group:'Primitivos', desc:'Campo de texto com rótulo, ícone opcional, texto de ajuda e estado de erro. Borda indigo e anel de foco de 3px a 24% de opacidade.' },
+    { id:'tag',       name:'Tag',         icon:'sell',          group:'Primitivos', desc:'Rótulo em cápsula (raio 999) para categorias e status. Cor de fundo semântica com texto branco — âmbar usa texto escuro para contraste.' },
+    { id:'avatar',    name:'Avatar',      icon:'account_circle',group:'Primitivos', desc:'Iniciais sobre o gradiente de marca teal→verde. Único lugar, junto do logo, onde o gradiente aparece. Tamanho configurável.' },
+    { id:'alert',     name:'Alert',       icon:'campaign',      group:'Primitivos', desc:'Faixa de mensagem contextual com barra lateral colorida. Quatro variantes semânticas: info, sucesso, atenção e erro.' },
+    { id:'toast',     name:'Toast',       icon:'notifications', group:'Primitivos', desc:'Notificação temporária fixada no canto inferior direito, com barra de tempo linear. Fecha automaticamente após a duração definida.' },
+    { id:'skeleton',  name:'Skeleton',    icon:'blur_on',        group:'Primitivos', desc:'Placeholder de carregamento com efeito shimmer. Formas retângulo, arredondado, quadrado e círculo, controladas por largura, altura e raio.' },
+    { id:'splitButton', name:'Split button', icon:'arrow_drop_down_circle', group:'Primitivos', desc:'Botão de ação principal com um segundo gatilho separado por divisor, que abre um menu de ações relacionadas. Mesmas variantes de cor do Button.' },
+    { id:'groupButton', name:'Group button', icon:'view_column', group:'Primitivos', desc:'Conjunto de opções mutuamente exclusivas em um único bloco segmentado, com raio apenas nas bordas externas. Usado para alternar visualizações.' },
+  ]},
+  { label: 'Formulários', items: [
+    { id:'checkbox',  name:'Checkbox',    icon:'check_box',          group:'Formulários', desc:'Seleção múltipla com três estados: selecionado, parcial (indeterminado) e não selecionado, além do estado desativado.' },
+    { id:'radio',     name:'Radio',       icon:'radio_button_checked',group:'Formulários', desc:'Seleção única. RadioGroup organiza um conjunto de opções mutuamente exclusivas com rótulo.' },
+    { id:'toggle',    name:'Toggle',      icon:'toggle_on',          group:'Formulários', desc:'Interruptor liga/desliga para preferências e ativações imediatas. Verde de sucesso quando ativo.' },
+    { id:'datepicker',name:'Datepicker',  icon:'calendar_month',     group:'Formulários', desc:'Calendário mensal com navegação entre meses. Data selecionada em indigo; dia atual destacado. Formato DD/MM/AAAA.' },
+    { id:'fileupload',name:'File upload', icon:'upload_file',        group:'Formulários', desc:'Área de arrastar e soltar com botão de seleção e lista de arquivos anexados removíveis.' },
+    { id:'filterbar', name:'Filter bar',  icon:'filter_list',        group:'Formulários', desc:'Barra de busca combinada a um painel de filtros expansível com contador de filtros ativos e ações de aplicar/limpar.' },
+    { id:'listboxTransfer', name:'Listbox transfer', icon:'swap_horiz', group:'Formulários', desc:'Duas listas lado a lado (disponíveis/selecionados) com transferência por clique nos itens e botões de mover. Busca em cada lado, "selecionar todos"/"remover todos" em indigo.' },
+  ]},
+  { label: 'Navegação', items: [
+    { id:'tabs',      name:'Tabs',        icon:'tab',                 group:'Navegação', desc:'Abas com sublinhado indigo na ativa. Suportam ícone e contador por aba.' },
+    { id:'breadcrumb',name:'Breadcrumb',  icon:'chevron_right',       group:'Navegação', desc:'Trilha de navegação hierárquica com separador em chevron. Último item sem link, indicando a página atual.' },
+    { id:'pagination',name:'Pagination',  icon:'format_list_numbered',group:'Navegação', desc:'Paginação numérica com truncamento por reticências e controles de anterior/próximo.' },
+  ]},
+  { label: 'Estrutura', items: [
+    { id:'toolbar',   name:'Toolbar',     icon:'view_week',    group:'Estrutura', desc:'Componente de agrupamento para botões e outros elementos, organizado em três seções — start, center e end — dentro de um contêiner com borda e raio de 8px.' },
+    { id:'baseCard',  name:'Base card',   icon:'crop_square', group:'Estrutura', desc:'Contêiner genérico de 8px de raio para composições de conteúdo. Define os seis estados de interação do sistema: default, hover, focused, selected, disabled e dragged.' },
+    { id:'avatarCard',name:'Avatar card', icon:'contact_page',group:'Estrutura', desc:'Variante do Base card com cabeçalho de avatar, nome e metadados, corpo com estatísticas e rodapé de ações — o padrão usado nos cartões de aluno da listagem.' },
+    { id:'accordion', name:'Accordion',   icon:'unfold_more', group:'Estrutura', desc:'Lista de itens expansíveis. Um item isolado usa raio nos quatro cantos; em grupo, apenas o primeiro e o último item arredondam as pontas. Cabeçalho aberto usa fundo indigo claro e seta rotacionada.' },
+    { id:'modal',     name:'Modal',       icon:'web_asset',   group:'Estrutura', desc:'Janela sobreposta com cabeçalho, corpo rolável e barra de ações. Raio de 16px e scrim escuro. Fecha ao clicar fora ou no X.' },
+    { id:'table',     name:'Table',       icon:'table_rows',  group:'Estrutura', desc:'Tabela de dados com ordenação por coluna, seleção de linhas e renderização customizada de células (ex.: tags de status).' },
+    { id:'studentCard',name:'Student card',icon:'badge',      group:'Estrutura', desc:'Composição completa da ficha do aluno: cabeçalho de perfil, cartões de estatísticas, alertas, atividades e painel lateral de responsável.' },
+  ]},
+];
+
+const FLAT = CATALOG.flatMap(g => g.items);
+
+const STUDENT = {
+  name: 'Wanderson Uchiha', class: '1 ano A', track: 'Militar',
+  email: 'wandinho.uchiha12@gmail.com.br', birth: '26/06/2010',
+  faltas: 6, atrasos: 2, media: 8.4, status: 'Atenção',
+};
+
+class Component extends DCLogic {
+  state = {
+    selected: null,
+    demo: {
+      inputs: { a:'', b:'', c:'', d:'Valor inválido' },
+      checks: { a:true, b:false, c:false },
+      toggles: { a:true, b:false },
+      radio: 'presencial',
+      date: null,
+      filters: {}, search: '',
+      tab: 'dados', page: 1,
+      splitOpen: false, groupA: 'lista', groupB: 'semana',
+      ltLeft: ['Ana Diretora','Carlos Santos','Maria Silva','Wanderson Uchiha','João Pereira'],
+      ltRight: ['Fernanda Lima'], ltStagedLeft: [], ltStagedRight: [], ltSearchL: '', ltSearchR: '',
+      modal: false, toast: false,
+      modalName: 'Wanderson Uchiha', modalEmail: 'wandinho.uchiha12@gmail.com.br',
+    },
+  };
+
+  build(sel, d, set, W) {
+    const row = (...kids) => h('div', { style:{ display:'flex', flexWrap:'wrap', gap:16, alignItems:'center' } }, kids);
+    const col = (gap, ...kids) => h('div', { style:{ display:'flex', flexDirection:'column', gap, width:'100%' } }, kids);
+    const { Button, IconButton, Input, Tag, Avatar, Alert, Checkbox, RadioGroup, Toggle, Datepicker, FileUpload, FilterBar, Tabs, Breadcrumb, Pagination, Table, StudentCard } = W;
+
+    switch (sel) {
+      case 'button': return [
+        { label:'Variantes', code:
+`<Button variant="fill">Salvar</Button>
+<Button variant="outline">Editar</Button>
+<Button variant="ghost">Cancelar</Button>
+<Button variant="danger">Excluir</Button>`,
+          el: row(
+            h(Button,{variant:'fill'},'Salvar'),
+            h(Button,{variant:'outline'},'Editar'),
+            h(Button,{variant:'ghost'},'Cancelar'),
+            h(Button,{variant:'danger'},'Excluir'),
+          )},
+        { label:'Com ícone, contador e tamanho', code:
+`<Button variant="fill" icon="add">Novo aluno</Button>
+<Button variant="outline" icon="download">Exportar</Button>
+<Button variant="fill" counter={3}>Notificações</Button>
+<Button variant="fill" size="sm">Compacto</Button>
+<Button variant="fill" disabled>Desativado</Button>`,
+          el: row(
+            h(Button,{variant:'fill',icon:'add'},'Novo aluno'),
+            h(Button,{variant:'outline',icon:'download'},'Exportar'),
+            h(Button,{variant:'fill',counter:3},'Notificações'),
+            h(Button,{variant:'fill',size:'sm'},'Compacto'),
+            h(Button,{variant:'fill',disabled:true},'Desativado'),
+          )},
+      ];
+      case 'iconButton': return [
+        { label:'Variantes', code:
+`<IconButton icon="edit" variant="ghost" />
+<IconButton icon="edit" variant="fill" />
+<IconButton icon="edit" variant="outline" />
+<IconButton icon="menu" variant="ghost" active />`,
+          el: row(
+            h(IconButton,{icon:'edit',variant:'ghost'}),
+            h(IconButton,{icon:'edit',variant:'fill'}),
+            h(IconButton,{icon:'edit',variant:'outline'}),
+            h(IconButton,{icon:'menu',variant:'ghost',active:true}),
+          )},
+        { label:'Tamanho quadrado (32px)', code:
+`<IconButton icon="close" size={32} />`,
+          el: row(
+            h(IconButton,{icon:'close',size:32}),
+            h(IconButton,{icon:'more_vert',size:32}),
+            h(IconButton,{icon:'search',size:32,variant:'outline'}),
+          )},
+      ];
+      case 'input': return [
+        { label:'Estados', code:
+`<Input label="Nome completo" placeholder="Digite o nome" />
+<Input label="Buscar" icon="search" placeholder="Buscar aluno" />
+<Input label="Data de nascimento" helpText="Formato DD/MM/AAAA" />
+<Input label="E-mail" error="E-mail inválido" />`,
+          el: col(16,
+            h(Input,{label:'Nome completo',placeholder:'Digite o nome',value:d.inputs.a,onChange:v=>set({inputs:{...d.inputs,a:v}})}),
+            h(Input,{label:'Buscar',icon:'search',placeholder:'Buscar aluno',value:d.inputs.b,onChange:v=>set({inputs:{...d.inputs,b:v}})}),
+            h(Input,{label:'Data de nascimento',helpText:'Formato DD/MM/AAAA',value:d.inputs.c,onChange:v=>set({inputs:{...d.inputs,c:v}})}),
+            h(Input,{label:'E-mail',error:'E-mail inválido',value:d.inputs.d,onChange:v=>set({inputs:{...d.inputs,d:v}})}),
+          )},
+      ];
+      case 'tag': return [
+        { label:'Cores semânticas', code:
+`<Tag>Padrão</Tag>
+<Tag color="#9D0364">Militar</Tag>
+<Tag color="#774BB0">Bilíngue</Tag>
+<Tag color="#28975A">Cursando</Tag>
+<Tag color="#E65637">Pendente</Tag>
+<Tag color="#FFAC30">Atenção</Tag>`,
+          el: row(
+            h(Tag,null,'Padrão'),
+            h(Tag,{color:'#9D0364'},'Militar'),
+            h(Tag,{color:'#774BB0'},'Bilíngue'),
+            h(Tag,{color:'#28975A'},'Cursando'),
+            h(Tag,{color:'#E65637'},'Pendente'),
+            h(Tag,{color:'#FFAC30'},'Atenção'),
+          )},
+        { label:'Com ícone e tamanho pequeno', code:
+`<Tag color="#9D0364" icon="school">1 ano A</Tag>
+<Tag color="#242CC2" size="sm">Novo</Tag>`,
+          el: row(
+            h(Tag,{color:'#9D0364',icon:'school'},'1 ano A'),
+            h(Tag,{color:'#242CC2',icon:'star',size:'sm'},'Novo'),
+            h(Tag,{color:'#28975A',icon:'check',size:'sm'},'Ativo'),
+          )},
+      ];
+      case 'avatar': {
+        const SquareAvatar = ({ name, size=40, bg='#242CC2' }) => {
+          const initials = name.split(' ').slice(0,2).map(n=>n[0]).join('').toUpperCase();
+          return h('div',{style:{width:size,height:size,borderRadius:8,background:bg,color:'#fff',display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'Archivo',fontWeight:700,fontSize:size*0.4}},initials);
+        };
+        const BadgedAvatar = ({ name, size=40, count }) => h('div',{style:{position:'relative',display:'inline-flex'}},
+          h(Avatar,{name,size}),
+          count != null && h('span',{style:{position:'absolute',top:-4,right:-4,minWidth:20,height:20,borderRadius:999,background:'#9D0364',color:'#fff',display:'flex',alignItems:'center',justifyContent:'center',fontFamily:'Nunito',fontWeight:700,fontSize:11,padding:'0 4px',border:'2px solid #fff'}},count));
+        return [
+          { label:'Tamanhos', code:
+`<Avatar name="Ana Diretora" size={32} />
+<Avatar name="Carlos Santos" size={40} />
+<Avatar name="Wanderson Uchiha" size={56} />
+<Avatar name="Maria Silva" size={80} />`,
+            el: row(
+              h(Avatar,{name:'Ana Diretora',size:32}),
+              h(Avatar,{name:'Carlos Santos',size:40}),
+              h(Avatar,{name:'Wanderson Uchiha',size:56}),
+              h(Avatar,{name:'Maria Silva',size:80}),
+            )},
+          { label:'Formato quadrado', code:
+`<Avatar name="Paulo Nunes" size={40} shape="square" />
+<Avatar name="Vitor Alves" size={40} shape="square" bg="#774BB0" />
+<Avatar name="Ursula Melo" size={32} shape="square" bg="#28975A" />`,
+            el: row(
+              SquareAvatar({name:'Paulo Nunes',size:40}),
+              SquareAvatar({name:'Vitor Alves',size:40,bg:'#774BB0'}),
+              SquareAvatar({name:'Ursula Melo',size:32,bg:'#28975A'}),
+            )},
+          { label:'Com badge de contagem', code:
+`<Avatar name="Ursula Melo" size={48} badge={4} />`,
+            el: row(
+              BadgedAvatar({name:'Ursula Melo',size:48,count:4}),
+              BadgedAvatar({name:'Wanderson Uchiha',size:48,count:12}),
+              BadgedAvatar({name:'Maria Silva',size:48}),
+            )},
+        ];
+      }
+      case 'alert': return [
+        { label:'Variantes', code:
+`<Alert variant="info" title="Informação">…</Alert>
+<Alert variant="success" title="Tudo certo">…</Alert>
+<Alert variant="warning" title="Atenção">…</Alert>
+<Alert variant="error" title="Erro">…</Alert>`,
+          el: col(16,
+            h(Alert,{variant:'info',title:'Período de matrícula aberto'},'As matrículas para o próximo bimestre já podem ser realizadas no portal.'),
+            h(Alert,{variant:'success',title:'Dados salvos'},'As alterações na ficha do aluno foram registradas.'),
+            h(Alert,{variant:'warning',title:'Faltas acima do recomendado'},'Este aluno ultrapassou o limite de faltas do bimestre.'),
+            h(Alert,{variant:'error',title:'Não foi possível gerar o link'},'Verifique a conexão e tente novamente.'),
+          )},
+        { label:'Com ações', code:
+`<Alert variant="warning" title="Confirmar exclusão"
+  actions={<><Button variant="ghost" size="sm">Cancelar</Button>
+            <Button variant="danger" size="sm">Excluir</Button></>}>
+  Esta ação não pode ser desfeita.
+</Alert>`,
+          el: col(16,
+            h(Alert,{variant:'warning',title:'Confirmar exclusão',actions:h(R.Fragment,null,
+              h(Button,{variant:'ghost',size:'sm'},'Cancelar'),
+              h(Button,{variant:'danger',size:'sm'},'Excluir'))},'Esta ação não pode ser desfeita.'),
+          )},
+      ];
+      case 'splitButton': {
+        const SplitButton = ({ variant='fill', label, icon, open, onToggleMenu, options, onSelect, size='md' }) => {
+          const h_ = size === 'sm' ? 32 : 40;
+          const fontSize = size === 'sm' ? 14 : 16;
+          const styles = {
+            fill:    { background:'#242CC2', color:'#fff', borderColor:'#242CC2' },
+            outline: { background:'#fff', color:'#242CC2', borderColor:'#242CC2' },
+            danger:  { background:'#E65637', color:'#fff', borderColor:'#E65637' },
+          }[variant];
+          const dividerColor = variant === 'outline' ? '#242CC2' : 'rgba(255,255,255,0.4)';
+          return h('div', { style:{ position:'relative', display:'inline-flex' } },
+            h('div', { style:{ display:'inline-flex', height:h_, borderRadius:8, overflow:'hidden', border:`1px solid ${styles.borderColor}` } },
+              h('button', { onClick:()=>{}, style:{ display:'inline-flex', alignItems:'center', gap:8, padding:'0 16px', border:0, cursor:'pointer', fontFamily:'Archivo', fontWeight:700, fontSize, lineHeight:1, whiteSpace:'nowrap', ...styles } },
+                icon && h('span',{className:'material-symbols-outlined',style:{fontSize:18}},icon), label),
+              h('div', { style:{ width:1, background:dividerColor, alignSelf:'stretch' } }),
+              h('button', { onClick:onToggleMenu, style:{ display:'inline-flex', alignItems:'center', justifyContent:'center', width:h_-8, border:0, cursor:'pointer', ...styles } },
+                h('span',{className:'material-symbols-outlined',style:{fontSize:20}},'expand_more')),
+            ),
+            open && h('div', { style:{ position:'absolute', top:h_+6, left:0, minWidth:200, background:'#fff', border:'1px solid #EBEDF1', borderRadius:8, boxShadow:'0 8px 24px rgba(0,23,31,0.15)', padding:6, zIndex:5 } },
+              options.map(o => h('div', { key:o, onClick:()=>onSelect(o), style:{ padding:'9px 12px', borderRadius:6, fontFamily:'Nunito', fontSize:14, color:'#3D3F42', cursor:'pointer' } }, o))),
+          );
+        };
+        return [
+          { label:'Ação principal com menu', code:
+`// SplitButton — composição a partir de Button + IconButton
+<SplitButton variant="fill" label="Gerar link" icon="link"
+  open={open} onToggleMenu={() => setOpen(!open)}
+  options={['Link de anamnese', 'Link de matrícula', 'Link de boletim']}
+  onSelect={(opt) => { setOpen(false); handle(opt); }} />`,
+            el: row(
+              SplitButton({ variant:'fill', label:'Gerar link', icon:'link', open:d.splitOpen, onToggleMenu:()=>set({splitOpen:!d.splitOpen}), options:['Link de anamnese','Link de matrícula','Link de boletim'], onSelect:()=>set({splitOpen:false}) }),
+              h('span',{style:{fontFamily:'Nunito',fontSize:13,color:'#65686E'}},'Clique na seta para ver as opções.'),
+            )},
+          { label:'Variantes', code:
+`<SplitButton variant="fill" label="Salvar" />
+<SplitButton variant="outline" label="Exportar" />
+<SplitButton variant="danger" label="Excluir" />`,
+            el: row(
+              SplitButton({ variant:'fill', label:'Salvar', options:['Salvar','Salvar e sair'], onToggleMenu:()=>{}, onSelect:()=>{} }),
+              SplitButton({ variant:'outline', label:'Exportar', options:['PDF','CSV'], onToggleMenu:()=>{}, onSelect:()=>{} }),
+              SplitButton({ variant:'danger', label:'Excluir', options:['Excluir aluno','Excluir turma'], onToggleMenu:()=>{}, onSelect:()=>{} }),
+            )},
+        ];
+      }
+      case 'groupButton': {
+        const GroupButton = ({ options, value, onChange }) => h('div', { style:{ display:'inline-flex', border:'1px solid #C3C8D1', borderRadius:8, overflow:'hidden' } },
+          options.map((o,i) => {
+            const active = o.value === value;
+            return h('button', { key:o.value, onClick:()=>onChange(o.value), style:{
+              display:'inline-flex', alignItems:'center', gap:6, padding:'0 16px', height:40,
+              border:0, borderLeft: i>0 ? '1px solid #C3C8D1' : 0, cursor:'pointer',
+              fontFamily:'Archivo', fontWeight:700, fontSize:14, whiteSpace:'nowrap',
+              background: active ? '#242CC2' : '#fff', color: active ? '#fff' : '#3D3F42',
+            } }, o.icon && h('span',{className:'material-symbols-outlined',style:{fontSize:18}},o.icon), o.label);
+          }));
+        return [
+          { label:'Alternância de visualização', code:
+`// GroupButton — segmentado, raio apenas nas bordas externas
+<GroupButton value={view} onChange={setView} options={[
+  { value:'lista', label:'Lista', icon:'view_list' },
+  { value:'grade', label:'Grade', icon:'grid_view' },
+]} />`,
+            el: GroupButton({ value:d.groupA, onChange:v=>set({groupA:v}), options:[
+              {value:'lista',label:'Lista',icon:'view_list'},
+              {value:'grade',label:'Grade',icon:'grid_view'},
+            ]}) },
+          { label:'Somente texto, três opções', code:
+`<GroupButton value={period} onChange={setPeriod} options={[
+  { value:'dia', label:'Dia' },
+  { value:'semana', label:'Semana' },
+  { value:'mes', label:'Mês' },
+]} />`,
+            el: GroupButton({ value:d.groupB, onChange:v=>set({groupB:v}), options:[
+              {value:'dia',label:'Dia'},{value:'semana',label:'Semana'},{value:'mes',label:'Mês'},
+            ]}) },
+        ];
+      }
+      case 'toast': return [
+        { label:'Notificação temporária', code:
+`<Toast title="Alterações salvas com sucesso"
+  duration={4000} onClose={() => setShow(false)} />`,
+          el: row(
+            h(Button,{variant:'fill',icon:'notifications',onClick:()=>set({toast:true})},'Mostrar toast'),
+            h('span',{style:{fontFamily:'Nunito',fontSize:13,color:'#65686E'}},'Aparece no canto inferior direito da tela.'),
+          )},
+      ];
+      case 'skeleton': {
+        const Skeleton = ({ width='100%', height=14, radius=4 }) => h('div',{style:{
+          width, height, borderRadius:radius,
+          background:'linear-gradient(90deg,#EBEDF1 25%,#F8F9FB 50%,#EBEDF1 75%)',
+          backgroundSize:'800px 100%', animation:'skeletonShimmer 1.4s infinite',
+        }});
+        const helmetKeyframes = h('style',null,'@keyframes skeletonShimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}');
+        return [
+          { label:'Formas', code:
+`<Skeleton width="100%" height={14} />                {/* Rectangle */}
+<Skeleton width="100%" height={14} borderRadius={999} /> {/* Rounded */}
+<Skeleton width={56} height={56} borderRadius={8} />  {/* Square */}
+<Skeleton width={56} height={56} borderRadius={999} /> {/* Circle */}`,
+            el: h('div',{style:{width:'100%'}}, helmetKeyframes,
+              h('div',{style:{display:'flex',gap:40,flexWrap:'wrap'}},
+                h('div',{style:{display:'flex',flexDirection:'column',gap:10,flex:1,minWidth:220}},
+                  h('span',{style:{fontFamily:'Archivo',fontWeight:700,fontSize:13,color:'#0F0F10'}},'Rectangle'),
+                  Skeleton({height:12,width:'100%'}), Skeleton({height:12,width:'55%'}), Skeleton({height:12,width:'35%'}), Skeleton({height:40,width:'100%'})),
+                h('div',{style:{display:'flex',flexDirection:'column',gap:10,flex:1,minWidth:220}},
+                  h('span',{style:{fontFamily:'Archivo',fontWeight:700,fontSize:13,color:'#0F0F10'}},'Rounded'),
+                  Skeleton({height:12,width:'100%',radius:999}), Skeleton({height:12,width:'55%',radius:999}), Skeleton({height:12,width:'35%',radius:999}), Skeleton({height:40,width:'100%',radius:999})),
+              ),
+              h('div',{style:{display:'flex',gap:40,flexWrap:'wrap',marginTop:24}},
+                h('div',{style:{display:'flex',flexDirection:'column',gap:10}},
+                  h('span',{style:{fontFamily:'Archivo',fontWeight:700,fontSize:13,color:'#0F0F10'}},'Square'),
+                  h('div',{style:{display:'flex',alignItems:'flex-end',gap:10}}, [28,36,44,52].map((s,i)=>h('div',{key:i},Skeleton({width:s,height:s,radius:8}))))),
+                h('div',{style:{display:'flex',flexDirection:'column',gap:10}},
+                  h('span',{style:{fontFamily:'Archivo',fontWeight:700,fontSize:13,color:'#0F0F10'}},'Circle'),
+                  h('div',{style:{display:'flex',alignItems:'flex-end',gap:10}}, [28,36,44,52].map((s,i)=>h('div',{key:i},Skeleton({width:s,height:s,radius:999}))))),
+              )) },
+          { label:'Em contexto (card carregando)', code:
+`<div className="card">
+  <Skeleton width={44} height={44} borderRadius={999} />
+  <Skeleton width="60%" height={14} />
+  <Skeleton width="40%" height={12} />
+</div>`,
+            el: h('div',{style:{width:320,border:'1px solid #EBEDF1',borderRadius:8,padding:16,display:'flex',gap:12,alignItems:'center'}}, helmetKeyframes,
+              Skeleton({width:44,height:44,radius:999}),
+              h('div',{style:{flex:1,display:'flex',flexDirection:'column',gap:8}}, Skeleton({height:13,width:'60%'}), Skeleton({height:11,width:'40%'}))) },
+        ];
+      }
+      case 'checkbox': return [
+        { label:'Estados', code:
+`<Checkbox label="Selecionado" checked onChange={fn} />
+<Checkbox label="Parcial" indeterminate onChange={fn} />
+<Checkbox label="Não selecionado" onChange={fn} />
+<Checkbox label="Desativado" disabled />`,
+          el: col(14,
+            h(Checkbox,{label:'Selecionado',checked:d.checks.a,onChange:v=>set({checks:{...d.checks,a:v}})}),
+            h(Checkbox,{label:'Parcial (indeterminado)',indeterminate:true,checked:true,onChange:()=>{}}),
+            h(Checkbox,{label:'Não selecionado',checked:d.checks.b,onChange:v=>set({checks:{...d.checks,b:v}})}),
+            h(Checkbox,{label:'Desativado',disabled:true,checked:true}),
+          )},
+      ];
+      case 'radio': return [
+        { label:'RadioGroup', code:
+`<RadioGroup label="Modalidade" value={value} onChange={setValue}
+  options={[
+    { value:'presencial', label:'Presencial' },
+    { value:'hibrido',    label:'Híbrido' },
+    { value:'ead',        label:'EAD' },
+  ]} />`,
+          el: col(0,
+            h(RadioGroup,{label:'Modalidade',value:d.radio,onChange:v=>set({radio:v}),options:[
+              {value:'presencial',label:'Presencial'},
+              {value:'hibrido',label:'Híbrido'},
+              {value:'ead',label:'EAD (desativado)',disabled:true},
+            ]}),
+          )},
+      ];
+      case 'toggle': return [
+        { label:'Estados', code:
+`<Toggle label="Notificações por e-mail" checked onChange={fn} />
+<Toggle label="Modo restrito" onChange={fn} />
+<Toggle label="Bloqueado" disabled />`,
+          el: col(16,
+            h(Toggle,{label:'Notificações por e-mail',checked:d.toggles.a,onChange:v=>set({toggles:{...d.toggles,a:v}})}),
+            h(Toggle,{label:'Modo restrito',checked:d.toggles.b,onChange:v=>set({toggles:{...d.toggles,b:v}})}),
+            h(Toggle,{label:'Bloqueado',disabled:true,checked:true}),
+          )},
+      ];
+      case 'datepicker': return [
+        { label:'Calendário', code:
+`<Datepicker label="Data de nascimento"
+  value={date} onChange={setDate} />`,
+          el: h(Datepicker,{label:'Data de nascimento',value:d.date,onChange:v=>set({date:v})}) },
+      ];
+      case 'fileupload': return [
+        { label:'Área de upload', code:
+`<FileUpload label="Documentos"
+  helpText="PDF, JPG ou PNG até 10MB" multiple
+  onFiles={fn} />`,
+          el: h('div',{style:{width:'100%',maxWidth:520}},
+            h(FileUpload,{label:'Documentos',helpText:'PDF, JPG ou PNG até 10MB',multiple:true,onFiles:()=>{}})) },
+      ];
+      case 'filterbar': return [
+        { label:'Busca e filtros', code:
+`<FilterBar searchPlaceholder="Buscar aluno"
+  searchValue={q} onSearch={setQ}
+  filters={[{ key:'turma', label:'Turma', options:[…] }]}
+  values={values} onChange={setValues}
+  onApply={fn} onClear={fn} />`,
+          el: h('div',{style:{width:'100%'}},
+            h(FilterBar,{
+              searchPlaceholder:'Buscar aluno', searchValue:d.search, onSearch:v=>set({search:v}),
+              filters:[
+                {key:'turma',label:'Turma',options:[{value:'1a',label:'1 ano A'},{value:'1b',label:'1 ano B'}]},
+                {key:'trilha',label:'Trilha',options:[{value:'militar',label:'Militar'},{value:'bilingue',label:'Bilíngue'}]},
+                {key:'situacao',label:'Situação',options:[{value:'cursando',label:'Cursando'},{value:'pendente',label:'Pendente'}]},
+              ],
+              values:d.filters, onChange:v=>set({filters:v}), onApply:()=>{}, onClear:()=>set({filters:{}}),
+            })) },
+      ];
+      case 'listboxTransfer': {
+        const List = ({ label, allLabel, allAction, items, staged, onToggle, search, onSearch }) => {
+          const filtered = items.filter(i => i.toLowerCase().includes(search.toLowerCase()));
+          return h('div',{style:{display:'flex',flexDirection:'column',gap:8,flex:1,minWidth:220}},
+            h('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'baseline'}},
+              h('span',{style:{fontFamily:'Archivo',fontWeight:700,fontSize:14,color:'#0F0F10'}},label),
+              h('a',{onClick:allAction,style:{fontFamily:'Nunito',fontSize:13,color:'#242CC2',cursor:'pointer',textDecoration:'underline'}},allLabel)),
+            h(Input,{icon:'search',placeholder:'Pesquisar',value:search,onChange:onSearch}),
+            h('div',{style:{border:'1px solid #C3C8D1',borderRadius:8,height:180,overflowY:'auto',background:'#fff'}},
+              filtered.length ? filtered.map(it => h('div',{key:it,onClick:()=>onToggle(it),style:{
+                padding:'10px 14px',fontFamily:'Nunito',fontSize:14,cursor:'pointer',
+                background: staged.includes(it) ? '#ECEDFF' : 'transparent',
+                color: staged.includes(it) ? '#242CC2' : '#3D3F42',
+                borderBottom:'1px solid #F2F2F2',
+              }}, it)) : h('div',{style:{padding:'14px',fontFamily:'Nunito',fontSize:13,color:'#ADB2BA'}},'Nenhum item')));
+        };
+        const moveRight = () => { const s=d.ltStagedLeft; set({ ltLeft:d.ltLeft.filter(i=>!s.includes(i)), ltRight:[...d.ltRight,...s], ltStagedLeft:[] }); };
+        const moveLeft = () => { const s=d.ltStagedRight; set({ ltRight:d.ltRight.filter(i=>!s.includes(i)), ltLeft:[...d.ltLeft,...s], ltStagedRight:[] }); };
+        const toggleLeft = (it) => set({ ltStagedLeft: d.ltStagedLeft.includes(it) ? d.ltStagedLeft.filter(x=>x!==it) : [...d.ltStagedLeft,it] });
+        const toggleRight = (it) => set({ ltStagedRight: d.ltStagedRight.includes(it) ? d.ltStagedRight.filter(x=>x!==it) : [...d.ltStagedRight,it] });
+        return [
+          { label:'Transferência entre listas', code:
+`<ListboxTransfer
+  leftLabel="Professores disponíveis" rightLabel="Professores selecionados"
+  leftList={left} rightList={right}
+  onSelectAllLeft={fn} onRemoveAllRight={fn}
+  onSearchLeft={fn} onSearchRight={fn}
+  onMoveRight={fn} onMoveLeft={fn}
+/>`,
+            el: h('div',{style:{width:'100%',display:'flex',gap:16,alignItems:'flex-start'}},
+              List({ label:'Professores disponíveis', allLabel:'Selecionar todos', allAction:()=>set({ltStagedLeft:d.ltLeft}), items:d.ltLeft, staged:d.ltStagedLeft, onToggle:toggleLeft, search:d.ltSearchL, onSearch:v=>set({ltSearchL:v}) }),
+              h('div',{style:{display:'flex',flexDirection:'column',gap:8,paddingTop:36}},
+                h(IconButton,{icon:'chevron_right',variant:'outline',size:32,onClick:moveRight}),
+                h(IconButton,{icon:'chevron_left',variant:'outline',size:32,onClick:moveLeft})),
+              List({ label:'Professores selecionados', allLabel:'Remover todos', allAction:()=>set({ltStagedRight:d.ltRight}), items:d.ltRight, staged:d.ltStagedRight, onToggle:toggleRight, search:d.ltSearchR, onSearch:v=>set({ltSearchR:v}) }),
+            )},
+        ];
+      }
+      case 'tabs': return [
+        { label:'Abas com ícone e contador', code:
+`<Tabs activeId={id} onChange={setId} tabs={[
+  { id:'dados',   label:'Dados', icon:'person' },
+  { id:'notas',   label:'Notas', icon:'grade', count:4 },
+  { id:'faltas',  label:'Faltas', icon:'event_busy', count:6 },
+]} />`,
+          el: h('div',{style:{width:'100%'}},
+            h(Tabs,{activeId:d.tab,onChange:v=>set({tab:v}),tabs:[
+              {id:'dados',label:'Dados',icon:'person'},
+              {id:'notas',label:'Notas',icon:'grade',count:4},
+              {id:'faltas',label:'Faltas',icon:'event_busy',count:6},
+              {id:'docs',label:'Documentos',icon:'folder'},
+            ]})) },
+      ];
+      case 'breadcrumb': return [
+        { label:'Trilha de navegação', code:
+`<Breadcrumb items={[
+  { label:'Início', onClick:fn },
+  { label:'Alunos', onClick:fn },
+  { label:'Wanderson Uchiha' },
+]} />`,
+          el: h(Breadcrumb,{items:[
+            {label:'Início',onClick:()=>{}},
+            {label:'Alunos',onClick:()=>{}},
+            {label:'1 ano A',onClick:()=>{}},
+            {label:'Wanderson Uchiha'},
+          ]}) },
+      ];
+      case 'pagination': return [
+        { label:'Paginação', code:
+`<Pagination total={48} perPage={10}
+  page={page} onChange={setPage} />`,
+          el: h(Pagination,{total:48,perPage:10,page:d.page,onChange:v=>set({page:v})}) },
+      ];
+      case 'toolbar': {
+        const Toolbar = ({ start, center, end }) => h('div', { style:{
+          display:'flex', alignItems:'center', gap:16, width:'100%',
+          padding:'10px 12px', border:'1px solid #EBEDF1', borderRadius:8, background:'#fff',
+        } },
+          h('div',{style:{display:'flex',gap:8,alignItems:'center'}}, start),
+          h('div',{style:{flex:1,display:'flex',justifyContent:'center'}}, center),
+          h('div',{style:{display:'flex',gap:8,alignItems:'center',justifyContent:'flex-end'}}, end),
+        );
+        return [
+          { label:'Seções start · center · end', code:
+`<Toolbar
+  start={<><IconButton icon="add" variant="fill" size={32} />
+          <IconButton icon="print" variant="fill" size={32} />
+          <IconButton icon="upload" variant="fill" size={32} /></>}
+  center={<Input icon="search" placeholder="Buscar" />}
+  end={<SplitButton variant="fill" label="Salvar" icon="check" .../>}
+/>`,
+            el: Toolbar({
+              start: [
+                h(IconButton,{key:'a',icon:'add',variant:'fill',size:32}),
+                h(IconButton,{key:'b',icon:'print',variant:'fill',size:32}),
+                h(IconButton,{key:'c',icon:'upload',variant:'fill',size:32}),
+              ],
+              center: h('div',{style:{width:280}}, h(Input,{icon:'search',placeholder:'Buscar'})),
+              end: h('div',{style:{display:'inline-flex',height:32,borderRadius:8,overflow:'hidden',border:'1px solid #242CC2'}},
+                h('button',{style:{display:'inline-flex',alignItems:'center',gap:6,padding:'0 14px',border:0,background:'#242CC2',color:'#fff',fontFamily:'Archivo',fontWeight:700,fontSize:14,cursor:'pointer'}},
+                  h('span',{className:'material-symbols-outlined',style:{fontSize:16}},'check'),'Salvar'),
+                h('div',{style:{width:1,background:'rgba(255,255,255,0.4)'}}),
+                h('button',{style:{display:'inline-flex',alignItems:'center',justifyContent:'center',width:28,border:0,background:'#242CC2',color:'#fff',cursor:'pointer'}},
+                  h('span',{className:'material-symbols-outlined',style:{fontSize:18}},'expand_more'))),
+            })},
+          { label:'Apenas start e end', code:
+`<Toolbar
+  start={<Breadcrumb items={[...]} />}
+  end={<Button variant="outline" icon="download">Exportar</Button>}
+/>`,
+            el: Toolbar({
+              start: h(Breadcrumb,{items:[{label:'Alunos',onClick:()=>{}},{label:'1 ano A'}]}),
+              end: h(Button,{variant:'outline',icon:'download'},'Exportar'),
+            })},
+        ];
+      }
+      case 'baseCard': {
+        const stateStyle = {
+          default:  { border:'1px solid #EBEDF1', boxShadow:'0 4px 12px -2px rgba(0,23,31,0.15)', opacity:1, transform:'none', cursor:'default' },
+          hover:    { border:'1px solid #EBEDF1', boxShadow:'0 8px 20px -2px rgba(0,23,31,0.15)', opacity:1, transform:'none', cursor:'pointer' },
+          focused:  { border:'1px solid #242CC2', boxShadow:'0 0 0 3px rgba(36,44,194,0.24)', opacity:1, transform:'none', cursor:'default' },
+          selected: { border:'1px solid #242CC2', background:'#ECEDFF', boxShadow:'0 4px 12px -2px rgba(0,23,31,0.15)', opacity:1, transform:'none', cursor:'pointer' },
+          disabled: { border:'1px solid #EBEDF1', background:'#F8F9FB', boxShadow:'none', opacity:1, transform:'none', cursor:'not-allowed' },
+          dragged:  { border:'1px solid #EBEDF1', boxShadow:'0 16px 32px -4px rgba(0,23,31,0.32)', opacity:0.9, transform:'rotate(-2deg)', cursor:'grabbing' },
+        };
+        const BaseCard = (state) => h('div', { style:{
+          width:180, height:120, borderRadius:8, background:'#fff', display:'flex', alignItems:'center', justifyContent:'center',
+          fontFamily:'Nunito', fontSize:13, color: state==='disabled' ? '#ADB2BA' : '#65686E', transition:'all 160ms',
+          ...stateStyle[state],
+        } }, state==='disabled' ? h('span',{style:{color:'#ADB2BA'}},'Card') : h('span',null,'Card'));
+        return [
+          { label:'Estados', code:
+`.card { border-radius: 8px; background: #fff; }
+/* default */   border: 1px solid #EBEDF1; box-shadow: $shadow-down-medium;
+/* hover */     box-shadow: $shadow-down-large;
+/* focused */   border-color: #242CC2; box-shadow: 0 0 0 3px rgba(36,44,194,.24);
+/* selected */  border-color: #242CC2; background: #ECEDFF;
+/* disabled */  background: #F8F9FB; opacity: .6 (conteúdo);
+/* dragged */   box-shadow: $shadow-down-xlarge; opacity: .9; rotate(-2deg);`,
+            el: row(
+              ...['default','hover','focused','selected','disabled','dragged'].map(s =>
+                h('div',{key:s,style:{display:'flex',flexDirection:'column',gap:6,alignItems:'center',width:180}},
+                  h('span',{style:{fontFamily:'Nunito',fontSize:11,color:'#8A8F98',textAlign:'center',textTransform:'capitalize'}},s),
+                  BaseCard(s))),
+            )},
+        ];
+      }
+      case 'avatarCard': {
+        const AvatarCard = ({ name, meta, stats, selected }) => h('div', { style:{
+          width:320, background:'#fff', borderRadius:8, overflow:'hidden',
+          border: selected ? '1px solid #242CC2' : '1px solid #EBEDF1',
+          boxShadow: selected ? 'none' : '0 4px 12px -2px rgba(0,23,31,0.15)',
+        } },
+          h('div', { style:{ display:'flex', gap:12, padding:16, alignItems:'center', borderBottom:'1px solid #EBEDF1', background: selected ? '#ECEDFF' : 'transparent' } },
+            h(Avatar,{name,size:44}),
+            h('div',{style:{flex:1,minWidth:0}},
+              h('div',{style:{fontFamily:'Nunito',fontWeight:700,fontSize:15,color:'#0F0F10',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}},name),
+              h('div',{style:{fontFamily:'Nunito',fontSize:12,color:'#65686E',marginTop:2}},meta)),
+            h('span',{className:'material-symbols-outlined',style:{color:'#65686E',fontSize:20}},'more_vert')),
+          h('div', { style:{ display:'flex', gap:8, padding:16 } },
+            stats.map(s => h('div',{key:s.k,style:{flex:1,background:'#F8F9FB',borderRadius:8,padding:'10px 12px'}},
+              h('div',{style:{fontFamily:'Nunito',fontSize:12,color:'#65686E'}},s.k),
+              h('div',{style:{fontFamily:'Archivo',fontWeight:700,fontSize:20,color:'#0F0F10'}},s.v)))),
+        );
+        return [
+          { label:'Avatar, meta e estatísticas', code:
+`<AvatarCard name="Wanderson Uchiha" meta="1 ano A — Militar"
+  stats={[{ k:'Faltas', v:6 }, { k:'Atrasos', v:2 }, { k:'Média', v:'8,4' }]} />`,
+            el: AvatarCard({ name:'Wanderson Uchiha', meta:'1 ano A — Militar', stats:[{k:'Faltas',v:6},{k:'Atrasos',v:2},{k:'Média',v:'8,4'}] }) },
+          { label:'Estado selecionado', code:
+`<AvatarCard selected name="Maria Silva" meta="1 ano A — Militar"
+  stats={[{ k:'Faltas', v:3 }, { k:'Atrasos', v:2 }, { k:'Média', v:'9,2' }]} />`,
+            el: AvatarCard({ name:'Maria Silva', meta:'1 ano A — Militar', selected:true, stats:[{k:'Faltas',v:3},{k:'Atrasos',v:2},{k:'Média',v:'9,2'}] }) },
+        ];
+      }
+      case 'accordion': {
+        const AccordionItem = ({ title, children, kind, open, onToggle }) => {
+          const radius = {
+            single: open ? '8px 8px 0 0' : '8px',
+            top:    '8px 8px 0 0',
+            middle: '0',
+            bottom: open ? '0' : '0 0 8px 8px',
+          }[kind];
+          return h('div', { style:{ display:'flex', flexDirection:'column' } },
+            h('button', { onClick:onToggle, style:{
+              display:'flex', alignItems:'center', gap:24, padding:'16px 16px', height:56, boxSizing:'border-box',
+              background: open ? '#ECEDFF' : '#fff', boxShadow:'0px 2px 8px 0px rgba(0,0,0,0.16)',
+              border:0, cursor:'pointer', textAlign:'left', width:'100%', borderRadius:radius, position:'relative', zIndex:1,
+            } },
+              h('span',{style:{flex:1,fontFamily:'Archivo',fontWeight:700,fontSize:16,lineHeight:'16px',color:open?'#242CC2':'#0F0F10'}},title),
+              h('span',{className:'material-symbols-outlined',style:{fontSize:24,color:open?'#242CC2':'#0F0F10',transform:open?'rotate(180deg)':'none',transition:'transform 240ms cubic-bezier(0.16,1,0.3,1)',display:'inline-block'}},'expand_more'),
+            ),
+            h('div', { style:{ overflow:'hidden', maxHeight: open?300:0, transition:'max-height 280ms cubic-bezier(0.16,1,0.3,1)', background:'#fff', boxShadow: open?'0px 4px 8px 0px rgba(0,0,0,0.10)':'none', borderRadius: (kind==='single'||kind==='bottom') ? '0 0 8px 8px' : 0 } },
+              h('div', { style:{ padding:'16px 16px 20px', fontFamily:'Nunito', fontSize:16, lineHeight:'24px', color:'#3D3F42' } }, children)),
+          );
+        };
+        return [
+          { label:'Item único (single)', code:
+`<Accordion type="single" title="Accordion text" open={open} onToggle={fn}>
+  Conteúdo expandido do accordion.
+</Accordion>`,
+            el: h('div',{style:{width:'100%',maxWidth:520}},
+              AccordionItem({ title:'Accordion text', kind:'single', open:d.accOpen1 ?? true, onToggle:()=>set({accOpen1: !(d.accOpen1 ?? true)}), children:'Conteúdo expandido do accordion. Quando o tipo é Single, este item possui raio em todos os cantos.' })) },
+          { label:'Grupo (top · middle · bottom)', code:
+`<AccordionGroup>
+  <Accordion type="top" title="Primeiro item" .../>
+  <Accordion type="middle" title="Segundo item" .../>
+  <Accordion type="middle" title="Terceiro item" .../>
+  <Accordion type="bottom" title="Último item" .../>
+</AccordionGroup>`,
+            el: h('div',{style:{width:'100%',maxWidth:520,display:'flex',flexDirection:'column'}},
+              AccordionItem({ title:'Primeiro item (top)', kind:'top', open:d.accGroup==='a', onToggle:()=>set({accGroup: d.accGroup==='a'?null:'a'}), children:'Conteúdo do primeiro item do grupo.' }),
+              AccordionItem({ title:'Segundo item (middle)', kind:'middle', open:d.accGroup==='b', onToggle:()=>set({accGroup: d.accGroup==='b'?null:'b'}), children:'Conteúdo do item do meio.' }),
+              AccordionItem({ title:'Terceiro item (middle)', kind:'middle', open:d.accGroup==='c', onToggle:()=>set({accGroup: d.accGroup==='c'?null:'c'}), children:'Outro item do meio do grupo.' }),
+              AccordionItem({ title:'Último item (bottom)', kind:'bottom', open:d.accGroup==='d', onToggle:()=>set({accGroup: d.accGroup==='d'?null:'d'}), children:'Conteúdo do último item do grupo.' }),
+            )},
+        ];
+      }
+      case 'modal': return [
+        { label:'Janela sobreposta', code:
+`<Modal open={open} onClose={fn} title="Editar aluno"
+  actions={<><Button variant="ghost" size="sm">Cancelar</Button>
+            <Button variant="fill" size="sm">Salvar</Button></>}>
+  <Input label="Nome completo" … />
+  <Input label="E-mail" icon="mail" … />
+</Modal>`,
+          el: row(
+            h(Button,{variant:'fill',icon:'edit',onClick:()=>set({modal:true})},'Abrir modal'),
+            h('span',{style:{fontFamily:'Nunito',fontSize:13,color:'#65686E'}},'Clique fora ou no X para fechar.'),
+          )},
+      ];
+      case 'table': return [
+        { label:'Tabela ordenável e selecionável', code:
+`<Table selectable sortable
+  columns={[
+    { key:'nome', label:'Aluno' },
+    { key:'turma', label:'Turma' },
+    { key:'media', label:'Média', align:'right' },
+    { key:'status', label:'Situação',
+      render:(v) => <Tag color={cor[v]}>{v}</Tag> },
+  ]}
+  rows={rows} onRowClick={fn} />`,
+          el: h('div',{style:{width:'100%'}},
+            h(Table,{
+              selectable:true, sortable:true,
+              columns:[
+                {key:'nome',label:'Aluno',render:(v)=>h('span',{style:{fontFamily:'Nunito',fontWeight:700,fontSize:14,color:'#0F0F10'}},v)},
+                {key:'turma',label:'Turma'},
+                {key:'media',label:'Média',align:'right'},
+                {key:'status',label:'Situação',sortable:false,render:(v)=>h(Tag,{size:'sm',color:({'Cursando':'#28975A','Atenção':'#FFAC30','Pendente':'#E65637'})[v]},v)},
+              ],
+              rows:[
+                {nome:'Wanderson Uchiha',turma:'1 ano A',media:8.4,status:'Atenção'},
+                {nome:'Maria Silva',turma:'1 ano A',media:9.2,status:'Cursando'},
+                {nome:'João Pereira',turma:'1 ano B',media:5.1,status:'Pendente'},
+                {nome:'Ana Costa',turma:'2 ano A',media:7.8,status:'Cursando'},
+              ],
+              onRowClick:()=>{},
+            })) },
+      ];
+      case 'studentCard': return [
+        { label:'Composição completa', code:
+`<StudentCard student={student}
+  onBack={fn} onEdit={() => setModal(true)} />`,
+          el: h('div',{style:{width:'100%',overflowX:'auto',margin:'-32px',alignSelf:'stretch'}},
+            h('div',{style:{minWidth:1120}}, h(StudentCard,{student:STUDENT,onBack:()=>{},onEdit:()=>set({modal:true})}))) },
+      ];
+      default: return [];
+    }
+  }
+
+  renderVals() {
+    const W = window;
+    const ready = !!W.Button;
+    const sel = this.state.selected || this.props.startComponent || 'button';
+    const d = this.state.demo;
+    const set = (patch) => this.setState(s => ({ demo: { ...s.demo, ...patch } }));
+
+    const groups = CATALOG.map(g => ({
+      label: g.label,
+      items: g.items.map(it => {
+        const active = it.id === sel;
+        return {
+          id: it.id, name: it.name, icon: it.icon,
+          onSelect: () => this.setState({ selected: it.id }),
+          style: {
+            display:'flex', alignItems:'center', gap:12, width:'100%',
+            padding:'9px 12px', margin:'2px 0', border:0, borderRadius:8,
+            fontFamily:"'Nunito',sans-serif", fontSize:14, textAlign:'left', cursor:'pointer',
+            background: active ? '#E3E5FB' : 'transparent',
+            color: active ? '#242CC2' : '#3D3F42',
+            fontWeight: active ? 700 : 500,
+            transition: 'background 120ms',
+          },
+        };
+      }),
+    }));
+
+    const current = FLAT.find(c => c.id === sel) || FLAT[0];
+    const examples = ready ? this.build(sel, d, set, W) : [];
+
+    const overlays = ready ? h(R.Fragment, null,
+      h(W.Modal, {
+        open: d.modal, onClose: () => set({ modal:false }), title: 'Editar aluno',
+        actions: h(R.Fragment, null,
+          h(W.Button, { variant:'ghost', size:'sm', onClick:()=>set({modal:false}) }, 'Cancelar'),
+          h(W.Button, { variant:'fill', size:'sm', onClick:()=>set({modal:false, toast:true}) }, 'Salvar')),
+      },
+        h('div', { style:{ display:'flex', flexDirection:'column', gap:16 } },
+          h(W.Input, { label:'Nome completo', value:d.modalName, onChange:v=>set({modalName:v}) }),
+          h(W.Input, { label:'E-mail', icon:'mail', value:d.modalEmail, onChange:v=>set({modalEmail:v}) }))),
+      d.toast ? h(W.Toast, { title:'Alterações salvas com sucesso', duration:4000, onClose:()=>set({toast:false}) }) : null,
+    ) : null;
+
+    return {
+      groups, current, examples, overlays,
+      notReady: !ready,
+      showCode: this.props.showCode ?? true,
+    };
+  }
+
+  componentDidMount() {
+    if (!window.Button) {
+      this._iv = setInterval(() => {
+        if (window.Button) { clearInterval(this._iv); this.forceUpdate(); }
+      }, 60);
+    }
+  }
+  componentWillUnmount() { if (this._iv) clearInterval(this._iv); }
+}
+</script>
+</body>
+</html>

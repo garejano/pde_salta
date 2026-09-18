@@ -1,0 +1,26 @@
+<!doctype html>
+<!-- @dsCard group="Spacing" name="Motion tokens" subtitle="7 named durations · fast → slow" viewport="700x280" -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: #fff; font-family: 'Nunito', sans-serif; color: #0F0F10; }
+  .row { display: grid; grid-template-columns: 200px 1fr 110px; gap: 8px 14px; align-items: center; margin-bottom: 2px; }
+  .token { font-family: 'Inconsolata', monospace; font-size: 12px; color: #0F0F10; }
+  .dur   { font-family: 'Inconsolata', monospace; font-size: 11px; color: #65686E; text-align: right; }
+  .track { background: #EBEDF1; border-radius: 999px; height: 18px; position: relative; overflow: hidden; cursor: pointer; }
+  .dot { position: absolute; top: 3px; left: 3px; width: 12px; height: 12px; background: #242CC2; border-radius: 50%; animation-iteration-count: infinite; animation-direction: alternate; }
+  .k-out    { animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
+  .k-linear { animation-timing-function: linear; }
+  @keyframes slide { from { left: 3px; } to { left: calc(100% - 15px); } }
+  .hint { font-family: 'Inconsolata', monospace; font-size: 10px; color: #65686E; margin-top: 8px; }
+</style></head>
+<body>
+  <div class="row"><div class="token">$motion-fast-1</div>    <div class="track"><div class="dot k-out" style="animation: slide 80ms infinite alternate;"></div></div>    <div class="dur">80ms · out</div></div>
+  <div class="row"><div class="token">$motion-fast-2</div>    <div class="track"><div class="dot k-out" style="animation: slide 120ms infinite alternate;"></div></div>   <div class="dur">120ms · out</div></div>
+  <div class="row"><div class="token">$motion-moderate-1</div><div class="track"><div class="dot k-out" style="animation: slide 160ms infinite alternate;"></div></div>   <div class="dur">160ms · out</div></div>
+  <div class="row"><div class="token">$motion-moderate-2</div><div class="track"><div class="dot k-out" style="animation: slide 240ms infinite alternate;"></div></div>   <div class="dur">240ms · out</div></div>
+  <div class="row"><div class="token">$linear-moderate-2</div><div class="track"><div class="dot k-linear" style="animation: slide 240ms infinite alternate;"></div></div><div class="dur">240ms · linear</div></div>
+  <div class="row"><div class="token">$motion-slow-1</div>    <div class="track"><div class="dot k-out" style="animation: slide 400ms infinite alternate;"></div></div>   <div class="dur">400ms · out</div></div>
+  <div class="row"><div class="token">$motion-slow-2</div>    <div class="track"><div class="dot k-out" style="animation: slide 720ms infinite alternate;"></div></div>   <div class="dur">720ms · out</div></div>
+  <div class="hint">Ease-out: cubic-bezier(0.16, 1, 0.3, 1)</div>
+</body></html>

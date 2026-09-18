@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/colors_and_type.css">
+  <script src="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/_ds_bundle.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <style>
+    body { margin: 0; background: #F8F9FB; }
+    a { color: #242CC2; }
+    a:hover { color: #1E258F; }
+  </style>
+</helmet>
+
+<div style="min-height:100vh;padding:40px 24px;box-sizing:border-box;display:flex;justify-content:center">
+<div style="width:100%;max-width:680px;display:flex;flex-direction:column">
+
+  <h1 style="margin:0 0 20px;font-family:Archivo;font-weight:700;font-size:32px;line-height:1.2;color:#0F0F10">Necessidades Educacionais Específicas</h1>
+
+  <span onClick="{{ goBack }}" style="display:inline-flex;align-items:center;gap:6px;cursor:pointer;margin-bottom:24px;width:fit-content">
+    <x-import component-from-global-scope="MS" name="chevron_left" size="18" color="#242CC2" hint-size="18px,18px"></x-import>
+    <span style="font-family:Archivo;font-weight:700;font-size:14px;color:#242CC2">Dados do aluno</span>
+  </span>
+
+  <div style="background:#fff;border:1px solid #C3C8D1;border-radius:12px;padding:20px;display:flex;align-items:center;gap:20px;margin-bottom:24px;flex-wrap:wrap">
+    <div style="width:56px;height:56px;border-radius:999px;background:#E3E5FB;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <x-import component-from-global-scope="MS" name="person" size="30" color="#65686E" hint-size="30px,30px"></x-import>
+    </div>
+    <div style="flex:1;min-width:200px">
+      <div style="font-family:Archivo;font-weight:600;font-size:18px;color:#0F0F10;margin-bottom:8px">{{ student.name }}</div>
+      <div style="display:flex;gap:40px;flex-wrap:wrap">
+        <div>
+          <div style="font-family:Nunito;font-size:12px;color:#65686E">Matrícula:</div>
+          <div style="font-family:Archivo;font-weight:700;font-size:14px;color:#0F0F10;margin-top:2px">{{ student.matricula }}</div>
+        </div>
+        <div>
+          <div style="font-family:Nunito;font-size:12px;color:#65686E">Status:</div>
+          <div style="font-family:Archivo;font-weight:700;font-size:14px;color:#0F0F10;margin-top:2px">{{ student.status }}</div>
+        </div>
+        <div>
+          <div style="font-family:Nunito;font-size:12px;color:#65686E">Série:</div>
+          <div style="font-family:Archivo;font-weight:700;font-size:14px;color:#0F0F10;margin-top:2px">{{ student.serie }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="{{ outerWrapStyle }}">
+
+    <!-- Necessidade educacional -->
+    <div style="{{ sectionStyleFirst }}">
+      <div style="display:flex;align-items:center;gap:8px">
+        <x-import component-from-global-scope="MS" name="psychology" size="20" color="#242CC2" hint-size="20px,20px"></x-import>
+        <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:18px;color:#0F0F10">Necessidade educacional</h3>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <label style="font-family:Nunito;font-size:14px;color:#65686E">Possui necessidades educacionais específicas:</label>
+        <div style="display:flex;gap:8px">
+          <sc-for list="{{ neeOptions }}" as="opt" hint-placeholder-count="2">
+            <button style="{{ opt.pillStyle }}" onClick="{{ opt.onChange }}">{{ opt.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <label style="font-family:Nunito;font-size:14px;color:#65686E">É uma condição médica:</label>
+        <div style="display:flex;gap:8px">
+          <sc-for list="{{ condicaoOptions }}" as="opt" hint-placeholder-count="2">
+            <button style="{{ opt.pillStyle }}" onClick="{{ opt.onChange }}">{{ opt.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diagnóstico -->
+    <div style="{{ sectionStyle }}">
+      <div style="display:flex;align-items:center;gap:8px">
+        <x-import component-from-global-scope="MS" name="medical_information" size="20" color="#242CC2" hint-size="20px,20px"></x-import>
+        <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:18px;color:#0F0F10">Diagnóstico</h3>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <label style="font-family:Nunito;font-size:14px;color:#65686E">Diagnóstico: <span style="color:#E65637">*</span></label>
+        <div title="{{ diagnostico }}" style="background:#F8F9FB;border:1px solid #EBEDF1;border-radius:8px;padding:10px 16px;font-family:Nunito;font-size:14px;color:#3D3F42;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ diagnostico }}</div>
+      </div>
+
+      <div style="background:#F8F9FB;border-radius:8px;padding:12px 16px;font-family:Nunito;font-size:13px;color:#65686E;line-height:1.5">
+        <strong style="color:#3D3F42">Diagnóstico anterior:</strong> {{ diagnostico }}
+      </div>
+
+      <sc-for list="{{ diagnosesView }}" as="dg" hint-placeholder-count="2">
+        <div style="display:flex;flex-direction:column;gap:12px;padding-top:16px;border-top:1px solid #EBEDF1">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <label style="font-family:Nunito;font-size:14px;color:#65686E">Tipo de transtorno:</label>
+            <select value="{{ dg.tipo }}" onChange="{{ dg.onTipoChange }}" style="height:40px;padding:0 16px;border-radius:8px;border:1px solid #C3C8D1;font-family:Nunito;font-size:14px;color:#0F0F10;background:#fff;width:100%;cursor:pointer">
+              <option value="{{ dg.tipo }}">{{ dg.tipo }}</option>
+            </select>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <label style="font-family:Nunito;font-size:14px;color:#65686E">Subtipo:</label>
+            <x-import component-from-global-scope="Input" value="{{ dg.subtipo }}" onChange="{{ dg.onSubtipoChange }}" hint-size="100%,40px"></x-import>
+          </div>
+          <div>
+            <x-import component-from-global-scope="Button" variant="outline" icon="delete" onClick="{{ dg.onRemove }}" hint-size="auto,40px">Remover diagnóstico</x-import>
+          </div>
+        </div>
+      </sc-for>
+
+      <div>
+        <x-import component-from-global-scope="Button" variant="outline" icon="add" onClick="{{ addDiagnosis }}" hint-size="auto,40px">Adicionar diagnóstico</x-import>
+      </div>
+    </div>
+
+    <!-- Laudo e acompanhamento -->
+    <div style="{{ sectionStyle }}">
+      <div style="display:flex;align-items:center;gap:8px">
+        <x-import component-from-global-scope="MS" name="description" size="20" color="#242CC2" hint-size="20px,20px"></x-import>
+        <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:18px;color:#0F0F10">Laudo e acompanhamento</h3>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <label style="font-family:Nunito;font-size:14px;color:#65686E">Possui laudo:</label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <sc-for list="{{ laudoOptions }}" as="opt" hint-placeholder-count="3">
+            <button style="{{ opt.pillStyle }}" onClick="{{ opt.onChange }}">{{ opt.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <sc-if value="{{ showLaudoFile }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:10px;background:#9D0364;color:#fff;border-radius:8px;padding:12px 16px">
+          <x-import component-from-global-scope="MS" name="attach_file" size="18" color="#fff" hint-size="18px,18px"></x-import>
+          <span style="flex:1;font-family:Nunito;font-weight:600;font-size:14px;line-height:1.4">{{ laudoFile }}</span>
+          <span onClick="{{ removeLaudoFile }}" style="cursor:pointer;display:flex;align-items:center">
+            <x-import component-from-global-scope="MS" name="delete" size="20" color="#fff" hint-size="20px,20px"></x-import>
+          </span>
+        </div>
+      </sc-if>
+
+      <div>
+        <x-import component-from-global-scope="Button" variant="outline" icon="attach_file" hint-size="auto,40px">Anexar laudo</x-import>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <label style="font-family:Nunito;font-size:14px;color:#65686E">Faz acompanhamento com especialista:</label>
+        <div style="display:flex;align-items:flex-start;gap:12px">
+          <div style="display:flex;gap:8px;flex-shrink:0">
+            <sc-for list="{{ acompanhamentoOptions }}" as="opt" hint-placeholder-count="2">
+              <button style="{{ opt.pillStyle }}" onClick="{{ opt.onChange }}">{{ opt.label }}</button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ showEspecialista }}" hint-placeholder-val="{{ true }}">
+            <div style="flex:1;min-width:0">
+              <x-import component-from-global-scope="Input" placeholder="Informe os dados do especialista" value="{{ especialista }}" onChange="{{ setEspecialista }}" hint-size="100%,40px"></x-import>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+
+    <!-- Avaliação escolar -->
+    <div style="{{ sectionStyle }}">
+      <div style="display:flex;align-items:center;gap:8px">
+        <x-import component-from-global-scope="MS" name="grade" size="20" color="#242CC2" hint-size="20px,20px"></x-import>
+        <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:18px;color:#0F0F10">Avaliação escolar</h3>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <label style="font-family:Nunito;font-size:14px;color:#65686E">Avaliado por relatório:</label>
+        <div style="display:flex;gap:8px">
+          <sc-for list="{{ avaliadoRelatorioOptions }}" as="opt" hint-placeholder-count="2">
+            <button style="{{ opt.pillStyle }}" onClick="{{ opt.onChange }}">{{ opt.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <label style="font-family:Nunito;font-size:14px;color:#65686E">Possui boletim regular:</label>
+        <div style="display:flex;gap:8px">
+          <sc-for list="{{ boletimRegularOptions }}" as="opt" hint-placeholder-count="2">
+            <button style="{{ opt.pillStyle }}" onClick="{{ opt.onChange }}">{{ opt.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <label style="font-family:Nunito;font-size:14px;color:#65686E">Ocultar boletim do aluno:</label>
+        <div style="display:flex;gap:8px">
+          <sc-for list="{{ ocultarBoletimOptions }}" as="opt" hint-placeholder-count="2">
+            <button style="{{ opt.pillStyle }}" onClick="{{ opt.onChange }}">{{ opt.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- Adaptações -->
+    <div style="{{ sectionStyle }}">
+      <div style="display:flex;align-items:center;gap:8px">
+        <x-import component-from-global-scope="MS" name="tune" size="20" color="#242CC2" hint-size="20px,20px"></x-import>
+        <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:18px;color:#0F0F10">Adaptações</h3>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:6px">
+          <label style="font-family:Nunito;font-size:14px;color:#65686E">Possui necessidade de adaptação nas avaliações:</label>
+          <span title="Adaptações previstas para as avaliações regulares do aluno.">
+            <x-import component-from-global-scope="MS" name="info" size="16" color="#ADB2BA" hint-size="16px,16px"></x-import>
+          </span>
+        </div>
+        <div style="display:flex;gap:8px">
+          <sc-for list="{{ adaptacaoAvaliacoesOptions }}" as="opt" hint-placeholder-count="2">
+            <button style="{{ opt.pillStyle }}" onClick="{{ opt.onChange }}">{{ opt.label }}</button>
+          </sc-for>
+        </div>
+        <sc-if value="{{ showQuaisAvaliacoes }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
+            <label style="font-family:Nunito;font-size:14px;color:#65686E">Quais <span style="color:#E65637">*</span></label>
+            <textarea value="{{ quaisAvaliacoes }}" onChange="{{ setQuaisAvaliacoes }}" style="width:100%;min-height:100px;padding:12px 16px;border-radius:8px;border:1px solid #C3C8D1;font-family:Nunito;font-size:14px;color:#0F0F10;resize:vertical;box-sizing:border-box"></textarea>
+          </div>
+        </sc-if>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:6px">
+          <label style="font-family:Nunito;font-size:14px;color:#65686E">Possui necessidade de adaptação em sala:</label>
+          <span title="Adaptações previstas para o cotidiano em sala de aula.">
+            <x-import component-from-global-scope="MS" name="info" size="16" color="#ADB2BA" hint-size="16px,16px"></x-import>
+          </span>
+        </div>
+        <div style="display:flex;gap:8px">
+          <sc-for list="{{ adaptacaoSalaOptions }}" as="opt" hint-placeholder-count="2">
+            <button style="{{ opt.pillStyle }}" onClick="{{ opt.onChange }}">{{ opt.label }}</button>
+          </sc-for>
+        </div>
+        <sc-if value="{{ showQuaisSala }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
+            <label style="font-family:Nunito;font-size:14px;color:#65686E">Quais <span style="color:#E65637">*</span></label>
+            <textarea value="{{ quaisSala }}" onChange="{{ setQuaisSala }}" style="width:100%;min-height:80px;padding:12px 16px;border-radius:8px;border:1px solid #C3C8D1;font-family:Nunito;font-size:14px;color:#0F0F10;resize:vertical;box-sizing:border-box"></textarea>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+    <!-- Lançamento de notas -->
+    <div style="{{ sectionStyle }}">
+      <div style="display:flex;align-items:center;gap:8px">
+        <x-import component-from-global-scope="MS" name="edit_note" size="20" color="#242CC2" hint-size="20px,20px"></x-import>
+        <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:18px;color:#0F0F10">Lançamento de notas</h3>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <label style="font-family:Nunito;font-size:14px;color:#65686E">Permitir lançamento manual das notas de cartão resposta:</label>
+        <div style="display:flex;gap:8px">
+          <sc-for list="{{ lancamentoCartaoOptions }}" as="opt" hint-placeholder-count="2">
+            <button style="{{ opt.pillStyle }}" onClick="{{ opt.onChange }}">{{ opt.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <label style="font-family:Nunito;font-size:14px;color:#65686E">Permitir lançamento manual para notas de CeCor:</label>
+        <div style="display:flex;gap:8px">
+          <sc-for list="{{ lancamentoCecorOptions }}" as="opt" hint-placeholder-count="2">
+            <button style="{{ opt.pillStyle }}" onClick="{{ opt.onChange }}">{{ opt.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- Informações adicionais -->
+    <div style="{{ sectionStyle }}">
+      <div style="display:flex;align-items:center;gap:8px">
+        <x-import component-from-global-scope="MS" name="info" size="20" color="#242CC2" hint-size="20px,20px"></x-import>
+        <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:18px;color:#0F0F10">Informações adicionais</h3>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <label style="font-family:Nunito;font-size:14px;color:#65686E">Outras informações:</label>
+        <textarea value="{{ outrasInfo }}" onChange="{{ setOutrasInfo }}" placeholder="Cite aqui outras informações sobre o aluno, caso necessário." style="width:100%;min-height:80px;padding:12px 16px;border-radius:8px;border:1px solid #C3C8D1;font-family:Nunito;font-size:14px;color:#0F0F10;resize:vertical;box-sizing:border-box"></textarea>
+      </div>
+    </div>
+
+    <!-- Mediação -->
+    <div style="{{ sectionStyle }}">
+      <div style="display:flex;align-items:center;gap:8px">
+        <x-import component-from-global-scope="MS" name="groups" size="20" color="#242CC2" hint-size="20px,20px"></x-import>
+        <h3 style="margin:0;font-family:Archivo;font-weight:700;font-size:18px;color:#0F0F10">Mediação</h3>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ mediacaoOptions }}" as="opt" hint-placeholder-count="4">
+          <button style="{{ opt.pillStyle }}" onClick="{{ opt.onChange }}">{{ opt.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="display:flex;justify-content:center;margin-top:32px;margin-bottom:24px">
+    <x-import component-from-global-scope="Button" variant="fill" size="md" hint-size="140px,40px">Salvar</x-import>
+  </div>
+
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;layout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;divided&quot;,&quot;options&quot;:[&quot;divided&quot;,&quot;boxed&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;compact&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
+class Component extends DCLogic {
+  state = {
+    nee: 'sim',
+    condicaoMedica: 'sim',
+    diagnostico: '*Neuropsicológico: Diagnóstico de Espectro Autista e comprometimento cognitivo associado TEA nível 2 não verbal DI CID: 10:F70 F 84.0 Relatório psicológico CID11: 6A02 comprometimento co',
+    diagnoses: [
+      { tipo: 'TEA — TEA - Transtorno do Espectro Autista', subtipo: 'TEA Nível 2' },
+      { tipo: 'TEA — TEA - Transtorno do Espectro Autista', subtipo: 'TEA Nível 2' },
+    ],
+    possuiLaudo: 'sim',
+    laudoFile: 'Espectro Autista e comprometimento cognitivo associado TEA nível 2 não verbal',
+    acompanhamento: 'sim',
+    especialista: '',
+    avaliadoRelatorio: 'sim',
+    boletimRegular: 'sim',
+    ocultarBoletim: 'sim',
+    adaptacaoAvaliacoes: 'sim',
+    quaisAvaliacoes: 'O desempenho do aluno será registrado e descrito em relatórios trimestrais, os quais contemplarão a avaliação processual realizada a partir das observações diárias, bem como a análise do cumprimento e da evolução das metas',
+    adaptacaoSala: 'sim',
+    quaisSala: 'Sim, PEI anexado',
+    lancamentoCartao: 'sim',
+    lancamentoCecor: 'sim',
+    outrasInfo: '',
+    mediacao: null,
+  };
+
+  student = { name: 'BENLOREM IPSUM DOLOR SO', matricula: '25429346', status: 'Ativo', serie: '4º Ano Regular' };
+
+  pillStyle(active) {
+    return {
+      padding: '8px 20px',
+      borderRadius: 8,
+      border: 'none',
+      background: active ? '#242CC2' : '#EBEDF1',
+      color: active ? '#fff' : '#65686E',
+      fontFamily: 'Archivo',
+      fontWeight: 700,
+      fontSize: 14,
+      cursor: 'pointer',
+      transition: 'background 140ms, color 140ms',
+    };
+  }
+
+  yesNo(field, options) {
+    const opts = options || [{ value: 'nao', label: 'Não' }, { value: 'sim', label: 'Sim' }];
+    return opts.map(o => {
+      const active = this.state[field] === o.value;
+      return {
+        value: o.value,
+        label: o.label,
+        pillStyle: this.pillStyle(active),
+        onChange: () => this.setState({ [field]: o.value }),
+      };
+    });
+  }
+
+  set(field) {
+    return (val) => this.setState({ [field]: val });
+  }
+
+  updateDiagnosis(i, key, val) {
+    const diagnoses = this.state.diagnoses.map((d, idx) => idx === i ? { ...d, [key]: val } : d);
+    this.setState({ diagnoses });
+  }
+
+  removeDiagnosis(i) {
+    this.setState({ diagnoses: this.state.diagnoses.filter((_, idx) => idx !== i) });
+  }
+
+  addDiagnosis() {
+    this.setState({ diagnoses: [...this.state.diagnoses, { tipo: 'TEA — TEA - Transtorno do Espectro Autista', subtipo: '' }] });
+  }
+
+  renderVals() {
+    const compact = this.props.compact ?? false;
+    const layout = this.props.layout ?? 'divided';
+    const fieldGapPx = compact ? 14 : 20;
+    const dividerPad = compact ? 16 : 24;
+    const cardPad = compact ? '16px 20px' : '28px 32px';
+
+    let outerWrapStyle, sectionStyleFirst, sectionStyle;
+    if (layout === 'boxed') {
+      const boxed = { background: '#fff', border: '1px solid #EBEDF1', borderRadius: 12, boxShadow: '0 1px 3px rgba(0,23,31,.08)', padding: cardPad, display: 'flex', flexDirection: 'column', gap: fieldGapPx };
+      outerWrapStyle = { display: 'flex', flexDirection: 'column', gap: compact ? 14 : 20 };
+      sectionStyleFirst = boxed;
+      sectionStyle = boxed;
+    } else {
+      outerWrapStyle = { background: '#fff', border: '1px solid #EBEDF1', borderRadius: 12, boxShadow: '0 1px 3px rgba(0,23,31,.08)', padding: cardPad, display: 'flex', flexDirection: 'column' };
+      sectionStyleFirst = { display: 'flex', flexDirection: 'column', gap: fieldGapPx };
+      sectionStyle = { display: 'flex', flexDirection: 'column', gap: fieldGapPx, paddingTop: dividerPad, borderTop: '1px solid #EBEDF1', marginTop: dividerPad };
+    }
+
+    return {
+      student: this.student,
+      outerWrapStyle,
+      sectionStyleFirst,
+      sectionStyle,
+      goBack: () => {},
+      neeOptions: this.yesNo('nee'),
+      condicaoOptions: this.yesNo('condicaoMedica'),
+      diagnostico: this.state.diagnostico,
+      diagnosesView: this.state.diagnoses.map((d, i) => ({
+        ...d,
+        onTipoChange: (e) => this.updateDiagnosis(i, 'tipo', e.target.value),
+        onSubtipoChange: (v) => this.updateDiagnosis(i, 'subtipo', v),
+        onRemove: () => this.removeDiagnosis(i),
+      })),
+      addDiagnosis: () => this.addDiagnosis(),
+      laudoOptions: this.yesNo('possuiLaudo', [{ value: 'nao', label: 'Não' }, { value: 'sim', label: 'Sim' }, { value: 'avaliacao', label: 'Em avaliação' }]),
+      showLaudoFile: this.state.possuiLaudo === 'sim' && !!this.state.laudoFile,
+      laudoFile: this.state.laudoFile,
+      removeLaudoFile: () => this.setState({ laudoFile: null }),
+      acompanhamentoOptions: this.yesNo('acompanhamento'),
+      showEspecialista: this.state.acompanhamento === 'sim',
+      especialista: this.state.especialista,
+      setEspecialista: this.set('especialista'),
+      avaliadoRelatorioOptions: this.yesNo('avaliadoRelatorio'),
+      boletimRegularOptions: this.yesNo('boletimRegular'),
+      ocultarBoletimOptions: this.yesNo('ocultarBoletim'),
+      adaptacaoAvaliacoesOptions: this.yesNo('adaptacaoAvaliacoes'),
+      showQuaisAvaliacoes: this.state.adaptacaoAvaliacoes === 'sim',
+      quaisAvaliacoes: this.state.quaisAvaliacoes,
+      setQuaisAvaliacoes: this.set('quaisAvaliacoes'),
+      adaptacaoSalaOptions: this.yesNo('adaptacaoSala'),
+      showQuaisSala: this.state.adaptacaoSala === 'sim',
+      quaisSala: this.state.quaisSala,
+      setQuaisSala: this.set('quaisSala'),
+      lancamentoCartaoOptions: this.yesNo('lancamentoCartao'),
+      lancamentoCecorOptions: this.yesNo('lancamentoCecor'),
+      outrasInfo: this.state.outrasInfo,
+      setOutrasInfo: this.set('outrasInfo'),
+      mediacaoOptions: this.yesNo('mediacao', [
+        { value: 'sem', label: 'Sem mediador' },
+        { value: 'exclusiva', label: 'Mediação exclusiva' },
+        { value: 'compartilhada', label: 'Mediação compartilhada' },
+        { value: 'particular', label: 'Mediador particular' },
+      ]),
+    };
+  }
+}
+</script>
+</body>
+</html>
