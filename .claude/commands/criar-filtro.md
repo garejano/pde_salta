@@ -1,7 +1,7 @@
 # Criar Filtro
 
 > **Skill multi-repositório** — este workspace (`pde_salta`) cobre vários projetos.  
-> O primeiro passo obrigatório é identificar o repositório-alvo em `_inbox/repository_map.md`
+> O primeiro passo obrigatório é identificar o repositório-alvo em `repository_map.md`
 > e carregar o mapa de frontend correspondente antes de qualquer exploração de código.
 
 Quando o usuário pedir para "Crie", "Implemente" ou "Adicione" um filtro para uma funcionalidade, siga este processo.
@@ -12,7 +12,7 @@ Quando o usuário pedir para "Crie", "Implemente" ou "Adicione" um filtro para u
 
 Antes de iniciar, confirme que você possui todas as informações abaixo. Se alguma estiver faltando, pergunte ao usuário **antes** de criar qualquer arquivo:
 
-- **Repositório-alvo** — se o usuário não informar, derive a partir das palavras-chave do card usando `_inbox/repository_map.md`.
+- **Repositório-alvo** — se o usuário não informar, derive a partir das palavras-chave do card usando `repository_map.md`.
 - **Funcionalidade** — nome da funcionalidade em PascalCase (ex.: `ConfiguradorFrentes`). Deve corresponder a um valor do enum `Funcionalidade` do projeto (quando existir).
 - **Passos do filtro** — lista ordenada dos campos que compõem o filtro (ex.: `Rede → Escola → Série → Turma`). Cada passo corresponde a um valor do enum de filtro e a um método no repositório.
 - **Entidade-base** — entidade C# de ponto de partida para o `GetQueryable` do repositório. O repositório herda da classe base de repositório do projeto usando essa entidade.
@@ -26,7 +26,7 @@ Antes de iniciar, confirme que você possui todas as informações abaixo. Se al
 
 **0.1 — Identificar o repositório-alvo**
 
-Leia `_inbox/repository_map.md` e localize o repositório com base nas palavras-chave do card/funcionalidade.  
+Leia `repository_map.md` e localize o repositório com base nas palavras-chave do card/funcionalidade.  
 Anote:
 - `REPO_PATH` — caminho base (ex.: `c:/projects/estrutura-pedagogica`)
 - `REPO_STACK` — stack do repositório (ex.: `.NET 8 · Angular 20 · SQL Server`)

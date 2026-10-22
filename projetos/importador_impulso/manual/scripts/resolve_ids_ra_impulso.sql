@@ -188,7 +188,47 @@ WITH Combinacoes AS (
         ('GENESIO MORESCHI',                      '2o SERIE REGULAR C',        'GENESIO MORESCHI',            N'2ª Série Regular C - N'      ),
         ('DIRCE DE AGUIAR MAIA',                  '2o SERIA INTEGRAL A',       'DIRCE DE A MAIA',             N'2ª Série Regular A - I'      ),
         -- Carlos Alfonzo Peres Toledo: planilha tinha "Regular C- Integral" (escola não tem turma Integral), corrigido para "Regular C - M"
-        ('ELEODORO EBANO PEREIRA',                '3o SERIE REGULAR C- INTEGRAL', 'ELEODORO E PEREIRA',       N'3ª Série Regular C - M'      )
+        ('ELEODORO EBANO PEREIRA',                '3o SERIE REGULAR C- INTEGRAL', 'ELEODORO E PEREIRA',       N'3ª Série Regular C - M'      ),
+        -- --------------------------------------------------------
+        -- Adicionado em out/26 — EFC-7017 (aba 'ENEM 4', via resolver_pendencias.py
+        -- cruzado com candidatos reais de homolog — ver manual/EFC-7017/guide.md)
+        -- --------------------------------------------------------
+        ('CARMELO PERRONE',                      '3o SERIE A REGULAR',        'CARMELO PERRONE',             N'3ª Série Regular A - M'      ),
+        ('CARMELO PERRONE',                      '2o SERIE C',                'CARMELO PERRONE',             N'2ª Série Regular C - M'      ),
+        -- Ouro Verde: única turma "C" de 2ª série na escola é turno T (não há "C - M")
+        ('OURO VERDE',                           '2o SERIE C - REGULAR',      'OURO VERDE',                  N'2ª Série Regular C - T'      ),
+        -- Rodrigues Alves: escola é 100% turno Integral (igual padrão já conhecido da letra A)
+        ('RODRIGUES ALVES',                      '3o SERIE B REGULAR',        'RODRIGUES ALVES',             N'3ª Série Regular B - I'      ),
+        ('JARDIM UNIVERSITARIO',                 '3o SERIE A REGULAR',        'JARDIM UNIVERSITARIO',        N'3ª Série Regular A - M'      ),
+        ('JARDIM UNIVERSITARIO',                 '3o SERIE C REGULAR',        'JARDIM UNIVERSITARIO',        N'3ª Série Regular C - M'      ),
+        -- São Braz: planilha usa "Ano" em vez de "Série" neste ciclo — mesmas turmas já conhecidas
+        ('SAO BRAZ',                             '3o ANO A REGULAR',          'SAO BRAZ',                    N'3ª Série Regular A - M'      ),
+        ('SAO BRAZ',                             '3o ANO B REGULAR',          'SAO BRAZ',                    N'3ª Série Regular B - M'      ),
+        ('SAO BRAZ',                             '3o ANO C REGULAR',          'SAO BRAZ',                    N'3ª Série Regular C - M'      ),
+        -- Maria Pacheco (planilha abrevia como nome "comum" — escola no banco é MARIA L F PACHECO, já usada p/ EFC-6732 como "Maria Luiza F. Pacheco")
+        ('MARIA PACHECO',                        '3o SERIE A REGULAR',        'MARIA L F PACHECO',           N'3ª Série Regular A - M'      ),
+        ('MARIA PACHECO',                        '2o SERIE C',                'MARIA L F PACHECO',           N'2ª Série Regular C - M'      ),
+        ('MARIA PACHECO',                        '2o SERIE B',                'MARIA L F PACHECO',           N'2ª Série Regular B - M'      ),
+        ('MARIA PACHECO',                        '2o SERIE A',                'MARIA L F PACHECO',           N'2ª Série Regular A - M'      ),
+        ('JARDM INTERLAGOS',                     '3o SERIE A REGULAR',        'JARDIM INTERLAGOS',           N'3ª Série Regular A - M'      ),
+        ('JARDIM PANORAMA',                      '2o SERIE A REGULAR',        'JARDIM PANORAMA',             N'2ª Série Regular A - M'      ),
+        ('JARDIM PANORAMA',                      '3o SERIE A REGULAR',        'JARDIM PANORAMA',             N'3ª Série Regular A - M'      ),
+        ('JARDIM PANORAMA',                      '3o SERIE C REGULAR',        'JARDIM PANORAMA',             N'3ª Série Regular C - M'      ),
+        ('JARDIM PANORAMA',                      '2o SERIE C REGULAR',        'JARDIM PANORAMA',             N'2ª Série Regular C - M'      ),
+        ('GENESIO MORESCHI',                     '3o SERIE B',                'GENESIO MORESCHI',            N'3ª Série Regular B - N'      ),
+        ('GENESIO MORESCHI',                     '2o SERIE D',                'GENESIO MORESCHI',            N'2ª Série Regular D - N'      ),
+        ('GENESIO MORESCHI',                     '2o SERIE C',                'GENESIO MORESCHI',            N'2ª Série Regular C - N'      ),
+        -- Papa João Paulo I: escola é 100% turno Integral — planilha escreve "Integral" como se fosse
+        -- o tipo da turma, mas no banco é o TURNO; só existe 1 turma de 2ª série (sem letra), sem ambiguidade
+        ('PAPA JOAO PAULO I',                    '2o SERIE INTEGRAL',         'JOAO PAULO I',                N'2ª Série Regular A - I'      ),
+        -- Olavo Bilac: mesmo caso de turno x tipo acima; só existe 1 turma de 3ª série A (turno I)
+        ('OLAVO BILAC',                          '3o SERIE A INTEGRAL',       'OLAVO BILAC',                 N'3ª Série Regular A - I'      ),
+        -- Dona Branca do N. M.: ambíguo por nome de turma (BRANCA DA MOTA FERNANDES tem turmas idênticas) —
+        -- resolvido por abreviação ("N. M." = "N Miranda", não "da Mota Fernandes")
+        ('DONA BRANCA DO N. M.',                 '3o SERIE A REGULAR',        'BRANCA DO N MIRANDA',         N'3ª Série Regular A - M'      ),
+        ('DONA BRANCA DO N. M.',                 '3o SERIE D REGULAR',        'BRANCA DO N MIRANDA',         N'3ª Série Regular D - M'      ),
+        -- Otalípio Pereira de Andrade (nova escola out/26) — nome no banco é "OTALIPIO P DE ANDRADE"
+        ('OTALIPIO PEREIRA DE ANDRADE',          '3o SERIE A REGULAR',        'OTALIPIO P DE ANDRADE',       N'3ª Série Regular A - M'      )
     ) AS t(escola_norm, turma_norm, escola_db, turma_db)
 )
 SELECT

@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/colors_and_type.css">
+<script src="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/_ds_bundle.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<style>body{margin:0;background:#F2F2F2;font-family:Nunito,sans-serif;color:#0F0F10}a{color:#242CC2}a:hover{color:#1E258F}.material-symbols-outlined{font-size:20px;line-height:1}input::placeholder{color:#65686E}</style>
+</helmet>
+<section data-screen-label="Table toolbar" style="padding:48px;display:flex;flex-direction:column;gap:40px">
+  <div style="display:flex;flex-direction:column;gap:4px;max-width:760px">
+    <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">Table toolbar: opções</span>
+    <span style="font-size:14px;line-height:24px;color:#3D3F42">Barra acima de tabelas, grids e listas de cartões. Tudo é interativo: busca, ordenação, visualização, seleção e ações. Imprimir, Exportar, Importar e Organizar colunas são opcionais; ligue e desligue cada um no painel Tweaks. No mobile, ordenação e ações abrem em tela cheia.</span>
+  </div>
+
+  <div id="1a" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">1a</span>
+      <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Linha única, ações como ícones</span>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:760px">Evolução direta do componente atual. Busca com limpar, contagem "X de Y itens" durante a busca, ordenação com rótulo, troca de visualização com os dois estados visíveis e ações opcionais como botões de ícone após um divisor. No mobile, as ações vão para o botão "Mais ações".</p>
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="width:1040px;flex:none;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);padding:32px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+        <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">Disciplinas</span>
+        <div style="position:relative;display:flex;align-items:center;gap:12px;white-space:nowrap">
+          <div style="display:flex;align-items:center;gap:8px;width:320px;height:40px;padding:0 8px 0 12px;box-sizing:border-box;border:1px solid #C3C8D1;border-radius:8px;background:#fff">
+            <span class="material-symbols-outlined" style="color:#65686E">search</span>
+            <input value="{{ a.q }}" onChange="{{ a.onQ }}" placeholder="Buscar disciplina" style="all:unset;flex:1;min-width:0;font-family:Nunito,sans-serif;font-size:14px;color:#0F0F10">
+            <sc-if value="{{ a.hasQ }}" hint-placeholder-val="{{ false }}"><button onClick="{{ a.clearQ }}" title="Limpar busca" style="all:unset;cursor:pointer;width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:#65686E"><span class="material-symbols-outlined" style="font-size:18px">close</span></button></sc-if>
+          </div>
+          <span style="font-size:14px;color:#3D3F42">{{ a.count }}</span>
+          <div style="flex:1"></div>
+          <div style="position:relative">
+            <button onClick="{{ a.toggleMenu }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border:1px solid {{ a.menuBorder }};border-radius:8px;background:#fff;font-size:14px" style-hover="background:#F8F9FB">
+              <span class="material-symbols-outlined" style="color:#65686E">sort</span><span style="color:#65686E">Ordenar:</span><span style="font-weight:700">{{ a.sortLabel }}</span><span class="material-symbols-outlined">{{ a.menuChev }}</span>
+            </button>
+            <sc-if value="{{ a.menu }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;right:0;top:44px;z-index:5;width:240px;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:4px 0">
+                <sc-for list="{{ a.sorts }}" as="o" hint-placeholder-count="4">
+                  <button onClick="{{ o.pick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:space-between;width:100%;height:40px;padding:0 12px;font-size:14px;color:{{ o.color }};font-weight:{{ o.weight }}" style-hover="background:#EBEDF1">{{ o.label }}<span class="material-symbols-outlined" style="font-size:18px">{{ o.icon }}</span></button>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+          <div style="display:flex;border:1px solid #C3C8D1;border-radius:8px;overflow:hidden;height:40px;box-sizing:border-box;flex:none">
+            <button onClick="{{ a.setList }}" title="Tabela" style="all:unset;cursor:pointer;width:40px;display:flex;align-items:center;justify-content:center;background:{{ a.listBg }};color:{{ a.listFg }}"><span class="material-symbols-outlined">view_list</span></button>
+            <button onClick="{{ a.setCards }}" title="Cartões" style="all:unset;cursor:pointer;width:40px;display:flex;align-items:center;justify-content:center;border-left:1px solid #C3C8D1;background:{{ a.cardsBg }};color:{{ a.cardsFg }}"><span class="material-symbols-outlined">grid_view</span></button>
+          </div>
+          <sc-if value="{{ a.hasActs }}" hint-placeholder-val="{{ true }}">
+            <span style="width:1px;height:24px;background:#C3C8D1;flex:none"></span>
+            <div style="display:flex;gap:8px">
+              <sc-for list="{{ a.acts }}" as="o" hint-placeholder-count="4">
+                <button onClick="{{ o.onClick }}" title="{{ o.label }}" style="all:unset;box-sizing:border-box;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid #C3C8D1;border-radius:8px;background:#fff;color:#3D3F42" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">{{ o.icon }}</span></button>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ a.colsPop }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;right:0;top:48px;z-index:5;width:260px;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:8px 0">
+              <div style="padding:4px 12px 8px;font-family:Archivo,sans-serif;font-weight:700;font-size:14px">Colunas visíveis</div>
+              <sc-for list="{{ a.colList }}" as="o" hint-placeholder-count="3">
+                <button onClick="{{ o.toggle }}" style="all:unset;box-sizing:border-box;cursor:{{ o.cursor }};display:flex;align-items:center;gap:12px;width:100%;height:40px;padding:0 12px;font-size:14px;color:{{ o.color }}" style-hover="background:#F8F9FB"><span style="width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ o.cb }};background:{{ o.cbg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">check</span></span>{{ o.label }}</button>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+        <sc-if value="{{ a.isList }}" hint-placeholder-val="{{ true }}">
+          <div style="border-radius:8px;overflow:hidden;border:1px solid #EBEDF1">
+            <div style="display:grid;grid-template-columns:{{ a.grid }};gap:16px;align-items:center;height:48px;padding:0 16px;background:#EBEDF1;font-family:Archivo,sans-serif;font-weight:600;font-size:16px"><span>Disciplina</span><sc-if value="{{ a.showEscola }}" hint-placeholder-val="{{ true }}"><span>Escolas</span></sc-if><sc-if value="{{ a.showArea }}" hint-placeholder-val="{{ true }}"><span>Área do conhecimento</span></sc-if></div>
+            <sc-for list="{{ a.items }}" as="r" hint-placeholder-count="6">
+              <div style="display:grid;grid-template-columns:{{ r.grid }};gap:16px;align-items:center;height:56px;padding:0 16px;border-top:1px solid #EBEDF1;font-size:14px"><span style="font-weight:700">{{ r.nome }}</span><sc-if value="{{ r.showEscola }}" hint-placeholder-val="{{ true }}"><span>{{ r.escola }}</span></sc-if><sc-if value="{{ r.showArea }}" hint-placeholder-val="{{ true }}"><span>{{ r.area }}</span></sc-if></div>
+            </sc-for>
+            <sc-if value="{{ a.empty }}" hint-placeholder-val="{{ false }}"><div style="padding:32px 16px;text-align:center;font-size:14px;color:#3D3F42">{{ a.emptyMsg }}</div></sc-if>
+          </div>
+        </sc-if>
+        <sc-if value="{{ a.isCards }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+            <sc-for list="{{ a.items }}" as="r" hint-placeholder-count="6">
+              <div style="border:1px solid #C3C8D1;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:8px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">{{ r.nome }}</span><span style="font-size:14px;color:#3D3F42">{{ r.escola }}</span><span style="align-self:flex-start;font-size:12px;font-weight:700;color:#774BB0;border:1px solid #774BB0;border-radius:999px;padding:0 8px;line-height:20px">{{ r.area }}</span></div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ a.empty }}" hint-placeholder-val="{{ false }}"><div style="padding:32px 16px;text-align:center;font-size:14px;color:#3D3F42">{{ a.emptyMsg }}</div></sc-if>
+        </sc-if>
+      </div>
+
+      <div style="width:360px;height:640px;flex:none;position:relative;overflow:hidden;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15)">
+        <div style="height:100%;overflow:auto;padding:16px;box-sizing:border-box;display:flex;flex-direction:column;gap:8px">
+          <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:20px;line-height:28px;padding-bottom:4px">Disciplinas</span>
+          <div style="flex:none;display:flex;align-items:center;gap:8px">
+            <div style="flex:1;min-width:0;display:flex;align-items:center;gap:8px;height:44px;padding:0 8px 0 12px;box-sizing:border-box;border:1px solid #C3C8D1;border-radius:8px">
+              <span class="material-symbols-outlined" style="color:#65686E">search</span>
+              <input value="{{ a.q }}" onChange="{{ a.onQ }}" placeholder="Buscar disciplina" style="all:unset;flex:1;min-width:0;font-family:Nunito,sans-serif;font-size:14px;color:#0F0F10">
+              <sc-if value="{{ a.hasQ }}" hint-placeholder-val="{{ false }}"><button onClick="{{ a.clearQ }}" title="Limpar busca" style="all:unset;cursor:pointer;width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:#65686E"><span class="material-symbols-outlined" style="font-size:18px">close</span></button></sc-if>
+            </div>
+            <button onClick="{{ a.openSort }}" title="Ordenar" style="all:unset;position:relative;box-sizing:border-box;cursor:pointer;flex:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid #C3C8D1;border-radius:8px;color:#3D3F42">
+              <span class="material-symbols-outlined">sort</span>
+              <sc-if value="{{ a.sortDot }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:999px;background:#9D0364"></span></sc-if>
+            </button>
+            <sc-if value="{{ a.hasActs }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ a.openActs }}" title="Mais ações" style="all:unset;box-sizing:border-box;cursor:pointer;flex:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid #C3C8D1;border-radius:8px;color:#3D3F42"><span class="material-symbols-outlined">more_vert</span></button>
+            </sc-if>
+          </div>
+          <div style="flex:none;display:flex;align-items:center;gap:8px">
+            <span style="flex:1;min-width:0;font-size:12px;line-height:20px;color:#3D3F42;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ a.count }} · {{ a.sortLabel }}</span>
+            <div style="display:flex;gap:2px;padding:2px;border-radius:8px;background:#EBEDF1">
+              <button onClick="{{ a.setList }}" title="Lista" style="all:unset;cursor:pointer;width:44px;height:40px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:{{ a.listPill }};color:{{ a.listPillFg }}"><span class="material-symbols-outlined">view_list</span></button>
+              <button onClick="{{ a.setCards }}" title="Cartões" style="all:unset;cursor:pointer;width:44px;height:40px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:{{ a.cardsPill }};color:{{ a.cardsPillFg }}"><span class="material-symbols-outlined">grid_view</span></button>
+            </div>
+          </div>
+          <sc-if value="{{ a.isCards }}" hint-placeholder-val="{{ false }}">
+            <sc-for list="{{ a.items }}" as="r" hint-placeholder-count="4">
+              <div style="flex:none;border:1px solid #C3C8D1;border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:6px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">{{ r.nome }}</span><span style="font-size:14px;color:#3D3F42">{{ r.escola }}</span><span style="align-self:flex-start;font-size:12px;font-weight:700;color:#774BB0;border:1px solid #774BB0;border-radius:999px;padding:0 8px;line-height:20px">{{ r.area }}</span></div>
+            </sc-for>
+          </sc-if>
+          <sc-if value="{{ a.isList }}" hint-placeholder-val="{{ true }}">
+            <div style="flex:none;border:1px solid #EBEDF1;border-radius:8px;overflow:hidden">
+              <sc-for list="{{ a.items }}" as="r" hint-placeholder-count="6">
+                <div style="display:flex;align-items:center;gap:12px;min-height:56px;padding:8px 12px;box-sizing:border-box;border-bottom:1px solid #EBEDF1">
+                  <div style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-weight:700;font-size:14px">{{ r.nome }}</span><span style="font-size:12px;line-height:20px;color:#3D3F42">{{ r.sub }}</span></div>
+                  <span class="material-symbols-outlined" style="color:#242CC2">chevron_right</span>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ a.empty }}" hint-placeholder-val="{{ false }}"><div style="padding:24px 8px;text-align:center;font-size:14px;color:#3D3F42">{{ a.emptyMsg }}</div></sc-if>
+        </div>
+        <sc-if value="{{ a.sheetSort }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;z-index:10;background:#fff;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;height:56px;padding:0 4px 0 16px;border-bottom:1px solid #EBEDF1"><span style="flex:1;font-family:Archivo,sans-serif;font-weight:600;font-size:18px">Ordenar por</span><button onClick="{{ a.closeSheet }}" title="Fechar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">close</span></button></div>
+            <sc-for list="{{ a.sorts }}" as="o" hint-placeholder-count="4">
+              <button onClick="{{ o.pickSheet }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;height:56px;padding:0 16px;border-bottom:1px solid #EBEDF1;font-size:16px;color:{{ o.color }};font-weight:{{ o.weight }}"><span class="material-symbols-outlined" style="font-size:24px">{{ o.radio }}</span>{{ o.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ a.sheetActs }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;z-index:10;background:#fff;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;height:56px;padding:0 4px 0 16px;border-bottom:1px solid #EBEDF1"><span style="flex:1;font-family:Archivo,sans-serif;font-weight:600;font-size:18px">Mais ações</span><button onClick="{{ a.closeSheet }}" title="Fechar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">close</span></button></div>
+            <sc-for list="{{ a.acts }}" as="o" hint-placeholder-count="4">
+              <button onClick="{{ o.pickSheet }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;height:56px;padding:0 16px;border-bottom:1px solid #EBEDF1;font-size:16px;color:#0F0F10"><span class="material-symbols-outlined" style="font-size:24px;color:#242CC2">{{ o.icon }}</span>{{ o.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ a.sheetCols }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;z-index:10;background:#fff;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;height:56px;padding:0 4px 0 4px;border-bottom:1px solid #EBEDF1"><button onClick="{{ a.openActs }}" title="Voltar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">arrow_back</span></button><span style="flex:1;font-family:Archivo,sans-serif;font-weight:600;font-size:18px">Organizar colunas</span><button onClick="{{ a.closeSheet }}" title="Fechar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">close</span></button></div>
+            <sc-for list="{{ a.colList }}" as="o" hint-placeholder-count="3">
+              <button onClick="{{ o.toggle }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;height:56px;padding:0 16px;border-bottom:1px solid #EBEDF1;font-size:16px;color:{{ o.color }}"><span style="width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ o.cb }};background:{{ o.cbg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">check</span></span>{{ o.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+
+  <div id="1b" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">1b</span>
+      <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Seleção e ações em massa</span>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:760px">Importar e Exportar aparecem como botões com texto; o resto fica em "Mais ações". Ao marcar itens, a barra troca para modo contextual com contagem, "Selecionar todos" e ações em massa, sem mudar de altura. No mobile, a linha da contagem vira a barra de ações.</p>
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="width:1040px;flex:none;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);padding:32px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+        <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">Disciplinas</span>
+        <div style="position:relative;display:flex;align-items:center;gap:12px;height:56px;padding:0 8px;border-radius:8px;white-space:nowrap;background:{{ b.barBg }}">
+          <sc-if value="{{ b.noSel }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;align-items:center;gap:8px;width:300px;height:40px;padding:0 8px 0 12px;box-sizing:border-box;border:1px solid #C3C8D1;border-radius:8px;background:#fff">
+              <span class="material-symbols-outlined" style="color:#65686E">search</span>
+              <input value="{{ b.q }}" onChange="{{ b.onQ }}" placeholder="Buscar disciplina" style="all:unset;flex:1;min-width:0;font-family:Nunito,sans-serif;font-size:14px;color:#0F0F10">
+              <sc-if value="{{ b.hasQ }}" hint-placeholder-val="{{ false }}"><button onClick="{{ b.clearQ }}" title="Limpar busca" style="all:unset;cursor:pointer;width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:#65686E"><span class="material-symbols-outlined" style="font-size:18px">close</span></button></sc-if>
+            </div>
+            <span style="font-size:14px;color:#3D3F42">{{ b.count }}</span>
+            <div style="flex:1"></div>
+            <div style="position:relative">
+              <button onClick="{{ b.toggleMenu }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border:1px solid {{ b.menuBorder }};border-radius:8px;background:#fff;font-size:14px" style-hover="background:#F8F9FB">
+                <span class="material-symbols-outlined" style="color:#65686E">sort</span><span style="font-weight:700">{{ b.sortLabel }}</span><span class="material-symbols-outlined">{{ b.menuChev }}</span>
+              </button>
+              <sc-if value="{{ b.menu }}" hint-placeholder-val="{{ false }}">
+                <div style="position:absolute;right:0;top:44px;z-index:5;width:240px;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:4px 0">
+                  <sc-for list="{{ b.sorts }}" as="o" hint-placeholder-count="4">
+                    <button onClick="{{ o.pick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:space-between;width:100%;height:40px;padding:0 12px;font-size:14px;color:{{ o.color }};font-weight:{{ o.weight }}" style-hover="background:#EBEDF1">{{ o.label }}<span class="material-symbols-outlined" style="font-size:18px">{{ o.icon }}</span></button>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+            <div style="display:flex;border:1px solid #C3C8D1;border-radius:8px;overflow:hidden;height:40px;box-sizing:border-box;flex:none">
+              <button onClick="{{ b.setList }}" title="Tabela" style="all:unset;cursor:pointer;width:40px;display:flex;align-items:center;justify-content:center;background:{{ b.listBg }};color:{{ b.listFg }}"><span class="material-symbols-outlined">view_list</span></button>
+              <button onClick="{{ b.setCards }}" title="Cartões" style="all:unset;cursor:pointer;width:40px;display:flex;align-items:center;justify-content:center;border-left:1px solid #C3C8D1;background:{{ b.cardsBg }};color:{{ b.cardsFg }}"><span class="material-symbols-outlined">grid_view</span></button>
+            </div>
+            <sc-for list="{{ b.textActs }}" as="o" hint-placeholder-count="2">
+              <button onClick="{{ o.onClick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:8px;height:40px;padding:0 16px;border:1px solid #242CC2;border-radius:8px;background:#fff;color:#242CC2;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">{{ o.icon }}</span>{{ o.label }}</button>
+            </sc-for>
+            <sc-if value="{{ b.hasMore }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ b.toggleMore }}" title="Mais ações" style="all:unset;box-sizing:border-box;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid {{ b.moreBorder }};border-radius:8px;background:#fff;color:#3D3F42" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">more_vert</span></button>
+            </sc-if>
+          </sc-if>
+          <sc-if value="{{ b.hasSel }}" hint-placeholder-val="{{ false }}">
+            <span style="font-weight:700;font-size:14px;padding-left:8px">{{ b.selLabel }}</span>
+            <sc-if value="{{ b.notAll }}" hint-placeholder-val="{{ false }}"><button onClick="{{ b.selectAll }}" style="all:unset;cursor:pointer;color:#242CC2;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="color:#1E258F">{{ b.selectAllLabel }}</button></sc-if>
+            <button onClick="{{ b.clearSel }}" style="all:unset;cursor:pointer;color:#242CC2;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="color:#1E258F">Limpar seleção</button>
+            <div style="flex:1"></div>
+            <div style="display:flex;gap:8px">
+              <sc-if value="{{ b.showExport }}" hint-placeholder-val="{{ true }}"><button style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:8px;height:40px;padding:0 16px;border:1px solid #242CC2;border-radius:8px;background:#fff;color:#242CC2;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">download</span>Exportar selecionados</button></sc-if>
+              <sc-if value="{{ b.showPrint }}" hint-placeholder-val="{{ true }}"><button title="Imprimir selecionados" style="all:unset;box-sizing:border-box;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid #242CC2;border-radius:8px;background:#fff;color:#242CC2" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">print</span></button></sc-if>
+              <button title="Excluir" style="all:unset;box-sizing:border-box;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid #242CC2;border-radius:8px;background:#fff;color:#242CC2" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">delete</span></button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ b.more }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;right:8px;top:52px;z-index:5;width:240px;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:4px 0">
+              <sc-for list="{{ b.moreActs }}" as="o" hint-placeholder-count="2">
+                <button onClick="{{ o.onClick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;height:40px;padding:0 12px;font-size:14px" style-hover="background:#EBEDF1"><span class="material-symbols-outlined" style="color:#3D3F42">{{ o.icon }}</span>{{ o.label }}</button>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ b.colsPop }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;right:8px;top:52px;z-index:5;width:260px;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:8px 0">
+              <div style="padding:4px 12px 8px;font-family:Archivo,sans-serif;font-weight:700;font-size:14px">Colunas visíveis</div>
+              <sc-for list="{{ b.colList }}" as="o" hint-placeholder-count="3">
+                <button onClick="{{ o.toggle }}" style="all:unset;box-sizing:border-box;cursor:{{ o.cursor }};display:flex;align-items:center;gap:12px;width:100%;height:40px;padding:0 12px;font-size:14px;color:{{ o.color }}" style-hover="background:#F8F9FB"><span style="width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ o.cb }};background:{{ o.cbg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">check</span></span>{{ o.label }}</button>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+        <sc-if value="{{ b.isList }}" hint-placeholder-val="{{ true }}">
+          <div style="border-radius:8px;overflow:hidden;border:1px solid #EBEDF1">
+            <div style="display:grid;grid-template-columns:{{ b.grid }};gap:16px;align-items:center;height:48px;padding:0 16px 0 8px;background:#EBEDF1;font-family:Archivo,sans-serif;font-weight:600;font-size:16px">
+              <button onClick="{{ b.toggleAll }}" title="Selecionar todos" style="all:unset;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center"><span style="width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ b.headB }};background:{{ b.headBg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">{{ b.headIc }}</span></span></button>
+              <span>Disciplina</span><sc-if value="{{ b.showEscola }}" hint-placeholder-val="{{ true }}"><span>Escolas</span></sc-if><sc-if value="{{ b.showArea }}" hint-placeholder-val="{{ true }}"><span>Área do conhecimento</span></sc-if>
+            </div>
+            <sc-for list="{{ b.items }}" as="r" hint-placeholder-count="6">
+              <div onClick="{{ r.toggle }}" style="cursor:pointer;display:grid;grid-template-columns:{{ r.grid }};gap:16px;align-items:center;height:56px;padding:0 16px 0 8px;border-top:1px solid #EBEDF1;font-size:14px;background:{{ r.rowBg }}">
+                <span style="display:flex;justify-content:center"><span style="width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ r.cb }};background:{{ r.cbg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">{{ r.cic }}</span></span></span>
+                <span style="font-weight:700">{{ r.nome }}</span><sc-if value="{{ r.showEscola }}" hint-placeholder-val="{{ true }}"><span>{{ r.escola }}</span></sc-if><sc-if value="{{ r.showArea }}" hint-placeholder-val="{{ true }}"><span>{{ r.area }}</span></sc-if>
+              </div>
+            </sc-for>
+            <sc-if value="{{ b.empty }}" hint-placeholder-val="{{ false }}"><div style="padding:32px 16px;text-align:center;font-size:14px;color:#3D3F42">{{ b.emptyMsg }}</div></sc-if>
+          </div>
+        </sc-if>
+        <sc-if value="{{ b.isCards }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+            <sc-for list="{{ b.items }}" as="r" hint-placeholder-count="6">
+              <div onClick="{{ r.toggle }}" style="cursor:pointer;border:1px solid #C3C8D1;border-radius:8px;padding:16px;display:flex;gap:12px;background:{{ r.rowBg }}">
+                <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">{{ r.nome }}</span><span style="font-size:14px;color:#3D3F42">{{ r.escola }}</span><span style="align-self:flex-start;font-size:12px;font-weight:700;color:#774BB0;border:1px solid #774BB0;border-radius:999px;padding:0 8px;line-height:20px">{{ r.area }}</span></div>
+                <span style="flex:none;width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ r.cb }};background:{{ r.cbg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">{{ r.cic }}</span></span>
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ b.empty }}" hint-placeholder-val="{{ false }}"><div style="padding:32px 16px;text-align:center;font-size:14px;color:#3D3F42">{{ b.emptyMsg }}</div></sc-if>
+        </sc-if>
+      </div>
+
+      <div style="width:360px;height:640px;flex:none;position:relative;overflow:hidden;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15)">
+        <div style="height:100%;overflow:auto;padding:16px;box-sizing:border-box;display:flex;flex-direction:column;gap:8px">
+          <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:20px;line-height:28px;padding-bottom:4px">Disciplinas</span>
+          <div style="flex:none;display:flex;align-items:center;gap:8px">
+            <div style="flex:1;min-width:0;display:flex;align-items:center;gap:8px;height:44px;padding:0 8px 0 12px;box-sizing:border-box;border:1px solid #C3C8D1;border-radius:8px">
+              <span class="material-symbols-outlined" style="color:#65686E">search</span>
+              <input value="{{ b.q }}" onChange="{{ b.onQ }}" placeholder="Buscar disciplina" style="all:unset;flex:1;min-width:0;font-family:Nunito,sans-serif;font-size:14px;color:#0F0F10">
+              <sc-if value="{{ b.hasQ }}" hint-placeholder-val="{{ false }}"><button onClick="{{ b.clearQ }}" title="Limpar busca" style="all:unset;cursor:pointer;width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:#65686E"><span class="material-symbols-outlined" style="font-size:18px">close</span></button></sc-if>
+            </div>
+            <button onClick="{{ b.openSort }}" title="Ordenar" style="all:unset;position:relative;box-sizing:border-box;cursor:pointer;flex:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid #C3C8D1;border-radius:8px;color:#3D3F42">
+              <span class="material-symbols-outlined">sort</span>
+              <sc-if value="{{ b.sortDot }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:999px;background:#9D0364"></span></sc-if>
+            </button>
+            <button onClick="{{ b.toggleView }}" title="{{ b.viewTitle }}" style="all:unset;box-sizing:border-box;cursor:pointer;flex:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid #C3C8D1;border-radius:8px;color:#3D3F42"><span class="material-symbols-outlined">{{ b.viewIcon }}</span></button>
+          </div>
+          <div style="flex:none;display:flex;align-items:center;gap:4px;height:44px;padding-right:4px;border-radius:8px;background:{{ b.barBg }}">
+            <button onClick="{{ b.toggleAll }}" title="Selecionar todos" style="all:unset;cursor:pointer;flex:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span style="width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ b.headB }};background:{{ b.headBg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">{{ b.headIc }}</span></span></button>
+            <sc-if value="{{ b.noSel }}" hint-placeholder-val="{{ true }}">
+              <span style="flex:1;font-size:14px;color:#3D3F42">{{ b.count }}</span>
+              <sc-if value="{{ b.hasActs }}" hint-placeholder-val="{{ true }}"><button onClick="{{ b.openActs }}" title="Mais ações" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#3D3F42"><span class="material-symbols-outlined" style="font-size:24px">more_vert</span></button></sc-if>
+            </sc-if>
+            <sc-if value="{{ b.hasSel }}" hint-placeholder-val="{{ false }}">
+              <span style="flex:1;font-size:14px;font-weight:700">{{ b.selLabel }}</span>
+              <sc-if value="{{ b.showExport }}" hint-placeholder-val="{{ true }}"><button title="Exportar selecionados" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#242CC2"><span class="material-symbols-outlined" style="font-size:24px">download</span></button></sc-if>
+              <sc-if value="{{ b.showPrint }}" hint-placeholder-val="{{ true }}"><button title="Imprimir selecionados" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#242CC2"><span class="material-symbols-outlined" style="font-size:24px">print</span></button></sc-if>
+              <button title="Excluir" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#242CC2"><span class="material-symbols-outlined" style="font-size:24px">delete</span></button>
+            </sc-if>
+          </div>
+          <sc-if value="{{ b.isCards }}" hint-placeholder-val="{{ false }}">
+            <sc-for list="{{ b.items }}" as="r" hint-placeholder-count="4">
+              <div onClick="{{ r.toggle }}" style="flex:none;cursor:pointer;border:1px solid #C3C8D1;border-radius:8px;padding:12px;display:flex;gap:12px;background:{{ r.rowBg }}">
+                <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">{{ r.nome }}</span><span style="font-size:14px;color:#3D3F42">{{ r.escola }}</span><span style="align-self:flex-start;font-size:12px;font-weight:700;color:#774BB0;border:1px solid #774BB0;border-radius:999px;padding:0 8px;line-height:20px">{{ r.area }}</span></div>
+                <span style="flex:none;width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ r.cb }};background:{{ r.cbg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">{{ r.cic }}</span></span>
+              </div>
+            </sc-for>
+          </sc-if>
+          <sc-if value="{{ b.isList }}" hint-placeholder-val="{{ true }}">
+            <div style="flex:none;border:1px solid #EBEDF1;border-radius:8px;overflow:hidden">
+              <sc-for list="{{ b.items }}" as="r" hint-placeholder-count="6">
+                <div onClick="{{ r.toggle }}" style="cursor:pointer;display:flex;align-items:center;gap:12px;min-height:56px;padding:8px 12px;box-sizing:border-box;border-bottom:1px solid #EBEDF1;background:{{ r.rowBg }}">
+                  <span style="flex:none;width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ r.cb }};background:{{ r.cbg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">{{ r.cic }}</span></span>
+                  <div style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-weight:700;font-size:14px">{{ r.nome }}</span><span style="font-size:12px;line-height:20px;color:#3D3F42">{{ r.sub }}</span></div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ b.empty }}" hint-placeholder-val="{{ false }}"><div style="padding:24px 8px;text-align:center;font-size:14px;color:#3D3F42">{{ b.emptyMsg }}</div></sc-if>
+        </div>
+        <sc-if value="{{ b.sheetSort }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;z-index:10;background:#fff;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;height:56px;padding:0 4px 0 16px;border-bottom:1px solid #EBEDF1"><span style="flex:1;font-family:Archivo,sans-serif;font-weight:600;font-size:18px">Ordenar por</span><button onClick="{{ b.closeSheet }}" title="Fechar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">close</span></button></div>
+            <sc-for list="{{ b.sorts }}" as="o" hint-placeholder-count="4">
+              <button onClick="{{ o.pickSheet }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;height:56px;padding:0 16px;border-bottom:1px solid #EBEDF1;font-size:16px;color:{{ o.color }};font-weight:{{ o.weight }}"><span class="material-symbols-outlined" style="font-size:24px">{{ o.radio }}</span>{{ o.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ b.sheetActs }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;z-index:10;background:#fff;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;height:56px;padding:0 4px 0 16px;border-bottom:1px solid #EBEDF1"><span style="flex:1;font-family:Archivo,sans-serif;font-weight:600;font-size:18px">Mais ações</span><button onClick="{{ b.closeSheet }}" title="Fechar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">close</span></button></div>
+            <sc-for list="{{ b.acts }}" as="o" hint-placeholder-count="4">
+              <button onClick="{{ o.pickSheet }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;height:56px;padding:0 16px;border-bottom:1px solid #EBEDF1;font-size:16px;color:#0F0F10"><span class="material-symbols-outlined" style="font-size:24px;color:#242CC2">{{ o.icon }}</span>{{ o.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ b.sheetCols }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;z-index:10;background:#fff;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;height:56px;padding:0 4px;border-bottom:1px solid #EBEDF1"><button onClick="{{ b.openActs }}" title="Voltar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">arrow_back</span></button><span style="flex:1;font-family:Archivo,sans-serif;font-weight:600;font-size:18px">Organizar colunas</span><button onClick="{{ b.closeSheet }}" title="Fechar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">close</span></button></div>
+            <sc-for list="{{ b.colList }}" as="o" hint-placeholder-count="3">
+              <button onClick="{{ o.toggle }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;height:56px;padding:0 16px;border-bottom:1px solid #EBEDF1;font-size:16px;color:{{ o.color }}"><span style="width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ o.cb }};background:{{ o.cbg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">check</span></span>{{ o.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+
+  <div id="1c" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">1c</span>
+      <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Compacta, busca expansível e menu de ações</span>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:760px">Contagem à esquerda, ferramentas como ícones à direita. A busca abre na lupa e fica aberta enquanto houver texto. Todas as ações opcionais ficam em um único menu. No mobile tudo cabe em uma linha de 44px; com a busca aberta, a linha inteira vira o campo.</p>
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="width:1040px;flex:none;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);padding:32px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+        <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">Disciplinas</span>
+        <div style="position:relative;display:flex;align-items:center;gap:8px;height:40px;white-space:nowrap">
+          <span style="flex:1;font-size:14px;color:#3D3F42">{{ c.count }}</span>
+          <sc-if value="{{ c.soClosed }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ c.openSo }}" title="Buscar" style="all:unset;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:8px;color:#3D3F42" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">search</span></button>
+          </sc-if>
+          <sc-if value="{{ c.so }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;align-items:center;gap:8px;width:280px;height:40px;padding:0 8px 0 12px;box-sizing:border-box;border:1px solid #242CC2;border-radius:8px;background:#fff">
+              <span class="material-symbols-outlined" style="color:#65686E">search</span>
+              <input value="{{ c.q }}" onChange="{{ c.onQ }}" placeholder="Buscar disciplina" style="all:unset;flex:1;min-width:0;font-family:Nunito,sans-serif;font-size:14px;color:#0F0F10">
+              <button onClick="{{ c.closeSo }}" title="Fechar busca" style="all:unset;cursor:pointer;width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:#65686E"><span class="material-symbols-outlined" style="font-size:18px">close</span></button>
+            </div>
+          </sc-if>
+          <span style="width:1px;height:24px;background:#C3C8D1;margin:0 4px"></span>
+          <div style="position:relative">
+            <button onClick="{{ c.toggleMenu }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:6px;height:40px;padding:0 8px;border-radius:8px;font-size:14px;color:#3D3F42;background:{{ c.menuBg }}" style-hover="background:#EBEDF1">
+              <span class="material-symbols-outlined">sort</span><span style="font-weight:700">{{ c.sortLabel }}</span><span class="material-symbols-outlined">{{ c.menuChev }}</span>
+            </button>
+            <sc-if value="{{ c.menu }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;right:0;top:44px;z-index:5;width:240px;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:4px 0">
+                <sc-for list="{{ c.sorts }}" as="o" hint-placeholder-count="4">
+                  <button onClick="{{ o.pick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:space-between;width:100%;height:40px;padding:0 12px;font-size:14px;color:{{ o.color }};font-weight:{{ o.weight }}" style-hover="background:#EBEDF1">{{ o.label }}<span class="material-symbols-outlined" style="font-size:18px">{{ o.icon }}</span></button>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+          <div style="display:flex;gap:2px;padding:2px;border-radius:8px;background:#EBEDF1">
+            <button onClick="{{ c.setList }}" title="Tabela" style="all:unset;cursor:pointer;width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:{{ c.listPill }};color:{{ c.listPillFg }}"><span class="material-symbols-outlined">view_list</span></button>
+            <button onClick="{{ c.setCards }}" title="Cartões" style="all:unset;cursor:pointer;width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:{{ c.cardsPill }};color:{{ c.cardsPillFg }}"><span class="material-symbols-outlined">grid_view</span></button>
+          </div>
+          <sc-if value="{{ c.hasActs }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ c.toggleMore }}" title="Mais ações" style="all:unset;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:8px;color:#3D3F42;background:{{ c.moreBg }}" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">more_horiz</span></button>
+          </sc-if>
+          <sc-if value="{{ c.more }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;right:0;top:44px;z-index:5;width:240px;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:4px 0">
+              <sc-for list="{{ c.acts }}" as="o" hint-placeholder-count="4">
+                <button onClick="{{ o.onClick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;height:40px;padding:0 12px;font-size:14px" style-hover="background:#EBEDF1"><span class="material-symbols-outlined" style="color:#3D3F42">{{ o.icon }}</span>{{ o.label }}</button>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ c.colsPop }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;right:0;top:44px;z-index:5;width:260px;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:8px 0">
+              <div style="padding:4px 12px 8px;font-family:Archivo,sans-serif;font-weight:700;font-size:14px">Colunas visíveis</div>
+              <sc-for list="{{ c.colList }}" as="o" hint-placeholder-count="3">
+                <button onClick="{{ o.toggle }}" style="all:unset;box-sizing:border-box;cursor:{{ o.cursor }};display:flex;align-items:center;gap:12px;width:100%;height:40px;padding:0 12px;font-size:14px;color:{{ o.color }}" style-hover="background:#F8F9FB"><span style="width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ o.cb }};background:{{ o.cbg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">check</span></span>{{ o.label }}</button>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+        <sc-if value="{{ c.isList }}" hint-placeholder-val="{{ true }}">
+          <div style="border-radius:8px;overflow:hidden;border:1px solid #EBEDF1">
+            <div style="display:grid;grid-template-columns:{{ c.grid }};gap:16px;align-items:center;height:48px;padding:0 16px;background:#EBEDF1;font-family:Archivo,sans-serif;font-weight:600;font-size:16px"><span>Disciplina</span><sc-if value="{{ c.showEscola }}" hint-placeholder-val="{{ true }}"><span>Escolas</span></sc-if><sc-if value="{{ c.showArea }}" hint-placeholder-val="{{ true }}"><span>Área do conhecimento</span></sc-if></div>
+            <sc-for list="{{ c.items }}" as="r" hint-placeholder-count="6">
+              <div style="display:grid;grid-template-columns:{{ r.grid }};gap:16px;align-items:center;height:56px;padding:0 16px;border-top:1px solid #EBEDF1;font-size:14px"><span style="font-weight:700">{{ r.nome }}</span><sc-if value="{{ r.showEscola }}" hint-placeholder-val="{{ true }}"><span>{{ r.escola }}</span></sc-if><sc-if value="{{ r.showArea }}" hint-placeholder-val="{{ true }}"><span>{{ r.area }}</span></sc-if></div>
+            </sc-for>
+            <sc-if value="{{ c.empty }}" hint-placeholder-val="{{ false }}"><div style="padding:32px 16px;text-align:center;font-size:14px;color:#3D3F42">{{ c.emptyMsg }}</div></sc-if>
+          </div>
+        </sc-if>
+        <sc-if value="{{ c.isCards }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+            <sc-for list="{{ c.items }}" as="r" hint-placeholder-count="6">
+              <div style="border:1px solid #C3C8D1;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:8px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">{{ r.nome }}</span><span style="font-size:14px;color:#3D3F42">{{ r.escola }}</span><span style="align-self:flex-start;font-size:12px;font-weight:700;color:#774BB0;border:1px solid #774BB0;border-radius:999px;padding:0 8px;line-height:20px">{{ r.area }}</span></div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ c.empty }}" hint-placeholder-val="{{ false }}"><div style="padding:32px 16px;text-align:center;font-size:14px;color:#3D3F42">{{ c.emptyMsg }}</div></sc-if>
+        </sc-if>
+      </div>
+
+      <div style="width:360px;height:640px;flex:none;position:relative;overflow:hidden;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15)">
+        <div style="height:100%;overflow:auto;padding:16px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px">
+          <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:20px;line-height:28px">Disciplinas</span>
+          <div style="flex:none;display:flex;align-items:center;height:44px;border-bottom:1px solid #EBEDF1;padding-bottom:4px">
+            <sc-if value="{{ c.somClosed }}" hint-placeholder-val="{{ true }}">
+              <span style="flex:1;min-width:0;font-size:14px;color:#3D3F42;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.count }}</span>
+              <button onClick="{{ c.openSom }}" title="Buscar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#3D3F42"><span class="material-symbols-outlined" style="font-size:24px">search</span></button>
+              <button onClick="{{ c.openSort }}" title="Ordenar" style="all:unset;position:relative;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#3D3F42"><span class="material-symbols-outlined" style="font-size:24px">sort</span><sc-if value="{{ c.sortDot }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:10px;right:8px;width:8px;height:8px;border-radius:999px;background:#9D0364"></span></sc-if></button>
+              <button onClick="{{ c.toggleView }}" title="{{ c.viewTitle }}" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#3D3F42"><span class="material-symbols-outlined" style="font-size:24px">{{ c.viewIcon }}</span></button>
+              <sc-if value="{{ c.hasActs }}" hint-placeholder-val="{{ true }}"><button onClick="{{ c.openActs }}" title="Mais ações" style="all:unset;cursor:pointer;width:44px;height:44px;margin-right:-10px;display:flex;align-items:center;justify-content:center;color:#3D3F42"><span class="material-symbols-outlined" style="font-size:24px">more_vert</span></button></sc-if>
+            </sc-if>
+            <sc-if value="{{ c.som }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ c.closeSom }}" title="Fechar busca" style="all:unset;cursor:pointer;flex:none;width:44px;height:44px;margin-left:-10px;display:flex;align-items:center;justify-content:center;color:#3D3F42"><span class="material-symbols-outlined" style="font-size:24px">arrow_back</span></button>
+              <input value="{{ c.q }}" onChange="{{ c.onQ }}" placeholder="Buscar disciplina" style="all:unset;flex:1;min-width:0;height:44px;font-family:Nunito,sans-serif;font-size:16px;color:#0F0F10">
+              <sc-if value="{{ c.hasQ }}" hint-placeholder-val="{{ false }}"><button onClick="{{ c.clearQ }}" title="Limpar busca" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#65686E"><span class="material-symbols-outlined">close</span></button></sc-if>
+            </sc-if>
+          </div>
+          <sc-if value="{{ c.som }}" hint-placeholder-val="{{ false }}"><span style="flex:none;font-size:12px;line-height:20px;color:#3D3F42">{{ c.count }}</span></sc-if>
+          <sc-if value="{{ c.isCards }}" hint-placeholder-val="{{ false }}">
+            <sc-for list="{{ c.items }}" as="r" hint-placeholder-count="4">
+              <div style="flex:none;border:1px solid #C3C8D1;border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:6px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">{{ r.nome }}</span><span style="font-size:14px;color:#3D3F42">{{ r.escola }}</span><span style="align-self:flex-start;font-size:12px;font-weight:700;color:#774BB0;border:1px solid #774BB0;border-radius:999px;padding:0 8px;line-height:20px">{{ r.area }}</span></div>
+            </sc-for>
+          </sc-if>
+          <sc-if value="{{ c.isList }}" hint-placeholder-val="{{ true }}">
+            <div style="flex:none;border:1px solid #EBEDF1;border-radius:8px;overflow:hidden">
+              <sc-for list="{{ c.items }}" as="r" hint-placeholder-count="6">
+                <div style="display:flex;align-items:center;gap:12px;min-height:56px;padding:8px 12px;box-sizing:border-box;border-bottom:1px solid #EBEDF1">
+                  <div style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-weight:700;font-size:14px">{{ r.nome }}</span><span style="font-size:12px;line-height:20px;color:#3D3F42">{{ r.sub }}</span></div>
+                  <span class="material-symbols-outlined" style="color:#242CC2">chevron_right</span>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ c.empty }}" hint-placeholder-val="{{ false }}"><div style="padding:24px 8px;text-align:center;font-size:14px;color:#3D3F42">{{ c.emptyMsg }}</div></sc-if>
+        </div>
+        <sc-if value="{{ c.sheetSort }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;z-index:10;background:#fff;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;height:56px;padding:0 4px 0 16px;border-bottom:1px solid #EBEDF1"><span style="flex:1;font-family:Archivo,sans-serif;font-weight:600;font-size:18px">Ordenar por</span><button onClick="{{ c.closeSheet }}" title="Fechar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">close</span></button></div>
+            <sc-for list="{{ c.sorts }}" as="o" hint-placeholder-count="4">
+              <button onClick="{{ o.pickSheet }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;height:56px;padding:0 16px;border-bottom:1px solid #EBEDF1;font-size:16px;color:{{ o.color }};font-weight:{{ o.weight }}"><span class="material-symbols-outlined" style="font-size:24px">{{ o.radio }}</span>{{ o.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ c.sheetActs }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;z-index:10;background:#fff;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;height:56px;padding:0 4px 0 16px;border-bottom:1px solid #EBEDF1"><span style="flex:1;font-family:Archivo,sans-serif;font-weight:600;font-size:18px">Mais ações</span><button onClick="{{ c.closeSheet }}" title="Fechar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">close</span></button></div>
+            <sc-for list="{{ c.acts }}" as="o" hint-placeholder-count="4">
+              <button onClick="{{ o.pickSheet }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;height:56px;padding:0 16px;border-bottom:1px solid #EBEDF1;font-size:16px;color:#0F0F10"><span class="material-symbols-outlined" style="font-size:24px;color:#242CC2">{{ o.icon }}</span>{{ o.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ c.sheetCols }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;z-index:10;background:#fff;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;height:56px;padding:0 4px;border-bottom:1px solid #EBEDF1"><button onClick="{{ c.openActs }}" title="Voltar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">arrow_back</span></button><span style="flex:1;font-family:Archivo,sans-serif;font-weight:600;font-size:18px">Organizar colunas</span><button onClick="{{ c.closeSheet }}" title="Fechar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">close</span></button></div>
+            <sc-for list="{{ c.colList }}" as="o" hint-placeholder-count="3">
+              <button onClick="{{ o.toggle }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;height:56px;padding:0 16px;border-bottom:1px solid #EBEDF1;font-size:16px;color:{{ o.color }}"><span style="width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ o.cb }};background:{{ o.cbg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">check</span></span>{{ o.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+  <div id="1d" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">1d</span>
+      <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Compacta com seleção</span>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:760px">Base da <a href="#1c">1c</a> com a caixa "selecionar todos" ao lado da contagem. Ao marcar itens, a mesma linha troca para modo contextual: contagem de selecionados, links de seleção e ações em massa como ícones. No mobile, o modo contextual tem um X para sair e as ações em massa à direita.</p>
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="width:1040px;flex:none;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);padding:32px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+        <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">Disciplinas</span>
+        <div style="position:relative;display:flex;align-items:center;gap:8px;height:48px;padding:0 4px 0 0;border-radius:8px;white-space:nowrap;background:{{ d.barBg }}">
+          <button onClick="{{ d.toggleAll }}" title="Selecionar todos" style="all:unset;cursor:pointer;flex:none;width:48px;height:48px;display:flex;align-items:center;justify-content:center"><span style="width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ d.headB }};background:{{ d.headBg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">{{ d.headIc }}</span></span></button>
+          <sc-if value="{{ d.noSel }}" hint-placeholder-val="{{ true }}">
+            <span style="flex:1;font-size:14px;color:#3D3F42">{{ d.count }}</span>
+            <sc-if value="{{ d.soClosed }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ d.openSo }}" title="Buscar" style="all:unset;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:8px;color:#3D3F42" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">search</span></button>
+            </sc-if>
+            <sc-if value="{{ d.so }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;align-items:center;gap:8px;width:280px;height:40px;padding:0 8px 0 12px;box-sizing:border-box;border:1px solid #242CC2;border-radius:8px;background:#fff">
+                <span class="material-symbols-outlined" style="color:#65686E">search</span>
+                <input value="{{ d.q }}" onChange="{{ d.onQ }}" placeholder="Buscar disciplina" style="all:unset;flex:1;min-width:0;font-family:Nunito,sans-serif;font-size:14px;color:#0F0F10">
+                <button onClick="{{ d.closeSo }}" title="Fechar busca" style="all:unset;cursor:pointer;width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:#65686E"><span class="material-symbols-outlined" style="font-size:18px">close</span></button>
+              </div>
+            </sc-if>
+            <span style="width:1px;height:24px;background:#C3C8D1;margin:0 4px"></span>
+            <div style="position:relative">
+              <button onClick="{{ d.toggleMenu }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:6px;height:40px;padding:0 8px;border-radius:8px;font-size:14px;color:#3D3F42;background:{{ d.menuBg }}" style-hover="background:#EBEDF1">
+                <span class="material-symbols-outlined">sort</span><span style="font-weight:700">{{ d.sortLabel }}</span><span class="material-symbols-outlined">{{ d.menuChev }}</span>
+              </button>
+              <sc-if value="{{ d.menu }}" hint-placeholder-val="{{ false }}">
+                <div style="position:absolute;right:0;top:44px;z-index:5;width:240px;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:4px 0">
+                  <sc-for list="{{ d.sorts }}" as="o" hint-placeholder-count="4">
+                    <button onClick="{{ o.pick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:space-between;width:100%;height:40px;padding:0 12px;font-size:14px;color:{{ o.color }};font-weight:{{ o.weight }}" style-hover="background:#EBEDF1">{{ o.label }}<span class="material-symbols-outlined" style="font-size:18px">{{ o.icon }}</span></button>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+            <div style="display:flex;gap:2px;padding:2px;border-radius:8px;background:#EBEDF1">
+              <button onClick="{{ d.setList }}" title="Tabela" style="all:unset;cursor:pointer;width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:{{ d.listPill }};color:{{ d.listPillFg }}"><span class="material-symbols-outlined">view_list</span></button>
+              <button onClick="{{ d.setCards }}" title="Cartões" style="all:unset;cursor:pointer;width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:{{ d.cardsPill }};color:{{ d.cardsPillFg }}"><span class="material-symbols-outlined">grid_view</span></button>
+            </div>
+            <sc-if value="{{ d.hasActs }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ d.toggleMore }}" title="Mais ações" style="all:unset;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:8px;color:#3D3F42;background:{{ d.moreBg }}" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">more_horiz</span></button>
+            </sc-if>
+          </sc-if>
+          <sc-if value="{{ d.hasSel }}" hint-placeholder-val="{{ false }}">
+            <span style="font-weight:700;font-size:14px">{{ d.selLabel }}</span>
+            <sc-if value="{{ d.notAll }}" hint-placeholder-val="{{ false }}"><button onClick="{{ d.selectAll }}" style="all:unset;cursor:pointer;margin-left:8px;color:#242CC2;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="color:#1E258F">{{ d.selectAllLabel }}</button></sc-if>
+            <button onClick="{{ d.clearSel }}" style="all:unset;cursor:pointer;margin-left:8px;color:#242CC2;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="color:#1E258F">Limpar seleção</button>
+            <div style="flex:1"></div>
+            <sc-if value="{{ d.showExport }}" hint-placeholder-val="{{ true }}"><button title="Exportar selecionados" style="all:unset;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:8px;color:#242CC2" style-hover="background:#DDE0E6"><span class="material-symbols-outlined">download</span></button></sc-if>
+            <sc-if value="{{ d.showPrint }}" hint-placeholder-val="{{ true }}"><button title="Imprimir selecionados" style="all:unset;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:8px;color:#242CC2" style-hover="background:#DDE0E6"><span class="material-symbols-outlined">print</span></button></sc-if>
+            <button title="Excluir" style="all:unset;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:8px;color:#242CC2" style-hover="background:#DDE0E6"><span class="material-symbols-outlined">delete</span></button>
+          </sc-if>
+          <sc-if value="{{ d.more }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;right:0;top:48px;z-index:5;width:240px;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:4px 0">
+              <sc-for list="{{ d.acts }}" as="o" hint-placeholder-count="4">
+                <button onClick="{{ o.onClick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;height:40px;padding:0 12px;font-size:14px" style-hover="background:#EBEDF1"><span class="material-symbols-outlined" style="color:#3D3F42">{{ o.icon }}</span>{{ o.label }}</button>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ d.colsPop }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;right:0;top:48px;z-index:5;width:260px;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:8px 0">
+              <div style="padding:4px 12px 8px;font-family:Archivo,sans-serif;font-weight:700;font-size:14px">Colunas visíveis</div>
+              <sc-for list="{{ d.colList }}" as="o" hint-placeholder-count="3">
+                <button onClick="{{ o.toggle }}" style="all:unset;box-sizing:border-box;cursor:{{ o.cursor }};display:flex;align-items:center;gap:12px;width:100%;height:40px;padding:0 12px;font-size:14px;color:{{ o.color }}" style-hover="background:#F8F9FB"><span style="width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ o.cb }};background:{{ o.cbg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">check</span></span>{{ o.label }}</button>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+        <sc-if value="{{ d.isList }}" hint-placeholder-val="{{ true }}">
+          <div style="border-radius:8px;overflow:hidden;border:1px solid #EBEDF1">
+            <div style="display:grid;grid-template-columns:{{ d.grid }};gap:16px;align-items:center;height:48px;padding:0 16px 0 8px;background:#EBEDF1;font-family:Archivo,sans-serif;font-weight:600;font-size:16px"><span></span><span>Disciplina</span><sc-if value="{{ d.showEscola }}" hint-placeholder-val="{{ true }}"><span>Escolas</span></sc-if><sc-if value="{{ d.showArea }}" hint-placeholder-val="{{ true }}"><span>Área do conhecimento</span></sc-if></div>
+            <sc-for list="{{ d.items }}" as="r" hint-placeholder-count="6">
+              <div onClick="{{ r.toggle }}" style="cursor:pointer;display:grid;grid-template-columns:{{ r.grid }};gap:16px;align-items:center;height:56px;padding:0 16px 0 8px;border-top:1px solid #EBEDF1;font-size:14px;background:{{ r.rowBg }}">
+                <span style="display:flex;justify-content:center"><span style="width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ r.cb }};background:{{ r.cbg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">{{ r.cic }}</span></span></span>
+                <span style="font-weight:700">{{ r.nome }}</span><sc-if value="{{ r.showEscola }}" hint-placeholder-val="{{ true }}"><span>{{ r.escola }}</span></sc-if><sc-if value="{{ r.showArea }}" hint-placeholder-val="{{ true }}"><span>{{ r.area }}</span></sc-if>
+              </div>
+            </sc-for>
+            <sc-if value="{{ d.empty }}" hint-placeholder-val="{{ false }}"><div style="padding:32px 16px;text-align:center;font-size:14px;color:#3D3F42">{{ d.emptyMsg }}</div></sc-if>
+          </div>
+        </sc-if>
+        <sc-if value="{{ d.isCards }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+            <sc-for list="{{ d.items }}" as="r" hint-placeholder-count="6">
+              <div onClick="{{ r.toggle }}" style="cursor:pointer;border:1px solid #C3C8D1;border-radius:8px;padding:16px;display:flex;gap:12px;background:{{ r.rowBg }}">
+                <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">{{ r.nome }}</span><span style="font-size:14px;color:#3D3F42">{{ r.escola }}</span><span style="align-self:flex-start;font-size:12px;font-weight:700;color:#774BB0;border:1px solid #774BB0;border-radius:999px;padding:0 8px;line-height:20px">{{ r.area }}</span></div>
+                <span style="flex:none;width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ r.cb }};background:{{ r.cbg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">{{ r.cic }}</span></span>
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ d.empty }}" hint-placeholder-val="{{ false }}"><div style="padding:32px 16px;text-align:center;font-size:14px;color:#3D3F42">{{ d.emptyMsg }}</div></sc-if>
+        </sc-if>
+      </div>
+
+      <div style="width:360px;height:640px;flex:none;position:relative;overflow:hidden;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15)">
+        <div style="height:100%;overflow:auto;padding:16px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px">
+          <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:20px;line-height:28px">Disciplinas</span>
+          <div style="flex:none;display:flex;align-items:center;height:48px;border-radius:8px;background:{{ d.barBg }}">
+            <sc-if value="{{ d.mNormal }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ d.toggleAll }}" title="Selecionar todos" style="all:unset;cursor:pointer;flex:none;width:44px;height:44px;margin-left:-10px;display:flex;align-items:center;justify-content:center"><span style="width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ d.headB }};background:{{ d.headBg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">{{ d.headIc }}</span></span></button>
+              <span style="flex:1;min-width:0;font-size:14px;color:#3D3F42;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ d.count }}</span>
+              <button onClick="{{ d.openSom }}" title="Buscar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#3D3F42"><span class="material-symbols-outlined" style="font-size:24px">search</span></button>
+              <button onClick="{{ d.openSort }}" title="Ordenar" style="all:unset;position:relative;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#3D3F42"><span class="material-symbols-outlined" style="font-size:24px">sort</span><sc-if value="{{ d.sortDot }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:10px;right:8px;width:8px;height:8px;border-radius:999px;background:#9D0364"></span></sc-if></button>
+              <button onClick="{{ d.toggleView }}" title="{{ d.viewTitle }}" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#3D3F42"><span class="material-symbols-outlined" style="font-size:24px">{{ d.viewIcon }}</span></button>
+              <sc-if value="{{ d.hasActs }}" hint-placeholder-val="{{ true }}"><button onClick="{{ d.openActs }}" title="Mais ações" style="all:unset;cursor:pointer;width:44px;height:44px;margin-right:-10px;display:flex;align-items:center;justify-content:center;color:#3D3F42"><span class="material-symbols-outlined" style="font-size:24px">more_vert</span></button></sc-if>
+            </sc-if>
+            <sc-if value="{{ d.mSearch }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ d.closeSom }}" title="Fechar busca" style="all:unset;cursor:pointer;flex:none;width:44px;height:44px;margin-left:-10px;display:flex;align-items:center;justify-content:center;color:#3D3F42"><span class="material-symbols-outlined" style="font-size:24px">arrow_back</span></button>
+              <input value="{{ d.q }}" onChange="{{ d.onQ }}" placeholder="Buscar disciplina" style="all:unset;flex:1;min-width:0;height:44px;font-family:Nunito,sans-serif;font-size:16px;color:#0F0F10">
+              <sc-if value="{{ d.hasQ }}" hint-placeholder-val="{{ false }}"><button onClick="{{ d.clearQ }}" title="Limpar busca" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#65686E"><span class="material-symbols-outlined">close</span></button></sc-if>
+            </sc-if>
+            <sc-if value="{{ d.hasSel }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ d.clearSel }}" title="Sair da seleção" style="all:unset;cursor:pointer;flex:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#3D3F42"><span class="material-symbols-outlined" style="font-size:24px">close</span></button>
+              <span style="flex:1;min-width:0;font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ d.selLabel }}</span>
+              <button onClick="{{ d.toggleAll }}" title="Selecionar todos" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#242CC2"><span class="material-symbols-outlined" style="font-size:24px">{{ d.allIcon }}</span></button>
+              <sc-if value="{{ d.showExport }}" hint-placeholder-val="{{ true }}"><button title="Exportar selecionados" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#242CC2"><span class="material-symbols-outlined" style="font-size:24px">download</span></button></sc-if>
+              <sc-if value="{{ d.showPrint }}" hint-placeholder-val="{{ true }}"><button title="Imprimir selecionados" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#242CC2"><span class="material-symbols-outlined" style="font-size:24px">print</span></button></sc-if>
+              <button title="Excluir" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#242CC2"><span class="material-symbols-outlined" style="font-size:24px">delete</span></button>
+            </sc-if>
+          </div>
+          <sc-if value="{{ d.mSearch }}" hint-placeholder-val="{{ false }}"><span style="flex:none;font-size:12px;line-height:20px;color:#3D3F42">{{ d.count }}</span></sc-if>
+          <sc-if value="{{ d.isCards }}" hint-placeholder-val="{{ false }}">
+            <sc-for list="{{ d.items }}" as="r" hint-placeholder-count="4">
+              <div onClick="{{ r.toggle }}" style="flex:none;cursor:pointer;border:1px solid #C3C8D1;border-radius:8px;padding:12px;display:flex;gap:12px;background:{{ r.rowBg }}">
+                <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">{{ r.nome }}</span><span style="font-size:14px;color:#3D3F42">{{ r.escola }}</span><span style="align-self:flex-start;font-size:12px;font-weight:700;color:#774BB0;border:1px solid #774BB0;border-radius:999px;padding:0 8px;line-height:20px">{{ r.area }}</span></div>
+                <span style="flex:none;width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ r.cb }};background:{{ r.cbg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">{{ r.cic }}</span></span>
+              </div>
+            </sc-for>
+          </sc-if>
+          <sc-if value="{{ d.isList }}" hint-placeholder-val="{{ true }}">
+            <div style="flex:none;border:1px solid #EBEDF1;border-radius:8px;overflow:hidden">
+              <sc-for list="{{ d.items }}" as="r" hint-placeholder-count="6">
+                <div onClick="{{ r.toggle }}" style="cursor:pointer;display:flex;align-items:center;gap:12px;min-height:56px;padding:8px 12px;box-sizing:border-box;border-bottom:1px solid #EBEDF1;background:{{ r.rowBg }}">
+                  <span style="flex:none;width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ r.cb }};background:{{ r.cbg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">{{ r.cic }}</span></span>
+                  <div style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-weight:700;font-size:14px">{{ r.nome }}</span><span style="font-size:12px;line-height:20px;color:#3D3F42">{{ r.sub }}</span></div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ d.empty }}" hint-placeholder-val="{{ false }}"><div style="padding:24px 8px;text-align:center;font-size:14px;color:#3D3F42">{{ d.emptyMsg }}</div></sc-if>
+        </div>
+        <sc-if value="{{ d.sheetSort }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;z-index:10;background:#fff;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;height:56px;padding:0 4px 0 16px;border-bottom:1px solid #EBEDF1"><span style="flex:1;font-family:Archivo,sans-serif;font-weight:600;font-size:18px">Ordenar por</span><button onClick="{{ d.closeSheet }}" title="Fechar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">close</span></button></div>
+            <sc-for list="{{ d.sorts }}" as="o" hint-placeholder-count="4">
+              <button onClick="{{ o.pickSheet }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;height:56px;padding:0 16px;border-bottom:1px solid #EBEDF1;font-size:16px;color:{{ o.color }};font-weight:{{ o.weight }}"><span class="material-symbols-outlined" style="font-size:24px">{{ o.radio }}</span>{{ o.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ d.sheetActs }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;z-index:10;background:#fff;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;height:56px;padding:0 4px 0 16px;border-bottom:1px solid #EBEDF1"><span style="flex:1;font-family:Archivo,sans-serif;font-weight:600;font-size:18px">Mais ações</span><button onClick="{{ d.closeSheet }}" title="Fechar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">close</span></button></div>
+            <sc-for list="{{ d.acts }}" as="o" hint-placeholder-count="4">
+              <button onClick="{{ o.pickSheet }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;height:56px;padding:0 16px;border-bottom:1px solid #EBEDF1;font-size:16px;color:#0F0F10"><span class="material-symbols-outlined" style="font-size:24px;color:#242CC2">{{ o.icon }}</span>{{ o.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ d.sheetCols }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;z-index:10;background:#fff;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;height:56px;padding:0 4px;border-bottom:1px solid #EBEDF1"><button onClick="{{ d.openActs }}" title="Voltar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">arrow_back</span></button><span style="flex:1;font-family:Archivo,sans-serif;font-weight:600;font-size:18px">Organizar colunas</span><button onClick="{{ d.closeSheet }}" title="Fechar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">close</span></button></div>
+            <sc-for list="{{ d.colList }}" as="o" hint-placeholder-count="3">
+              <button onClick="{{ o.toggle }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;height:56px;padding:0 16px;border-bottom:1px solid #EBEDF1;font-size:16px;color:{{ o.color }}"><span style="width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ o.cb }};background:{{ o.cbg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">check</span></span>{{ o.label }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showPrint&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Ações opcionais&quot;},&quot;showExport&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Ações opcionais&quot;},&quot;showImport&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Ações opcionais&quot;},&quot;showColumns&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Ações opcionais&quot;}}">
+const DATA = [
+  ['Educação Física', 'Todas as escolas', 'Diversificada'],
+  ['Geografia', 'EM Dom Pedro II', 'Humanas'],
+  ['História', 'EM Dom Pedro II', 'Humanas'],
+  ['Língua Portuguesa', 'Todas as escolas', 'Linguagens'],
+  ['Matemática', 'Todas as escolas', 'Matemática'],
+  ['Ciências', 'EE Monteiro Lobato', 'Natureza']
+];
+const SORTS = [
+  { id: 'nome', label: 'Nome (A-Z)', fn: (x, y) => x.nome.localeCompare(y.nome) },
+  { id: 'nomeD', label: 'Nome (Z-A)', fn: (x, y) => y.nome.localeCompare(x.nome) },
+  { id: 'escola', label: 'Escolas', fn: (x, y) => x.escola.localeCompare(y.escola) },
+  { id: 'area', label: 'Área do conhecimento', fn: (x, y) => x.area.localeCompare(y.area) }
+];
+const ON = { cb: '1px solid #242CC2', cbg: '#242CC2' }, OFF = { cb: '1px solid #65686E', cbg: '#fff' };
+class Component extends DCLogic {
+  state = { a: {}, b: { sel: [] }, c: {}, d: { sel: [] } };
+  up(k, p) { this.setState(s => ({ [k]: { ...s[k], ...(typeof p === 'function' ? p(s[k]) : p) } })); }
+  actDefs() {
+    const p = this.props;
+    return [['print', 'print', 'Imprimir', p.showPrint], ['export', 'download', 'Exportar', p.showExport], ['import', 'upload', 'Importar', p.showImport], ['columns', 'view_column', 'Organizar colunas', p.showColumns]]
+      .filter(x => x[3] ?? true).map(([id, icon, label]) => ({ id, icon, label }));
+  }
+  mk(k, withSel) {
+    const s = this.state[k], up = p => this.up(k, p);
+    const q = s.q || '', view = s.view || 'list', sortId = s.sort || 'nome', cols = s.cols || { escola: true, area: true };
+    const sort = SORTS.find(o => o.id === sortId);
+    const sel = s.sel || [];
+    let rows = DATA.map((r, i) => ({ i, nome: r[0], escola: r[1], area: r[2] }));
+    const total = rows.length;
+    rows = rows.filter(r => !q || r.nome.toLowerCase().includes(q.toLowerCase())).sort(sort.fn);
+    const n = rows.length;
+    const grid = (withSel ? '40px ' : '') + `repeat(${1 + (cols.escola ? 1 : 0) + (cols.area ? 1 : 0)},minmax(0,1fr))`;
+    const closed = { menu: false, more: false, colsPop: false };
+    const acts = this.actDefs().map(a => ({ ...a,
+      onClick: () => up(a.id === 'columns' ? { ...closed, colsPop: !s.colsPop } : closed),
+      pickSheet: () => up({ sheet: a.id === 'columns' ? 'cols' : null })
+    }));
+    const toggleCol = c => () => up(st => ({ cols: { ...(st.cols || { escola: true, area: true }), [c]: !cols[c] } }));
+    const colList = [
+      { label: 'Disciplina', ...ON, cb: '1px solid #ADB2BA', cbg: '#ADB2BA', color: '#65686E', cursor: 'default', toggle: () => {} },
+      { label: 'Escolas', ...(cols.escola ? ON : OFF), color: '#0F0F10', cursor: 'pointer', toggle: toggleCol('escola') },
+      { label: 'Área do conhecimento', ...(cols.area ? ON : OFF), color: '#0F0F10', cursor: 'pointer', toggle: toggleCol('area') }
+    ];
+    const allSel = n > 0 && rows.every(r => sel.includes(r.i)), someSel = sel.length > 0;
+    const head = allSel ? { headB: ON.cb, headBg: ON.cbg, headIc: 'check' } : someSel ? { headB: ON.cb, headBg: ON.cbg, headIc: 'remove' } : { headB: OFF.cb, headBg: OFF.cbg, headIc: '' };
+    const so = !!s.so || !!q, som = !!s.som || !!q;
+    return {
+      q, hasQ: !!q,
+      onQ: e => up({ q: e.target.value, sel: [] }),
+      clearQ: () => up({ q: '' }),
+      count: !q ? `${total} itens` : n ? `${n} de ${total} itens` : `0 de ${total} itens`,
+      empty: n === 0, emptyMsg: `Nenhuma disciplina encontrada para "${q}".`,
+      items: rows.map(r => {
+        const on = sel.includes(r.i);
+        return { ...r, grid, showEscola: cols.escola, showArea: cols.area,
+          sub: [cols.escola && r.escola, cols.area && r.area].filter(Boolean).join(' · '),
+          toggle: () => up(st => ({ sel: on ? st.sel.filter(x => x !== r.i) : [...st.sel, r.i] })),
+          ...(on ? ON : OFF), cic: on ? 'check' : '', rowBg: on ? '#F8F9FB' : '#fff' };
+      }),
+      grid, showEscola: cols.escola, showArea: cols.area,
+      sortLabel: sort.label, sortDot: sortId !== 'nome',
+      menu: !!s.menu, menuChev: s.menu ? 'expand_less' : 'expand_more', menuBorder: s.menu ? '#242CC2' : '#C3C8D1', menuBg: s.menu ? '#EBEDF1' : 'transparent',
+      toggleMenu: () => up({ ...closed, menu: !s.menu }),
+      sorts: SORTS.map(o => { const on = o.id === sortId; return { label: o.label, icon: on ? 'check' : '', radio: on ? 'radio_button_checked' : 'radio_button_unchecked', color: on ? '#242CC2' : '#0F0F10', weight: on ? 700 : 400, pick: () => up({ sort: o.id, menu: false }), pickSheet: () => up({ sort: o.id, sheet: null }) }; }),
+      isList: view === 'list', isCards: view === 'cards',
+      setList: () => up({ view: 'list' }), setCards: () => up({ view: 'cards' }),
+      toggleView: () => up({ view: view === 'list' ? 'cards' : 'list' }),
+      viewIcon: view === 'list' ? 'grid_view' : 'view_list', viewTitle: view === 'list' ? 'Ver como cartões' : 'Ver como lista',
+      listBg: view === 'list' ? '#242CC2' : '#fff', listFg: view === 'list' ? '#fff' : '#3D3F42',
+      cardsBg: view === 'cards' ? '#242CC2' : '#fff', cardsFg: view === 'cards' ? '#fff' : '#3D3F42',
+      listPill: view === 'list' ? '#fff' : 'transparent', listPillFg: view === 'list' ? '#242CC2' : '#3D3F42',
+      cardsPill: view === 'cards' ? '#fff' : 'transparent', cardsPillFg: view === 'cards' ? '#242CC2' : '#3D3F42',
+      acts, hasActs: acts.length > 0,
+      textActs: acts.filter(a => a.id === 'import' || a.id === 'export'),
+      moreActs: acts.filter(a => a.id === 'print' || a.id === 'columns'),
+      hasMore: acts.some(a => a.id === 'print' || a.id === 'columns'),
+      more: !!s.more, toggleMore: () => up({ ...closed, more: !s.more }),
+      moreBorder: s.more ? '#242CC2' : '#C3C8D1', moreBg: s.more ? '#EBEDF1' : 'transparent',
+      colsPop: !!s.colsPop, colList,
+      showExport: acts.some(a => a.id === 'export'), showPrint: acts.some(a => a.id === 'print'),
+      sheetSort: s.sheet === 'sort', sheetActs: s.sheet === 'acts', sheetCols: s.sheet === 'cols',
+      openSort: () => up({ sheet: 'sort' }), openActs: () => up({ sheet: 'acts' }), closeSheet: () => up({ sheet: null }),
+      hasSel: someSel, noSel: !someSel, notAll: someSel && !allSel,
+      selLabel: sel.length === 1 ? '1 selecionado' : `${sel.length} selecionados`,
+      selectAllLabel: `Selecionar todos (${n})`,
+      selectAll: () => up({ sel: rows.map(r => r.i) }), clearSel: () => up({ sel: [] }),
+      toggleAll: () => up({ sel: allSel ? [] : rows.map(r => r.i) }),
+      barBg: someSel ? '#EBEDF1' : 'transparent', ...head,
+      so, soClosed: !so, openSo: () => up({ so: true }), closeSo: () => up({ so: false, q: '' }),
+      som, somClosed: !som, openSom: () => up({ som: true }), closeSom: () => up({ som: false, q: '' })
+    };
+  }
+  renderVals() {
+    const d = this.mk('d', true);
+    d.mNormal = d.noSel && d.somClosed;
+    d.mSearch = d.noSel && d.som;
+    d.allIcon = d.notAll ? 'select_all' : 'deselect';
+    return { a: this.mk('a'), b: this.mk('b', true), c: this.mk('c'), d };
+  }
+}
+</script>
+</body>
+</html>

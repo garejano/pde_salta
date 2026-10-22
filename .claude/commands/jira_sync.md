@@ -79,13 +79,72 @@ Usar o template da **Seção "Template de Saída"** abaixo, preenchendo com os d
 
 ### 4. Exibir resumo
 
-Ao final, exibir tabela com os cards processados:
+Ao final, exibir tabela com os cards processados. Nos modos que sincronizam card(s) específico(s), cada linha inclui o próximo passo sugerido pela **Seção 5**:
 
 ```
 ✔ EFC-6196  →  cards/EFC-6196/EFC-6196.md  (criado)
+   repo: estrutura-pedagogica · próximo passo: /planejar-implementacao EFC-6196
 ✔ EFC-5976  →  cards/EFC-5976/EFC-5976.md  (atualizado)
+   repo: estrutura-pedagogica · próximo passo: /executar-plano EFC-5976 (3/5 fases concluídas)
 ✗ EFC-3301  →  ignorado (usuário negou sobrescrita)
 ```
+
+---
+
+### 5. Sugerir próximo comando do fluxo de dev
+
+Aplica-se apenas aos modos que sincronizam card(s) específico(s) (`/jira_sync` e `/jira_sync <KEY>`) — **não** a `--list` nem `backlog`, que são apenas leitura/snapshot.
+
+Para cada card processado (inclusive os ignorados por recusa de sobrescrita, já que o card já tinha arquivo local):
+
+#### 5a. Identificar o repositório provável
+
+Usar `repository_map.md` (palavras-chave de `summary`/`description` do card) para apontar o repositório responsável, da mesma forma que a IA já usa esse arquivo para localizar onde implementar um card. Se mais de um repositório combinar com confiança semelhante, ou nenhum combinar, **não adivinhar** — marcar o card como `repo: não identificado` e pular as etapas seguintes para ele.
+
+#### 5b. Verificar se o repositório tem o fluxo de comandos guiado
+
+Checar a linha `Skills:` do repositório em `repository_map.md`. Se a linha não existir ou o mapa estiver desatualizado, verificar diretamente `c:/projects/<repo>/.claude/commands/` — a presença de `refinar-feature.md`, `planejar-implementacao.md` e `executar-plano.md` indica que o repositório segue o fluxo padrão. Sem esses três, **não sugerir comando** — apenas informar `repo: <nome> (sem skills de fluxo configuradas)`.
+
+Hoje `estrutura-pedagogica` e `notas` têm esse fluxo; os demais repositórios do mapa, não.
+
+#### 5c. Inspecionar o estado local (cards/ e repositório)
+
+O `pde_salta` tem seu próprio fluxo local (`/refinar-feature`, `/identificar-bug`, `/planejar-implementacao`), que grava sempre em `cards/<KEY>/` — nunca no repositório de destino (ver [[planejar-implementacao]]). Alguns repositórios (`estrutura-pedagogica`, `notas`) também têm um fluxo **nativo** equivalente, usado quando o desenvolvedor trabalha direto no repositório, que grava em `Docs/` dentro dele. As duas fontes são independentes — verificar **ambas** e tratar como "existe" se encontrado em qualquer uma:
+
+**a) Local (`cards/<KEY>/`, sempre verificar):**
+
+1. `cards/<KEY>/<KEY>.refinamento.md` existe?
+2. `cards/<KEY>/<KEY>.bug-report.md` existe?
+3. `cards/<KEY>/<KEY>.tech.md` existe? Se existir, contar quantas fases estão `**Status:** pendente` vs. `concluída`.
+
+**b) Repositório nativo (`c:/projects/<repo>/`, apenas se accessível e com o fluxo guiado confirmado em 5b):**
+
+Verificar nesta ordem (usando `git -C c:/projects/<repo>` para comandos git, sem alterar o diretório de trabalho atual):
+
+1. `Docs/user-story-<KEY>.md` existe?
+2. `Docs/<KEY>-bug-report.md` existe?
+3. `Docs/plano-tecnico-<KEY>.md` existe? Se existir, contar quantas fases estão `**Status:** pendente` vs. `concluída`.
+4. Existe branch local ou remoto correspondente? `git -C c:/projects/<repo> branch -a --list "*<KEY>*"`
+
+Se o repositório não existir localmente, ou os arquivos não puderem ser lidos, pular apenas a parte (b) e avisar `repo: <nome> (não foi possível inspecionar o estado no repositório — avaliado apenas cards/ local)` — a parte (a) sempre roda, independentemente de o repositório estar acessível.
+
+Se um plano técnico existir nas duas fontes ao mesmo tempo (raro), priorizar o de `cards/<KEY>/<KEY>.tech.md` para a contagem de fases, por ser o mantido pelo fluxo atual via `pde_salta`, e mencionar a existência do outro como observação.
+
+#### 5d. Decidir a sugestão
+
+| Condição | Sugestão |
+|---|---|
+| Tipo `Bug`, sem `<KEY>.bug-report.md` (local ou `Docs/<KEY>-bug-report.md`) e sem plano técnico (local ou nativo) | `/identificar-bug <KEY>` |
+| Sem refinamento/user-story nem bug-report (local ou nativo), sem CAs numerados na descrição do Jira, sem plano técnico (local ou nativo) | `/refinar-feature <KEY>` |
+| Refinamento/user-story ou bug-report existe (local ou nativo, ou a descrição do Jira já tem CAs numerados), sem plano técnico (local ou nativo) | `/planejar-implementacao <KEY>` |
+| `cards/<KEY>/<KEY>.tech.md` existe com fases pendentes | Informar "X de Y fases concluídas" — **não** sugerir `/executar-plano` (não há comando de execução equivalente para o plano local; acompanhamento é manual) |
+| Apenas `Docs/plano-tecnico-<KEY>.md` (nativo) existe com fases pendentes | `/executar-plano <KEY>` — informar "X de Y fases concluídas" |
+| Plano técnico (local ou nativo) existe e todas as fases estão concluídas, sem indício de PR aberto/mergeado | `/analisar-pr <branch-destino> <KEY>` — revisar antes de abrir ou aprovar o PR |
+| Status do card no Jira já é `Done`/categoria `Done` | Não sugerir comando — informar `card já concluído` |
+
+Quando o tipo de card for `Bug` mas já existir plano técnico (local ou nativo), trate como qualquer outro card a partir da linha de planejamento (ignore a primeira condição da tabela).
+
+Exibir a sugestão junto ao resumo do card (ver formato na Seção 4). Se nenhuma condição da tabela se aplicar com clareza, não forçar uma sugestão — registrar o estado observado e deixar a decisão para o usuário.
 
 ---
 
@@ -175,6 +234,14 @@ _Total: <n> cards em backlog_
 - Preservar arquivos adicionais já existentes no diretório do card (ex: `*_QA.md`, `*_dev.md`).
 - Usar o `cloudId` da instância `gruposalta.atlassian.net` sempre que disponível no contexto da sessão (evitar chamada redundante a `getAccessibleAtlassianResources`).
 
+### Regras da sugestão de próximo comando (Seção 5)
+
+- Nunca sugerir um comando de um repositório diferente do identificado para o card.
+- Sempre verificar `cards/<KEY>/` local antes (ou junto) do repositório — é a fonte mais provável para quem segue o fluxo via `pde_salta`.
+- Nunca sugerir `/executar-plano` sem antes confirmar que `Docs/plano-tecnico-<KEY>.md` existe **no repositório** (fluxo nativo). Se o plano existir apenas em `cards/<KEY>/<KEY>.tech.md`, não sugerir `/executar-plano` — informar o estado das fases sem comando associado.
+- Não inventar números de fase ou status — se o arquivo de plano não puder ser lido, omitir a contagem de fases.
+- Esta etapa é consultiva — nunca executa os comandos sugeridos nem abre branches/arquivos no repositório de destino, apenas lê o que já existe.
+
 ---
 
 ## Exemplos
@@ -205,7 +272,12 @@ Cards abertos atribuídos a você (5):
 /jira_sync EFC-6196
 ```
 
-Cria `cards/EFC-6196/EFC-6196.md` com o contexto completo do card.
+Cria `cards/EFC-6196/EFC-6196.md` com o contexto completo do card e, na Seção 5, inspeciona `c:/projects/estrutura-pedagogica/Docs/` para sugerir o próximo comando:
+
+```
+✔ EFC-6196  →  cards/EFC-6196/EFC-6196.md  (criado)
+   repo: estrutura-pedagogica · próximo passo: /refinar-feature EFC-6196
+```
 
 ### Exemplo 3 — Sincronizar todos
 
@@ -213,7 +285,33 @@ Cria `cards/EFC-6196/EFC-6196.md` com o contexto completo do card.
 /jira_sync
 ```
 
-Cria/atualiza um arquivo por card aberto, confirmando antes de sobrescrever qualquer existente.
+Cria/atualiza um arquivo por card aberto, confirmando antes de sobrescrever qualquer existente, com o próximo passo sugerido em cada linha do resumo.
+
+### Exemplo 4 — Card em andamento, plano técnico via fluxo nativo do repositório
+
+```
+/jira_sync EFC-5976
+```
+
+`cards/EFC-5976/EFC-5976.md` é atualizado. Como `Docs/plano-tecnico-EFC-5976.md` já existe **no repositório** `estrutura-pedagogica` (fluxo nativo, não via `pde_salta`) com 3 de 5 fases concluídas:
+
+```
+✔ EFC-5976  →  cards/EFC-5976/EFC-5976.md  (atualizado)
+   repo: estrutura-pedagogica · próximo passo: /executar-plano EFC-5976 (3/5 fases concluídas)
+```
+
+### Exemplo 5 — Card em andamento, plano técnico via fluxo local (`pde_salta`)
+
+```
+/jira_sync EFC-7061
+```
+
+`cards/EFC-7061/EFC-7061.md` é atualizado. Como `cards/EFC-7061/EFC-7061.tech.md` já existe (gerado por `/planejar-implementacao` — nunca gravado no repositório), com 2 de 4 fases concluídas, não há `/executar-plano` equivalente para sugerir:
+
+```
+✔ EFC-7061  →  cards/EFC-7061/EFC-7061.md  (atualizado)
+   repo: estrutura-pedagogica · plano técnico local: 2/4 fases concluídas (acompanhamento manual, sem comando de execução)
+```
 
 ---
 
@@ -221,6 +319,9 @@ Cria/atualiza um arquivo por card aberto, confirmando antes de sobrescrever qual
 
 - MCP `Atlassian` configurado e autenticado (`mcp__claude_ai_Atlassian__*`)
 - Permissão de escrita no diretório `cards/`
+- `repository_map.md` atualizado (campo `Skills:`) para identificar o repositório e o fluxo de comandos disponível (Seção 5)
+- Acesso de leitura ao repositório identificado em `c:/projects/<repo>/` (arquivos `Docs/` e `git`) para inspecionar o estado do fluxo nativo — opcional, a sugestão degrada graciosamente se o repositório não estiver acessível
+- A inspeção de `cards/<KEY>/` (fluxo local: `.refinamento.md`, `.bug-report.md`, `.tech.md`) sempre roda, independentemente do repositório estar acessível
 
 ---
 

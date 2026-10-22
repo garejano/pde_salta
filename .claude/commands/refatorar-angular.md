@@ -27,7 +27,7 @@ Antes de iniciar, confirme:
 
 **0a.1 — Identificar o repositório-alvo**
 
-Leia `_inbox/repository_map.md` e localize o repositório com base nas palavras-chave do card/funcionalidade.
+Leia `repository_map.md` e localize o repositório com base nas palavras-chave do card/funcionalidade.
 Anote:
 - `REPO_PATH` — caminho base (ex.: `c:/projects/estrutura-pedagogica`)
 - `REPO_STACK` — stack do repositório (confirma que é Angular e a versão estimada)

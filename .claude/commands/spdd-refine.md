@@ -65,7 +65,7 @@ Registrar quais documentos já existem:
 > ```
 >
 > **Passo 1 — Identificar o repositório**
-> Leia `c:/projects/salta_brain/repository_map.md`. Com base nas palavras-chave, identifique o repositório mais provável para este card.
+> Leia `repository_map.md` na raiz do `pde_salta`. Com base nas palavras-chave, identifique o repositório mais provável para este card.
 >
 > **Passo 2 — Explorar o repositório**
 > No repositório identificado:
@@ -166,7 +166,7 @@ Aguardar aprovação. Após aprovação, gravar em `cards/{TICKET}/{TICKET}.refi
 > ```
 >
 > **Passo 1 — Identificar o repositório**
-> Confirme o repositório via `c:/projects/salta_brain/repository_map.md`.
+> Confirme o repositório via `repository_map.md` na raiz do `pde_salta`.
 >
 > **Passo 2 — Ler convenções**
 > No repositório: leia `CLAUDE.md` (raiz e subpastas relevantes) e `README.md`. Registre padrões: nomenclatura, camadas, schema de banco, restrições.

@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comandos Claude Code — estrutura-pedagogica (fluxo do dev)</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f5f0;
+      --surface: #ffffff;
+      --border: #e2e2dc;
+      --text: #1a1a18;
+      --muted: #6b6b65;
+      --code-bg: #f0f0ea;
+
+      --refinamento: #2d6a4f;
+      --refinamento-bg: #e8f5ee;
+      --planejamento: #1d5a8e;
+      --planejamento-bg: #e6f0fa;
+      --implementacao: #7b3f00;
+      --implementacao-bg: #fef3e8;
+      --qualidade: #0e6b7a;
+      --qualidade-bg: #e6f6f9;
+      --revisao: #5c2d8e;
+      --revisao-bg: #f3ecfa;
+      --merge: #1a1a18;
+      --merge-bg: #f0f0ea;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    /* ── Layout ── */
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── Header ── */
+    .header {
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .header h1 {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+    .header p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .header .updated {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── Flow diagram ── */
+    .flow {
+      display: flex;
+      gap: 0;
+      margin-bottom: 48px;
+      overflow-x: auto;
+    }
+    .flow-step {
+      flex: 1;
+      min-width: 130px;
+      padding: 14px 12px;
+      text-align: center;
+      position: relative;
+    }
+    .flow-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 16px;
+      z-index: 1;
+    }
+    .flow-step.refinamento  { background: var(--refinamento-bg);  border: 1px solid #b7ddc9; border-radius: 8px; }
+    .flow-step.planejamento { background: var(--planejamento-bg); border: 1px solid #b3d0ec; border-radius: 8px; }
+    .flow-step.implementacao{ background: var(--implementacao-bg);border: 1px solid #f5d7b5; border-radius: 8px; }
+    .flow-step.qualidade    { background: var(--qualidade-bg);    border: 1px solid #a4d4dc; border-radius: 8px; }
+    .flow-step.revisao      { background: var(--revisao-bg);      border: 1px solid #d9c5f0; border-radius: 8px; }
+    .flow-step.merge        { background: var(--merge-bg);        border: 1px solid #d0d0c8; border-radius: 8px; }
+    .flow-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 6px;
+    }
+    .flow-step.refinamento  .flow-label { color: var(--refinamento); }
+    .flow-step.planejamento .flow-label { color: var(--planejamento); }
+    .flow-step.implementacao .flow-label { color: var(--implementacao); }
+    .flow-step.qualidade    .flow-label { color: var(--qualidade); }
+    .flow-step.revisao      .flow-label { color: var(--revisao); }
+    .flow-step.merge        .flow-label { color: #444; }
+    .flow-cmds {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .flow-cmds code {
+      font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+      font-size: 11px;
+    }
+
+    /* ── Phase sections ── */
+    .phase {
+      margin-bottom: 48px;
+    }
+    .phase-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .phase-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .phase.refinamento   .phase-title { color: var(--refinamento);  background: var(--refinamento-bg);  }
+    .phase.planejamento  .phase-title { color: var(--planejamento); background: var(--planejamento-bg); }
+    .phase.implementacao .phase-title { color: var(--implementacao);background: var(--implementacao-bg);}
+    .phase.qualidade     .phase-title { color: var(--qualidade);    background: var(--qualidade-bg);    }
+    .phase.revisao       .phase-title { color: var(--revisao);      background: var(--revisao-bg);      }
+    .phase.merge         .phase-title { color: #444;                background: var(--merge-bg);        }
+
+    /* ── Command card ── */
+    .cmd-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+    }
+    .cmd-card:last-child { margin-bottom: 0; }
+    .cmd-card.sub { margin-left: 16px; border-style: dashed; }
+
+    .cmd-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .cmd-name {
+      font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      background: var(--code-bg);
+      padding: 3px 8px;
+      border-radius: 5px;
+      white-space: nowrap;
+    }
+    .phase.refinamento   .cmd-name { color: var(--refinamento);  background: var(--refinamento-bg); }
+    .phase.planejamento  .cmd-name { color: var(--planejamento); background: var(--planejamento-bg); }
+    .phase.implementacao .cmd-name { color: var(--implementacao);background: var(--implementacao-bg);}
+    .phase.qualidade     .cmd-name { color: var(--qualidade);    background: var(--qualidade-bg);    }
+    .phase.revisao       .cmd-name { color: var(--revisao);      background: var(--revisao-bg);     }
+    .phase.merge         .cmd-name { color: #333;                background: var(--merge-bg);       }
+
+    .badge-new {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #fff;
+      background: #c0392b;
+      padding: 2px 7px;
+      border-radius: 10px;
+    }
+    .badge-changed {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #fff;
+      background: #c97a00;
+      padding: 2px 7px;
+      border-radius: 10px;
+    }
+
+    .cmd-tagline {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .cmd-body { font-size: 14px; }
+
+    .cmd-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 6px 16px;
+      margin-bottom: 8px;
+    }
+    .cmd-row:last-child { margin-bottom: 0; }
+    .row-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      padding-top: 2px;
+    }
+    .row-value { font-size: 14px; color: var(--text); }
+    .row-value strong { font-weight: 600; }
+
+    .row-value ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .row-value ul li::before {
+      content: "· ";
+      color: var(--muted);
+    }
+
+    code {
+      font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+      font-size: 12.5px;
+      background: var(--code-bg);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    /* ── Restrictions ── */
+    .restrictions {
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .restriction {
+      font-size: 13px;
+      display: flex;
+      gap: 6px;
+      align-items: baseline;
+    }
+    .restriction::before { content: "⚠"; font-size: 11px; color: #c97a00; }
+
+    /* ── Internals table ── */
+    .internals {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+    .internals-title {
+      padding: 14px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--muted);
+      background: var(--code-bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .int-row {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 16px;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .int-row:last-child { border-bottom: none; }
+    .int-cmd { font-family: "SF Mono", "Fira Code", "Consolas", monospace; font-size: 12.5px; color: var(--muted); }
+    .int-desc { color: var(--text); }
+
+    /* ── Env vars ── */
+    .env-block {
+      background: #1a1a18;
+      color: #d4d4c8;
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      margin-bottom: 48px;
+    }
+    .env-block .comment { color: #6b8a6b; }
+    .env-block .key { color: #9ecbff; }
+    .env-block .val { color: #b9d66e; }
+    .env-tip {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── Quick reference ── */
+    .quick-ref {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .qr-title {
+      padding: 14px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--muted);
+      background: var(--code-bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .qr-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 16px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      align-items: center;
+    }
+    .qr-row:last-child { border-bottom: none; }
+    .qr-profile { font-weight: 600; font-size: 13px; }
+    .qr-flow {
+      font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .qr-flow .arrow { color: #aaa; margin: 0 4px; }
+    .qr-note { font-size: 13px; color: var(--muted); font-style: italic; }
+
+    /* ── Section headings ── */
+    .section-heading {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--muted);
+      margin-bottom: 14px;
+      margin-top: 40px;
+    }
+    .section-heading:first-of-type { margin-top: 0; }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>Comandos Claude Code — estrutura-pedagogica</h1>
+    <p>Fluxo de desenvolvimento padrão do repositório, do ponto de vista do dev. Comandos com <code>_</code> no nome são internos e não devem ser invocados diretamente. Marcados como <span class="badge-new">novo</span> os comandos que não existiam na versão anterior deste guia, e <span class="badge-changed">mudou</span> os que tiveram comportamento alterado.</p>
+    <p class="updated">Atualizado a partir de <code>c:/projects/estrutura-pedagogica/.claude/commands/</code> em 2026-10-13.</p>
+  </div>
+
+  <!-- Flow diagram -->
+  <div class="flow">
+    <div class="flow-step refinamento">
+      <div class="flow-label">Refinamento</div>
+      <div class="flow-cmds">
+        <code>/refinar-feature</code><br>
+        <code>/documentar-e2e</code><br>
+        <code>/identificar-bug</code>
+      </div>
+    </div>
+    <div class="flow-step planejamento">
+      <div class="flow-label">Planejamento</div>
+      <div class="flow-cmds">
+        <code>/planejar-</code><br>
+        <code>implementacao</code>
+      </div>
+    </div>
+    <div class="flow-step implementacao">
+      <div class="flow-label">Implementação</div>
+      <div class="flow-cmds">
+        <code>/executar-plano</code><br>
+        <code>/criar-entidade</code><br>
+        <code>/criar-filtro</code><br>
+        <code>/criar-exportacao</code><br>
+        <code>/criar-service</code><br>
+        <code>/criar-testes</code><br>
+        <code>/criar-automacao</code>
+      </div>
+    </div>
+    <div class="flow-step qualidade">
+      <div class="flow-label">Qualidade</div>
+      <div class="flow-cmds">
+        <code>/revisar-</code><br>
+        <code>comentarios</code><br>
+        <code>/analisar-sonar</code>
+      </div>
+    </div>
+    <div class="flow-step revisao">
+      <div class="flow-label">Revisão</div>
+      <div class="flow-cmds">
+        <code>/analisar-pr</code>
+      </div>
+    </div>
+    <div class="flow-step merge">
+      <div class="flow-label">Merge</div>
+      <div class="flow-cmds">
+        <code>/merge-branch</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── REFINAMENTO ── -->
+  <div class="phase refinamento">
+    <div class="phase-title">Refinamento Técnico</div>
+    <p class="phase-subtitle">Normalmente feito pelo PO, mas o dev recorre a estes comandos quando o card chega sem User Story, sem caderno E2E, ou é um bug sem diagnóstico.</p>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <span class="cmd-name">/refinar-feature &lt;EFC-XXXX&gt;</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-row">
+          <span class="row-label">O que faz</span>
+          <span class="row-value">Dispara um subagente de pesquisa que lê o card no Jira, verifica handoff de design (zip anexo) e explora o repositório. Com isso, redige uma <strong>User Story estruturada</strong> (contexto, "Como… quero… para que…", critérios de aceite numerados, regras de negócio e — se houver — um bloco de Complementos Técnicos). Pergunta sobre onde busca/paginação são processadas quando a feature envolve listagem. Apresenta para aprovação antes de gravar qualquer coisa.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Quando usar</span>
+          <span class="row-value">Quando o card chega sem User Story definida — antes de qualquer planejamento técnico.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Saída</span>
+          <span class="row-value">Atualiza a descrição do card no Jira (formato ADF) e salva <code>Docs/user-story-EFC-XXXX.md</code> localmente — é esse arquivo que o <code>/planejar-implementacao</code> vai ler depois.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Pré-requisitos</span>
+          <span class="row-value">Variáveis <code>JIRA_BASE_URL</code>, <code>JIRA_USER</code> e <code>JIRA_API_TOKEN</code> exportadas (<code>! export NOME=valor</code>).</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <span class="cmd-name">/documentar-e2e &lt;EFC-XXXX&gt;</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-row">
+          <span class="row-label">O que faz</span>
+          <span class="row-value">Gera um caderno de testes em Gherkin (Given/When/Then), em <strong>linguagem de negócio pura</strong> — sem botão, modal, aba, status HTTP ou nome de classe. Lê <code>Docs/user-story-EFC-XXXX.md</code> se existir, senão busca no Jira. Apresenta para aprovação, depois anexa ao card e remove o arquivo local.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Quando usar</span>
+          <span class="row-value">Após a User Story aprovada — serve de contrato de aceite para QA/UAT. Não confundir com a automação Playwright (<code>/criar-automacao</code>), que é técnica e vive no repositório.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <span class="cmd-name">/identificar-bug &lt;EFC-XXXX&gt;</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-row">
+          <span class="row-label">O que faz</span>
+          <span class="row-value">Garante que o repositório está em <code>master</code> atualizado e sem alterações pendentes, depois dispara um subagente que lê o card (incluindo anexos) e explora o código para entender o fluxo com problema. Gera dois documentos aprovados separadamente: um <strong>bug report</strong> em linguagem de negócio (passos de reprodução, impacto, comportamento esperado) e um <strong>caderno de testes E2E</strong> com cenário de regressão.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Quando usar</span>
+          <span class="row-value">Ao receber um card de bug, antes de abrir a branch de correção. Serve como substituto válido dos CAs para o <code>/planejar-implementacao</code>.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PLANEJAMENTO ── -->
+  <div class="phase planejamento">
+    <div class="phase-title">Planejamento Técnico</div>
+    <p class="phase-subtitle">Ponto de entrada padrão do dev quando a User Story já existe.</p>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <span class="cmd-name">/planejar-implementacao &lt;EFC-XXXX&gt;</span>
+        <span class="badge-changed">mudou</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-row">
+          <span class="row-label">O que faz</span>
+          <span class="row-value">Um subagente lê o spec (<code>Docs/user-story-EFC-XXXX.md</code>, ou Jira, ou bug report) e avalia se há CAs suficientes. Com os CAs e complementos técnicos confirmados, outro subagente explora o repositório e monta um <strong>plano faseado</strong> respeitando a arquitetura em camadas (Domain → Domain.Services → Infra → API → Frontend). Cada fase indica o CA correspondente (ou "infraestrutura") e, quando aplicável, qual comando de scaffolding seguir.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Regra nova</span>
+          <span class="row-value">Toda fase de frontend implica uma fase de automação E2E (<code>/criar-automacao</code>). O plano <strong>sempre termina</strong> com uma fase de <code>/revisar-comentarios</code>, depois de todo o desenvolvimento e teste — mesmo que nenhuma fase anterior tenha mexido em comentários.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Saída</span>
+          <span class="row-value"><code>Docs/plano-tecnico-EFC-XXXX.md</code> (fases com status pendente/concluída) e <code>Docs/criterios-aceite-EFC-XXXX.md</code>.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Pré-requisitos</span>
+          <span class="row-value">User Story aprovada (idealmente via <code>/refinar-feature</code>).</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── IMPLEMENTAÇÃO ── -->
+  <div class="phase implementacao">
+    <div class="phase-title">Implementação</div>
+    <p class="phase-subtitle">O comando central é <code>/executar-plano</code>; os comandos de scaffolding abaixo podem ser chamados por ele (como subagente) ou diretamente pelo dev para uma necessidade pontual.</p>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <span class="cmd-name">/executar-plano &lt;EFC-XXXX&gt;</span>
+        <span class="badge-changed">mudou</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-row">
+          <span class="row-label">O que faz</span>
+          <span class="row-value">Lê <code>Docs/plano-tecnico-EFC-XXXX.md</code>, confirma que o branch não é protegido (<code>master</code>/<code>develop</code>/<code>homolog</code>/<code>production</code>) e executa as fases pendentes <strong>uma por vez</strong>, aguardando confirmação explícita entre elas. Quando a fase indicar um padrão de scaffolding, lê o comando correspondente do disco antes de implementar — nunca replica de memória.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Fluxo final</span>
+          <span class="row-value">
+            <ul>
+              <li><strong>4 — Build e testes:</strong> <code>dotnet test</code> (backend), <code>npm run build</code> + lint + Jest da feature (frontend), e a suíte E2E da feature se houve alteração de tela</li>
+              <li><strong>5 — Revisão de comentários:</strong> roda <code>/revisar-comentarios</code> sobre a feature inteira, não só o que este plano mudou</li>
+              <li><strong>6 — Commit:</strong> só após confirmação explícita do usuário</li>
+            </ul>
+          </span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Pré-requisitos</span>
+          <span class="row-value">Plano técnico existente. Branch <code>feature/EFC-XXXX-descricao</code> (ou <code>hotfix/...</code>) ativo.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmd-card sub">
+      <div class="cmd-header">
+        <span class="cmd-name">/criar-entidade &lt;NomeDaEntidade&gt;</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-row">
+          <span class="row-label">O que faz</span>
+          <span class="row-value">Scaffolding completo de entidade de domínio: classe (<code>BaseEntity</code>/<code>StatefulEntity</code>), interface e implementação de repositório, mapping EF Core, fixture Bogus para testes. Atualiza navegações reversas nas entidades relacionadas.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Inputs</span>
+          <span class="row-value">Nome (PascalCase), tipo (<code>Base</code>/<code>Stateful</code>), campos com tipo e relações.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmd-card sub">
+      <div class="cmd-header">
+        <span class="cmd-name">/criar-filtro &lt;Funcionalidade&gt;</span>
+        <span class="badge-changed">mudou</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-row">
+          <span class="row-label">O que faz</span>
+          <span class="row-value">Scaffolding de um filtro em cascata: enum de passos, DTO de request, repositório de filtro, <strong><code>FilterService</code> com um único método <code>Filter(request, passo)</code></strong> (switch por passo — não mais um método por passo), <code>ValidacaoService</code>, controller, configuração/service Angular do filtro e página de listagem (corpo vazio). Os passos 6 e 8 invocam <code>/criar-service</code> como subagente para gerar o service e o validador. Termina com testes de integração do <code>FilterService</code>.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Quando usar</span>
+          <span class="row-value">Quando a feature tem tela de listagem com filtro hierárquico (ex.: Rede → Escola → Turma).</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmd-card sub">
+      <div class="cmd-header">
+        <span class="cmd-name">/criar-exportacao &lt;Funcionalidade&gt;</span>
+        <span class="badge-changed">mudou</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-row">
+          <span class="row-label">O que faz</span>
+          <span class="row-value">Adiciona exportação Excel a uma feature que já tem filtro: DTO de exportação, <code>GetParaExport</code> no repositório, <code>Exportar{Funcionalidade}Service</code> (via subagente <code>/criar-service</code>), endpoint <code>/export</code> e botão de exportação no Angular.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Pré-requisito obrigatório</span>
+          <span class="row-value"><code>{Funcionalidade}FilterRequest</code> já precisa existir — se não existir, o comando <strong>interrompe</strong> e pede para rodar <code>/criar-filtro</code> primeiro.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmd-card sub">
+      <div class="cmd-header">
+        <span class="cmd-name">/criar-service &lt;Funcionalidade&gt; &lt;NomeService&gt;</span>
+        <span class="badge-changed">mudou</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-row">
+          <span class="row-label">O que faz</span>
+          <span class="row-value">Cria interface e implementação de um service de domínio: primary constructor C# 12, <code>ServiceResult&lt;T&gt;</code>, validação procedural, sem <code>Include()</code>, sem query em loop. Pode ser chamado diretamente ou como subagente por <code>criar-filtro</code>/<code>criar-exportacao</code>.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Regras novas</span>
+          <span class="row-value">Service público acima de ~200 linhas vira <strong>orquestrador</strong>, delegando etapas para services por papel (<code>Dados*</code>, <code>Validacao*</code>, <code>Efeitos*</code>). Proibido tipo aninhado (<code>record</code>/<code>class</code> privados) — DTO vai para <code>Domain/DTO</code>. <code>Update</code> direto vs. <code>Disable+Insert</code> conforme precisar reter histórico.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmd-card sub">
+      <div class="cmd-header">
+        <span class="cmd-name">/criar-testes &lt;NomeService | Feature&gt;</span>
+        <span class="badge-changed">mudou</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-row">
+          <span class="row-label">Escopo</span>
+          <span class="row-value">Agora cobre <strong>apenas</strong> Jest (frontend) e integração .NET (backend). A automação E2E com Playwright foi extraída para <code>/criar-automacao</code>.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">O que faz</span>
+          <span class="row-value">Frontend: testes de serviço (mock de <code>ApiClient</code>) e de componente (lógica pura extraída para classe local, sem <code>TestBed</code>). Backend: classe herdando <code>BaseTest</code>, seed via <code>SeedDatabase</code>, cobrindo caminho feliz, ramificações e variações de permissão. Apresenta cenários para aprovação antes de criar arquivos.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmd-card sub">
+      <div class="cmd-header">
+        <span class="cmd-name">/criar-automacao &lt;feature&gt;</span>
+        <span class="badge-new">novo</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-row">
+          <span class="row-label">O que faz</span>
+          <span class="row-value">Cria ou atualiza testes E2E Playwright em <code>frontend/tests/e2e/&lt;feature&gt;/</code>. Valida que o branch não é protegido, explora a feature (service, templates, rotas) e, se o usuário não indicou cenários específicos, propõe o que automatizar — incluindo testes defasados ou redundantes a corrigir — antes de implementar.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Regra central</span>
+          <span class="row-value">Um caminho feliz por feature; demais testes só cobrem o que é mutuamente exclusivo dele. Importa sempre de <code>tests/fixtures</code> (nunca <code>@playwright/test</code> direto). Todos os endpoints mockados. Atenção ao debounce do filtro (300ms) como causa recorrente de flakiness.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Quando usar</span>
+          <span class="row-value">Toda fase de frontend do plano técnico passa por aqui — e também é o passo final de validação visual de qualquer alteração de tela.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── QUALIDADE ── -->
+  <div class="phase qualidade">
+    <div class="phase-title">Qualidade — antes do PR</div>
+    <p class="phase-subtitle"><code>/revisar-comentarios</code> já roda automaticamente como última fase de <code>/executar-plano</code>; <code>/analisar-sonar</code> é manual, rode antes do push.</p>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <span class="cmd-name">/revisar-comentarios &lt;Feature&gt;</span>
+        <span class="badge-new">novo</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-row">
+          <span class="row-label">O que faz</span>
+          <span class="row-value">Lê <code>CLAUDE.md</code> e os <code>README.md</code> (raiz/backend/frontend) para extrair o critério <strong>vigente</strong> de comentário — nunca de memória. Mapeia todos os arquivos da feature (backend e frontend), classifica cada comentário em manter / reescrever / remover, aplica as mudanças preservando encoding e indentação, e roda build+testes para garantir que só comentário foi tocado.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Quando usar</span>
+          <span class="row-value">Como passo final de <code>/executar-plano</code>, ou isoladamente em qualquer feature existente. Abrange a feature inteira, não só o que uma sessão mudou.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <span class="cmd-name">/analisar-sonar [backend|frontend|ambos] [full]</span>
+        <span class="badge-new">novo</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-row">
+          <span class="row-label">O que faz</span>
+          <span class="row-value">Roda o scanner SonarQube local comparando o branch atual com a base (ou análise completa com <code>full</code>), aguarda o processamento e relata Quality Gate, bugs, vulnerabilidades, code smells novos e security hotspots a revisar — com arquivo e linha de cada issue quando houver.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Pré-requisitos</span>
+          <span class="row-value"><code>SONAR_HOST_URL</code>, <code>SONAR_TOKEN</code>, <code>SONAR_PROJECT_KEY_BACKEND</code>/<code>_FRONTEND</code> no bloco <code>env</code> de <code>.claude/settings.local.json</code>. Scanners (<code>dotnet-sonarscanner</code>, <code>sonar-scanner</code>) instalados globalmente.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Quando usar</span>
+          <span class="row-value">Antes do push — bugs, vulnerabilidades e hotspots devem ficar em zero.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── REVISÃO ── -->
+  <div class="phase revisao">
+    <div class="phase-title">Revisão de Código</div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <span class="cmd-name">/analisar-pr [branch | nº-PR] [EFC-XXXX | --criterios]</span>
+        <span class="badge-changed">mudou</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-row">
+          <span class="row-label">O que faz</span>
+          <span class="row-value">Analisa o diff entre dois branches (ou de um PR do GitHub via número) e gera <code>Docs/revisao-pr.md</code> com três seções: <strong>Conformidade com o Spec</strong> (CA por CA, considerando automação E2E como "testado"), <strong>Backend</strong> (N+1, projeções, autenticação, UnitOfWork, etc.) e <strong>Frontend</strong> (tipagem, erros HTTP, standalone, modais, guards).</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Novo: correção automática</span>
+          <span class="row-value">Ao final, pergunta se deseja disparar um subagente que avalia cada achado de forma independente, aplica os que concorda e justifica os que rejeita.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Modos de uso</span>
+          <span class="row-value">
+            <ul>
+              <li><code>/analisar-pr 212</code> — analisa o PR #212 do GitHub (<code>gh pr view</code>)</li>
+              <li><code>/analisar-pr master EFC-1234</code> — compara branch atual com master, valida os CAs do card</li>
+              <li><code>/analisar-pr master --criterios</code> — pede os CAs manualmente antes de analisar</li>
+            </ul>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MERGE ── -->
+  <div class="phase merge">
+    <div class="phase-title">Merge</div>
+
+    <div class="cmd-card">
+      <div class="cmd-header">
+        <span class="cmd-name">/merge-branch &lt;branch-origem&gt;</span>
+        <span class="badge-changed">mudou</span>
+      </div>
+      <div class="cmd-body">
+        <div class="cmd-row">
+          <span class="row-label">O que faz</span>
+          <span class="row-value">Traz as mudanças do branch informado para o branch atual (destino). Classifica cada conflito entre <strong>resolvível automaticamente</strong> e <strong>requer decisão humana</strong>, apresentando a triagem completa antes de resolver qualquer um. Roda build de verificação antes do commit do merge.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Passo novo — 4.5</span>
+          <span class="row-value">Após o merge (com ou sem conflito), verifica <strong>perdas silenciosas do auto-merge</strong>: arquivos deletados que só existiam no destino, e linhas truncadas em arquivos auto-mergeados sem conflito. Regra absoluta: nunca gerar, inferir ou colocar <code>NotImplementedException()</code> em código que pareça ausente — sempre verificar no histórico git antes.</span>
+        </div>
+        <div class="cmd-row">
+          <span class="row-label">Restrições</span>
+          <span class="row-value">
+            <div class="restrictions">
+              <span class="restriction"><code>homolog</code> nunca pode ser a origem.</span>
+              <span class="restriction">Merges para <code>production</code> só são permitidos a partir de <code>master</code>.</span>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Internals -->
+  <p class="section-heading">Comandos internos — não invocar diretamente</p>
+  <div class="internals">
+    <div class="internals-title">Subrotinas chamadas pelos comandos acima</div>
+    <div class="int-row">
+      <span class="int-cmd">_jira.md</span>
+      <span class="int-desc">Verifica variáveis de ambiente e busca um ticket no Jira via <code>curl.exe</code>.</span>
+    </div>
+    <div class="int-row">
+      <span class="int-cmd">_jira-handoff.md</span>
+      <span class="int-desc">Baixa o zip de handoff de design anexado ao Jira e extrai em <code>Docs/handoff-{TICKET}/</code>.</span>
+    </div>
+    <div class="int-row">
+      <span class="int-cmd">_jira-documentar.md</span>
+      <span class="int-desc">Anexa um arquivo ao Jira como attachment e remove o arquivo local em seguida.</span>
+    </div>
+    <div class="int-row">
+      <span class="int-cmd">_explorar-repositorio.md</span>
+      <span class="int-desc">Orienta o agente a usar a documentação interna e o enum <code>Funcionalidade.cs</code> como ponto de partida.</span>
+    </div>
+    <div class="int-row">
+      <span class="int-cmd">_git-verificar-sem-alteracoes.md</span>
+      <span class="int-desc">Verifica <code>git status</code> e interrompe o fluxo se houver alterações não commitadas.</span>
+    </div>
+    <div class="int-row">
+      <span class="int-cmd">_pr-criterios-analise.md</span>
+      <span class="int-desc">Define os critérios de backend e frontend aplicados pelo <code>/analisar-pr</code>.</span>
+    </div>
+    <div class="int-row">
+      <span class="int-cmd">_pr-resolver-branches.md</span>
+      <span class="int-desc">Resolve <code>BRANCH_ORIGEM</code> e <code>BRANCH_DESTINO</code> a partir dos argumentos do <code>/analisar-pr</code> (inclui suporte a número de PR via <code>gh pr view</code>).</span>
+    </div>
+    <div class="int-row">
+      <span class="int-cmd">_pr-resolver-criterios.md</span>
+      <span class="int-desc">Obtém os critérios de aceite do arquivo local, do Jira ou do usuário para o <code>/analisar-pr</code>.</span>
+    </div>
+    <div class="int-row">
+      <span class="int-cmd">_padrao-leitura-escrita.md <span class="badge-new">novo</span></span>
+      <span class="int-desc">Padrão de side-panel/modal: leitura em <code>Subscription</code> abortável ao fechar, escrita que bloqueia o fechamento (<code>preventClose</code> com <code>saving</code>) até concluir.</span>
+    </div>
+    <div class="int-row">
+      <span class="int-cmd">_e2e-execucao.md <span class="badge-new">novo</span></span>
+      <span class="int-desc">Como rodar a suíte E2E de uma única feature e o que fazer quando a falha é de setup/autenticação (não insistir, reportar e validar só a compilação dos specs).</span>
+    </div>
+  </div>
+
+  <!-- Env vars -->
+  <p class="section-heading">Variáveis de ambiente necessárias</p>
+  <div class="env-block">
+    <span class="comment"># Jira — exporte antes de usar comandos que acessam o Jira</span><br>
+    <span class="key">export JIRA_BASE_URL</span>=<span class="val">"https://sua-empresa.atlassian.net"</span><br>
+    <span class="key">export JIRA_USER</span>=<span class="val">"seu.email@empresa.com"</span><br>
+    <span class="key">export JIRA_API_TOKEN</span>=<span class="val">"seu-token-aqui"</span><br>
+    <br>
+    <span class="comment"># SonarQube — configurar uma vez em .claude/settings.local.json (bloco "env"), não exportar</span><br>
+    <span class="key">SONAR_HOST_URL</span>=<span class="val">"https://seu-sonarqube"</span><br>
+    <span class="key">SONAR_TOKEN</span>=<span class="val">"seu-token"</span><br>
+    <span class="key">SONAR_PROJECT_KEY_BACKEND</span>=<span class="val">"..."</span><br>
+    <span class="key">SONAR_PROJECT_KEY_FRONTEND</span>=<span class="val">"..."</span>
+  </div>
+  <p class="env-tip">No Claude Code, use <code>! export NOME=valor</code> para exportar sem sair da sessão. As variáveis de Sonar ficam em <code>.claude/settings.local.json</code> e só valem a partir do início de uma nova sessão.</p>
+
+  <hr>
+
+  <!-- Quick reference -->
+  <p class="section-heading">Resumo rápido por cenário</p>
+  <div class="quick-ref">
+    <div class="qr-title">Fluxos típicos do dev</div>
+    <div class="qr-row">
+      <span class="qr-profile">Feature nova, do zero</span>
+      <span class="qr-flow">
+        <code>/refinar-feature EFC-XXXX</code>
+        <span class="arrow">→</span>
+        <code>/planejar-implementacao EFC-XXXX</code>
+        <span class="arrow">→</span>
+        <code>/executar-plano EFC-XXXX</code>
+      </span>
+    </div>
+    <div class="qr-row">
+      <span class="qr-profile">User Story já pronta (PO fez)</span>
+      <span class="qr-flow">
+        <code>/planejar-implementacao EFC-XXXX</code>
+        <span class="arrow">→</span>
+        <code>/executar-plano EFC-XXXX</code>
+      </span>
+    </div>
+    <div class="qr-row">
+      <span class="qr-profile">Card de bug</span>
+      <span class="qr-flow">
+        <code>/identificar-bug EFC-XXXX</code>
+        <span class="arrow">→</span>
+        <code>/planejar-implementacao EFC-XXXX</code>
+        <span class="arrow">→</span>
+        <code>/executar-plano EFC-XXXX</code>
+      </span>
+    </div>
+    <div class="qr-row">
+      <span class="qr-profile">Precisa só de um filtro + export pontual</span>
+      <span class="qr-flow">
+        <code>/criar-filtro Funcionalidade</code>
+        <span class="arrow">→</span>
+        <code>/criar-exportacao Funcionalidade</code>
+      </span>
+    </div>
+    <div class="qr-row">
+      <span class="qr-profile">Antes do push</span>
+      <span class="qr-flow">
+        <code>/analisar-sonar</code>
+        <span style="font-style:italic;color:#aaa">(revisar-comentarios já rodou no executar-plano)</span>
+      </span>
+    </div>
+    <div class="qr-row">
+      <span class="qr-profile">Antes de abrir/aprovar o PR</span>
+      <span class="qr-flow"><code>/analisar-pr master EFC-XXXX</code></span>
+    </div>
+    <div class="qr-row">
+      <span class="qr-profile">Atualizando a branch de feature</span>
+      <span class="qr-flow"><code>/merge-branch develop</code></span>
+    </div>
+    <div class="qr-row">
+      <span class="qr-profile">Só a automação E2E de uma tela alterada</span>
+      <span class="qr-flow"><code>/criar-automacao nome-da-feature</code></span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/colors_and_type.css">
+<script src="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/_ds_bundle.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<style>body{margin:0;background:#F2F2F2;font-family:Nunito,sans-serif;color:#0F0F10}a{color:#242CC2}a:hover{color:#1E258F}.material-symbols-outlined{font-size:20px;line-height:1}</style>
+</helmet>
+<section style="padding:48px 48px 0;display:flex;flex-direction:column;gap:24px">
+  <div id="6a" style="display:flex;gap:8px;align-items:center">
+      <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">6a</span>
+      <a href="Tela completa.dc.html" style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Tela completa: filtro + toolbar + lista (abrir tela)</a>
+  </div>
+  <div id="5a" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">5a</span>
+      <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Toolbar da lista</span>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:560px">Seleção, busca, contagem, ordenação e troca de visualização. Marque a caixa para ver o estado com itens selecionados; desktop e mobile compartilham o estado.</p>
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="width:1200px;flex:none;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15)">
+        <div style="padding:24px 32px;white-space:nowrap;display:flex;align-items:center;gap:16px">
+          <button onClick="{{ toggleSel }}" style="all:unset;cursor:pointer;flex:none;width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ chkBorder }};background:{{ chkBg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">{{ chkIcon }}</span></button>
+          <div style="display:flex;align-items:center;gap:8px;width:320px;height:40px;padding:0 12px;box-sizing:border-box;border:1px solid #C3C8D1;border-radius:8px;color:#65686E;font-size:14px">
+            <span class="material-symbols-outlined">search</span>Busque por nome ou RA
+          </div>
+          <sc-if value="{{ sel }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;align-items:center;gap:12px;font-size:14px">
+              <span style="font-weight:700">20 de 20 selecionados</span>
+              <button onClick="{{ toggleSel }}" style="all:unset;cursor:pointer;color:#242CC2;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="color:#1E258F">Limpar seleção</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ notSel }}" hint-placeholder-val="{{ true }}">
+            <span style="font-size:14px;color:#3D3F42">20 de 20 itens</span>
+          </sc-if>
+          <div style="flex:1"></div>
+          <div style="position:relative">
+            <button onClick="{{ toggleSort }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border:1px solid {{ sortBorder }};border-radius:8px;font-size:14px;background:#fff">
+              <span class="material-symbols-outlined" style="color:#65686E">sort</span>{{ sortLabel }}<span class="material-symbols-outlined" style="color:#3D3F42">expand_more</span>
+            </button>
+            <sc-if value="{{ sortOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;right:0;top:44px;z-index:2;width:220px;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:4px 0">
+                <sc-for list="{{ sorts }}" as="o" hint-placeholder-count="4">
+                  <button onClick="{{ o.pick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:space-between;width:100%;height:40px;padding:0 12px;font-size:14px;color:{{ o.color }}" style-hover="background:#EBEDF1">{{ o.label }}<span class="material-symbols-outlined" style="font-size:18px">{{ o.icon }}</span></button>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+          <div style="display:flex;border:1px solid #C3C8D1;border-radius:8px;overflow:hidden;height:40px;box-sizing:border-box">
+            <button onClick="{{ setCards }}" title="Cartões" style="all:unset;cursor:pointer;width:40px;display:flex;align-items:center;justify-content:center;background:{{ cardsBg }};color:{{ cardsFg }}"><span class="material-symbols-outlined">grid_view</span></button>
+            <button onClick="{{ setList }}" title="Lista" style="all:unset;cursor:pointer;width:40px;display:flex;align-items:center;justify-content:center;border-left:1px solid #C3C8D1;background:{{ listBg }};color:{{ listFg }}"><span class="material-symbols-outlined">view_list</span></button>
+          </div>
+        </div>
+      </div>
+      <div style="width:360px;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15)">
+        <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;border:1px solid #C3C8D1;border-radius:8px;color:#65686E;font-size:14px">
+            <span class="material-symbols-outlined">search</span>Busque por nome ou RA
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <button onClick="{{ toggleSel }}" style="all:unset;cursor:pointer;flex:none;width:44px;height:44px;margin-left:-12px;display:flex;align-items:center;justify-content:center">
+              <span style="width:20px;height:20px;box-sizing:border-box;border-radius:4px;border:{{ chkBorder }};background:{{ chkBg }};color:#fff;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:16px">{{ chkIcon }}</span></span>
+            </button>
+            <span style="flex:1;min-width:0;font-size:14px;color:#3D3F42;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ countMobile }}</span>
+            <div style="position:relative">
+              <button onClick="{{ toggleSort }}" title="{{ sortLabel }}" style="all:unset;box-sizing:border-box;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid {{ sortBorder }};border-radius:8px;color:#3D3F42"><span class="material-symbols-outlined">sort</span></button>
+              <sc-if value="{{ sortOpen }}" hint-placeholder-val="{{ false }}">
+                <div style="position:absolute;right:0;top:48px;z-index:2;width:220px;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:4px 0">
+                  <sc-for list="{{ sorts }}" as="o" hint-placeholder-count="4">
+                    <button onClick="{{ o.pick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:space-between;width:100%;height:44px;padding:0 12px;font-size:14px;color:{{ o.color }}" style-hover="background:#EBEDF1">{{ o.label }}<span class="material-symbols-outlined" style="font-size:18px">{{ o.icon }}</span></button>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+            <div style="display:flex;border:1px solid #C3C8D1;border-radius:8px;overflow:hidden;height:44px;box-sizing:border-box">
+              <button onClick="{{ setCards }}" title="Cartões" style="all:unset;cursor:pointer;width:44px;display:flex;align-items:center;justify-content:center;background:{{ cardsBg }};color:{{ cardsFg }}"><span class="material-symbols-outlined">grid_view</span></button>
+              <button onClick="{{ setList }}" title="Lista" style="all:unset;cursor:pointer;width:44px;display:flex;align-items:center;justify-content:center;border-left:1px solid #C3C8D1;background:{{ listBg }};color:{{ listFg }}"><span class="material-symbols-outlined">view_list</span></button>
+            </div>
+          </div>
+          <sc-if value="{{ sel }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ toggleSel }}" style="all:unset;cursor:pointer;align-self:flex-start;height:32px;display:flex;align-items:center;color:#242CC2;font-family:Archivo,sans-serif;font-weight:700;font-size:14px">Limpar seleção</button>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="4a" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">4a</span>
+      <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Campo de resumo, desktop</span>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:560px">Versão desktop da <a href="#1b">1b</a>. Rótulo e caminho ficam na mesma linha; o magenta continua só no ícone e no contador.</p>
+    <div style="width:1200px;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);overflow:hidden">
+      <div style="padding:32px;display:flex;flex-direction:column;gap:16px">
+        <div style="font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">Painel do Aluno</div>
+        <div style="border:1px solid {{ borderF }};border-radius:8px;overflow:hidden">
+          <button onClick="{{ toggleF }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;height:48px;padding:0 12px 0 16px;background:#fff" style-hover="background:#F8F9FB">
+            <span class="material-symbols-outlined" style="color:#9D0364;font-size:24px;flex:none">filter_alt</span>
+            <span style="display:flex;align-items:center;gap:6px;font-family:Archivo,sans-serif;font-weight:700;font-size:14px;flex:none">Filtros
+              <span style="display:flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 5px;box-sizing:border-box;border-radius:999px;background:#9D0364;color:#fff;font-size:12px">5</span>
+            </span>
+            <span style="width:1px;height:24px;background:#C3C8D1;flex:none"></span>
+            <span style="flex:1;min-width:0;font-size:14px;line-height:24px;color:#3D3F42;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">2026 / Alfa / Campinas / 5º Ano Regular</span>
+            <span style="flex:none;display:flex;align-items:center;gap:4px;font-family:Archivo,sans-serif;font-weight:700;font-size:14px;color:#3D3F42">{{ labelF }}<span class="material-symbols-outlined">{{ chevF }}</span></span>
+          </button>
+          <sc-if value="{{ openF }}" hint-placeholder-val="{{ false }}">
+            <div style="border-top:1px solid #EBEDF1;padding:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;background:#F8F9FB">
+              <sc-for list="{{ fields }}" as="f" hint-placeholder-count="4">
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <span style="font-size:12px;line-height:20px;color:#65686E">{{ f.label }}</span>
+                  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;height:40px;padding:0 12px;border:1px solid #C3C8D1;border-radius:8px;font-size:14px;font-weight:700;background:#fff">{{ f.value }}<span class="material-symbols-outlined" style="color:#65686E">expand_more</span></div>
+                </div>
+              </sc-for>
+            </div>
+          <div style="display:flex;justify-content:flex-end;gap:8px;padding:0 16px 16px;background:#F8F9FB"><button style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;height:32px;padding:0 12px;border:1px solid #9D0364;border-radius:8px;background:#fff;color:#9D0364;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="background:#F8F9FB">Limpar</button><button style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;height:32px;padding:0 12px;border:1px solid #9D0364;border-radius:8px;background:#9D0364;color:#fff;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="background:#6E0246;border-color:#6E0246">Aplicar</button></div></sc-if>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;height:44px;max-width:480px;padding:0 12px;border:1px solid #C3C8D1;border-radius:8px;color:#65686E;font-size:14px">
+          <span class="material-symbols-outlined">search</span>Busque por nome ou RA
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="3a" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">3a</span>
+      <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Item único, desktop</span>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:560px">Mesma estrutura da <a href="#2a">2a</a>. Com mais espaço, a barra mostra o caminho completo e o contador; o painel distribui os campos em quatro colunas.</p>
+    <div style="width:1200px;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);overflow:hidden">
+      <div style="padding:32px;display:flex;flex-direction:column;gap:16px">
+        <div style="font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">Painel do Aluno</div>
+        <div style="border:1px solid #9D0364;border-radius:8px;overflow:hidden">
+          <button onClick="{{ toggleE }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;height:48px;padding:0 12px 0 16px;background:#9D0364;color:#fff" style-hover="background:#6E0246">
+            <span class="material-symbols-outlined" style="flex:none">filter_alt</span>
+            <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:16px;flex:none">Filtro</span>
+            <span style="flex:none;display:flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;box-sizing:border-box;border-radius:999px;background:#fff;color:#9D0364;font-family:Archivo,sans-serif;font-weight:700;font-size:12px">5</span>
+            <span style="width:1px;height:24px;background:#BA4F93;flex:none"></span>
+            <span style="flex:1;min-width:0;display:flex;align-items:center;gap:4px;font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden">2026<span class="material-symbols-outlined" style="font-size:18px;color:#D89AC1">chevron_right</span>Alfa<span class="material-symbols-outlined" style="font-size:18px;color:#D89AC1">chevron_right</span>Campinas<span class="material-symbols-outlined" style="font-size:18px;color:#D89AC1">chevron_right</span>5º Ano Regular</span>
+            <span style="flex:none;display:flex;align-items:center;gap:4px;font-family:Archivo,sans-serif;font-weight:700;font-size:14px">{{ labelE }}<span class="material-symbols-outlined">{{ chevE }}</span></span>
+          </button>
+          <sc-if value="{{ openE }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;background:#F8F9FB">
+              <sc-for list="{{ fields }}" as="f" hint-placeholder-count="4">
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <span style="font-size:12px;line-height:20px;color:#65686E">{{ f.label }}</span>
+                  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;height:40px;padding:0 12px;border:1px solid #C3C8D1;border-radius:8px;font-size:14px;font-weight:700;background:#fff">{{ f.value }}<span class="material-symbols-outlined" style="color:#65686E">expand_more</span></div>
+                </div>
+              </sc-for>
+            </div>
+          <div style="display:flex;justify-content:flex-end;gap:8px;padding:0 16px 16px;background:#F8F9FB"><button style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;height:32px;padding:0 12px;border:1px solid #9D0364;border-radius:8px;background:#fff;color:#9D0364;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="background:#F8F9FB">Limpar</button><button style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;height:32px;padding:0 12px;border:1px solid #9D0364;border-radius:8px;background:#9D0364;color:#fff;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="background:#6E0246;border-color:#6E0246">Aplicar</button></div></sc-if>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;height:44px;max-width:480px;padding:0 12px;border:1px solid #C3C8D1;border-radius:8px;color:#65686E;font-size:14px">
+          <span class="material-symbols-outlined">search</span>Busque por nome ou RA
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="2a" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">2a</span>
+      <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Último nível em destaque, item único</span>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:360px">Usa a barra magenta da <a href="#1c">1c</a>, mas o painel abre dentro do mesmo contorno, como na <a href="#1b">1b</a>. Aberto, o caminho completo aparece no topo do painel.</p>
+    <div style="display:flex;gap:24px;align-items:flex-start">
+      <sc-for list="{{ widths }}" as="w" hint-placeholder-count="2">
+        <div style="width:{{ w.px }};background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);overflow:hidden">
+          <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+            <div style="font-family:Archivo,sans-serif;font-weight:600;font-size:20px;line-height:28px">Painel do Aluno</div>
+            <div style="border:1px solid #9D0364;border-radius:8px;overflow:hidden">
+              <button onClick="{{ toggleD }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:8px;width:100%;height:44px;padding:0 8px 0 14px;background:#9D0364;color:#fff" style-hover="background:#6E0246">
+                <span class="material-symbols-outlined" style="flex:none">filter_alt</span>
+                <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;flex:none">Filtro</span>
+                <span style="width:1px;height:20px;background:#BA4F93;flex:none"></span>
+                <span style="flex:1;min-width:0;font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">5º Ano Regular</span>
+                <span style="flex:none;font-family:Archivo,sans-serif;font-weight:700;font-size:12px;height:22px;display:flex;align-items:center;padding:0 8px;border-radius:999px;background:#fff;color:#9D0364">+3</span>
+                <span class="material-symbols-outlined" style="flex:none">{{ chevD }}</span>
+              </button>
+              <sc-if value="{{ openD }}" hint-placeholder-val="{{ false }}">
+                <div style="padding:12px;display:flex;flex-direction:column;gap:8px;background:#F8F9FB">
+                  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:2px;font-size:13px;font-weight:700;color:#6E0246;padding-bottom:4px">2026<span class="material-symbols-outlined" style="font-size:16px">chevron_right</span>Alfa<span class="material-symbols-outlined" style="font-size:16px">chevron_right</span>Campinas<span class="material-symbols-outlined" style="font-size:16px">chevron_right</span>5º Ano Regular</div>
+                  <sc-for list="{{ fields }}" as="f" hint-placeholder-count="4">
+                    <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;line-height:20px;color:#65686E">{{ f.label }}</span><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;height:44px;padding:0 12px;border:1px solid #C3C8D1;border-radius:8px;font-size:14px;font-weight:700;background:#fff">{{ f.value }}<span class="material-symbols-outlined" style="color:#65686E">expand_more</span></div></div>
+                  </sc-for>
+                <div style="display:flex;justify-content:flex-end;gap:8px;padding-top:4px"><button style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;height:40px;padding:0 12px;border:1px solid #9D0364;border-radius:8px;background:#fff;color:#9D0364;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="background:#F8F9FB">Limpar</button><button style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;height:40px;padding:0 12px;border:1px solid #9D0364;border-radius:8px;background:#9D0364;color:#fff;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="background:#6E0246;border-color:#6E0246">Aplicar</button></div></div>
+              </sc-if>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;border:1px solid #C3C8D1;border-radius:8px;color:#65686E;font-size:14px">
+              <span class="material-symbols-outlined">search</span>Busque por nome ou RA
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+<section style="padding:48px;display:flex;flex-direction:column;gap:24px">
+  <div style="display:flex;flex-direction:column;gap:4px">
+    <h1 style="margin:0;font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">Filtro + breadcrumb em um único elemento</h1>
+    <p style="margin:0;font-size:14px;line-height:24px;color:#65686E">Toque no elemento para abrir e fechar o painel de filtros. Cada opção aparece em 360px e 320px.</p>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start">
+
+    <!-- 1a -->
+    <div id="1a" style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;gap:8px;align-items:center">
+        <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">1a</span>
+        <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Barra segmentada</span>
+      </div>
+      <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:360px">Mantém o botão magenta à esquerda, mas fundido ao breadcrumb num só contorno. Os níveis mais amplos viram "…" e só os dois últimos ficam visíveis.</p>
+      <div style="display:flex;gap:24px;align-items:flex-start">
+        <sc-for list="{{ widths }}" as="w" hint-placeholder-count="2">
+          <div style="width:{{ w.px }};background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);overflow:hidden">
+            <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+              <div style="font-family:Archivo,sans-serif;font-weight:600;font-size:20px;line-height:28px">Painel do Aluno</div>
+              <button onClick="{{ toggleA }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:stretch;width:100%;height:44px;border:1px solid #9D0364;border-radius:8px;overflow:hidden;background:#fff">
+                <span style="display:flex;align-items:center;gap:6px;padding:0 12px;background:#9D0364;color:#fff;font-family:Archivo,sans-serif;font-weight:700;font-size:14px;flex:none">
+                  <span class="material-symbols-outlined">filter_alt</span>
+                  <span style="display:flex;align-items:center;justify-content:center;min-width:20px;height:20px;border-radius:999px;background:#fff;color:#9D0364;font-size:12px">5</span>
+                </span>
+                <span style="flex:1;min-width:0;display:flex;align-items:center;padding:0 4px 0 8px;font-family:Nunito,sans-serif;font-weight:700;font-size:13px;color:#6E0246;overflow:hidden">
+                  <span style="display:flex;align-items:center;gap:2px;white-space:nowrap;min-width:0"><span style="flex:none">…</span><span class="material-symbols-outlined" style="font-size:16px;flex:none">chevron_right</span><span style="overflow:hidden;text-overflow:ellipsis;min-width:0">Campinas</span><span class="material-symbols-outlined" style="font-size:16px;flex:none">chevron_right</span><span style="flex:none">5º Ano Regular</span></span>
+                </span>
+                <span style="display:flex;align-items:center;padding:0 8px;color:#9D0364;flex:none" class="material-symbols-outlined">{{ chevA }}</span>
+              </button>
+              <sc-if value="{{ openA }}" hint-placeholder-val="{{ false }}">
+                <div style="border:1px solid #C3C8D1;border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:8px">
+                  <sc-for list="{{ fields }}" as="f" hint-placeholder-count="4">
+                    <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;line-height:20px;color:#65686E">{{ f.label }}</span><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;height:44px;padding:0 12px;border:1px solid #C3C8D1;border-radius:8px;font-size:14px;font-weight:700;background:#fff">{{ f.value }}<span class="material-symbols-outlined" style="color:#65686E">expand_more</span></div></div>
+                  </sc-for>
+                <div style="display:flex;justify-content:flex-end;gap:8px;padding-top:4px"><button style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;height:40px;padding:0 12px;border:1px solid #9D0364;border-radius:8px;background:#fff;color:#9D0364;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="background:#F8F9FB">Limpar</button><button style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;height:40px;padding:0 12px;border:1px solid #9D0364;border-radius:8px;background:#9D0364;color:#fff;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="background:#6E0246;border-color:#6E0246">Aplicar</button></div></div>
+              </sc-if>
+              <div style="display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;border:1px solid #C3C8D1;border-radius:8px;color:#65686E;font-size:14px">
+                <span class="material-symbols-outlined">search</span>Busque por nome ou RA
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <!-- 1b -->
+    <div id="1b" style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;gap:8px;align-items:center">
+        <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">1b</span>
+        <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Campo de resumo</span>
+      </div>
+      <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:360px">Lê como um campo de formulário em duas linhas: rótulo com contador em cima, caminho embaixo. Visual mais calmo; o magenta fica só no contador.</p>
+      <div style="display:flex;gap:24px;align-items:flex-start">
+        <sc-for list="{{ widths }}" as="w" hint-placeholder-count="2">
+          <div style="width:{{ w.px }};background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);overflow:hidden">
+            <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+              <div style="font-family:Archivo,sans-serif;font-weight:600;font-size:20px;line-height:28px">Painel do Aluno</div>
+              <div style="border:1px solid {{ borderB }};border-radius:8px;overflow:hidden">
+                <button onClick="{{ toggleB }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;padding:8px 12px;min-height:56px;background:#fff" style-hover="background:#F8F9FB">
+                  <span class="material-symbols-outlined" style="color:#9D0364;font-size:24px;flex:none">filter_alt</span>
+                  <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px">
+                    <span style="display:flex;align-items:center;gap:6px;font-family:Archivo,sans-serif;font-weight:700;font-size:14px;line-height:16px">Filtros
+                      <span style="display:flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 4px;box-sizing:border-box;border-radius:999px;background:#9D0364;color:#fff;font-size:11px">5</span>
+                    </span>
+                    <span style="font-size:13px;line-height:20px;color:#3D3F42;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">2026 / Alfa / Campinas / 5º Ano Regular</span>
+                  </span>
+                  <span class="material-symbols-outlined" style="color:#3D3F42;flex:none">{{ chevB }}</span>
+                </button>
+                <sc-if value="{{ openB }}" hint-placeholder-val="{{ false }}">
+                  <div style="border-top:1px solid #EBEDF1;padding:12px;display:flex;flex-direction:column;gap:8px;background:#F8F9FB">
+                    <sc-for list="{{ fields }}" as="f" hint-placeholder-count="4">
+                      <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;line-height:20px;color:#65686E">{{ f.label }}</span><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;height:44px;padding:0 12px;border:1px solid #C3C8D1;border-radius:8px;font-size:14px;font-weight:700;background:#fff">{{ f.value }}<span class="material-symbols-outlined" style="color:#65686E">expand_more</span></div></div>
+                    </sc-for>
+                  <div style="display:flex;justify-content:flex-end;gap:8px;padding-top:4px"><button style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;height:40px;padding:0 12px;border:1px solid #9D0364;border-radius:8px;background:#fff;color:#9D0364;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="background:#F8F9FB">Limpar</button><button style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;height:40px;padding:0 12px;border:1px solid #9D0364;border-radius:8px;background:#9D0364;color:#fff;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="background:#6E0246;border-color:#6E0246">Aplicar</button></div></div>
+                </sc-if>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;border:1px solid #C3C8D1;border-radius:8px;color:#65686E;font-size:14px">
+                <span class="material-symbols-outlined">search</span>Busque por nome ou RA
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <!-- 1c -->
+    <div id="1c" style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;gap:8px;align-items:center">
+        <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">1c</span>
+        <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Último nível em destaque</span>
+      </div>
+      <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:360px">Mostra só o nível mais específico (o que diferencia a lista) e resume o restante em "+3". O caminho completo aparece ao abrir.</p>
+      <div style="display:flex;gap:24px;align-items:flex-start">
+        <sc-for list="{{ widths }}" as="w" hint-placeholder-count="2">
+          <div style="width:{{ w.px }};background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);overflow:hidden">
+            <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+              <div style="font-family:Archivo,sans-serif;font-weight:600;font-size:20px;line-height:28px">Painel do Aluno</div>
+              <button onClick="{{ toggleC }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:8px;width:100%;height:44px;padding:0 8px 0 14px;border-radius:8px;background:#9D0364;color:#fff" style-hover="background:#6E0246">
+                <span class="material-symbols-outlined" style="flex:none">filter_alt</span>
+                <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;flex:none">Filtro</span>
+                <span style="width:1px;height:20px;background:#BA4F93;flex:none"></span>
+                <span style="flex:1;min-width:0;font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">5º Ano Regular</span>
+                <span style="flex:none;font-family:Archivo,sans-serif;font-weight:700;font-size:12px;height:22px;display:flex;align-items:center;padding:0 8px;border-radius:999px;background:#fff;color:#9D0364">+3</span>
+                <span class="material-symbols-outlined" style="flex:none">{{ chevC }}</span>
+              </button>
+              <sc-if value="{{ openC }}" hint-placeholder-val="{{ false }}">
+                <div style="border:1px solid #C3C8D1;border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:8px">
+                  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:2px;font-size:13px;font-weight:700;color:#6E0246;padding-bottom:4px">2026<span class="material-symbols-outlined" style="font-size:16px">chevron_right</span>Alfa<span class="material-symbols-outlined" style="font-size:16px">chevron_right</span>Campinas<span class="material-symbols-outlined" style="font-size:16px">chevron_right</span>5º Ano Regular</div>
+                  <sc-for list="{{ fields }}" as="f" hint-placeholder-count="4">
+                    <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;line-height:20px;color:#65686E">{{ f.label }}</span><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;height:44px;padding:0 12px;border:1px solid #C3C8D1;border-radius:8px;font-size:14px;font-weight:700;background:#fff">{{ f.value }}<span class="material-symbols-outlined" style="color:#65686E">expand_more</span></div></div>
+                  </sc-for>
+                <div style="display:flex;justify-content:flex-end;gap:8px;padding-top:4px"><button style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;height:40px;padding:0 12px;border:1px solid #9D0364;border-radius:8px;background:#fff;color:#9D0364;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="background:#F8F9FB">Limpar</button><button style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;height:40px;padding:0 12px;border:1px solid #9D0364;border-radius:8px;background:#9D0364;color:#fff;font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="background:#6E0246;border-color:#6E0246">Aplicar</button></div></div>
+              </sc-if>
+              <div style="display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;border:1px solid #C3C8D1;border-radius:8px;color:#65686E;font-size:14px">
+                <span class="material-symbols-outlined">search</span>Busque por nome ou RA
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { a: false, b: false, c: false };
+  toolbarVals() {
+    const s = this.state, view = s.view || 'cards', sort = s.sort || 'Ordem alfabética';
+    const opts = ['Ordem alfabética', 'Maior frequência', 'Menor frequência', 'Mais ocorrências'];
+    return {
+      sel: !!s.sel, notSel: !s.sel,
+      toggleSel: () => this.setState(p => ({ sel: !p.sel })),
+      chkBorder: s.sel ? '1px solid #28975A' : '1px solid #65686E',
+      chkBg: s.sel ? '#28975A' : '#fff', chkIcon: s.sel ? 'check' : '',
+      countMobile: s.sel ? '20 selecionados' : '20 de 20 itens',
+      sortOpen: !!s.sortOpen, sortLabel: sort,
+      sortBorder: s.sortOpen ? '#242CC2' : '#C3C8D1',
+      toggleSort: () => this.setState(p => ({ sortOpen: !p.sortOpen })),
+      sorts: opts.map(l => ({ label: l, icon: l === sort ? 'check' : '', color: l === sort ? '#242CC2' : '#0F0F10', pick: () => this.setState({ sort: l, sortOpen: false }) })),
+      setCards: () => this.setState({ view: 'cards' }), setList: () => this.setState({ view: 'lista' }),
+      cardsBg: view === 'cards' ? '#242CC2' : '#fff', cardsFg: view === 'cards' ? '#fff' : '#3D3F42',
+      listBg: view === 'lista' ? '#242CC2' : '#fff', listFg: view === 'lista' ? '#fff' : '#3D3F42'
+    };
+  }
+  renderVals() {
+    const s = this.state, t = k => () => this.setState(p => ({ [k]: !p[k] }));
+    return {
+      widths: [{ px: '360px' }, { px: '320px' }],
+      fields: [
+        { label: 'Ano letivo', value: '2026' },
+        { label: 'Rede', value: 'Alfa' },
+        { label: 'Unidade', value: 'Campinas' },
+        { label: 'Série', value: '5º Ano Regular' }
+      ],
+      openA: s.a, openB: s.b, openC: s.c,
+      toggleA: t('a'), toggleB: t('b'), toggleC: t('c'),
+      chevA: s.a ? 'expand_less' : 'expand_more',
+      chevB: s.b ? 'expand_less' : 'expand_more',
+      chevC: s.c ? 'expand_less' : 'expand_more',
+      openD: s.d, toggleD: t('d'), chevD: s.d ? 'expand_less' : 'expand_more',
+      openE: s.e, toggleE: t('e'), chevE: s.e ? 'expand_less' : 'expand_more', labelE: s.e ? 'Ocultar filtros' : 'Mostrar filtros',
+      openF: s.f, toggleF: t('f'), chevF: s.f ? 'expand_less' : 'expand_more', labelF: s.f ? 'Ocultar filtros' : 'Mostrar filtros', borderF: s.f ? '#9D0364' : '#C3C8D1',
+      ...this.toolbarVals(),
+      openG: s.g, toggleG: t('g'), chevG: s.g ? 'expand_less' : 'expand_more', labelG: s.g ? 'Ocultar filtros' : 'Mostrar filtros', borderG: s.g ? '#9D0364' : '#C3C8D1',
+      openH: s.h, toggleH: t('h'), chevH: s.h ? 'expand_less' : 'expand_more', borderH: s.h ? '#9D0364' : '#C3C8D1',
+      isList: (s.view || 'cards') === 'lista', isCards: (s.view || 'cards') === 'cards',
+      students: [
+        ['AA', 'ALILOREM IPSUM DOLOR A', '25426104', 88, 0, 2],
+        ['BE', 'BENLOREM IPSUM DOLOR E', '26490724', 95, 60, 1],
+        ['BS', 'BETLOREM IPSUM DOLOR SII', '26493129', 91, 0, 0],
+        ['CM', 'CARLOREM IPSUM DOLOR M', '26501187', 72, 20, 3]
+      ].map(([ini, name, ra, f, oc, at]) => ({ ini, name, ra, oc, at, freq: f + '%', fBg: f >= 90 ? '#E3F6EA' : '#FFF1DC', fFg: f >= 90 ? '#1E7A47' : '#8A5300', rowBg: s.sel ? '#F8F9FB' : '#fff' })),
+      borderB: s.b ? '#9D0364' : '#C3C8D1'
+    };
+  }
+}
+</script>
+</body>
+</html>

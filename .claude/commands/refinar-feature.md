@@ -46,7 +46,7 @@ Dispare um subagente com o prompt abaixo, substituindo `{TICKET}` e `{CONTEUDO_C
 >
 > **Passo 1 — Identificar o repositório**
 >
-> Leia `c:/projects/salta_brain/repository_map.md`.
+> Leia `repository_map.md` na raiz do `pde_salta`.
 > Com base nas **Palavras-chave de cards** de cada repositório, identifique qual repo é mais provável para a implementação deste card.
 > Se houver ambiguidade, liste os dois candidatos mais prováveis.
 >

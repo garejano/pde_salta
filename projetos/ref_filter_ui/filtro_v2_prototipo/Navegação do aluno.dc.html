@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/colors_and_type.css">
+<script src="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/_ds_bundle.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<style>body{margin:0;background:#F2F2F2;font-family:Nunito,sans-serif;color:#0F0F10}a{color:#242CC2}a:hover{color:#1E258F}.material-symbols-outlined{font-size:20px;line-height:1}input::placeholder{color:#65686E}</style>
+</helmet>
+<section data-screen-label="Navegação do aluno" style="padding:48px;display:flex;flex-direction:column;gap:40px">
+  <div style="display:flex;flex-direction:column;gap:4px;max-width:760px">
+    <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">Navegação entre alunos: opções</span>
+    <span style="font-size:14px;line-height:24px;color:#3D3F42">Um componente que junta voltar para a lista, anterior, busca e próximo. Tudo é interativo: navegue com as setas ou busque um aluno. O cartão abaixo de cada barra mostra o aluno atual. Os nomes dos alunos são fictícios.</span>
+  </div>
+
+  <div id="1a" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">1a</span>
+      <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Paginador segmentado</span>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:760px">Anterior, posição e próximo viram um único controle. A posição "3 de 10" é o gatilho da busca, então o botão separado de lupa deixa de existir. Nas pontas da lista, a seta fica desabilitada. No mobile, o controle mantém a mesma forma com setas de 44px.</p>
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="width:1040px;flex:none;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);padding:32px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+        <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:32px;line-height:48px">Painel do Aluno</span>
+        <div style="display:flex;align-items:center;gap:16px;white-space:nowrap">
+          <a href="#1a" style="display:flex;align-items:center;gap:8px;font-family:Archivo,sans-serif;font-weight:700;font-size:14px;text-decoration:none"><span class="material-symbols-outlined">arrow_back</span>Voltar para lista de alunos</a>
+          <div style="flex:1"></div>
+          <div style="position:relative">
+            <div style="display:flex;align-items:stretch;height:40px;border:1px solid #242CC2;border-radius:8px;overflow:hidden;box-sizing:border-box">
+              <button onClick="{{ a.goPrev }}" title="Aluno anterior" style="all:unset;cursor:{{ a.prevCursor }};display:flex;align-items:center;gap:8px;padding:0 16px;color:{{ a.prevFg }};font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">arrow_back</span>Anterior</button>
+              <button onClick="{{ a.toggle }}" title="Buscar aluno" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:8px;padding:0 12px;border-left:1px solid #242CC2;border-right:1px solid #242CC2;color:#242CC2;font-size:14px;background:{{ a.trigBg }}" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">search</span><span style="font-weight:700">{{ a.pos }}</span><span class="material-symbols-outlined">{{ a.chev }}</span></button>
+              <button onClick="{{ a.goNext }}" title="Próximo aluno" style="all:unset;cursor:{{ a.nextCursor }};display:flex;align-items:center;gap:8px;padding:0 16px;color:{{ a.nextFg }};font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="background:#EBEDF1">Próximo<span class="material-symbols-outlined">arrow_forward</span></button>
+            </div>
+            <sc-if value="{{ a.open }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;right:0;top:44px;z-index:5;width:360px;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:8px;box-sizing:border-box;display:flex;flex-direction:column;gap:4px;white-space:normal">
+                <div style="display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border:1px solid #242CC2;border-radius:8px"><span class="material-symbols-outlined" style="color:#65686E">search</span><input value="{{ a.q }}" onChange="{{ a.onQ }}" placeholder="Buscar por nome ou RA" style="all:unset;flex:1;min-width:0;font-size:14px"></div>
+                <div style="max-height:280px;overflow:auto;display:flex;flex-direction:column">
+                  <sc-for list="{{ a.list }}" as="s" hint-placeholder-count="6">
+                    <button onClick="{{ s.pick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:4px 8px;border-radius:8px;background:{{ s.bg }}" style-hover="background:#EBEDF1">
+                      <span style="flex:none;width:32px;height:32px;border-radius:999px;background:#A9ADE6;color:#0F0F10;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-weight:700;font-size:12px">{{ s.ini }}</span>
+                      <span style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-size:13px;font-weight:700;color:{{ s.color }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ s.name }}</span><span style="font-size:12px;line-height:18px;color:#65686E">RA: {{ s.ra }}</span></span>
+                      <span class="material-symbols-outlined" style="color:#242CC2">{{ s.icon }}</span>
+                    </button>
+                  </sc-for>
+                  <sc-if value="{{ a.empty }}" hint-placeholder-val="{{ false }}"><span style="padding:16px 8px;font-size:14px;color:#3D3F42">Nenhum aluno encontrado.</span></sc-if>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:16px;border:1px solid #C3C8D1;border-radius:8px;max-width:380px">
+          <span style="flex:none;width:64px;height:64px;border-radius:999px;background:#A9ADE6;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-size:22px">{{ a.ini }}</span>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">{{ a.name }}</span><span style="font-size:12px;line-height:20px;color:#65686E">RA: {{ a.ra }} · 6º ano C - M</span></div>
+        </div>
+      </div>
+
+      <div style="width:360px;height:560px;flex:none;position:relative;overflow:hidden;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15)">
+        <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+          <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">Painel do Aluno</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <a href="#1a" style="flex:1;min-width:0;display:flex;align-items:center;gap:4px;height:44px;font-family:Archivo,sans-serif;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap"><span class="material-symbols-outlined">arrow_back</span>Lista de alunos</a>
+            <div style="flex:none;display:flex;align-items:stretch;height:44px;border:1px solid #242CC2;border-radius:8px;overflow:hidden;box-sizing:border-box">
+              <button onClick="{{ a.goPrev }}" title="Aluno anterior" style="all:unset;cursor:{{ a.prevCursor }};width:44px;display:flex;align-items:center;justify-content:center;color:{{ a.prevFg }}"><span class="material-symbols-outlined">arrow_back</span></button>
+              <button onClick="{{ a.openSheet }}" title="Buscar aluno" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:4px;padding:0 10px;border-left:1px solid #242CC2;border-right:1px solid #242CC2;color:#242CC2;font-size:14px;font-weight:700;white-space:nowrap"><span class="material-symbols-outlined">search</span>{{ a.posShort }}</button>
+              <button onClick="{{ a.goNext }}" title="Próximo aluno" style="all:unset;cursor:{{ a.nextCursor }};width:44px;display:flex;align-items:center;justify-content:center;color:{{ a.nextFg }}"><span class="material-symbols-outlined">arrow_forward</span></button>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px;border:1px solid #C3C8D1;border-radius:8px">
+            <span style="flex:none;width:56px;height:56px;border-radius:999px;background:#A9ADE6;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-size:20px">{{ a.ini }}</span>
+            <div style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:14px">{{ a.name }}</span><span style="font-size:12px;line-height:20px;color:#65686E">RA: {{ a.ra }} · 6º ano C - M</span></div>
+          </div>
+        </div>
+        <sc-if value="{{ a.sheet }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;z-index:10;background:#fff;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;height:56px;padding:0 4px 0 16px;border-bottom:1px solid #EBEDF1"><span style="flex:1;font-family:Archivo,sans-serif;font-weight:600;font-size:18px">Ir para aluno</span><button onClick="{{ a.closeSheet }}" title="Fechar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">close</span></button></div>
+            <div style="padding:12px 16px"><div style="display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;border:1px solid #242CC2;border-radius:8px"><span class="material-symbols-outlined" style="color:#65686E">search</span><input value="{{ a.q }}" onChange="{{ a.onQ }}" placeholder="Buscar por nome ou RA" style="all:unset;flex:1;min-width:0;font-size:16px"></div></div>
+            <div style="flex:1;overflow:auto;padding:0 8px">
+              <sc-for list="{{ a.list }}" as="s" hint-placeholder-count="6">
+                <button onClick="{{ s.pick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:4px 8px;border-radius:8px;background:{{ s.bg }}">
+                  <span style="flex:none;width:36px;height:36px;border-radius:999px;background:#A9ADE6;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-weight:700;font-size:13px">{{ s.ini }}</span>
+                  <span style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-size:14px;font-weight:700;color:{{ s.color }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ s.name }}</span><span style="font-size:12px;line-height:18px;color:#65686E">RA: {{ s.ra }}</span></span>
+                  <span class="material-symbols-outlined" style="color:#242CC2">{{ s.icon }}</span>
+                </button>
+              </sc-for>
+              <sc-if value="{{ a.empty }}" hint-placeholder-val="{{ false }}"><span style="display:block;padding:16px 8px;font-size:14px;color:#3D3F42">Nenhum aluno encontrado.</span></sc-if>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+
+  <div id="1e" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">1e</span>
+      <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Paginador compacto sem contorno</span>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:760px">Versão compacta da <a href="#1a">1a</a>, com as mesmas cores índigo e sem contorno. Anterior e Próximo são botões de texto com 32px de altura; a posição fica em um fundo cinza claro que indica que abre a busca. Fica na mesma linha do "Voltar".</p>
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="width:1040px;flex:none;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);padding:32px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+        <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:32px;line-height:48px">Painel do Aluno</span>
+        <div style="display:flex;align-items:center;gap:16px;white-space:nowrap">
+          <a href="#1e" style="display:flex;align-items:center;gap:8px;font-family:Archivo,sans-serif;font-weight:700;font-size:14px;text-decoration:none"><span class="material-symbols-outlined">arrow_back</span>Voltar para lista de alunos</a>
+          <div style="flex:1"></div>
+          <div style="position:relative;display:flex;align-items:center;gap:4px">
+            <button onClick="{{ e.goPrev }}" title="Aluno anterior" style="all:unset;cursor:{{ e.prevCursor }};display:flex;align-items:center;gap:4px;height:32px;padding:0 8px;border-radius:8px;color:{{ e.prevFg }};font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="background:#EBEDF1"><span class="material-symbols-outlined" style="font-size:18px">arrow_back</span>Anterior</button>
+            <button onClick="{{ e.toggle }}" title="Buscar aluno" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:6px;height:32px;padding:0 8px 0 10px;border-radius:8px;background:{{ e.pillBg }};color:#242CC2;font-size:13px" style-hover="background:#DDE0E6"><span class="material-symbols-outlined" style="font-size:18px">search</span><span style="font-weight:700">{{ e.pos }}</span><span class="material-symbols-outlined" style="font-size:18px">{{ e.chev }}</span></button>
+            <button onClick="{{ e.goNext }}" title="Próximo aluno" style="all:unset;cursor:{{ e.nextCursor }};display:flex;align-items:center;gap:4px;height:32px;padding:0 8px;border-radius:8px;color:{{ e.nextFg }};font-family:Archivo,sans-serif;font-weight:700;font-size:14px" style-hover="background:#EBEDF1">Próximo<span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span></button>
+            <sc-if value="{{ e.open }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;right:0;top:40px;z-index:5;width:360px;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:8px;box-sizing:border-box;display:flex;flex-direction:column;gap:4px;white-space:normal">
+                <div style="display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border:1px solid #242CC2;border-radius:8px"><span class="material-symbols-outlined" style="color:#65686E">search</span><input value="{{ e.q }}" onChange="{{ e.onQ }}" placeholder="Buscar por nome ou RA" style="all:unset;flex:1;min-width:0;font-size:14px"></div>
+                <div style="max-height:280px;overflow:auto;display:flex;flex-direction:column">
+                  <sc-for list="{{ e.list }}" as="s" hint-placeholder-count="6">
+                    <button onClick="{{ s.pick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:4px 8px;border-radius:8px;background:{{ s.bg }}" style-hover="background:#EBEDF1">
+                      <span style="flex:none;width:32px;height:32px;border-radius:999px;background:#A9ADE6;color:#0F0F10;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-weight:700;font-size:12px">{{ s.ini }}</span>
+                      <span style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-size:13px;font-weight:700;color:{{ s.color }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ s.name }}</span><span style="font-size:12px;line-height:18px;color:#65686E">RA: {{ s.ra }}</span></span>
+                      <span class="material-symbols-outlined" style="color:#242CC2">{{ s.icon }}</span>
+                    </button>
+                  </sc-for>
+                  <sc-if value="{{ e.empty }}" hint-placeholder-val="{{ false }}"><span style="padding:16px 8px;font-size:14px;color:#3D3F42">Nenhum aluno encontrado.</span></sc-if>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:16px;border:1px solid #C3C8D1;border-radius:8px;max-width:380px">
+          <span style="flex:none;width:64px;height:64px;border-radius:999px;background:#A9ADE6;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-size:22px">{{ e.ini }}</span>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">{{ e.name }}</span><span style="font-size:12px;line-height:20px;color:#65686E">RA: {{ e.ra }} · 6º ano C - M</span></div>
+        </div>
+      </div>
+
+      <div style="width:360px;height:560px;flex:none;position:relative;overflow:hidden;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15)">
+        <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+          <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">Painel do Aluno</span>
+          <div style="display:flex;align-items:center;gap:4px">
+            <a href="#1e" style="flex:1;min-width:0;display:flex;align-items:center;gap:4px;height:44px;font-family:Archivo,sans-serif;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap"><span class="material-symbols-outlined">arrow_back</span>Lista de alunos</a>
+            <button onClick="{{ e.goPrev }}" title="Aluno anterior" style="all:unset;flex:none;cursor:{{ e.prevCursor }};width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:{{ e.prevFg }}"><span class="material-symbols-outlined">arrow_back</span></button>
+            <button onClick="{{ e.openSheet }}" title="Buscar aluno" style="all:unset;flex:none;cursor:pointer;display:flex;align-items:center;gap:4px;height:36px;padding:0 10px;border-radius:8px;background:#EBEDF1;color:#242CC2;font-size:13px;font-weight:700;white-space:nowrap"><span class="material-symbols-outlined" style="font-size:18px">search</span>{{ e.posShort }}</button>
+            <button onClick="{{ e.goNext }}" title="Próximo aluno" style="all:unset;flex:none;cursor:{{ e.nextCursor }};width:44px;height:44px;margin-right:-10px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:{{ e.nextFg }}"><span class="material-symbols-outlined">arrow_forward</span></button>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px;border:1px solid #C3C8D1;border-radius:8px">
+            <span style="flex:none;width:56px;height:56px;border-radius:999px;background:#A9ADE6;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-size:20px">{{ e.ini }}</span>
+            <div style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:14px">{{ e.name }}</span><span style="font-size:12px;line-height:20px;color:#65686E">RA: {{ e.ra }} · 6º ano C - M</span></div>
+          </div>
+        </div>
+        <sc-if value="{{ e.sheet }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;z-index:10;background:#fff;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;height:56px;padding:0 4px 0 16px;border-bottom:1px solid #EBEDF1"><span style="flex:1;font-family:Archivo,sans-serif;font-weight:600;font-size:18px">Ir para aluno</span><button onClick="{{ e.closeSheet }}" title="Fechar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">close</span></button></div>
+            <div style="padding:12px 16px"><div style="display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;border:1px solid #242CC2;border-radius:8px"><span class="material-symbols-outlined" style="color:#65686E">search</span><input value="{{ e.q }}" onChange="{{ e.onQ }}" placeholder="Buscar por nome ou RA" style="all:unset;flex:1;min-width:0;font-size:16px"></div></div>
+            <div style="flex:1;overflow:auto;padding:0 8px">
+              <sc-for list="{{ e.list }}" as="s" hint-placeholder-count="6">
+                <button onClick="{{ s.pick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:4px 8px;border-radius:8px;background:{{ s.bg }}">
+                  <span style="flex:none;width:36px;height:36px;border-radius:999px;background:#A9ADE6;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-weight:700;font-size:13px">{{ s.ini }}</span>
+                  <span style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-size:14px;font-weight:700;color:{{ s.color }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ s.name }}</span><span style="font-size:12px;line-height:18px;color:#65686E">RA: {{ s.ra }}</span></span>
+                  <span class="material-symbols-outlined" style="color:#242CC2">{{ s.icon }}</span>
+                </button>
+              </sc-for>
+              <sc-if value="{{ e.empty }}" hint-placeholder-val="{{ false }}"><span style="display:block;padding:16px 8px;font-size:14px;color:#3D3F42">Nenhum aluno encontrado.</span></sc-if>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+
+  <div id="1b" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">1b</span>
+      <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Seletor de aluno com setas</span>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:760px">O controle mostra quem é o aluno atual, não só a posição. O campo central funciona como um select com busca; as setas nas pontas trocam de aluno. "Voltar" vira um botão de ícone colado ao controle, formando uma única peça. No mobile, o controle ocupa a largura toda.</p>
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="width:1040px;flex:none;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);padding:32px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+        <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:32px;line-height:48px">Painel do Aluno</span>
+        <div style="position:relative;display:flex;align-items:stretch;height:48px;border:1px solid #C3C8D1;border-radius:8px;box-sizing:border-box;max-width:640px">
+          <a href="#1b" title="Voltar para lista de alunos" style="flex:none;display:flex;align-items:center;gap:8px;padding:0 16px;border-right:1px solid #C3C8D1;font-family:Archivo,sans-serif;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">format_list_bulleted</span>Lista</a>
+          <button onClick="{{ b.goPrev }}" title="Aluno anterior" style="all:unset;flex:none;cursor:{{ b.prevCursor }};width:48px;display:flex;align-items:center;justify-content:center;color:{{ b.prevFg }}" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">chevron_left</span></button>
+          <button onClick="{{ b.toggle }}" title="Trocar de aluno" style="all:unset;flex:1;min-width:0;cursor:pointer;display:flex;align-items:center;gap:12px;padding:0 12px;border-left:1px solid #C3C8D1;border-right:1px solid #C3C8D1;background:{{ b.trigBg }}" style-hover="background:#F8F9FB">
+            <span style="flex:none;width:28px;height:28px;border-radius:999px;background:#A9ADE6;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-weight:700;font-size:11px">{{ b.ini }}</span>
+            <span style="flex:1;min-width:0;font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ b.name }}</span>
+            <span style="flex:none;font-size:12px;font-weight:700;color:#3D3F42;background:#EBEDF1;border-radius:999px;padding:0 8px;line-height:20px;white-space:nowrap">{{ b.pos }}</span>
+            <span class="material-symbols-outlined" style="flex:none;color:#3D3F42">{{ b.chev }}</span>
+          </button>
+          <button onClick="{{ b.goNext }}" title="Próximo aluno" style="all:unset;flex:none;cursor:{{ b.nextCursor }};width:48px;display:flex;align-items:center;justify-content:center;color:{{ b.nextFg }}" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">chevron_right</span></button>
+          <sc-if value="{{ b.open }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;left:0;right:0;top:52px;z-index:5;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:8px;box-sizing:border-box;display:flex;flex-direction:column;gap:4px">
+              <div style="display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border:1px solid #242CC2;border-radius:8px"><span class="material-symbols-outlined" style="color:#65686E">search</span><input value="{{ b.q }}" onChange="{{ b.onQ }}" placeholder="Buscar por nome ou RA" style="all:unset;flex:1;min-width:0;font-size:14px"></div>
+              <div style="max-height:280px;overflow:auto;display:flex;flex-direction:column">
+                <sc-for list="{{ b.list }}" as="s" hint-placeholder-count="6">
+                  <button onClick="{{ s.pick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:4px 8px;border-radius:8px;background:{{ s.bg }}" style-hover="background:#EBEDF1">
+                    <span style="flex:none;width:32px;height:32px;border-radius:999px;background:#A9ADE6;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-weight:700;font-size:12px">{{ s.ini }}</span>
+                    <span style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-size:13px;font-weight:700;color:{{ s.color }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ s.name }}</span><span style="font-size:12px;line-height:18px;color:#65686E">RA: {{ s.ra }}</span></span>
+                    <span style="font-size:12px;color:#65686E">{{ s.num }}</span>
+                  </button>
+                </sc-for>
+                <sc-if value="{{ b.empty }}" hint-placeholder-val="{{ false }}"><span style="padding:16px 8px;font-size:14px;color:#3D3F42">Nenhum aluno encontrado.</span></sc-if>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:16px;border:1px solid #C3C8D1;border-radius:8px;max-width:380px">
+          <span style="flex:none;width:64px;height:64px;border-radius:999px;background:#A9ADE6;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-size:22px">{{ b.ini }}</span>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">{{ b.name }}</span><span style="font-size:12px;line-height:20px;color:#65686E">RA: {{ b.ra }} · 6º ano C - M</span></div>
+        </div>
+      </div>
+
+      <div style="width:360px;height:560px;flex:none;position:relative;overflow:hidden;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15)">
+        <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+          <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">Painel do Aluno</span>
+          <div style="display:flex;align-items:stretch;height:48px;border:1px solid #C3C8D1;border-radius:8px;box-sizing:border-box">
+            <a href="#1b" title="Voltar para lista de alunos" style="flex:none;width:44px;display:flex;align-items:center;justify-content:center;border-right:1px solid #C3C8D1;text-decoration:none"><span class="material-symbols-outlined">format_list_bulleted</span></a>
+            <button onClick="{{ b.goPrev }}" title="Aluno anterior" style="all:unset;flex:none;cursor:{{ b.prevCursor }};width:44px;display:flex;align-items:center;justify-content:center;color:{{ b.prevFg }}"><span class="material-symbols-outlined">chevron_left</span></button>
+            <button onClick="{{ b.openSheet }}" title="Trocar de aluno" style="all:unset;flex:1;min-width:0;cursor:pointer;display:flex;flex-direction:column;justify-content:center;padding:0 8px;border-left:1px solid #C3C8D1;border-right:1px solid #C3C8D1">
+              <span style="font-weight:700;font-size:13px;line-height:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ b.name }}</span>
+              <span style="font-size:11px;line-height:16px;color:#3D3F42">{{ b.pos }}</span>
+            </button>
+            <button onClick="{{ b.goNext }}" title="Próximo aluno" style="all:unset;flex:none;cursor:{{ b.nextCursor }};width:44px;display:flex;align-items:center;justify-content:center;color:{{ b.nextFg }}"><span class="material-symbols-outlined">chevron_right</span></button>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px;border:1px solid #C3C8D1;border-radius:8px">
+            <span style="flex:none;width:56px;height:56px;border-radius:999px;background:#A9ADE6;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-size:20px">{{ b.ini }}</span>
+            <div style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:14px">{{ b.name }}</span><span style="font-size:12px;line-height:20px;color:#65686E">RA: {{ b.ra }} · 6º ano C - M</span></div>
+          </div>
+        </div>
+        <sc-if value="{{ b.sheet }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;z-index:10;background:#fff;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;height:56px;padding:0 4px 0 16px;border-bottom:1px solid #EBEDF1"><span style="flex:1;font-family:Archivo,sans-serif;font-weight:600;font-size:18px">Trocar de aluno</span><button onClick="{{ b.closeSheet }}" title="Fechar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">close</span></button></div>
+            <div style="padding:12px 16px"><div style="display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;border:1px solid #242CC2;border-radius:8px"><span class="material-symbols-outlined" style="color:#65686E">search</span><input value="{{ b.q }}" onChange="{{ b.onQ }}" placeholder="Buscar por nome ou RA" style="all:unset;flex:1;min-width:0;font-size:16px"></div></div>
+            <div style="flex:1;overflow:auto;padding:0 8px">
+              <sc-for list="{{ b.list }}" as="s" hint-placeholder-count="6">
+                <button onClick="{{ s.pick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:4px 8px;border-radius:8px;background:{{ s.bg }}">
+                  <span style="flex:none;width:36px;height:36px;border-radius:999px;background:#A9ADE6;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-weight:700;font-size:13px">{{ s.ini }}</span>
+                  <span style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-size:14px;font-weight:700;color:{{ s.color }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ s.name }}</span><span style="font-size:12px;line-height:18px;color:#65686E">RA: {{ s.ra }}</span></span>
+                  <span style="font-size:12px;color:#65686E">{{ s.num }}</span>
+                </button>
+              </sc-for>
+              <sc-if value="{{ b.empty }}" hint-placeholder-val="{{ false }}"><span style="display:block;padding:16px 8px;font-size:14px;color:#3D3F42">Nenhum aluno encontrado.</span></sc-if>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+
+  <div id="1d" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">1d</span>
+      <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Seletor compacto</span>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:760px">Versão enxuta da <a href="#1b">1b</a>: 40px de altura, sem avatar, Voltar só com ícone e posição em texto discreto. Fica alinhado à direita, na mesma linha do título da página. No mobile, mantém a peça única com 44px e o nome em uma linha.</p>
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="width:1040px;flex:none;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);padding:32px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:16px">
+          <span style="flex:1;font-family:Archivo,sans-serif;font-weight:600;font-size:32px;line-height:48px">Painel do Aluno</span>
+          <div style="position:relative;flex:none;display:flex;align-items:stretch;height:40px;border:1px solid #C3C8D1;border-radius:8px;box-sizing:border-box">
+            <a href="#1d" title="Voltar para lista de alunos" style="flex:none;width:40px;display:flex;align-items:center;justify-content:center;border-right:1px solid #C3C8D1;text-decoration:none" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">format_list_bulleted</span></a>
+            <button onClick="{{ d.goPrev }}" title="Aluno anterior" style="all:unset;flex:none;cursor:{{ d.prevCursor }};width:36px;display:flex;align-items:center;justify-content:center;color:{{ d.prevFg }}" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">chevron_left</span></button>
+            <button onClick="{{ d.toggle }}" title="Trocar de aluno" style="all:unset;cursor:pointer;width:280px;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 8px 0 12px;border-left:1px solid #C3C8D1;border-right:1px solid #C3C8D1;background:{{ d.trigBg }}" style-hover="background:#F8F9FB">
+              <span style="flex:1;min-width:0;font-weight:700;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ d.name }}</span>
+              <span style="flex:none;font-size:12px;color:#65686E;white-space:nowrap">{{ d.posShort }}</span>
+              <span class="material-symbols-outlined" style="flex:none;color:#3D3F42">{{ d.chev }}</span>
+            </button>
+            <button onClick="{{ d.goNext }}" title="Próximo aluno" style="all:unset;flex:none;cursor:{{ d.nextCursor }};width:36px;display:flex;align-items:center;justify-content:center;color:{{ d.nextFg }}" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">chevron_right</span></button>
+            <sc-if value="{{ d.open }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;right:0;top:44px;z-index:5;width:360px;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:8px;box-sizing:border-box;display:flex;flex-direction:column;gap:4px">
+                <div style="display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border:1px solid #242CC2;border-radius:8px"><span class="material-symbols-outlined" style="color:#65686E">search</span><input value="{{ d.q }}" onChange="{{ d.onQ }}" placeholder="Buscar por nome ou RA" style="all:unset;flex:1;min-width:0;font-size:14px"></div>
+                <div style="max-height:280px;overflow:auto;display:flex;flex-direction:column">
+                  <sc-for list="{{ d.list }}" as="s" hint-placeholder-count="6">
+                    <button onClick="{{ s.pick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;min-height:44px;padding:4px 8px;border-radius:8px;background:{{ s.bg }}" style-hover="background:#EBEDF1">
+                      <span style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-size:13px;font-weight:700;color:{{ s.color }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ s.name }}</span><span style="font-size:12px;line-height:18px;color:#65686E">RA: {{ s.ra }}</span></span>
+                      <span style="font-size:12px;color:#65686E">{{ s.num }}</span>
+                    </button>
+                  </sc-for>
+                  <sc-if value="{{ d.empty }}" hint-placeholder-val="{{ false }}"><span style="padding:16px 8px;font-size:14px;color:#3D3F42">Nenhum aluno encontrado.</span></sc-if>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:16px;border:1px solid #C3C8D1;border-radius:8px;max-width:380px">
+          <span style="flex:none;width:64px;height:64px;border-radius:999px;background:#A9ADE6;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-size:22px">{{ d.ini }}</span>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">{{ d.name }}</span><span style="font-size:12px;line-height:20px;color:#65686E">RA: {{ d.ra }} · 6º ano C - M</span></div>
+        </div>
+      </div>
+
+      <div style="width:360px;height:560px;flex:none;position:relative;overflow:hidden;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15)">
+        <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+          <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">Painel do Aluno</span>
+          <div style="display:flex;align-items:stretch;height:44px;border:1px solid #C3C8D1;border-radius:8px;box-sizing:border-box">
+            <a href="#1d" title="Voltar para lista de alunos" style="flex:none;width:44px;display:flex;align-items:center;justify-content:center;border-right:1px solid #C3C8D1;text-decoration:none"><span class="material-symbols-outlined">format_list_bulleted</span></a>
+            <button onClick="{{ d.goPrev }}" title="Aluno anterior" style="all:unset;flex:none;cursor:{{ d.prevCursor }};width:44px;display:flex;align-items:center;justify-content:center;color:{{ d.prevFg }}"><span class="material-symbols-outlined">chevron_left</span></button>
+            <button onClick="{{ d.openSheet }}" title="Trocar de aluno" style="all:unset;flex:1;min-width:0;cursor:pointer;display:flex;align-items:center;gap:6px;padding:0 8px;border-left:1px solid #C3C8D1;border-right:1px solid #C3C8D1">
+              <span style="flex:1;min-width:0;font-weight:700;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ d.name }}</span>
+              <span style="flex:none;font-size:12px;color:#65686E">{{ d.posShort }}</span>
+            </button>
+            <button onClick="{{ d.goNext }}" title="Próximo aluno" style="all:unset;flex:none;cursor:{{ d.nextCursor }};width:44px;display:flex;align-items:center;justify-content:center;color:{{ d.nextFg }}"><span class="material-symbols-outlined">chevron_right</span></button>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px;border:1px solid #C3C8D1;border-radius:8px">
+            <span style="flex:none;width:56px;height:56px;border-radius:999px;background:#A9ADE6;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-size:20px">{{ d.ini }}</span>
+            <div style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:14px">{{ d.name }}</span><span style="font-size:12px;line-height:20px;color:#65686E">RA: {{ d.ra }} · 6º ano C - M</span></div>
+          </div>
+        </div>
+        <sc-if value="{{ d.sheet }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;z-index:10;background:#fff;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;height:56px;padding:0 4px 0 16px;border-bottom:1px solid #EBEDF1"><span style="flex:1;font-family:Archivo,sans-serif;font-weight:600;font-size:18px">Trocar de aluno</span><button onClick="{{ d.closeSheet }}" title="Fechar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">close</span></button></div>
+            <div style="padding:12px 16px"><div style="display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;border:1px solid #242CC2;border-radius:8px"><span class="material-symbols-outlined" style="color:#65686E">search</span><input value="{{ d.q }}" onChange="{{ d.onQ }}" placeholder="Buscar por nome ou RA" style="all:unset;flex:1;min-width:0;font-size:16px"></div></div>
+            <div style="flex:1;overflow:auto;padding:0 8px">
+              <sc-for list="{{ d.list }}" as="s" hint-placeholder-count="6">
+                <button onClick="{{ s.pick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:4px 8px;border-radius:8px;background:{{ s.bg }}">
+                  <span style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-size:14px;font-weight:700;color:{{ s.color }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ s.name }}</span><span style="font-size:12px;line-height:18px;color:#65686E">RA: {{ s.ra }}</span></span>
+                  <span style="font-size:12px;color:#65686E">{{ s.num }}</span>
+                </button>
+              </sc-for>
+              <sc-if value="{{ d.empty }}" hint-placeholder-val="{{ false }}"><span style="display:block;padding:16px 8px;font-size:14px;color:#3D3F42">Nenhum aluno encontrado.</span></sc-if>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+
+  <div id="1c" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">1c</span>
+      <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Vizinhos visíveis + barra inferior no mobile</span>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:760px">Anterior e Próximo mostram o nome do aluno de destino, para o usuário saber para onde vai. A busca fica entre os dois. No mobile, a navegação vai para uma barra fixa no rodapé, ao alcance do polegar, e o topo fica só com o "Voltar".</p>
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="width:1040px;flex:none;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);padding:32px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+        <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:32px;line-height:48px">Painel do Aluno</span>
+        <div style="display:flex;align-items:center;gap:16px;white-space:nowrap">
+          <a href="#1c" style="display:flex;align-items:center;gap:8px;font-family:Archivo,sans-serif;font-weight:700;font-size:14px;text-decoration:none"><span class="material-symbols-outlined">arrow_back</span>Voltar para lista de alunos</a>
+          <div style="flex:1"></div>
+          <div style="position:relative;display:flex;align-items:stretch;height:56px;border:1px solid #C3C8D1;border-radius:8px;box-sizing:border-box">
+            <button onClick="{{ c.goPrev }}" title="Aluno anterior" style="all:unset;cursor:{{ c.prevCursor }};display:flex;align-items:center;gap:8px;width:220px;padding:0 12px;box-sizing:border-box;color:{{ c.prevFg }}" style-hover="background:#F8F9FB">
+              <span class="material-symbols-outlined">arrow_back</span>
+              <span style="min-width:0;display:flex;flex-direction:column"><span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;line-height:18px">Anterior</span><span style="font-size:12px;line-height:18px;color:#3D3F42;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.prevName }}</span></span>
+            </button>
+            <button onClick="{{ c.toggle }}" title="Buscar aluno" style="all:unset;cursor:pointer;flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;width:72px;border-left:1px solid #C3C8D1;border-right:1px solid #C3C8D1;color:#242CC2;background:{{ c.trigBg }}" style-hover="background:#EBEDF1"><span class="material-symbols-outlined">search</span><span style="font-size:11px;line-height:16px;font-weight:700">{{ c.posShort }}</span></button>
+            <button onClick="{{ c.goNext }}" title="Próximo aluno" style="all:unset;cursor:{{ c.nextCursor }};display:flex;align-items:center;justify-content:flex-end;gap:8px;width:220px;padding:0 12px;box-sizing:border-box;color:{{ c.nextFg }};text-align:right" style-hover="background:#F8F9FB">
+              <span style="min-width:0;display:flex;flex-direction:column;align-items:flex-end"><span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;line-height:18px">Próximo</span><span style="max-width:160px;font-size:12px;line-height:18px;color:#3D3F42;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.nextName }}</span></span>
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+            <sc-if value="{{ c.open }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;right:0;top:60px;z-index:5;width:100%;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:8px;box-sizing:border-box;display:flex;flex-direction:column;gap:4px;white-space:normal">
+                <div style="display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border:1px solid #242CC2;border-radius:8px"><span class="material-symbols-outlined" style="color:#65686E">search</span><input value="{{ c.q }}" onChange="{{ c.onQ }}" placeholder="Buscar por nome ou RA" style="all:unset;flex:1;min-width:0;font-size:14px"></div>
+                <div style="max-height:280px;overflow:auto;display:flex;flex-direction:column">
+                  <sc-for list="{{ c.list }}" as="s" hint-placeholder-count="6">
+                    <button onClick="{{ s.pick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:4px 8px;border-radius:8px;background:{{ s.bg }}" style-hover="background:#EBEDF1">
+                      <span style="flex:none;width:32px;height:32px;border-radius:999px;background:#A9ADE6;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-weight:700;font-size:12px">{{ s.ini }}</span>
+                      <span style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-size:13px;font-weight:700;color:{{ s.color }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ s.name }}</span><span style="font-size:12px;line-height:18px;color:#65686E">RA: {{ s.ra }}</span></span>
+                      <span class="material-symbols-outlined" style="color:#242CC2">{{ s.icon }}</span>
+                    </button>
+                  </sc-for>
+                  <sc-if value="{{ c.empty }}" hint-placeholder-val="{{ false }}"><span style="padding:16px 8px;font-size:14px;color:#3D3F42">Nenhum aluno encontrado.</span></sc-if>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;padding:16px;border:1px solid #C3C8D1;border-radius:8px;max-width:380px">
+          <span style="flex:none;width:64px;height:64px;border-radius:999px;background:#A9ADE6;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-size:22px">{{ c.ini }}</span>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">{{ c.name }}</span><span style="font-size:12px;line-height:20px;color:#65686E">RA: {{ c.ra }} · 6º ano C - M</span></div>
+        </div>
+      </div>
+
+      <div style="width:360px;height:560px;flex:none;position:relative;overflow:hidden;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15)">
+        <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+          <a href="#1c" style="display:flex;align-items:center;gap:8px;height:44px;margin-top:-8px;font-family:Archivo,sans-serif;font-weight:700;font-size:14px;text-decoration:none"><span class="material-symbols-outlined">arrow_back</span>Voltar para lista de alunos</a>
+          <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">Painel do Aluno</span>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px;border:1px solid #C3C8D1;border-radius:8px">
+            <span style="flex:none;width:56px;height:56px;border-radius:999px;background:#A9ADE6;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-size:20px">{{ c.ini }}</span>
+            <div style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:14px">{{ c.name }}</span><span style="font-size:12px;line-height:20px;color:#65686E">RA: {{ c.ra }} · 6º ano C - M</span></div>
+          </div>
+        </div>
+        <div style="position:absolute;left:0;right:0;bottom:0;display:flex;align-items:stretch;height:64px;background:#fff;box-shadow:0 -2px 8px rgba(0,23,31,0.15)">
+          <button onClick="{{ c.goPrev }}" title="Aluno anterior" style="all:unset;flex:1;min-width:0;cursor:{{ c.prevCursor }};display:flex;align-items:center;gap:4px;padding:0 8px 0 12px;color:{{ c.prevFg }}">
+            <span class="material-symbols-outlined" style="flex:none">arrow_back</span>
+            <span style="min-width:0;display:flex;flex-direction:column"><span style="font-family:Archivo,sans-serif;font-weight:700;font-size:13px;line-height:18px">Anterior</span><span style="font-size:11px;line-height:16px;color:#3D3F42;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.prevName }}</span></span>
+          </button>
+          <button onClick="{{ c.openSheet }}" title="Buscar aluno" style="all:unset;flex:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:64px">
+            <span style="width:48px;height:48px;border-radius:999px;background:#242CC2;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:18px">search</span><span style="font-size:10px;line-height:12px;font-weight:700">{{ c.posShort }}</span></span>
+          </button>
+          <button onClick="{{ c.goNext }}" title="Próximo aluno" style="all:unset;flex:1;min-width:0;cursor:{{ c.nextCursor }};display:flex;align-items:center;justify-content:flex-end;gap:4px;padding:0 12px 0 8px;color:{{ c.nextFg }}">
+            <span style="min-width:0;display:flex;flex-direction:column;align-items:flex-end"><span style="font-family:Archivo,sans-serif;font-weight:700;font-size:13px;line-height:18px">Próximo</span><span style="max-width:100%;font-size:11px;line-height:16px;color:#3D3F42;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.nextName }}</span></span>
+            <span class="material-symbols-outlined" style="flex:none">arrow_forward</span>
+          </button>
+        </div>
+        <sc-if value="{{ c.sheet }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;z-index:10;background:#fff;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;height:56px;padding:0 4px 0 16px;border-bottom:1px solid #EBEDF1"><span style="flex:1;font-family:Archivo,sans-serif;font-weight:600;font-size:18px">Ir para aluno</span><button onClick="{{ c.closeSheet }}" title="Fechar" style="all:unset;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center"><span class="material-symbols-outlined" style="font-size:24px">close</span></button></div>
+            <div style="padding:12px 16px"><div style="display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;border:1px solid #242CC2;border-radius:8px"><span class="material-symbols-outlined" style="color:#65686E">search</span><input value="{{ c.q }}" onChange="{{ c.onQ }}" placeholder="Buscar por nome ou RA" style="all:unset;flex:1;min-width:0;font-size:16px"></div></div>
+            <div style="flex:1;overflow:auto;padding:0 8px">
+              <sc-for list="{{ c.list }}" as="s" hint-placeholder-count="6">
+                <button onClick="{{ s.pick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:4px 8px;border-radius:8px;background:{{ s.bg }}">
+                  <span style="flex:none;width:36px;height:36px;border-radius:999px;background:#A9ADE6;display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-weight:700;font-size:13px">{{ s.ini }}</span>
+                  <span style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-size:14px;font-weight:700;color:{{ s.color }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ s.name }}</span><span style="font-size:12px;line-height:18px;color:#65686E">RA: {{ s.ra }}</span></span>
+                  <span class="material-symbols-outlined" style="color:#242CC2">{{ s.icon }}</span>
+                </button>
+              </sc-for>
+              <sc-if value="{{ c.empty }}" hint-placeholder-val="{{ false }}"><span style="display:block;padding:16px 8px;font-size:14px;color:#3D3F42">Nenhum aluno encontrado.</span></sc-if>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const ST = [
+  ['ABNLOREM IPSUM DOLOR O', '26466014'],
+  ['ADRLOREM IPSUM SIT AMET', '25430117'],
+  ['ÁLELOREM IPSUM DOLOR SIT AMET CS', '25428046'],
+  ['BEALOREM IPSUM DOLOR R', '25431290'],
+  ['BRULOREM IPSUM AMET S', '26470385'],
+  ['CAMLOREM IPSUM DOLOR L', '25433871'],
+  ['DANLOREM IPSUM SIT F', '26472206'],
+  ['EDULOREM IPSUM DOLOR M', '25436642'],
+  ['FERLOREM IPSUM AMET C', '26474518'],
+  ['GABLOREM IPSUM DOLOR P', '25439003']
+].map(([name, ra], i) => ({ i, name, ra, ini: name.split(' ').filter(w => w.length > 2).slice(0, 1)[0].slice(0, 1) + name.split(' ').slice(-1)[0].slice(0, 1) }));
+class Component extends DCLogic {
+  state = { a: {}, b: {}, c: {}, d: {}, e: {} };
+  up(k, p) { this.setState(s => ({ [k]: { ...s[k], ...p } })); }
+  mk(k) {
+    const s = this.state[k], up = p => this.up(k, p);
+    const i = s.i ?? 2, q = s.q || '', n = ST.length, cur = ST[i];
+    const hasPrev = i > 0, hasNext = i < n - 1;
+    const ql = q.toLowerCase();
+    const list = ST.filter(x => !q || x.name.toLowerCase().includes(ql) || x.ra.includes(q)).map(x => {
+      const on = x.i === i;
+      return { ...x, num: `${x.i + 1}`, bg: on ? '#EBEDF1' : 'transparent', color: on ? '#242CC2' : '#0F0F10', icon: on ? 'check' : '', pick: () => up({ i: x.i, open: false, sheet: false, q: '' }) };
+    });
+    return {
+      name: cur.name, ra: cur.ra, ini: cur.ini,
+      pos: `${i + 1} de ${n}`, posShort: `${i + 1}/${n}`,
+      prevName: hasPrev ? ST[i - 1].name : 'Início da lista', nextName: hasNext ? ST[i + 1].name : 'Fim da lista',
+      goPrev: () => hasPrev && up({ i: i - 1, open: false }), goNext: () => hasNext && up({ i: i + 1, open: false }),
+      prevFg: hasPrev ? '#242CC2' : '#ADB2BA', nextFg: hasNext ? '#242CC2' : '#ADB2BA',
+      prevCursor: hasPrev ? 'pointer' : 'default', nextCursor: hasNext ? 'pointer' : 'default',
+      open: !!s.open, toggle: () => up({ open: !s.open, q: '' }), chev: s.open ? 'expand_less' : 'expand_more', trigBg: s.open ? '#EBEDF1' : 'transparent',
+      sheet: !!s.sheet, openSheet: () => up({ sheet: true, q: '' }), closeSheet: () => up({ sheet: false }),
+      q, onQ: e => up({ q: e.target.value }), list, empty: list.length === 0
+    };
+  }
+  renderVals() { return { a: this.mk('a'), b: this.mk('b'), c: this.mk('c'), d: this.mk('d'), e: { ...this.mk('e'), pillBg: this.state.e.open ? '#DDE0E6' : '#EBEDF1' } }; }
+}
+</script>
+</body>
+</html>

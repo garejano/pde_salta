@@ -53,7 +53,7 @@ repository_map.md  # Guia de repositórios em c:/projects/ — usado pela IA par
 | `/refatorar-angular` | Refatora módulo ou componente Angular |
 | `/refatorar-shared-components` | Refatora para uso de shared components (estrutura-pedagogica) |
 | `/refinar-feature` | Refina uma feature (épico/card Jira) |
-| `/refinar-tech` | Cria plano técnico de implementação |
+| `/planejar-implementacao` | Cria plano técnico de implementação, gravado em `cards/` (repositório de destino é só leitura) |
 | `/run-tasks` | Executa lista de tarefas de um card |
 | `/spdd-generate` | Gera SPDD |
 | `/spdd-refine` | Refina SPDD |

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/colors_and_type.css">
+<script src="_ds/grupo-salta-design-system-74c5f0f7-fb75-48c1-ae95-a5ba4449d8c4/_ds_bundle.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<style>body{margin:0;background:#F2F2F2;font-family:Nunito,sans-serif;color:#0F0F10}a{color:#242CC2}a:hover{color:#1E258F}.material-symbols-outlined{font-size:20px;line-height:1}</style>
+</helmet>
+<section data-screen-label="Tabs internas" style="padding:48px;display:flex;flex-direction:column;gap:40px">
+  <div style="display:flex;flex-direction:column;gap:4px;max-width:760px">
+    <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">Tabs internas: opções</span>
+    <span style="font-size:14px;line-height:24px;color:#3D3F42">As cinco abas do Painel do Aluno somam cerca de 680px e não cabem em 360px. As opções <a href="#1a">1a</a>, <a href="#1b">1b</a> e <a href="#1c">1c</a> mantêm o estilo atual (sublinhado índigo e badges); a <a href="#1d">1d</a> é a versão compacta. Todas são interativas.</span>
+  </div>
+
+  <div id="1a" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">1a</span>
+      <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Rolagem horizontal com setas</span>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:760px">Desktop igual ao atual. No mobile, as abas rolam na horizontal; um esmaecimento com seta indica que há mais abas de cada lado, e a aba tocada é centralizada.</p>
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="width:900px;flex:none;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);overflow:hidden">
+        <div style="display:flex;border-bottom:1px solid #EBEDF1;padding:0 8px">
+          <sc-for list="{{ a.tabs }}" as="t" hint-placeholder-count="5">
+            <button onClick="{{ t.pick }}" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:8px;height:40px;padding:0 24px;border-bottom:2px solid {{ t.line }};color:{{ t.color }};font-family:Archivo,sans-serif;font-weight:{{ t.weight }};font-size:14px;white-space:nowrap" style-hover="background:#F8F9FB">{{ t.label }}<sc-if value="{{ t.hasBadge }}" hint-placeholder-val="{{ true }}"><span style="font-size:11px;font-weight:700;line-height:20px;padding:0 7px;border-radius:999px;background:{{ t.bBg }};color:{{ t.bFg }}">{{ t.badge }}</span></sc-if></button>
+          </sc-for>
+        </div>
+        <div style="padding:24px;display:flex;flex-direction:column;gap:8px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">{{ a.title }}</span><span style="font-size:14px;color:#65686E">Conteúdo da aba {{ a.title }}</span></div>
+      </div>
+
+      <div style="width:360px;flex:none;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);overflow:hidden">
+        <div style="position:relative;border-bottom:1px solid #EBEDF1">
+          <div ref="{{ a.scrollRef }}" onScroll="{{ a.onScroll }}" style="display:flex;overflow-x:auto;scrollbar-width:none;padding:0 8px">
+            <sc-for list="{{ a.tabs }}" as="t" hint-placeholder-count="5">
+              <button onClick="{{ t.pickScroll }}" style="all:unset;flex:none;cursor:pointer;display:flex;align-items:center;gap:6px;height:48px;padding:0 16px;border-bottom:2px solid {{ t.line }};color:{{ t.color }};font-family:Archivo,sans-serif;font-weight:{{ t.weight }};font-size:14px;white-space:nowrap">{{ t.label }}<sc-if value="{{ t.hasBadge }}" hint-placeholder-val="{{ true }}"><span style="font-size:11px;font-weight:700;line-height:20px;padding:0 7px;border-radius:999px;background:{{ t.bBg }};color:{{ t.bFg }}">{{ t.badge }}</span></sc-if></button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ a.showL }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ a.scrollL }}" title="Abas anteriores" style="all:unset;cursor:pointer;position:absolute;left:0;top:0;bottom:2px;width:48px;display:flex;align-items:center;justify-content:flex-start;padding-left:4px;box-sizing:border-box;background:linear-gradient(90deg,#fff 55%,rgba(255,255,255,0));color:#242CC2"><span class="material-symbols-outlined">chevron_left</span></button>
+          </sc-if>
+          <sc-if value="{{ a.showR }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ a.scrollR }}" title="Mais abas" style="all:unset;cursor:pointer;position:absolute;right:0;top:0;bottom:2px;width:48px;display:flex;align-items:center;justify-content:flex-end;padding-right:4px;box-sizing:border-box;background:linear-gradient(270deg,#fff 55%,rgba(255,255,255,0));color:#242CC2"><span class="material-symbols-outlined">chevron_right</span></button>
+          </sc-if>
+        </div>
+        <div style="padding:16px;display:flex;flex-direction:column;gap:8px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:20px;line-height:28px">{{ a.title }}</span><span style="font-size:14px;color:#65686E">Conteúdo da aba {{ a.title }}</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="1b" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">1b</span>
+      <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Abas visíveis + "Mais"</span>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:760px">Mostra as abas que cabem e agrupa o resto em "Mais". Ao escolher uma aba do menu, ela ocupa a segunda posição visível, então a aba ativa nunca fica escondida. O "Mais" mostra a soma dos badges numéricos ocultos. No desktop todas cabem e o menu não aparece.</p>
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="width:900px;flex:none;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);overflow:hidden">
+        <div style="display:flex;border-bottom:1px solid #EBEDF1;padding:0 8px">
+          <sc-for list="{{ b.tabs }}" as="t" hint-placeholder-count="5">
+            <button onClick="{{ t.pick }}" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:8px;height:40px;padding:0 24px;border-bottom:2px solid {{ t.line }};color:{{ t.color }};font-family:Archivo,sans-serif;font-weight:{{ t.weight }};font-size:14px;white-space:nowrap" style-hover="background:#F8F9FB">{{ t.label }}<sc-if value="{{ t.hasBadge }}" hint-placeholder-val="{{ true }}"><span style="font-size:11px;font-weight:700;line-height:20px;padding:0 7px;border-radius:999px;background:{{ t.bBg }};color:{{ t.bFg }}">{{ t.badge }}</span></sc-if></button>
+          </sc-for>
+        </div>
+        <div style="padding:24px;display:flex;flex-direction:column;gap:8px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">{{ b.title }}</span><span style="font-size:14px;color:#65686E">Conteúdo da aba {{ b.title }}</span></div>
+      </div>
+
+      <div style="width:360px;flex:none;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15)">
+        <div style="position:relative;display:flex;border-bottom:1px solid #EBEDF1;padding:0 4px">
+          <sc-for list="{{ b.visible }}" as="t" hint-placeholder-count="2">
+            <button onClick="{{ t.pick }}" style="all:unset;flex:0 1 auto;min-width:0;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:6px;height:48px;padding:0 10px;border-bottom:2px solid {{ t.line }};color:{{ t.color }};font-family:Archivo,sans-serif;font-weight:{{ t.weight }};font-size:14px;white-space:nowrap"><span style="overflow:hidden;text-overflow:ellipsis">{{ t.label }}</span><sc-if value="{{ t.hasBadge }}" hint-placeholder-val="{{ true }}"><span style="flex:none;font-size:11px;font-weight:700;line-height:20px;padding:0 7px;border-radius:999px;background:{{ t.bBg }};color:{{ t.bFg }}">{{ t.badge }}</span></sc-if></button>
+          </sc-for>
+          <div style="flex:1"></div>
+          <button onClick="{{ b.toggleMore }}" style="all:unset;flex:none;cursor:pointer;display:flex;align-items:center;gap:4px;height:48px;padding:0 8px 0 12px;border-bottom:2px solid transparent;color:#3D3F42;font-family:Archivo,sans-serif;font-weight:400;font-size:14px;white-space:nowrap;background:{{ b.moreBg }}">Mais<sc-if value="{{ b.hasHiddenSum }}" hint-placeholder-val="{{ true }}"><span style="font-size:11px;font-weight:700;line-height:20px;padding:0 7px;border-radius:999px;background:#EBEDF1;color:#3D3F42">{{ b.hiddenSum }}</span></sc-if><span class="material-symbols-outlined">{{ b.moreChev }}</span></button>
+          <sc-if value="{{ b.more }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;right:4px;top:52px;z-index:5;width:220px;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:4px 0">
+              <sc-for list="{{ b.hidden }}" as="t" hint-placeholder-count="3">
+                <button onClick="{{ t.pickMore }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;height:44px;padding:0 12px;font-family:Archivo,sans-serif;font-size:14px" style-hover="background:#EBEDF1">{{ t.label }}<sc-if value="{{ t.hasBadge }}" hint-placeholder-val="{{ true }}"><span style="font-size:11px;font-weight:700;line-height:20px;padding:0 7px;border-radius:999px;background:#EBEDF1;color:#3D3F42">{{ t.badge }}</span></sc-if></button>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+        <div style="padding:16px;display:flex;flex-direction:column;gap:8px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:20px;line-height:28px">{{ b.title }}</span><span style="font-size:14px;color:#65686E">Conteúdo da aba {{ b.title }}</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="1c" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">1c</span>
+      <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Ícone + rótulo empilhados</span>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:760px">Cada aba ganha um ícone. No desktop ele fica ao lado do rótulo; no mobile as cinco abas dividem a largura igualmente, com ícone em cima, rótulo curto embaixo e o badge sobre o ícone. Todas ficam visíveis sem rolar.</p>
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="width:900px;flex:none;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);overflow:hidden">
+        <div style="display:flex;border-bottom:1px solid #EBEDF1;padding:0 8px">
+          <sc-for list="{{ c.tabs }}" as="t" hint-placeholder-count="5">
+            <button onClick="{{ t.pick }}" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:8px;height:40px;padding:0 20px;border-bottom:2px solid {{ t.line }};color:{{ t.color }};font-family:Archivo,sans-serif;font-weight:{{ t.weight }};font-size:14px;white-space:nowrap" style-hover="background:#F8F9FB"><span class="material-symbols-outlined">{{ t.icon }}</span>{{ t.label }}<sc-if value="{{ t.hasBadge }}" hint-placeholder-val="{{ true }}"><span style="font-size:11px;font-weight:700;line-height:20px;padding:0 7px;border-radius:999px;background:{{ t.bBg }};color:{{ t.bFg }}">{{ t.badge }}</span></sc-if></button>
+          </sc-for>
+        </div>
+        <div style="padding:24px;display:flex;flex-direction:column;gap:8px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">{{ c.title }}</span><span style="font-size:14px;color:#65686E">Conteúdo da aba {{ c.title }}</span></div>
+      </div>
+
+      <div style="width:360px;flex:none;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);overflow:hidden">
+        <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-bottom:1px solid #EBEDF1">
+          <sc-for list="{{ c.tabs }}" as="t" hint-placeholder-count="5">
+            <button onClick="{{ t.pick }}" style="all:unset;cursor:pointer;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;height:60px;border-bottom:2px solid {{ t.line }};color:{{ t.color }}">
+              <span style="position:relative;display:flex"><span class="material-symbols-outlined" style="font-size:24px">{{ t.icon }}</span><sc-if value="{{ t.hasBadge }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:50%;margin-left:4px;top:-6px;font-size:10px;font-weight:700;line-height:16px;padding:0 5px;border-radius:999px;background:{{ t.bBg }};color:{{ t.bFg }};white-space:nowrap;box-shadow:0 0 0 2px #fff">{{ t.badge }}</span></sc-if></span>
+              <span style="max-width:100%;font-family:Archivo,sans-serif;font-weight:{{ t.weight }};font-size:11px;line-height:14px;letter-spacing:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ t.short }}</span>
+            </button>
+          </sc-for>
+        </div>
+        <div style="padding:16px;display:flex;flex-direction:column;gap:8px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:20px;line-height:28px">{{ c.title }}</span><span style="font-size:14px;color:#65686E">Conteúdo da aba {{ c.title }}</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="1d" style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;background:#0F0F10;color:#fff;border-radius:4px;padding:4px 8px">1d</span>
+      <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px">Compacta</span>
+    </div>
+    <p style="margin:0;font-size:14px;line-height:20px;color:#3D3F42;max-width:760px">No desktop, abas segmentadas de 32px dentro de um trilho cinza, ocupando menos altura. No mobile, as abas viram um seletor de uma linha com a aba atual, o badge e setas para ir à aba anterior ou seguinte; o menu lista todas.</p>
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="width:900px;flex:none;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15);overflow:hidden">
+        <div style="padding:12px 16px 0">
+          <div style="display:inline-flex;gap:2px;padding:2px;border-radius:8px;background:#EBEDF1">
+            <sc-for list="{{ d.tabs }}" as="t" hint-placeholder-count="5">
+              <button onClick="{{ t.pick }}" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:6px;background:{{ t.segBg }};box-shadow:{{ t.segShadow }};color:{{ t.color }};font-family:Archivo,sans-serif;font-weight:{{ t.weight }};font-size:13px;white-space:nowrap">{{ t.label }}<sc-if value="{{ t.hasBadge }}" hint-placeholder-val="{{ true }}"><span style="font-size:11px;font-weight:700;line-height:18px;padding:0 6px;border-radius:999px;background:{{ t.bBg }};color:{{ t.bFg }}">{{ t.badge }}</span></sc-if></button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="padding:16px 24px 24px;display:flex;flex-direction:column;gap:8px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:24px;line-height:32px">{{ d.title }}</span><span style="font-size:14px;color:#65686E">Conteúdo da aba {{ d.title }}</span></div>
+      </div>
+
+      <div style="width:360px;flex:none;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,23,31,0.15)">
+        <div style="position:relative;padding:12px 16px 0">
+          <div style="display:flex;align-items:stretch;height:44px;border:1px solid #C3C8D1;border-radius:8px;box-sizing:border-box">
+            <button onClick="{{ d.goPrev }}" title="Aba anterior" style="all:unset;flex:none;cursor:{{ d.prevCursor }};width:44px;display:flex;align-items:center;justify-content:center;color:{{ d.prevFg }}"><span class="material-symbols-outlined">chevron_left</span></button>
+            <button onClick="{{ d.toggleMenu }}" style="all:unset;flex:1;min-width:0;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;border-left:1px solid #C3C8D1;border-right:1px solid #C3C8D1;background:{{ d.menuBg }}">
+              <span style="font-family:Archivo,sans-serif;font-weight:700;font-size:14px;color:#242CC2">{{ d.title }}</span>
+              <sc-if value="{{ d.curHasBadge }}" hint-placeholder-val="{{ true }}"><span style="font-size:11px;font-weight:700;line-height:20px;padding:0 7px;border-radius:999px;background:#242CC2;color:#fff">{{ d.curBadge }}</span></sc-if>
+              <span style="font-size:12px;color:#65686E">{{ d.pos }}</span>
+              <span class="material-symbols-outlined" style="color:#3D3F42">{{ d.menuChev }}</span>
+            </button>
+            <button onClick="{{ d.goNext }}" title="Próxima aba" style="all:unset;flex:none;cursor:{{ d.nextCursor }};width:44px;display:flex;align-items:center;justify-content:center;color:{{ d.nextFg }}"><span class="material-symbols-outlined">chevron_right</span></button>
+          </div>
+          <sc-if value="{{ d.menu }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;left:16px;right:16px;top:60px;z-index:5;background:#fff;border:1px solid #C3C8D1;border-radius:8px;box-shadow:0 4px 12px rgba(0,23,31,0.15);padding:4px 0">
+              <sc-for list="{{ d.tabs }}" as="t" hint-placeholder-count="5">
+                <button onClick="{{ t.pickMenu }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;height:48px;padding:0 12px;font-family:Archivo,sans-serif;font-size:14px;font-weight:{{ t.weight }};color:{{ t.color }};background:{{ t.rowBg }}"><span style="flex:1">{{ t.label }}</span><sc-if value="{{ t.hasBadge }}" hint-placeholder-val="{{ true }}"><span style="font-size:11px;font-weight:700;line-height:20px;padding:0 7px;border-radius:999px;background:{{ t.bBg }};color:{{ t.bFg }}">{{ t.badge }}</span></sc-if><span class="material-symbols-outlined" style="width:20px;color:#242CC2">{{ t.check }}</span></button>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+        <div style="padding:16px;display:flex;flex-direction:column;gap:8px"><span style="font-family:Archivo,sans-serif;font-weight:600;font-size:20px;line-height:28px">{{ d.title }}</span><span style="font-size:14px;color:#65686E">Conteúdo da aba {{ d.title }}</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const TABS = [
+  { label: 'Pedagógico', short: 'Pedag.', badge: '', icon: 'school' },
+  { label: 'Atendimento', short: 'Atend.', badge: '23', icon: 'forum' },
+  { label: 'Anamnese', short: 'Anamn.', badge: '100%', icon: 'assignment' },
+  { label: 'Ocorrências', short: 'Ocorr.', badge: '0pts', icon: 'warning' },
+  { label: 'Documentos', short: 'Docs', badge: '1', icon: 'description' }
+];
+class Component extends DCLogic {
+  state = { a: { i: 1, l: false, r: true }, b: { i: 1, slot: 1 }, c: { i: 1 }, d: { i: 1 } };
+  scrollEl = null;
+  up(k, p) { this.setState(s => ({ [k]: { ...s[k], ...p } })); }
+  tabs(k, extra) {
+    const i = this.state[k].i, up = p => this.up(k, p);
+    return TABS.map((t, j) => {
+      const on = j === i;
+      return { ...t, idx: j, hasBadge: !!t.badge,
+        line: on ? '#242CC2' : 'transparent', color: on ? '#242CC2' : '#3D3F42', weight: on ? 700 : 400,
+        bBg: on ? '#242CC2' : '#EBEDF1', bFg: on ? '#fff' : '#3D3F42',
+        segBg: on ? '#fff' : 'transparent', segShadow: on ? '0 1px 2px rgba(0,23,31,0.15)' : 'none',
+        rowBg: on ? '#F8F9FB' : 'transparent', check: on ? 'check' : '',
+        pick: () => up({ i: j, more: false, menu: false }), ...(extra ? extra(j) : {}) };
+    });
+  }
+  title(k) { return TABS[this.state[k].i].label; }
+  renderVals() {
+    const A = this.state.a, B = this.state.b, D = this.state.d;
+    const upd = el => { if (!el) return; const l = el.scrollLeft > 4, r = el.scrollLeft + el.clientWidth < el.scrollWidth - 4; if (l !== A.l || r !== A.r) this.up('a', { l, r }); };
+    const a = {
+      tabs: this.tabs('a', j => ({ pickScroll: e => { const el = e.currentTarget, box = el.parentElement; this.up('a', { i: j }); box.scrollTo({ left: el.offsetLeft - (box.clientWidth - el.offsetWidth) / 2, behavior: 'smooth' }); } })),
+      title: this.title('a'), showL: A.l, showR: A.r,
+      scrollRef: el => { this.scrollEl = el; },
+      onScroll: e => upd(e.currentTarget),
+      scrollL: () => this.scrollEl && this.scrollEl.scrollBy({ left: -160, behavior: 'smooth' }),
+      scrollR: () => this.scrollEl && this.scrollEl.scrollBy({ left: 160, behavior: 'smooth' })
+    };
+    const bt = this.tabs('b', j => ({ pickMore: () => this.up('b', { i: j, slot: j, more: false }) }));
+    const visIdx = [0, B.slot ?? 1];
+    const hidden = bt.filter(t => !visIdx.includes(t.idx));
+    const sum = hidden.reduce((s, t) => s + (/^\d+$/.test(t.badge) ? +t.badge : 0), 0);
+    const b = {
+      tabs: bt, visible: visIdx.map(x => bt[x]), hidden, title: this.title('b'),
+      hiddenSum: String(sum), hasHiddenSum: sum > 0,
+      more: !!B.more, toggleMore: () => this.up('b', { more: !B.more }), moreChev: B.more ? 'expand_less' : 'expand_more', moreBg: B.more ? '#F8F9FB' : 'transparent'
+    };
+    const c = { tabs: this.tabs('c'), title: this.title('c') };
+    const di = D.i, n = TABS.length;
+    const d = {
+      tabs: this.tabs('d', j => ({ pickMenu: () => this.up('d', { i: j, menu: false }) })), title: this.title('d'),
+      curBadge: TABS[di].badge, curHasBadge: !!TABS[di].badge, pos: `${di + 1}/${n}`,
+      menu: !!D.menu, toggleMenu: () => this.up('d', { menu: !D.menu }), menuChev: D.menu ? 'expand_less' : 'expand_more', menuBg: D.menu ? '#F8F9FB' : 'transparent',
+      goPrev: () => di > 0 && this.up('d', { i: di - 1, menu: false }), goNext: () => di < n - 1 && this.up('d', { i: di + 1, menu: false }),
+      prevFg: di > 0 ? '#242CC2' : '#ADB2BA', nextFg: di < n - 1 ? '#242CC2' : '#ADB2BA',
+      prevCursor: di > 0 ? 'pointer' : 'default', nextCursor: di < n - 1 ? 'pointer' : 'default'
+    };
+    return { a, b, c, d };
+  }
+}
+</script>
+</body>
+</html>
