@@ -203,6 +203,7 @@ tables:
     importantColumns:
     - Id
     - Rede
+    - PermiteAlocacaoIA
     relations:
     - to: Rede
       via: Rede
@@ -210,6 +211,14 @@ tables:
     pk: Id
     importantColumns:
     - Id
+  AlteracaoCargaLancamento:
+    pk: Id
+    importantColumns:
+    - AlteracaoCargaLancamentoOrigem
+    - Id
+    relations:
+    - to: AlteracaoCargaLancamento
+      via: AlteracaoCargaLancamentoOrigem
   AlunoAP:
     pk: Id
     importantColumns:
@@ -574,6 +583,7 @@ tables:
     - Pessoa
     - Descricao
     - PossuiAnexo
+    - ExibirNoPainelAluno
     relations:
     - to: Pessoa
       via: Pessoa
@@ -585,6 +595,7 @@ tables:
     - EmitidoEm
     - Descricao
     - IdentificadorArquivo
+    - ExibirNoPainelAluno
     relations:
     - to: Pessoa
       via: Pessoa
@@ -621,6 +632,17 @@ tables:
       via: AnoLetivo
     - to: Pessoa
       via: Pessoa
+  AlunoNecessidadesEspeciaisTipoTranstorno:
+    pk: Id
+    importantColumns:
+    - AlunoNecessidadesEspeciais
+    - Id
+    - TipoTranstorno
+    relations:
+    - to: AlunoNecessidadesEspeciais
+      via: AlunoNecessidadesEspeciais
+    - to: TipoTranstorno
+      via: TipoTranstorno
   AlunoNota:
     pk:
     - Id
@@ -730,6 +752,8 @@ tables:
     - Id
     - Ocorrencia
     - DeveEnviarEmail
+    - NotificarResponsavelPedagogico
+    - NotificarResponsavelFinanceiro
     relations:
     - to: AlunoEscola
       via: AlunoEscola
@@ -887,14 +911,16 @@ tables:
     - to: OpcaoResposta
       via: RespostaOpcao
   AnoLetivo:
-    pk: Id
+    pk:
+    - Id
+    - Id
     importantColumns:
     - Id
     - Vigente
+    - Ano
     - AcessoLiberado
     - ComunicarAcessoParaNovosAlunos
     - ComunicarAcessoParaNovosResponsaveisFinanceiros
-    - ComunicarAcessoParaNovosResponsaveis
   AnoLetivoProduto:
     pk: Id
     importantColumns:
@@ -927,9 +953,28 @@ tables:
     importantColumns:
     - Id
     - Redacao
+    - PossuiArquivo
     relations:
     - to: Redacao
       via: Redacao
+  AnotacaoArmazenamentoControle:
+    pk: Redacao
+    importantColumns:
+    - Redacao
+    - VersaoConjunto
+    - TokenExecucao
+    relations:
+    - to: Redacao
+      via: Redacao
+  AnotacaoArquivoExclusaoPendente:
+    pk: Id
+    importantColumns:
+    - Id
+    - OperacaoOrigem
+    - ObjetoId
+    - Ambiente
+    - GeracaoAmbiente
+    - NamespaceArmazenamento
   AnotacaoLegendaRedacao:
     pk: Id
     importantColumns:
@@ -945,6 +990,44 @@ tables:
       via: Competencia
     - to: Anotacao
       via: Anotacao
+  AnotacaoMigracaoCampanha:
+    pk: Id
+    importantColumns:
+    - Id
+    - Ambiente
+    - GeracaoAmbiente
+    - NamespaceArmazenamento
+    - Prefixo
+    - VersaoProtocolo
+  AnotacaoMigracaoItem:
+    pk:
+    - Operacao
+    - AnotacaoId
+    importantColumns:
+    - AnotacaoId
+    - Operacao
+    - ObjetoId
+    - NomeArquivo
+    - HashConteudo
+    - TamanhoUtf8
+    - TokenExecucao
+    relations:
+    - to: AnotacaoMigracaoOperacao
+      via: Operacao
+  AnotacaoMigracaoOperacao:
+    pk: Id
+    importantColumns:
+    - Campanha
+    - Id
+    - Redacao
+    - Ativa
+    - Estado
+    - Tentativas
+    relations:
+    - to: AnotacaoMigracaoCampanha
+      via: Campanha
+    - to: Redacao
+      via: Redacao
   AnotacaoRegraGeralRedacao:
     pk: Id
     importantColumns:
@@ -973,26 +1056,72 @@ tables:
     - Descricao
     - DisponivelParaCadastro
   AreaConhecimento:
-    pk: Id
-    importantColumns:
-    - Id
-    - Nome
-    - NomeAbreviado
-  Assunto:
     pk:
     - Id
     - Id
     importantColumns:
+    - Id
+    - Nome
+    - Codigo
+    - Nome
+    - NomeAbreviado
+  AreaDisciplina:
+    pk: Id
+    importantColumns:
+    - AreaConhecimento
+    - Disciplina
+    - Id
+    - ExibirNosFiltros
+    relations:
+    - to: AreaConhecimento
+      via: AreaConhecimento
+    - to: Disciplina
+      via: Disciplina
+  Assunto:
+    pk:
+    - Id
+    - Id
+    - Id
+    importantColumns:
+    - AssuntoNivel
+    - AssuntoPai
+    - Dimensao
     - Disciplina
     - Id
     - Nome
+    - Nome
     - CriacaoData
     - Nome
+    - Ordem
     relations:
     - to: Disciplina
       via: Disciplina
+    - to: AssuntoNivel
+      via: AssuntoNivel
+    - to: Assunto
+      via: AssuntoPai
+    - to: Dimensao
+      via: Dimensao
     - to: Disciplina
       via: Disciplina
+  AssuntoNivel:
+    pk: Id
+    importantColumns:
+    - Id
+    - Nome
+    - Ordem
+  AssuntoSegmento:
+    pk:
+    - Assunto
+    - Segmento
+    importantColumns:
+    - Assunto
+    - Segmento
+    relations:
+    - to: Assunto
+      via: Assunto
+    - to: Segmento
+      via: Segmento
   Atendimento:
     pk: Id
     importantColumns:
@@ -1005,6 +1134,7 @@ tables:
     - Importante
     - DeveEnviarEmail
     - EmailEmProcessoDeEnvio
+    - EnviarEmailResponsavelPedagogico
     relations:
     - to: AlunoEscola
       via: AlunoEscola
@@ -1493,24 +1623,29 @@ tables:
     - Id
     - Id
     - Id
+    - Id
     importantColumns:
     - Agrupamento
+    - AnoLetivo
     - AreaConhecimento
     - Avaliacao
+    - AvaliacaoStatus
     - Ciclo
     - Disciplina
     - Ementa
+    - EstruturaAvaliacaoEscopo
     - EstruturaAvaliacaoImportacaoEstrutura
     - Id
     - ImportadoDe
+    - Serie
     - TipoAvaliacao
     - TipoDivisaoEscola
     - TipoResultado
     - Nome
+    - Nome
+    - QuantidadeAlternativas
     - Identificacao
     - VisivelNoRelatorio
-    - Media
-    - CriacaoData
     relations:
     - to: Agrupamento
       via: Agrupamento
@@ -1522,6 +1657,8 @@ tables:
       via: Disciplina
     - to: Conteudo
       via: Ementa
+    - to: EstruturaAvaliacaoEscopo
+      via: EstruturaAvaliacaoEscopo
     - to: EstruturaAvaliacaoImportacaoEstrutura
       via: EstruturaAvaliacaoImportacaoEstrutura
     - to: Avaliacao
@@ -1532,6 +1669,14 @@ tables:
       via: TipoDivisaoEscola
     - to: TipoResultado
       via: TipoResultado
+    - to: AnoLetivo
+      via: AnoLetivo
+    - to: AvaliacaoStatus
+      via: AvaliacaoStatus
+    - to: Serie
+      via: Serie
+    - to: TipoAvaliacao
+      via: TipoAvaliacao
     - to: Agrupamento
       via: Agrupamento
     - to: AreaConhecimento
@@ -1549,20 +1694,89 @@ tables:
     - to: TipoResultado
       via: TipoResultado
   AvaliacaoDisciplina:
-    pk: Id
-    importantColumns:
-    - Avaliacao
-    - Disciplina
+    pk:
     - Id
+    - Id
+    importantColumns:
+    - AreaDisciplina
+    - Avaliacao
+    - AvaliacaoDisciplinaStatus
+    - Disciplina
+    - Elaborador
+    - Id
+    - Revisor
     - PermiteLancamentoProfessor
+    - Ordem
     - AproveitamentoMinimo
     - NotaMaxima
-    - DesempenhoMinimoParaAtingirNotaMaxima
+    - QuantidadeItensIneditos
     relations:
     - to: Avaliacao
       via: Avaliacao
     - to: Disciplina
       via: Disciplina
+    - to: AreaDisciplina
+      via: AreaDisciplina
+    - to: Avaliacao
+      via: Avaliacao
+    - to: AvaliacaoDisciplinaStatus
+      via: AvaliacaoDisciplinaStatus
+    - to: Usuario
+      via: Elaborador
+    - to: Usuario
+      via: Revisor
+  AvaliacaoDisciplinaDistribuicao:
+    pk:
+    - AvaliacaoDisciplina
+    - Complexidade
+    importantColumns:
+    - AvaliacaoDisciplina
+    - Complexidade
+    - Quantidade
+    relations:
+    - to: AvaliacaoDisciplina
+      via: AvaliacaoDisciplina
+    - to: Complexidade
+      via: Complexidade
+  AvaliacaoDisciplinaQuestao:
+    pk:
+    - AvaliacaoDisciplina
+    - QuestaoVersao
+    importantColumns:
+    - AvaliacaoDisciplina
+    - QuestaoVersao
+    - Ordem
+    - Anulada
+    - Inedita
+    - ControleConcorrencia
+    relations:
+    - to: AvaliacaoDisciplina
+      via: AvaliacaoDisciplina
+    - to: QuestaoVersao
+      via: QuestaoVersao
+  AvaliacaoDisciplinaStatus:
+    pk: Id
+    importantColumns:
+    - Id
+    - Nome
+    - Codigo
+    - Ordem
+    - ElaboracaoIniciada
+    - RevisaoIniciada
+  AvaliacaoDisciplinaStatusHistorico:
+    pk: Id
+    importantColumns:
+    - AvaliacaoDisciplina
+    - AvaliacaoDisciplinaStatus
+    - AvaliacaoDisciplinaStatusAnterior
+    - Id
+    relations:
+    - to: AvaliacaoDisciplina
+      via: AvaliacaoDisciplina
+    - to: AvaliacaoDisciplinaStatus
+      via: AvaliacaoDisciplinaStatus
+    - to: AvaliacaoDisciplinaStatus
+      via: AvaliacaoDisciplinaStatusAnterior
   AvaliacaoEditora:
     pk: Id
     importantColumns:
@@ -1823,6 +2037,27 @@ tables:
       via: Escola
     - to: Serie
       via: Serie
+  AvaliacaoStatus:
+    pk: Id
+    importantColumns:
+    - Id
+    - Nome
+    - Codigo
+    - Ordem
+  AvaliacaoStatusHistorico:
+    pk: Id
+    importantColumns:
+    - Avaliacao
+    - AvaliacaoStatus
+    - AvaliacaoStatusAnterior
+    - Id
+    relations:
+    - to: Avaliacao
+      via: Avaliacao
+    - to: AvaliacaoStatus
+      via: AvaliacaoStatus
+    - to: AvaliacaoStatus
+      via: AvaliacaoStatusAnterior
   Avatar:
     pk: Id
     importantColumns:
@@ -2533,8 +2768,12 @@ tables:
   Cargo:
     pk: Id
     importantColumns:
+    - GrupoCargo
     - Id
     - Nome
+    relations:
+    - to: GrupoCargo
+      via: GrupoCargo
   CargoPagamento:
     pk: Id
     importantColumns:
@@ -2551,6 +2790,17 @@ tables:
       via: Cargo
     - to: CargoPagamento
       via: CargoPagamento
+  CargoPagamentoGrupoCargo:
+    pk: Id
+    importantColumns:
+    - CargoPagamento
+    - GrupoCargo
+    - Id
+    relations:
+    - to: CargoPagamento
+      via: CargoPagamento
+    - to: GrupoCargo
+      via: GrupoCargo
   Cartao:
     pk: Id
     importantColumns:
@@ -2765,6 +3015,24 @@ tables:
       via: SegmentoPgto
     - to: Turma
       via: Turma
+  ClassificacaoBncc:
+    pk: Id
+    importantColumns:
+    - AreaDisciplina
+    - Id
+    - Tipo
+    - Nome
+    relations:
+    - to: AreaDisciplina
+      via: AreaDisciplina
+    - to: ClassificacaoBnccTipo
+      via: Tipo
+  ClassificacaoBnccTipo:
+    pk: Id
+    importantColumns:
+    - Id
+    - Codigo
+    - Nome
   Classroom:
     pk: Id
     importantColumns:
@@ -2829,6 +3097,7 @@ tables:
     importantColumns:
     - Id
     - IdCargo
+    - IdGrupoCargo
     - IdPessoa
     - Chapa
     - CPF
@@ -2838,6 +3107,8 @@ tables:
     relations:
     - to: Cargo
       via: IdCargo
+    - to: GrupoCargo
+      via: IdGrupoCargo
     - to: Pessoa
       via: IdPessoa
   ColecaoComercial:
@@ -2863,6 +3134,15 @@ tables:
       via: ColecaoComercial
     - to: Escola
       via: Escola
+  ColigadaFilial:
+    pk: Id
+    importantColumns:
+    - Id
+    - CodColigada
+    - CodFilial
+    - RazaoSocialColigada
+    - RazaoSocialFilial
+    - NomeFantasiaColigada
   CombinacoesSimuladoSomatorio:
     pk: Id
     importantColumns:
@@ -2928,6 +3208,22 @@ tables:
       via: Agrupamento
     - to: Competencia
       via: Competencia
+  CompetenciaEnem:
+    pk: Id
+    importantColumns:
+    - AreaDisciplina
+    - Id
+    - Numero
+    - Descricao
+    relations:
+    - to: AreaDisciplina
+      via: AreaDisciplina
+  Complexidade:
+    pk: Id
+    importantColumns:
+    - Id
+    - Nome
+    - Ordem
   Comunicado:
     pk: Id
     importantColumns:
@@ -3091,6 +3387,32 @@ tables:
     - Id
     - MaximoAlocacoesCorretor
     - QuantidadeDiminuiDia
+  ConfiguracaoCertificadoConclusaoDocumentacaoPedagogica:
+    pk: Id
+    importantColumns:
+    - ConfiguracaoRedeDocumentacaoPedagogicaId
+    - Id
+    - PossuiMolduraLinhas
+    - PossuiMolduraLinear
+    - AgruparPorAreaConnhecimento
+    - ExibirInformacoesDeRegistro
+    - ExibirMinutosEmCH
+    relations:
+    - to: ConfiguracaoRedeDocumentacaoPedagogica
+      via: ConfiguracaoRedeDocumentacaoPedagogicaId
+  ConfiguracaoEscolaDocumentacaoPedagogica:
+    pk: Id
+    importantColumns:
+    - EscolaId
+    - Id
+    - MostrarCabecalho
+    - PossuiCabecalho
+    - PossuiAssinaturaSecretaria
+    - PossuiAssinaturaDiretor
+    - PossuiAssinaturaProfInspetor
+    relations:
+    - to: Escola
+      via: EscolaId
   ConfiguracaoGlobalUsuario:
     pk: Id
     importantColumns:
@@ -3109,6 +3431,31 @@ tables:
       via: EscolaSerie
     - to: TipoChamada
       via: TipoChamada
+  ConfiguracaoRedeDocumentacaoPedagogica:
+    pk: Id
+    importantColumns:
+    - Id
+    - RedeId
+    - ExibirTituloCentralizadoNoDocumento
+    - NotasComUmaCasaDecimal
+    - StatusAprovadoPeloConselho
+    - ExibirAlunosApenasNaTurmaMaisRecente
+    - IncluirBrasao
+    relations:
+    - to: Rede
+      via: RedeId
+  ConfiguracaoRedeSerieNomenclatura:
+    pk: Id
+    importantColumns:
+    - ConfiguracaoRedeDocumentacaoPedagogicaId
+    - Id
+    - SerieId
+    - Nomenclatura
+    relations:
+    - to: ConfiguracaoRedeDocumentacaoPedagogica
+      via: ConfiguracaoRedeDocumentacaoPedagogicaId
+    - to: Serie
+      via: SerieId
   ConfiguracaoTempoPadrao:
     pk: Id
     importantColumns:
@@ -3361,6 +3708,14 @@ tables:
       via: Rede
     - to: Segmento
       via: Segmento
+  CorCorrecaoRedacao:
+    pk: Id
+    importantColumns:
+    - Id
+    - Tipo
+    - CorExibicao
+    - CorMarcacao
+    - OpacidadeMarcacao
   Counter:
     pk:
     - Key
@@ -3515,6 +3870,16 @@ tables:
     relations:
     - to: Rede
       via: Rede
+  Dimensao:
+    pk: Id
+    importantColumns:
+    - AreaDisciplina
+    - Id
+    - Nome
+    - Ordem
+    relations:
+    - to: AreaDisciplina
+      via: AreaDisciplina
   DiretorEscola:
     pk: Id
     importantColumns:
@@ -3535,7 +3900,9 @@ tables:
     - Id
     - Id
     - Id
+    - Id
     importantColumns:
+    - AreaConhecimento
     - Disciplina
     - DisciplinaBase
     - DisciplinaMae
@@ -3543,10 +3910,10 @@ tables:
     - Id
     - Rede
     - Nome
+    - Nome
     - ImportacaoConcluida
     - EhLinguaEstrangeira
     - EhPedagogica
-    - EhAdministrativa
     relations:
     - to: Disciplina
       via: DisciplinaBase
@@ -3554,6 +3921,8 @@ tables:
       via: DisciplinaMae
     - to: GrupoDisciplina
       via: GrupoDisciplina
+    - to: AreaConhecimento
+      via: AreaConhecimento
     - to: Rede
       via: Rede
     - to: Disciplina
@@ -3710,6 +4079,15 @@ tables:
     pk: Id
     importantColumns:
     - Id
+  EnvioEmail:
+    pk: Id
+    importantColumns:
+    - Id
+    - Titulo
+    - Destinatario
+    - CorpoEmail
+    - Enviado
+    - EntregueComSucesso
   EnvioLeitura:
     pk: Id
     importantColumns:
@@ -3838,6 +4216,14 @@ tables:
       via: AnoLetivo
     - to: Escola
       via: Escola
+  EscolaAnoLetivoDocumentacaoPedagogica:
+    pk: Id
+    importantColumns:
+    - EscolaAnoLetivoId
+    - Id
+    relations:
+    - to: EscolaAnoLetivo
+      via: EscolaAnoLetivoId
   EscolaConfiguracao:
     pk: Id
     importantColumns:
@@ -3851,6 +4237,21 @@ tables:
     relations:
     - to: Escola
       via: Escola
+  EscolaDocumentoConfiguracao:
+    pk: Id
+    importantColumns:
+    - AnoLetivoId
+    - EscolaId
+    - Id
+    - TipoDocumentoId
+    - ValoresJson
+    relations:
+    - to: AnoLetivo
+      via: AnoLetivoId
+    - to: Escola
+      via: EscolaId
+    - to: TipoDocumento
+      via: TipoDocumentoId
   EscolaFeriado:
     pk: Id
     importantColumns:
@@ -3887,6 +4288,7 @@ tables:
     - Id
     - RedeId
     - Nome
+    - Arquivada
     relations:
     - to: Rede
       via: RedeId
@@ -3926,6 +4328,7 @@ tables:
     importantColumns:
     - Id
     - RedePagamento
+    - RegraCalculoAuxiliar
     - Sindicato
     - Nome
     relations:
@@ -3933,6 +4336,8 @@ tables:
       via: Sindicato
     - to: RedePagamento
       via: RedePagamento
+    - to: RegraCalculoAuxiliar
+      via: RegraCalculoAuxiliar
   EscolaPagamentoEscola:
     pk: Id
     importantColumns:
@@ -4059,11 +4464,14 @@ tables:
     pk: Id
     importantColumns:
     - EscolaSerie
+    - EstruturaAvaliacaoEscopo
     - Etapa
     - Id
     relations:
     - to: EscolaSerie
       via: EscolaSerie
+    - to: EstruturaAvaliacaoEscopo
+      via: EstruturaAvaliacaoEscopo
     - to: Etapa
       via: Etapa
   Escola_Origem:
@@ -4281,8 +4689,8 @@ tables:
     - PossuiAvaliacoes
     - PossuiAvaliacoes
     - PossuiTotalPorEtapa
-    - PossuiTotalPorEtapa
     - PossuiTotalPorEtapaRecuperado
+    - PossuiTotalPorEtapa
     relations:
     - to: TipoArredondamento
       via: TipoArredondamento
@@ -4498,6 +4906,7 @@ tables:
     - Agrupamento
     - AnoLetivo
     - Disciplina
+    - EstruturaAvaliacaoEscopo
     - Id
     - Rede
     - Ordem
@@ -4508,6 +4917,8 @@ tables:
       via: AnoLetivo
     - to: Disciplina
       via: Disciplina
+    - to: EstruturaAvaliacaoEscopo
+      via: EstruturaAvaliacaoEscopo
     - to: Rede
       via: Rede
   EstruturaAvaliacaoSubstituicao:
@@ -4588,6 +4999,16 @@ tables:
     relations:
     - to: AnoLetivo
       via: AnoLetivo
+  FaixaAdicionalPorAluno:
+    pk: Id
+    importantColumns:
+    - Id
+    - RegraCalculoAuxiliar
+    - AlunosAcimaDe
+    - PercentualPorAluno
+    relations:
+    - to: RegraCalculoAuxiliar
+      via: RegraCalculoAuxiliar
   FaleConosco:
     pk: Id
     importantColumns:
@@ -4617,6 +5038,18 @@ tables:
     relations:
     - to: Pessoa
       via: Pessoa
+  FichaTecnicaImportacao:
+    pk: Id
+    importantColumns:
+    - Avaliacao
+    - Id
+    - ChaveArquivo
+    - NomeArquivo
+    - TipoConteudo
+    - TamanhoBytes
+    relations:
+    - to: Avaliacao
+      via: Avaliacao
   FilaImportacaoFrequencia:
     pk: Id
     importantColumns:
@@ -4657,6 +5090,7 @@ tables:
     - Id
     - PeriodoAlteracao
     - PeriodoLancamento
+    - ProfessorPerfilVigente
     - EhEntrada
     - EhSaida
     - QuantidadeTempos
@@ -4667,22 +5101,40 @@ tables:
       via: PeriodoAlteracao
     - to: Periodo
       via: PeriodoLancamento
+    - to: ProfessorPerfilVigente
+      via: ProfessorPerfilVigente
   FolhaChecklistCargasIndevidas:
     pk: Id
     importantColumns:
     - Id
     - Periodo
+    - ProfessorChapa
     - ProfessorPerfilVigente
     - Situacao
     - Descricao
     - QuantidadeDisciplinas
+    - EhDesligado
     relations:
     - to: Periodo
       via: Periodo
+    - to: ProfessorChapa
+      via: ProfessorChapa
     - to: ProfessorPerfilVigente
       via: ProfessorPerfilVigente
     - to: Situacao
       via: Situacao
+  FolhaChecklistChapaSemSC:
+    pk: Id
+    importantColumns:
+    - Id
+    - Periodo
+    - ProfessorChapa
+    - QuantidadeDisciplinasPeriodoAnterior
+    relations:
+    - to: Periodo
+      via: Periodo
+    - to: ProfessorChapa
+      via: ProfessorChapa
   FolhaChecklistProfessorAcimaDoLimite:
     pk: Id
     importantColumns:
@@ -4719,6 +5171,46 @@ tables:
       via: DisciplinaFolha
     - to: Periodo
       via: Periodo
+    - to: Turma
+      via: Turma
+  FolhaProfessorEventos:
+    pk: Id
+    importantColumns:
+    - Escola
+    - EventoOriginal
+    - Id
+    - MotivoFrequenciaProfessor
+    - PeriodoCancelamento
+    - PeriodoLancamento
+    - PeriodoOcorrencia
+    - ProfessorPerfilVigente
+    - SegmentoProfessor
+    - TipoPresenca
+    - Turma
+    - DataEvento
+    - QuantidadeTempos
+    - EhSubstituicao
+    - Planejado
+    - ImpactaEmFolhaPagamento
+    relations:
+    - to: Periodo
+      via: PeriodoCancelamento
+    - to: Escola
+      via: Escola
+    - to: FrequenciaProfessor
+      via: EventoOriginal
+    - to: MotivoFrequenciaProfessor
+      via: MotivoFrequenciaProfessor
+    - to: Periodo
+      via: PeriodoLancamento
+    - to: Periodo
+      via: PeriodoOcorrencia
+    - to: ProfessorPerfilVigente
+      via: ProfessorPerfilVigente
+    - to: segmentoProfessor
+      via: SegmentoProfessor
+    - to: TipoPresenca
+      via: TipoPresenca
     - to: Turma
       via: Turma
   FolhaProfessorLicenca:
@@ -4779,6 +5271,82 @@ tables:
       via: Periodo
     - to: ProfessorPerfilVigente
       via: ProfessorPerfilVigente
+  FolhaRelatorioFinal:
+    pk: Id
+    importantColumns:
+    - Cargo
+    - CargoPagamento
+    - ClassePagamento
+    - DisciplinaFolha
+    - EscolaGerencial
+    - EscolaPagamento
+    - Id
+    - MotivoAlteracao
+    - MotivoFrequenciaProfessor
+    - PeriodoAlteracao
+    - PeriodoLancamento
+    - ProfessorPerfilVigente
+    - RedePagamento
+    - RegraCalculoAuxiliar
+    - SegmentoPagamento
+    - SegmentoProfessor
+    - SegmentoSindical
+    - Situacao
+    - TipoDivisaoChapa
+    - TipoEvento
+    - TipoPresenca
+    - TipoVinculo
+    - Turma
+    - Vago
+    - EhDadoCarga
+    - EhDadoAlteracaoCarga
+    - EhDadoEvento
+    - NomeProfessor
+    relations:
+    - to: Cargo
+      via: Cargo
+    - to: CargoPagamento
+      via: CargoPagamento
+    - to: ClassePagamento
+      via: ClassePagamento
+    - to: Disciplina
+      via: DisciplinaFolha
+    - to: EscolaGerencial
+      via: EscolaGerencial
+    - to: EscolaPagamento
+      via: EscolaPagamento
+    - to: MotivosSaida
+      via: MotivoAlteracao
+    - to: MotivoFrequenciaProfessor
+      via: MotivoFrequenciaProfessor
+    - to: Periodo
+      via: PeriodoAlteracao
+    - to: Periodo
+      via: PeriodoLancamento
+    - to: ProfessorPerfilVigente
+      via: ProfessorPerfilVigente
+    - to: RedePagamento
+      via: RedePagamento
+    - to: RegraCalculoAuxiliar
+      via: RegraCalculoAuxiliar
+    - to: SegmentoPagamento
+      via: SegmentoPagamento
+    - to: segmentoProfessor
+      via: SegmentoProfessor
+    - to: SegmentoSindical
+      via: SegmentoSindical
+    - to: Situacao
+      via: Situacao
+    - to: TipoDivisaoChapa
+      via: TipoDivisaoChapa
+    - to: TipoEvento
+      via: TipoEvento
+    - to: TipoPresenca
+      via: TipoPresenca
+    - to: TipoVinculo
+      via: TipoVinculo
+    - to: Turma
+      via: Turma
   FonteQuestao:
     pk: Id
     importantColumns:
@@ -4926,6 +5494,7 @@ tables:
     importantColumns:
     - AnoLetivoMaximo
     - AnoLetivoMinimo
+    - FuncionalidadeMae
     - Id
     - Nome
     - AcessivelPorAlunoEResponsavelForaDoAnoVigente
@@ -4937,6 +5506,8 @@ tables:
       via: AnoLetivoMaximo
     - to: AnoLetivo
       via: AnoLetivoMinimo
+    - to: Funcionalidade
+      via: FuncionalidadeMae
   FuncionalidadeAcessada:
     pk:
     - Id
@@ -4980,12 +5551,20 @@ tables:
     - Funcionalidade
     - Id
     - TipoPresenca
-    - AprovacaoAutomatica
     relations:
     - to: Funcionalidade
       via: Funcionalidade
     - to: TipoPresenca
       via: TipoPresenca
+  FundamentacaoLegal:
+    pk: Id
+    importantColumns:
+    - Id
+    - RedeId
+    - Descricao
+    relations:
+    - to: Rede
+      via: RedeId
   GabaritoComentado:
     pk: Id
     importantColumns:
@@ -5127,6 +5706,19 @@ tables:
       via: GradeRedacao
     - to: RegraGeralRedacao
       via: RegraGeralRedacao
+  GrupoCargo:
+    pk: Id
+    importantColumns:
+    - Id
+    - TipoVinculo
+    - Descricao
+    - EhProfessor
+    - EhMonitor
+    - ConcedePerfilProfessor
+    - ConcedePerfilMonitor
+    relations:
+    - to: TipoVinculo
+      via: TipoVinculo
   GrupoDisciplina:
     pk: Id
     importantColumns:
@@ -5167,6 +5759,12 @@ tables:
       via: GrupoPergunta
     - to: PerfilAcesso
       via: PerfilAcesso
+  GrupoRegraCalculoAuxiliar:
+    pk: Id
+    importantColumns:
+    - Id
+    - Descricao
+    - Ordem
   GuiaFinanceiro:
     pk: Id
     importantColumns:
@@ -5188,15 +5786,56 @@ tables:
       via: PerfilAcesso
     - to: Rede
       via: Rede
-  HabilidadeEnem:
+  HabilidadeBncc:
     pk: Id
     importantColumns:
-    - AreaConhecimento
+    - AreaDisciplina
     - Id
+    - Codigo
+    - Descricao
+    relations:
+    - to: AreaDisciplina
+      via: AreaDisciplina
+  HabilidadeBnccClassificacao:
+    pk:
+    - HabilidadeBncc
+    - ClassificacaoBncc
+    importantColumns:
+    - ClassificacaoBncc
+    - HabilidadeBncc
+    relations:
+    - to: ClassificacaoBncc
+      via: ClassificacaoBncc
+    - to: HabilidadeBncc
+      via: HabilidadeBncc
+  HabilidadeBnccSerie:
+    pk:
+    - HabilidadeBncc
+    - Serie
+    importantColumns:
+    - HabilidadeBncc
+    - Serie
+    relations:
+    - to: HabilidadeBncc
+      via: HabilidadeBncc
+    - to: Serie
+      via: Serie
+  HabilidadeEnem:
+    pk:
+    - Id
+    - Id
+    importantColumns:
+    - AreaConhecimento
+    - CompetenciaEnem
+    - Id
+    - Descricao
+    - Codigo
     - Descricao
     relations:
     - to: AreaConhecimento
       via: AreaConhecimento
+    - to: CompetenciaEnem
+      via: CompetenciaEnem
   HabilidadesBNCC:
     pk: Id
     importantColumns:
@@ -5365,6 +6004,14 @@ tables:
     importantColumns:
     - Id
     - Nome
+  Historico:
+    pk: Id
+    importantColumns:
+    - Id
+    - PessoaId
+    relations:
+    - to: Pessoa
+      via: PessoaId
   HistoricoAlocacaoValidador:
     pk: Id
     importantColumns:
@@ -5384,6 +6031,17 @@ tables:
     importantColumns:
     - CargaProfessorSaindo
     - CargaDisciplinaAlteracao
+  HistoricoFundamentacao:
+    pk: Id
+    importantColumns:
+    - FundamentacaoLegalId
+    - HistoricoId
+    - Id
+    relations:
+    - to: FundamentacaoLegal
+      via: FundamentacaoLegalId
+    - to: Historico
+      via: HistoricoId
   HistoricoHoraAulaPgto:
     description: Histórico das alterações da tabela ClassificacaoClassePgto. Os dados
       são inseridos automáticamente por meio da trigger TrgSalvarHistorico
@@ -5411,6 +6069,28 @@ tables:
     - Id
     - PedidoEditora
     - Acao
+  HistoricoSerie:
+    pk: Id
+    importantColumns:
+    - AnoLetivoId
+    - EscolaId
+    - HistoricoId
+    - Id
+    - SerieId
+    - TipoResultadoFinalId
+    - CursadoNoEleva
+    - CargaHorariaCalculada
+    relations:
+    - to: AnoLetivo
+      via: AnoLetivoId
+    - to: Escola
+      via: EscolaId
+    - to: Historico
+      via: HistoricoId
+    - to: Serie
+      via: SerieId
+    - to: TipoResultadoFinal
+      via: TipoResultadoFinalId
   HoraAulaEspecial:
     pk: Id
     importantColumns:
@@ -5419,6 +6099,7 @@ tables:
     - MotivoAlteracaoHoraAula
     - MovimentacaoHoraAula
     - ProfessorPerfilVigente
+    - TipoErroCadastro
     - Turma
     - Valor
     - DissidioAplicado
@@ -5433,6 +6114,8 @@ tables:
       via: MovimentacaoHoraAula
     - to: ProfessorPerfilVigente
       via: ProfessorPerfilVigente
+    - to: TipoErroCadastro
+      via: TipoErroCadastro
     - to: Turma
       via: Turma
   HoraAulaPadrao:
@@ -5445,8 +6128,10 @@ tables:
     - MotivoAlteracaoHoraAula
     - MovimentacaoHoraAula
     - SegmentoPagamento
+    - TipoErroCadastro
     - Valor
     - EhEdicao
+    - DissidioAplicado
     relations:
     - to: AnoLetivo
       via: AnoLetivo
@@ -5460,6 +6145,8 @@ tables:
       via: MotivoAlteracaoHoraAula
     - to: MovimentacaoHoraAula
       via: MovimentacaoHoraAula
+    - to: TipoErroCadastro
+      via: TipoErroCadastro
   HoraAulaPgto:
     pk: Id
     description: Associação entre o fluxo de classificação e a sua classe de pagamento.
@@ -5487,8 +6174,10 @@ tables:
     - MovimentacaoHoraAula
     - ProfessorPerfilVigente
     - SegmentoPagamento
+    - TipoErroCadastro
     - Valor
     - EhEdicao
+    - DissidioAplicado
     relations:
     - to: AnoLetivo
       via: AnoLetivo
@@ -5502,6 +6191,8 @@ tables:
       via: ProfessorPerfilVigente
     - to: SegmentoPagamento
       via: SegmentoPagamento
+    - to: TipoErroCadastro
+      via: TipoErroCadastro
   HoraAulaSegmentoPgto:
     pk: Id
     importantColumns:
@@ -5528,9 +6219,11 @@ tables:
     - Id
     - MotivoAlteracaoHoraAula
     - Segmento
-    - ValorMarca
+    - TipoErroCadastro
     - Tipo
     - EhEdicao
+    - Revertida
+    - DissidioAplicado
     relations:
     - to: AnoLetivo
       via: AnoLetivo
@@ -5542,6 +6235,8 @@ tables:
       via: MotivoAlteracaoHoraAula
     - to: Segmento
       via: Segmento
+    - to: TipoErroCadastro
+      via: TipoErroCadastro
   HoraInicioFimPorTurma:
     pk: Id
     importantColumns:
@@ -5874,24 +6569,37 @@ tables:
   ItinerarioFormativo:
     pk: Id
     importantColumns:
+    - Agrupamento
+    - AnoLetivo
     - Id
     - ItinerarioFormativoCiclo
     - ItinerarioFormativoTipo
+    - Rede
     - NomeComum
     - NomeCompleto
     - EhObrigatorio
     relations:
+    - to: Agrupamento
+      via: Agrupamento
+    - to: AnoLetivo
+      via: AnoLetivo
     - to: ItinerarioFormativoCiclo
       via: ItinerarioFormativoCiclo
     - to: ItinerarioFormativoTipo
       via: ItinerarioFormativoTipo
+    - to: Rede
+      via: Rede
   ItinerarioFormativoCiclo:
     pk: Id
     importantColumns:
+    - AnoLetivoInicial
     - Id
     - Nome
     - Anual
     - Ordem
+    relations:
+    - to: AnoLetivo
+      via: AnoLetivoInicial
   ItinerarioFormativoOferta:
     pk: Id
     importantColumns:
@@ -7106,6 +7814,26 @@ tables:
     - LogTipo
     - Classe
     - Funcao
+  LogGeracaoDocumento:
+    pk: Id
+    importantColumns:
+    - AnoLetivo
+    - Escola
+    - Id
+    - Pessoa
+    - Rede
+    - NomeDocumento
+    - TipoGeracao
+    - Sucesso
+    relations:
+    - to: AnoLetivo
+      via: AnoLetivo
+    - to: Escola
+      via: Escola
+    - to: Pessoa
+      via: Pessoa
+    - to: Rede
+      via: Rede
   LogGoogleMeet:
     pk: Id
     importantColumns:
@@ -7301,6 +8029,64 @@ tables:
     - Id
     - Nome
     - Referencia
+  MapaAvaliacaoItem:
+    pk: Id
+    importantColumns:
+    - AvaliacaoDisciplina
+    - CompetenciaEnem
+    - Complexidade
+    - Dimensao
+    - FichaTecnicaImportacao
+    - Id
+    - Numero
+    - ControleConcorrencia
+    relations:
+    - to: AvaliacaoDisciplina
+      via: AvaliacaoDisciplina
+    - to: CompetenciaEnem
+      via: CompetenciaEnem
+    - to: Complexidade
+      via: Complexidade
+    - to: Dimensao
+      via: Dimensao
+    - to: FichaTecnicaImportacao
+      via: FichaTecnicaImportacao
+  MapaAvaliacaoItemAssunto:
+    pk:
+    - MapaAvaliacaoItem
+    - Assunto
+    importantColumns:
+    - Assunto
+    - MapaAvaliacaoItem
+    relations:
+    - to: Assunto
+      via: Assunto
+    - to: MapaAvaliacaoItem
+      via: MapaAvaliacaoItem
+  MapaAvaliacaoItemHabilidadeBncc:
+    pk:
+    - MapaAvaliacaoItem
+    - HabilidadeBncc
+    importantColumns:
+    - HabilidadeBncc
+    - MapaAvaliacaoItem
+    relations:
+    - to: HabilidadeBncc
+      via: HabilidadeBncc
+    - to: MapaAvaliacaoItem
+      via: MapaAvaliacaoItem
+  MapaAvaliacaoItemHabilidadeEnem:
+    pk:
+    - MapaAvaliacaoItem
+    - HabilidadeEnem
+    importantColumns:
+    - HabilidadeEnem
+    - MapaAvaliacaoItem
+    relations:
+    - to: HabilidadeEnem
+      via: HabilidadeEnem
+    - to: MapaAvaliacaoItem
+      via: MapaAvaliacaoItem
   Marca:
     pk: Id
     importantColumns:
@@ -7325,10 +8111,10 @@ tables:
     - MaterialEletivaConteudo
     - Rede
     - SemestreEletiva
-    - VideoIniciado
     - PerfilAcesso
-    - Descricao
+    - VideoIniciado
     - Progresso
+    - Descricao
     - Arquivo
     relations:
     - to: ConteudoOnline
@@ -7868,6 +8654,12 @@ tables:
     - Serie
     - Materia
     - Arquivo
+  Matriz:
+    pk: Id
+    importantColumns:
+    - Id
+    - Codigo
+    - Nome
   MediaAvaliacaoEscola:
     pk: Id
     importantColumns:
@@ -7960,6 +8752,7 @@ tables:
     - Id
     - MenuItemPai
     - PerfilAcesso
+    - TipoMenu
     - TipoRede
     - Nome
     - TipoRota
@@ -7973,6 +8766,8 @@ tables:
       via: MenuItemPai
     - to: PerfilAcesso
       via: PerfilAcesso
+    - to: TipoMenu
+      via: TipoMenu
     - to: TipoRede
       via: TipoRede
   MenuItemLateral:
@@ -8157,6 +8952,7 @@ tables:
     - Nome
     - Ordem
     - EhCadastroInicial
+    - ExigeDetalhamento
     relations:
     - to: TipoHoraAula
       via: TipoHoraAula
@@ -8844,6 +9640,55 @@ tables:
     - Id
     - Nome
     - CriacaoData
+  ParametroAdicionalPorAluno:
+    pk: Id
+    importantColumns:
+    - Id
+    - RegraCalculoAuxiliar
+    - Fator
+    - MultiplicaPorTemposESemanas
+    relations:
+    - to: RegraCalculoAuxiliar
+      via: RegraCalculoAuxiliar
+  ParametroGTEAuxilioTransporte:
+    pk: Id
+    importantColumns:
+    - Id
+    - RegraCalculoAuxiliar
+    - ValorGTE
+    - ValorAuxilioTransporte
+    - PercentualDescontoUmaFalta
+    - PercentualDescontoDuasOuMaisFaltas
+    - Semanas
+    relations:
+    - to: RegraCalculoAuxiliar
+      via: RegraCalculoAuxiliar
+  ParametroHoraAtividade:
+    pk: Id
+    importantColumns:
+    - Id
+    - RegraCalculoAuxiliar
+    - Semanas
+    relations:
+    - to: RegraCalculoAuxiliar
+      via: RegraCalculoAuxiliar
+  ParametroHoraDisponivel:
+    pk: Id
+    importantColumns:
+    - Id
+    - RegraCalculoAuxiliar
+    - CalculaPorPercentual
+    relations:
+    - to: RegraCalculoAuxiliar
+      via: RegraCalculoAuxiliar
+  ParametroIncentivoPedagogico:
+    pk: Id
+    importantColumns:
+    - Id
+    - RegraCalculoAuxiliar
+    relations:
+    - to: RegraCalculoAuxiliar
+      via: RegraCalculoAuxiliar
   ParametroProvaEditora:
     pk: Id
     importantColumns:
@@ -8853,6 +9698,16 @@ tables:
     - FonteQuestoes
     - TamanhoFonteDivisorDisciplinas
     - MargemSuperior
+  ParametroReflexo:
+    pk: Id
+    importantColumns:
+    - Id
+    - RegraCalculoAuxiliar
+    - TemposPorReflexo
+    - Semanas
+    relations:
+    - to: RegraCalculoAuxiliar
+      via: RegraCalculoAuxiliar
   ParametrosFolha:
     pk: Id
     importantColumns:
@@ -8888,6 +9743,33 @@ tables:
     pk: Id
     importantColumns:
     - Id
+  PercentualHoraDisponivel:
+    pk: Id
+    importantColumns:
+    - Disciplina
+    - Id
+    - RegraCalculoAuxiliar
+    - SegmentoPagamento
+    - Percentual
+    relations:
+    - to: Disciplina
+      via: Disciplina
+    - to: RegraCalculoAuxiliar
+      via: RegraCalculoAuxiliar
+    - to: SegmentoPagamento
+      via: SegmentoPagamento
+  PercentualIncentivoPedagogico:
+    pk: Id
+    importantColumns:
+    - Id
+    - ProfessorPerfilVigente
+    - RegraCalculoAuxiliar
+    - Percentual
+    relations:
+    - to: ProfessorPerfilVigente
+      via: ProfessorPerfilVigente
+    - to: RegraCalculoAuxiliar
+      via: RegraCalculoAuxiliar
   PerfilAcesso:
     pk: Id
     importantColumns:
@@ -9135,8 +10017,8 @@ tables:
     importantColumns:
     - Id
     - Nome
-    - Texto
     - TypeformId
+    - Texto
     - CriacaoData
     - NomeInterno
   PesquisaIntencao:
@@ -9628,6 +10510,18 @@ tables:
     - TurmaNome
     - QtAlunos
     - CodigoExterno
+  PollingCorrecaoIAPendente:
+    pk: Id
+    importantColumns:
+    - Id
+    - Redacao
+    - JobIdCorrecaoIA
+    - StatusJobCorrecaoIA
+    - QuantidadeConsultas
+    - IsReCorrecao
+    relations:
+    - to: Redacao
+      via: Redacao
   Pontuacao:
     pk: Id
     importantColumns:
@@ -9711,6 +10605,42 @@ tables:
       via: PreviaCarga
     - to: TwilioFilaEnvio
       via: TwilioFilaEnvio
+  PreviaEventos:
+    pk: Id
+    importantColumns:
+    - Id
+    - Periodo
+    - Rede
+    relations:
+    - to: Periodo
+      via: Periodo
+    - to: Rede
+      via: Rede
+  PreviaEventosEscolaGerencialExcluida:
+    pk: Id
+    importantColumns:
+    - EscolaGerencial
+    - Id
+    - PreviaEventos
+    relations:
+    - to: EscolaGerencial
+      via: EscolaGerencial
+    - to: PreviaEventos
+      via: PreviaEventos
+  PreviaEventosPublico:
+    pk: Id
+    importantColumns:
+    - EnvioEmail
+    - Id
+    - PreviaEventos
+    - ProfessorPerfilVigente
+    relations:
+    - to: EnvioEmail
+      via: EnvioEmail
+    - to: PreviaEventos
+      via: PreviaEventos
+    - to: ProfessorPerfilVigente
+      via: ProfessorPerfilVigente
   Problema:
     pk: Id
     importantColumns:
@@ -9866,12 +10796,17 @@ tables:
   ProfessorCarga:
     pk: Id
     importantColumns:
+    - AlteracaoCargaLancamentoCriacao
+    - AlteracaoCargaLancamentoRetornoPermanente
+    - AlteracaoCargaLancamentoSaida
     - Disciplina
     - Id
     - MotivoAlteracao
     - PessoaAprovacao
     - PessoaLancamentoEntrada
     - PessoaLancamentoSaida
+    - ProfessorCargaCancelamento
+    - ProfessorCargaRestaurada
     - ProfessorPerfilVigente
     - Turma
     - QuantidadeTempos
@@ -9889,19 +10824,38 @@ tables:
       via: PessoaLancamentoEntrada
     - to: Pessoa
       via: PessoaLancamentoSaida
+    - to: ProfessorCarga
+      via: ProfessorCargaRestaurada
     - to: ProfessorPerfilVigente
       via: ProfessorPerfilVigente
     - to: Turma
       via: Turma
+    - to: AlteracaoCargaLancamento
+      via: AlteracaoCargaLancamentoCriacao
+    - to: AlteracaoCargaLancamento
+      via: AlteracaoCargaLancamentoRetornoPermanente
+    - to: AlteracaoCargaLancamento
+      via: AlteracaoCargaLancamentoSaida
+    - to: ProfessorCargaCancelamento
+      via: ProfessorCargaCancelamento
+  ProfessorCargaCancelamento:
+    pk: Id
+    importantColumns:
+    - Id
+    - Motivo
   ProfessorCargaSubstituto:
     pk: Id
     importantColumns:
+    - AlteracaoCargaLancamentoCriacao
+    - AlteracaoCargaLancamentoSaida
     - Id
     - MotivoAlteracao
     - PessoaAprovacao
     - PessoaLancamentoEntrada
     - PessoaLancamentoSaida
     - ProfessorCarga
+    - ProfessorCargaCancelamento
+    - ProfessorCargaSubstitutoRestaurado
     - ProfessorPerfilVigente
     - Vago
     - Aprovado
@@ -9916,19 +10870,35 @@ tables:
       via: PessoaLancamentoSaida
     - to: ProfessorCarga
       via: ProfessorCarga
+    - to: ProfessorCargaSubstituto
+      via: ProfessorCargaSubstitutoRestaurado
     - to: ProfessorPerfilVigente
       via: ProfessorPerfilVigente
+    - to: AlteracaoCargaLancamento
+      via: AlteracaoCargaLancamentoCriacao
+    - to: AlteracaoCargaLancamento
+      via: AlteracaoCargaLancamentoSaida
+    - to: ProfessorCargaCancelamento
+      via: ProfessorCargaCancelamento
   ProfessorChapa:
     pk: Id
     importantColumns:
     - Cargo
+    - ColigadaFilial
     - Id
     - ProfessorPerfilVigente
-    - Chapa
+    - TipoVinculo
     - Vigente
+    - EhChapaTOTVS
+    - AssociadaManualmente
+    - PodeAlterarTipoVinculo
     relations:
     - to: Cargo
       via: Cargo
+    - to: ColigadaFilial
+      via: ColigadaFilial
+    - to: TipoVinculo
+      via: TipoVinculo
     - to: ProfessorPerfilVigente
       via: ProfessorPerfilVigente
   ProfessorChapaEscolaMes:
@@ -9937,9 +10907,9 @@ tables:
     - AnoLetivo
     - EscolaGerencial
     - Id
+    - Periodo
     - ProfessorChapa
     - TipoDivisaoChapa
-    - Mes
     - TotalTempos
     relations:
     - to: EscolaGerencial
@@ -9948,6 +10918,8 @@ tables:
       via: TipoDivisaoChapa
     - to: AnoLetivo
       via: AnoLetivo
+    - to: Periodo
+      via: Periodo
     - to: ProfessorChapa
       via: ProfessorChapa
   ProfessorClassePagamento:
@@ -9956,11 +10928,13 @@ tables:
     - AnoLetivo
     - ClassePagamento
     - Id
+    - Periodo
     - ProfessorPerfilVigente
-    - Mes
     relations:
     - to: AnoLetivo
       via: AnoLetivo
+    - to: Periodo
+      via: Periodo
     - to: ClassePagamento
       via: ClassePagamento
     - to: ProfessorPerfilVigente
@@ -10102,8 +11076,8 @@ tables:
     - MotivoSaida
     - PessoaEscolaAcesso
     - Turma
-    - NumeroTempos
     - NaoPossuiAula
+    - NumeroTempos
     relations:
     - to: Disciplina
       via: Disciplina
@@ -10557,16 +11531,18 @@ tables:
     pk:
     - Id
     - Id
+    - Id
     importantColumns:
     - EnunciadoParaExibicao
     - GabaritoComentadoParaExibicao
     - Id
     - QuestaoOriginal
+    - TipoAvaliacao
+    - Oculta
     - SimHash
+    - Ano
     - Codigo
     - Afc
-    - Afc
-    - Rascunho
     relations:
     - to: Conteudo
       via: EnunciadoParaExibicao
@@ -10574,6 +11550,41 @@ tables:
       via: GabaritoComentadoParaExibicao
     - to: Questao
       via: QuestaoOriginal
+    - to: TipoAvaliacao
+      via: TipoAvaliacao
+  QuestaoAfirmativa:
+    pk: Id
+    importantColumns:
+    - Id
+    - QuestaoVersao
+    - Ordem
+    - Texto
+    - Certa
+    relations:
+    - to: QuestaoVersao
+      via: QuestaoVersao
+  QuestaoAlternativa:
+    pk: Id
+    importantColumns:
+    - Id
+    - QuestaoVersao
+    - Alternativa
+    - Texto
+    relations:
+    - to: QuestaoVersao
+      via: QuestaoVersao
+  QuestaoAssunto:
+    pk:
+    - QuestaoVersao
+    - Assunto
+    importantColumns:
+    - Assunto
+    - QuestaoVersao
+    relations:
+    - to: Assunto
+      via: Assunto
+    - to: QuestaoVersao
+      via: QuestaoVersao
   QuestaoAutor:
     pk: Id
     importantColumns:
@@ -10606,6 +11617,13 @@ tables:
       via: OpcaoE
     - to: Questao
       via: Questao
+  QuestaoCampo:
+    pk: Id
+    importantColumns:
+    - Id
+    - Codigo
+    - Nome
+    - Ordem
   QuestaoClassificacao:
     pk:
     - Id
@@ -10663,6 +11681,18 @@ tables:
       via: Tag
     - to: Video
       via: Video
+  QuestaoClassificacaoBncc:
+    pk:
+    - QuestaoVersao
+    - ClassificacaoBncc
+    importantColumns:
+    - ClassificacaoBncc
+    - QuestaoVersao
+    relations:
+    - to: ClassificacaoBncc
+      via: ClassificacaoBncc
+    - to: QuestaoVersao
+      via: QuestaoVersao
   QuestaoFeedback:
     pk: Id
     importantColumns:
@@ -10688,6 +11718,42 @@ tables:
     - Id
     - EnumCode
     - EnumCode
+  QuestaoHabilidadeBncc:
+    pk:
+    - QuestaoVersao
+    - HabilidadeBncc
+    importantColumns:
+    - HabilidadeBncc
+    - QuestaoVersao
+    relations:
+    - to: HabilidadeBncc
+      via: HabilidadeBncc
+    - to: QuestaoVersao
+      via: QuestaoVersao
+  QuestaoHabilidadeEnem:
+    pk:
+    - QuestaoVersao
+    - HabilidadeEnem
+    importantColumns:
+    - HabilidadeEnem
+    - QuestaoVersao
+    relations:
+    - to: HabilidadeEnem
+      via: HabilidadeEnem
+    - to: QuestaoVersao
+      via: QuestaoVersao
+  QuestaoImagem:
+    pk: Id
+    importantColumns:
+    - Id
+    - Questao
+    - ChaveArquivo
+    - NomeArquivo
+    - TipoConteudo
+    - TamanhoBytes
+    relations:
+    - to: Questao
+      via: Questao
   QuestaoLaPlaceImportar:
     importantColumns:
     - id
@@ -10739,6 +11805,45 @@ tables:
       via: OpcaoParaExibicao
     - to: Questao
       via: Questao
+  QuestaoPalavraChave:
+    pk:
+    - QuestaoVersao
+    - PalavraChave
+    importantColumns:
+    - PalavraChave
+    - QuestaoVersao
+    relations:
+    - to: QuestaoVersao
+      via: QuestaoVersao
+  QuestaoProblema:
+    pk: Id
+    importantColumns:
+    - Id
+    - QuestaoProblemaStatus
+    - QuestaoProblemaTipo
+    - QuestaoVersao
+    - Descricao
+    relations:
+    - to: QuestaoProblemaStatus
+      via: QuestaoProblemaStatus
+    - to: QuestaoProblemaTipo
+      via: QuestaoProblemaTipo
+    - to: QuestaoVersao
+      via: QuestaoVersao
+  QuestaoProblemaStatus:
+    pk: Id
+    importantColumns:
+    - Id
+    - Nome
+    - Ordem
+    - Codigo
+  QuestaoProblemaTipo:
+    pk: Id
+    importantColumns:
+    - Id
+    - Codigo
+    - Nome
+    - Ordem
   QuestaoRedeSerie:
     pk: Id
     importantColumns:
@@ -10818,20 +11923,102 @@ tables:
     - to: Tag
       via: Tag
   QuestaoTipo:
-    pk: Id
+    pk:
+    - Id
+    - Id
     importantColumns:
     - Id
+    - Codigo
+    - Nome
+    - Ordem
     - PossuiAcertos
     - PossuiAcertos
-    - PossuiAcertosParciais
-    - PossuiAcertosParciais
-    - Afc
   QuestaoTipoErro:
     pk: Id
     importantColumns:
     - Id
     - Nome
     - Nome
+  QuestaoVersao:
+    pk: Id
+    importantColumns:
+    - AreaDisciplina
+    - AvaliacaoDisciplinaOrigem
+    - CompetenciaEnem
+    - Complexidade
+    - Dimensao
+    - Id
+    - Questao
+    - QuestaoTipo
+    - QuestaoVersaoAnterior
+    - Serie
+    - TextoBase
+    - Versao
+    - Atual
+    - GabaritoComentado
+    - ControleConcorrencia
+    - FormatoLivre
+    relations:
+    - to: AreaDisciplina
+      via: AreaDisciplina
+    - to: AvaliacaoDisciplina
+      via: AvaliacaoDisciplinaOrigem
+    - to: CompetenciaEnem
+      via: CompetenciaEnem
+    - to: Complexidade
+      via: Complexidade
+    - to: Dimensao
+      via: Dimensao
+    - to: Questao
+      via: Questao
+    - to: QuestaoTipo
+      via: QuestaoTipo
+    - to: QuestaoVersao
+      via: QuestaoVersaoAnterior
+    - to: Serie
+      via: Serie
+    - to: TextoBase
+      via: TextoBase
+  QuestaoVersaoHistorico:
+    pk: Id
+    importantColumns:
+    - AvaliacaoDisciplinaStatus
+    - Id
+    - QuestaoVersao
+    - RestauradaDe
+    - Numero
+    relations:
+    - to: AvaliacaoDisciplinaStatus
+      via: AvaliacaoDisciplinaStatus
+    - to: QuestaoVersao
+      via: QuestaoVersao
+    - to: QuestaoVersaoHistorico
+      via: RestauradaDe
+  QuestaoVisibilidadeHistorico:
+    pk: Id
+    importantColumns:
+    - AvaliacaoDisciplina
+    - Id
+    - Questao
+    - QuestaoVersao
+    - QuestaoVisibilidadeOrigem
+    - Oculta
+    relations:
+    - to: AvaliacaoDisciplinaQuestao
+      via: AvaliacaoDisciplina
+    - to: AvaliacaoDisciplinaQuestao
+      via: QuestaoVersao
+    - to: Questao
+      via: Questao
+    - to: QuestaoVisibilidadeOrigem
+      via: QuestaoVisibilidadeOrigem
+  QuestaoVisibilidadeOrigem:
+    pk: Id
+    importantColumns:
+    - Id
+    - Codigo
+    - Nome
+    - Ordem
   RA_Maracaju_20180405: {}
   Redacao:
     pk:
@@ -11071,6 +12258,18 @@ tables:
     relations:
     - to: Rede
       via: Rede
+  RedeDocumentoConfiguracao:
+    pk: Id
+    importantColumns:
+    - Id
+    - RedeId
+    - TipoDocumentoId
+    - ValoresJson
+    relations:
+    - to: Rede
+      via: RedeId
+    - to: TipoDocumento
+      via: TipoDocumentoId
   RedeIdioma:
     pk: Id
     importantColumns:
@@ -11375,6 +12574,16 @@ tables:
     importantColumns:
     - Id
     - NumeroPedido
+  RegraCalculoAuxiliar:
+    pk: Id
+    importantColumns:
+    - GrupoRegraCalculoAuxiliar
+    - Id
+    - Descricao
+    - Ordem
+    relations:
+    - to: GrupoRegraCalculoAuxiliar
+      via: GrupoRegraCalculoAuxiliar
   RegraGeralRedacao:
     pk: Id
     importantColumns:
@@ -11529,6 +12738,11 @@ tables:
     - EscolaNome
     - PessoaId
   RelatorioPreviaCarga: {}
+  RelatorioProvaGerado:
+    pk: JobId
+    importantColumns:
+    - JobId
+    - IdRede
   RelatorioSimulado:
     pk: Id
     importantColumns:
@@ -11635,6 +12849,22 @@ tables:
       via: Rede
     - to: Simulado
       via: Simulado
+  ResultadoFinal:
+    pk: Id
+    importantColumns:
+    - AreaConhecimentoId
+    - HistoricoSerieId
+    - Id
+    - TipoComponenteCurricularId
+    - Disciplina
+    - EhEnriquecimentoCurricular
+    relations:
+    - to: AreaConhecimento
+      via: AreaConhecimentoId
+    - to: HistoricoSerie
+      via: HistoricoSerieId
+    - to: TipoComponenteCurricular
+      via: TipoComponenteCurricularId
   Resumo:
     pk: Id
     importantColumns:
@@ -11649,6 +12879,84 @@ tables:
       via: Disciplina
     - to: Segmento
       via: Segmento
+  RetentativaCorrecaoIAPendente:
+    pk: Id
+    importantColumns:
+    - Corretor
+    - EnvioLeituraCartao
+    - Id
+    - Redacao
+    - QuantidadeTentativas
+    relations:
+    - to: Usuario
+      via: Corretor
+    - to: EnvioLeituraCartao
+      via: EnvioLeituraCartao
+    - to: Redacao
+      via: Redacao
+  ReversaoHoraAulaLog:
+    pk: Id
+    importantColumns:
+    - Id
+    - Tipo
+    - IdAcaoRevertida
+  ReversaoHoraAulaLogAcaoImpactadaItem:
+    pk: Id
+    importantColumns:
+    - Id
+    - ReversaoHoraAulaLog
+    - IdAcaoAfetada
+    - IdItemAfetado
+    - HashItem
+    - EhAcaoPrincipal
+    - Descricao
+    relations:
+    - to: ReversaoHoraAulaLog
+      via: ReversaoHoraAulaLog
+  RevisaoComentario:
+    pk: Id
+    importantColumns:
+    - AvaliacaoDisciplina
+    - Id
+    - QuestaoAfirmativa
+    - QuestaoAlternativa
+    - QuestaoCampo
+    - QuestaoImagem
+    - QuestaoVersao
+    - RevisaoComentarioStatus
+    - Texto
+    - ControleConcorrencia
+    relations:
+    - to: AvaliacaoDisciplina
+      via: AvaliacaoDisciplina
+    - to: QuestaoAfirmativa
+      via: QuestaoAfirmativa
+    - to: QuestaoAlternativa
+      via: QuestaoAlternativa
+    - to: QuestaoCampo
+      via: QuestaoCampo
+    - to: QuestaoImagem
+      via: QuestaoImagem
+    - to: QuestaoVersao
+      via: QuestaoVersao
+    - to: RevisaoComentarioStatus
+      via: RevisaoComentarioStatus
+  RevisaoComentarioResposta:
+    pk: Id
+    importantColumns:
+    - Id
+    - RevisaoComentario
+    - Texto
+    relations:
+    - to: RevisaoComentario
+      via: RevisaoComentario
+  RevisaoComentarioStatus:
+    pk: Id
+    importantColumns:
+    - Id
+    - Codigo
+    - Nome
+    - Ordem
   RotinasImportacao:
     pk: Id
     importantColumns:
@@ -11672,17 +12980,29 @@ tables:
     pk:
     - Id
     - Id
+    - Id
     importantColumns:
     - Id
     - SegmentoBase
     - Nome
     - Sigla
     - Sigla
+    - Codigo
     - Nome
-    - PermiteCriarQuestoes
     relations:
     - to: Segmento
       via: SegmentoBase
+  SegmentoExcluidoHoraDisponivel:
+    pk: Id
+    importantColumns:
+    - Id
+    - RegraCalculoAuxiliar
+    - SegmentoPagamento
+    relations:
+    - to: RegraCalculoAuxiliar
+      via: RegraCalculoAuxiliar
+    - to: SegmentoPagamento
+      via: SegmentoPagamento
   SegmentoLIV:
     pk: Id
     importantColumns:
@@ -11694,7 +13014,6 @@ tables:
     - Id
     - RedePagamento
     - Nome
-    - Sigla
     relations:
     - to: RedePagamento
       via: RedePagamento
@@ -11708,12 +13027,7 @@ tables:
     pk: Id
     importantColumns:
     - Id
-    - RedePagamento
     - Nome
-    - Sigla
-    relations:
-    - to: RedePagamento
-      via: RedePagamento
   Segmento_Origem:
     importantColumns:
     - Id
@@ -11728,7 +13042,9 @@ tables:
     - to: Serie
       via: Serie
   Serie:
-    pk: Id
+    pk:
+    - Id
+    - Id
     importantColumns:
     - AgrupamentoPadrao
     - CategoriaSerie
@@ -11741,10 +13057,10 @@ tables:
     - SegmentoLIV
     - SerieBase
     - Nome
+    - Codigo
+    - Nome
+    - Ordem
     - AtivoNaPlataformaAdaptativa
-    - PossuiMonitoriaOnline
-    - Ordem
-    - Ordem
     relations:
     - to: Agrupamento
       via: AgrupamentoPadrao
@@ -11764,6 +13080,8 @@ tables:
       via: SegmentoLIV
     - to: Serie
       via: SerieBase
+    - to: Segmento
+      via: Segmento
   SerieBolsao:
     pk: Id
     importantColumns:
@@ -12103,6 +13421,9 @@ tables:
     importantColumns:
     - Id
     - Nome
+    - Aprovado
+    - Reprovado
+    - Pendente
   StatusAtividadeAlunoClassroom:
     pk: Id
     importantColumns:
@@ -12123,6 +13444,14 @@ tables:
     importantColumns:
     - Id
     - Descricao
+  StatusConfiguracaoProfessores:
+    pk: Id
+    importantColumns:
+    - Id
+    - Descricao
+    - Ordem
+    - EhPendencia
+    - EhSelecaoInicial
   StatusControleEmail:
     pk: Id
     importantColumns:
@@ -12281,12 +13610,15 @@ tables:
     - Id
     - Id
     importantColumns:
+    - Funcionalidade
     - Id
     - Rede
     - Template
     - Nome
     - Template
     relations:
+    - to: Funcionalidade
+      via: Funcionalidade
     - to: Rede
       via: Rede
   TempoAula:
@@ -12399,6 +13731,37 @@ tables:
       via: Termo
     - to: Rede
       via: Rede
+  TextoBase:
+    pk: Id
+    importantColumns:
+    - AreaDisciplina
+    - AvaliacaoDisciplinaOrigem
+    - Id
+    - Serie
+    - TextoBaseAnterior
+    - ConteudoHtml
+    - ControleConcorrencia
+    relations:
+    - to: AreaDisciplina
+      via: AreaDisciplina
+    - to: AvaliacaoDisciplina
+      via: AvaliacaoDisciplinaOrigem
+    - to: Serie
+      via: Serie
+    - to: TextoBase
+      via: TextoBaseAnterior
+  TextoBaseImagem:
+    pk: Id
+    importantColumns:
+    - Id
+    - TextoBase
+    - ChaveArquivo
+    - NomeArquivo
+    - TipoConteudo
+    - TamanhoBytes
+    relations:
+    - to: TextoBase
+      via: TextoBase
   Ticket:
     pk: Id
     importantColumns:
@@ -12504,19 +13867,23 @@ tables:
     - to: TipoAulaOnline
       via: TipoAulaOnline
   TipoAvaliacao:
-    pk: Id
+    pk:
+    - Id
+    - Id
     importantColumns:
     - AnoLetivo
     - Id
     - ImportadoDe
+    - Matriz
     - Rede
+    - TipoAvaliacaoBase
     - TipoAvaliacaoSeguinte
     - TipoCartaoResposta
+    - Nome
+    - Nome
+    - Sigla
     - AproveitamentoMaximo
     - EhBolsao
-    - Opcional
-    - PermiteCadastroProva
-    - PermiteAjusteNota
     relations:
     - to: AnoLetivo
       via: AnoLetivo
@@ -12528,6 +13895,10 @@ tables:
       via: TipoAvaliacaoSeguinte
     - to: TipoCartaoResposta
       via: TipoCartaoResposta
+    - to: Matriz
+      via: Matriz
+    - to: TipoAvaliacao
+      via: TipoAvaliacaoBase
   TipoCalculo:
     pk: Id
     importantColumns:
@@ -12573,6 +13944,15 @@ tables:
     - Descricao
     - Ordem
     - PossuiReplicacao
+  TipoComponenteCurricular:
+    pk: Id
+    importantColumns:
+    - Id
+    - Descricao
+    - BNCC
+    - Diversificada
+    - FormacaoProfissional
+    - ParteFormativaObrigatoria
   TipoComportamento:
     pk: Id
     importantColumns:
@@ -12655,18 +14035,30 @@ tables:
     - Nome
     - PossuiSelecaoEscola
   TipoDocumento:
-    pk: Id
+    pk:
+    - Id
+    - Id
     importantColumns:
     - GrupoDocumento
     - Id
     - Nome
     - Laudo
+    - Chave
+    - Nome
     - DescricaoObrigatoria
-    - Ordem
-    - PossuiVigencia
     relations:
     - to: GrupoDocumento
       via: GrupoDocumento
+  TipoErroCadastro:
+    pk: Id
+    importantColumns:
+    - Id
+    - TipoErroResponsavel
+    - Nome
+    - Ordem
+    relations:
+    - to: TipoErroResponsavel
+      via: TipoErroResponsavel
   TipoErroCorrecaoIA:
     pk: Id
     importantColumns:
@@ -12674,6 +14066,12 @@ tables:
     - Codigo
     - Descricao
     - CorrecaoManual
+  TipoErroResponsavel:
+    pk: Id
+    importantColumns:
+    - Id
+    - Nome
+    - Ordem
   TipoEscola:
     pk: Id
     importantColumns:
@@ -12742,6 +14140,21 @@ tables:
     - Id
     - Nome
     - StatusFinal
+  TipoMenu:
+    pk: Id
+    importantColumns:
+    - Id
+    - PerfilAcesso
+    - TipoRede
+    - TodosOsPerfis
+    - TodosOsTiposRede
+    - EhDropdown
+    - EhLateral
+    relations:
+    - to: PerfilAcesso
+      via: PerfilAcesso
+    - to: TipoRede
+      via: TipoRede
   TipoMeta:
     pk: Id
     importantColumns:
@@ -12770,10 +14183,13 @@ tables:
     importantColumns:
     - Id
     - Rede
+    - Segmento
     - Descricao
     relations:
     - to: TipoOcorrencia
       via: Rede
+    - to: Segmento
+      via: Segmento
   TipoOcorrenciaEscolaEleva:
     pk: Id
     importantColumns:
@@ -12812,6 +14228,18 @@ tables:
     - CompatibilidadeComAlunoFalta
     - Presenca
     - Atraso
+  TipoPresencaAprovacaoAutomatica:
+    pk: Id
+    importantColumns:
+    - Id
+    - Rede
+    - TipoPresenca
+    - TodasAsRedes
+    relations:
+    - to: Rede
+      via: Rede
+    - to: TipoPresenca
+      via: TipoPresenca
   TipoProfessor:
     pk: Id
     importantColumns:
@@ -12830,6 +14258,7 @@ tables:
     - PermiteResponsavel
     - ResponsavelEhOpcional
     - PermiteEspecialista
+    - ExigeNomeProfissional
   TipoPublicoAtendidoPorTipoRede:
     pk: Id
     importantColumns:
@@ -12914,6 +14343,15 @@ tables:
     - PossuiConceito
     - PossuiSituacao
     - PossuiSituacaoBinaria
+  TipoResultadoFinal:
+    pk: Id
+    importantColumns:
+    - Id
+    - Nome
+    - Sigla
+    - Aprovado
+    - Reprovado
+    - Dependencia
   TipoSaidaAluno:
     pk: Id
     importantColumns:
@@ -12954,6 +14392,12 @@ tables:
     relations:
     - to: TipoTranstorno
       via: ParentId
+  TipoVinculo:
+    pk: Id
+    importantColumns:
+    - Id
+    - Descricao
+    - EhOrigemTOTVS
   ToDoTarefa:
     pk: Id
     importantColumns:

@@ -195,10 +195,49 @@ se divide bem por tela); os cards do Jira são só a forma de reportar progresso
 
 | # | Card | Escopo | Status |
 |---|------|--------|--------|
-| 1 | [Configurações](cards/01-configuracoes.md) | Configuração de Rede, Escola, Fundamentação Legal | frontend + backend implementados; **plugado**: redes, config de rede, escolas da rede; schema + seed de dados **rodados** |
+| 1 | [Configurações](cards/01-configuracoes.md) | Configuração de Rede, Escola, Fundamentação Legal | frontend + backend implementados; **plugado**: redes, config de rede, escolas da rede; schema + seed de dados **rodados**. 2026-11-03: tela "Configurações da escola" refeita seguindo `novo_design/template-configuracoes-da-escola.md` — ver nota abaixo |
 | 2 | [Histórico do Aluno](cards/02-historico-do-aluno.md) | Busca de alunos + hub de edição (informações, fundamentação, séries/histórico, registro de certificado, observações) | frontend + backend implementados; **plugado**: busca/listagem, hub, fundamentação/observações/certificado; schema rodado, **migração de dado histórico em andamento** (ver seção própria); Editar Informações e edição de Histórico de Série fora de escopo |
 | 3 | [Turma & Geração de Documentos](cards/03-turma-e-documentos.md) | Listagem de turma + Ficha Individual, Ata de Resultados Finais, Certificado de Conclusão, Livro de Matrícula | frontend + backend implementados; **plugado**: só a listagem (filtro + lista); documentos (Ata/Livro/Certificado/Ficha) **deliberadamente adiados** — schema rodado |
 | 4 | ~~[Diário de Classe](cards/04-diario-de-classe.md)~~ | 2º frontend do doc-ped: configuração + relatório/impressão do diário | **descartado** — já coberto por `features/diario-de-classe` |
+
+### Novidade 2026-11-03 — "Configurações da escola" refeita + 2 features novas
+
+Reescrita da tela "Configurações da escola", seguindo o novo design (mesmo padrão de
+"Configurações gerais": sem modo leitura/edição separado, Salvar só habilita com form dirty).
+Virou **rota irmã** `configuracoes/escola` (`estrutura-pedagogica/frontend/.../configuracoes/
+escola/`), no mesmo molde de `configuracoes/geral` — a antiga aba embutida `escolas-tab/` (grid de
+cards de escola → detalhe inline) foi apagada. No hub
+(`configuracao-documentacao-pedagogica.component.*`): um `single-select` com a lista de escolas da
+rede apareceu à direita do segmented-control Rede/Escola (substitui os cards de escola), e o botão
+do `app-salvar` alterna entre "Configurações da rede"/"Configurações da escola" conforme o painel
+ativo. A área de conteúdo do painel "Escola" virou um placeholder simples (nome da escola
+selecionada) — a grade de cards de documentos com "ajustes por escola" que aparece no protótipo
+**não foi implementada**: depende de um sistema de override por escola (scope/"ajuste de escola")
+que não existe neste codebase; seria feature nova, não pedida.
+
+Mudanças de modelo (decisão explícita do usuário — remover já, sem esperar o editor de documento
+ganhar escopo por escola): "Carga horária", "Localização da assinatura" e "Exibir filiação" saíram
+desta tela (ficam só no backend/model, repassados sem UI até o editor de documento assumir);
+toggles "possui assinatura" viraram implícitos (texto vazio = não tem).
+
+Duas features novas, full-stack (branch `projetos/MigracaoDocPed`, build do backend validado):
+- **Copiar de outra escola**: `ICopiarConfiguracaoEscolaDocPedService` — copia cabeçalho e/ou
+  assinaturas de uma escola já configurada pra outra (`EscolaDocumentoConfiguracao.ValoresJson`).
+  Endpoint `POST escola/copiar-configuracao`.
+- **Código Inep dos alunos**: nova tabela `DocumentacaoPedagogica.AlunoEscolaDocumentacaoPedagogica`
+  (1 linha por `AlunoEscola`/matrícula — script **rodado pelo usuário em 2026-11-03**:
+  `backend/Scripts/documentacao-pedagogica-aluno-escola-codigo-inep-schema.sql`). Preenche de
+  verdade o campo `ListagemAlunoDocPedResponse.CodigoInep` (antes sempre `null`, lacuna já
+  documentada em `backend.md`). Import em massa via CSV (RA como chave, mesmas regras de validação
+  do protótipo) em `IImportarCodigoInepDocPedService` (`POST escola/codigo-inep/importar`) +
+  contagem em `IContarCodigoInepDocPedService` (`GET
+  escola/{hashEscola}/ano-letivo/{hashAnoLetivo}/codigo-inep/contagem`).
+
+**Pendente antes de validar**: reiniciar o backend (os tipos novos só existem depois de
+recompilar/reiniciar — DI automático por convenção, sem registro manual). Frontend não testado no
+browser ainda (preferência do usuário: ele valida no `ng serve` que já mantém rodando). Testes E2E
+de `configuracoes/escolas.spec.ts` ficaram desatualizados (escritos pro fluxo antigo de cards) —
+não foram tocados.
 
 ## Migração de dado histórico (Card 2) — em andamento
 

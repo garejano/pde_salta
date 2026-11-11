@@ -13,7 +13,14 @@ graph TD
   AlocacaoProfessoresLinha --> AlocacaoProfessores
   AlocacaoProfessoresLinha --> Disciplina
   AlocacaoRede --> Rede
+  AreaDisciplina --> AreaConhecimento
+  AreaDisciplina --> Disciplina
   Assunto --> Disciplina
+  Assunto --> AssuntoNivel
+  Assunto --> Assunto
+  Assunto --> Dimensao
+  AssuntoSegmento --> Assunto
+  AssuntoSegmento --> Segmento
   Atendimento --> MotivoAtendimento
   Atendimento --> SolicitanteAtendimento
   Atendimento --> TipoPublicoAtendido
@@ -66,8 +73,11 @@ graph TD
   CargaHorariaLinha --> CargaHoraria
   CargaProfessorEntrando --> CargaDisciplinaAlteracao
   CargaProfessorSaindo --> CargaDisciplinaAlteracao
+  Cargo --> GrupoCargo
   CargoPagamentoCargo --> Cargo
   CargoPagamentoCargo --> CargoPagamento
+  CargoPagamentoGrupoCargo --> CargoPagamento
+  CargoPagamentoGrupoCargo --> GrupoCargo
   Cartao --> RedeQuesito
   CartaoResposta --> Cartao
   CartaoResposta --> RedeOpcao
@@ -84,6 +94,8 @@ graph TD
   Cidade --> Estado
   ClasseExemplo --> Rede
   ClassePagamento --> RedePagamento
+  ClassificacaoBncc --> AreaDisciplina
+  ClassificacaoBncc --> ClassificacaoBnccTipo
   Classroom --> Disciplina
   ClassroomBoletim --> Ciclo
   ClassroomBoletim --> Classroom
@@ -91,11 +103,13 @@ graph TD
   ClassroomCoordenador --> Classroom
   ClassroomProfessor --> Classroom
   Colaborador --> Cargo
+  Colaborador --> GrupoCargo
   ComentarioComportamento --> Disciplina
   ComentarioRedacao --> LegendaRedacao
   ComentarioRedacao --> Redacao
   CompetenciaAgrupamento --> Agrupamento
   CompetenciaAgrupamento --> Competencia
+  CompetenciaEnem --> AreaDisciplina
   ComunicadoCanalEnvio --> CanalEnvio
   ComunicadoCanalEnvio --> Comunicado
   ComunicadoImagem --> Comunicado
@@ -107,6 +121,8 @@ graph TD
   ComunicadoMobileLido --> Comunicado
   ComunicadoPublico --> Comunicado
   ComunicadoTemplate --> Rede
+  ConfiguracaoCertificadoConclusaoDocumentacaoPedagogica --> ConfiguracaoRedeDocumentacaoPedagogica
+  ConfiguracaoRedeDocumentacaoPedagogica --> Rede
   ConfiguracaoTempoPadrao --> Turno
   ConselhoClasse --> Rede
   ConselhoClassePublico --> ConselhoClasse
@@ -124,8 +140,10 @@ graph TD
   DataEspecificaDeUmaRecorrencia --> CalendarioEventoRecorrencia
   DiarioClasseConfiguracao --> Rede
   DiarioDeClasseConfiguracao --> Rede
+  Dimensao --> AreaDisciplina
   Disciplina --> Disciplina
   Disciplina --> GrupoDisciplina
+  Disciplina --> AreaConhecimento
   Disciplina --> Rede
   DisciplinaDeParaImportacao --> Disciplina
   DisciplinaHisDisciplina --> Disciplina
@@ -155,17 +173,37 @@ graph TD
   FaleConosco --> Rede
   FolhaAlteracaoCarga --> Periodo
   FolhaChecklistCargasIndevidas --> Periodo
+  FolhaChecklistCargasIndevidas --> ProfessorChapa
   FolhaChecklistCargasIndevidas --> Situacao
+  FolhaChecklistChapaSemSC --> Periodo
+  FolhaChecklistChapaSemSC --> ProfessorChapa
   FolhaChecklistProfessorAcimaDoLimite --> Periodo
   FolhaChecklistProfessorSemSC --> Periodo
   FolhaChecklistSemTitular --> Disciplina
   FolhaChecklistSemTitular --> Periodo
+  FolhaProfessorEventos --> Periodo
+  FolhaProfessorEventos --> segmentoProfessor
   FolhaProfessorLicenca --> Disciplina
   FolhaProfessorLicenca --> MotivosSaida
   FolhaProfessorLicenca --> Periodo
   FolhaProfessorLicenca --> Segmento
   FolhaProfessorPorPeriodo --> Periodo
   FolhaProfessorPorPeriodoTotal --> Periodo
+  FolhaRelatorioFinal --> Cargo
+  FolhaRelatorioFinal --> CargoPagamento
+  FolhaRelatorioFinal --> ClassePagamento
+  FolhaRelatorioFinal --> Disciplina
+  FolhaRelatorioFinal --> MotivosSaida
+  FolhaRelatorioFinal --> Periodo
+  FolhaRelatorioFinal --> RedePagamento
+  FolhaRelatorioFinal --> RegraCalculoAuxiliar
+  FolhaRelatorioFinal --> SegmentoPagamento
+  FolhaRelatorioFinal --> segmentoProfessor
+  FolhaRelatorioFinal --> SegmentoSindical
+  FolhaRelatorioFinal --> Situacao
+  FolhaRelatorioFinal --> TipoDivisaoChapa
+  FolhaRelatorioFinal --> TipoEvento
+  FolhaRelatorioFinal --> TipoVinculo
   FormularioAtendimento --> MotivoAtendimento
   FormularioAtendimento --> TipoPublicoAtendido
   FormularioAtendimentoQuestao --> FormularioAtendimento
@@ -177,10 +215,12 @@ graph TD
   FormularioAtendimentoRespostaOpcao --> FormularioAtendimentoResposta
   FormularioAtendimentoRespostaOpcao --> Disciplina
   FormularioAtendimentoRespostaOpcao --> FormularioAtendimentoQuestaoOpcao
+  Funcionalidade --> Funcionalidade
   FuncionalidadeAcessada --> MenuItem
   FuncionalidadeAcessada --> Rede
   FuncionalidadeSegmento --> Funcionalidade
   FuncionalidadeSegmento --> Segmento
+  FundamentacaoLegal --> Rede
   GabaritoComentado --> Simulado
   GradeHoraria --> Rede
   GradeHorariaLinha --> GradeHoraria
@@ -202,9 +242,14 @@ graph TD
   GradeRedacaoLegenda --> LegendaRedacao
   GradeRedacaoRegraGeral --> GradeRedacao
   GradeRedacaoRegraGeral --> RegraGeralRedacao
+  GrupoCargo --> TipoVinculo
   GuiaFinanceiro --> Rede
   GuiaPortal --> Rede
+  HabilidadeBncc --> AreaDisciplina
+  HabilidadeBnccClassificacao --> ClassificacaoBncc
+  HabilidadeBnccClassificacao --> HabilidadeBncc
   HabilidadeEnem --> AreaConhecimento
+  HabilidadeEnem --> CompetenciaEnem
   HabilidadesBNCC --> Disciplina
   HabilidadesENEM --> AreaConhecimento
   HisCargaHoraria --> HisDisciplina
@@ -212,6 +257,8 @@ graph TD
   HisHistorico --> HisFundamentacaoLegal
   HisNucleoComum --> HisDisciplina
   HistoricoAlocacaoValidador --> Redacao
+  HistoricoFundamentacao --> FundamentacaoLegal
+  HistoricoFundamentacao --> Historico
   IconDisciplinaPladGame --> Disciplina
   ImportacaoTRI --> ProvaModelo
   ImportacaoTRILinha --> ImportacaoTRI
@@ -224,8 +271,10 @@ graph TD
   InformacaoSaidaAutorizacaoResponsavel --> InformacaoSaidaAutorizacao
   InformacaoSaidaAutorizacaoResponsavelDetalhe --> InformacaoSaidaAutorizacaoResponsavel
   InformacaoSaidaAutorizacaoServico --> InformacaoSaidaAutorizacao
+  ItinerarioFormativo --> Agrupamento
   ItinerarioFormativo --> ItinerarioFormativoCiclo
   ItinerarioFormativo --> ItinerarioFormativoTipo
+  ItinerarioFormativo --> Rede
   ItinerarioFormativoOferta --> ItinerarioFormativo
   ItinerarioFormativoOferta --> ItinerarioFormativoPeriodo
   ItinerarioFormativoPeriodo --> ItinerarioFormativoCiclo
@@ -272,6 +321,7 @@ graph TD
   LogClassroom --> OperacaoClassroom
   LogErroClassroom --> Disciplina
   LogErroClassroom --> OperacaoClassroom
+  LogGeracaoDocumento --> Rede
   LogMaterialEletiva --> MaterialEletivaConteudo
   LogMaterialEletiva --> SemestreEletiva
   LogQuestaoSimilar --> Questao
@@ -316,6 +366,7 @@ graph TD
   MedicamentoPrescritoHorario --> MedicamentoPrescrito
   MenuItem --> Funcionalidade
   MenuItem --> MenuItem
+  MenuItem --> TipoMenu
   MenuItem --> TipoRede
   MenuItemLateral --> Funcionalidade
   MenuItemLateral --> MenuItemLateral
@@ -344,8 +395,17 @@ graph TD
   Opiniao --> Questao
   OrdenacaoAtendimentoRede --> OrdenacaoAtendimento
   OrdenacaoAtendimentoRede --> Rede
+  ParametroGTEAuxilioTransporte --> RegraCalculoAuxiliar
+  ParametroHoraAtividade --> RegraCalculoAuxiliar
+  ParametroHoraDisponivel --> RegraCalculoAuxiliar
+  ParametroIncentivoPedagogico --> RegraCalculoAuxiliar
+  ParametroReflexo --> RegraCalculoAuxiliar
   ParametrosFolhaPorRede --> Rede
   ParametrosFolhaPorRede --> ParametrosFolha
+  PercentualHoraDisponivel --> Disciplina
+  PercentualHoraDisponivel --> RegraCalculoAuxiliar
+  PercentualHoraDisponivel --> SegmentoPagamento
+  PercentualIncentivoPedagogico --> RegraCalculoAuxiliar
   Pergunta --> GrupoPergunta
   Pergunta --> TipoRespostaAnamnese
   PerguntaCondicionalOpcaoResposta --> OpcaoResposta
@@ -387,6 +447,7 @@ graph TD
   POAProfessor --> Disciplina
   POAQuesito --> POAPeriodo
   POAQuesito --> Segmento
+  PollingCorrecaoIAPendente --> Redacao
   Pontuacao --> Agrupamento
   Pontuacao --> Competencia
   Pontuacao --> GradeRedacao
@@ -395,6 +456,10 @@ graph TD
   PreviaCarga --> Rede
   PreviaCargaPublico --> PreviaCarga
   PreviaCargaPublico --> TwilioFilaEnvio
+  PreviaEventos --> Periodo
+  PreviaEventos --> Rede
+  PreviaEventosPublico --> EnvioEmail
+  PreviaEventosPublico --> PreviaEventos
   Problema --> MaterialDidaticoMonitoriaQuestao
   Problema --> Produto
   Problema --> PublicacaoCanal
@@ -405,9 +470,16 @@ graph TD
   Professor --> TipoProfessor
   ProfessorCarga --> Disciplina
   ProfessorCarga --> MotivosSaida
+  ProfessorCarga --> ProfessorCarga
+  ProfessorCarga --> ProfessorCargaCancelamento
   ProfessorCargaSubstituto --> MotivosSaida
   ProfessorCargaSubstituto --> ProfessorCarga
+  ProfessorCargaSubstituto --> ProfessorCargaSubstituto
+  ProfessorCargaSubstituto --> ProfessorCargaCancelamento
   ProfessorChapa --> Cargo
+  ProfessorChapa --> ColigadaFilial
+  ProfessorChapa --> TipoVinculo
+  ProfessorClassePagamento --> Periodo
   ProfessorClassePagamento --> ClassePagamento
   ProfessorDisciplina --> Disciplina
   ProfessorLicenca --> SituacaoProfessor
@@ -444,6 +516,10 @@ graph TD
   PublicacaoCanalMaterialRelacionado --> PublicacaoCanal
   Questao --> Conteudo
   Questao --> Questao
+  QuestaoAfirmativa --> QuestaoVersao
+  QuestaoAlternativa --> QuestaoVersao
+  QuestaoAssunto --> Assunto
+  QuestaoAssunto --> QuestaoVersao
   QuestaoAutor --> AprovacaoQuestao
   QuestaoAutor --> Conteudo
   QuestaoAutor --> Questao
@@ -462,20 +538,43 @@ graph TD
   QuestaoClassificacao --> QuestaoTipo
   QuestaoClassificacao --> Tag
   QuestaoClassificacao --> Video
+  QuestaoClassificacaoBncc --> ClassificacaoBncc
+  QuestaoClassificacaoBncc --> QuestaoVersao
   QuestaoFeedback --> Origem
   QuestaoFeedback --> Questao
   QuestaoFeedback --> QuestaoTipoErro
+  QuestaoHabilidadeBncc --> HabilidadeBncc
+  QuestaoHabilidadeBncc --> QuestaoVersao
+  QuestaoHabilidadeEnem --> HabilidadeEnem
+  QuestaoHabilidadeEnem --> QuestaoVersao
+  QuestaoImagem --> Questao
   QuestaoLaplace --> Questao
   QuestaoLaplaceConsumida --> ConsumoQuestoesLaplace
   QuestaoLaplaceConsumidaErrosDeValidacao --> QuestaoLaplaceConsumida
   QuestaoOpcaoResposta --> Conteudo
   QuestaoOpcaoResposta --> Questao
+  QuestaoPalavraChave --> QuestaoVersao
+  QuestaoProblema --> QuestaoProblemaStatus
+  QuestaoProblema --> QuestaoProblemaTipo
+  QuestaoProblema --> QuestaoVersao
   QuestaoRespostaDiscursiva --> Questao
   QuestaoRespostaObjetiva --> Questao
   QuestaoRespostaObjetivaMetrica --> QuestaoRespostaObjetiva
   QuestaoSimilar --> Questao
   QuestaoTag --> Questao
   QuestaoTag --> Tag
+  QuestaoVersao --> AreaDisciplina
+  QuestaoVersao --> CompetenciaEnem
+  QuestaoVersao --> Complexidade
+  QuestaoVersao --> Dimensao
+  QuestaoVersao --> Questao
+  QuestaoVersao --> QuestaoTipo
+  QuestaoVersao --> QuestaoVersao
+  QuestaoVersao --> TextoBase
+  QuestaoVersaoHistorico --> QuestaoVersao
+  QuestaoVersaoHistorico --> QuestaoVersaoHistorico
+  QuestaoVisibilidadeHistorico --> Questao
+  QuestaoVisibilidadeHistorico --> QuestaoVisibilidadeOrigem
   Redacao --> EnvioLeituraCartao
   Redacao --> Redacao
   Redacao --> StatusRedacao
@@ -500,6 +599,8 @@ graph TD
   Rede --> Periodo
   Rede --> Marca
   Rede --> TipoRede
+  RedeDocumentoConfiguracao --> Rede
+  RedeDocumentoConfiguracao --> TipoDocumento
   RedeIdioma --> Idioma
   RedeIdioma --> Rede
   RedeIntegracoes --> Rede
@@ -512,6 +613,7 @@ graph TD
   RedeQuesito --> Quesito
   RedeQuesito --> Rede
   RedeSegmento --> Rede
+  RegraCalculoAuxiliar --> GrupoRegraCalculoAuxiliar
   RelatorioFolhaPeriodo --> TipoRelatorioFolha
   RelatorioFolhaPublico --> Rede
   RelatorioFolhaPublico --> TipoRelatorioFolha
@@ -521,12 +623,24 @@ graph TD
   ResponsavelAtendimento --> SolicitanteAtendimento
   RestricaoRankingSimuladoRede --> Rede
   RestricaoRankingSimuladoRede --> Simulado
+  ResultadoFinal --> AreaConhecimento
+  ResultadoFinal --> TipoComponenteCurricular
   Resumo --> Assunto
   Resumo --> Disciplina
   Resumo --> Segmento
+  RetentativaCorrecaoIAPendente --> EnvioLeituraCartao
+  RetentativaCorrecaoIAPendente --> Redacao
+  RevisaoComentario --> QuestaoAfirmativa
+  RevisaoComentario --> QuestaoAlternativa
+  RevisaoComentario --> QuestaoCampo
+  RevisaoComentario --> QuestaoImagem
+  RevisaoComentario --> QuestaoVersao
+  RevisaoComentario --> RevisaoComentarioStatus
+  RevisaoComentarioResposta --> RevisaoComentario
   Segmento --> Segmento
+  SegmentoExcluidoHoraDisponivel --> RegraCalculoAuxiliar
+  SegmentoExcluidoHoraDisponivel --> SegmentoPagamento
   SegmentoPagamento --> RedePagamento
-  SegmentoSindical --> RedePagamento
   ServicoCampoDinamico --> CampoDinamicoListaEspecifica
   ServicoCampoDinamico --> ChamadoOtrsTipo
   ServicoCampoDinamico --> CampoDinamico
@@ -552,6 +666,7 @@ graph TD
   Tag --> Tag
   Tags --> Conteudo
   Tags --> Tag
+  TemplateEmail --> Funcionalidade
   TemplateEmail --> Rede
   TemporalMediasTCTRede --> Simulado
   TemporalMediasTCTUnidade --> Simulado
@@ -559,6 +674,9 @@ graph TD
   TemporalQuestaoPercentual --> Simulado
   TemporalRank --> Rede
   TemporalRank --> Simulado
+  TextoBase --> AreaDisciplina
+  TextoBase --> TextoBase
+  TextoBaseImagem --> TextoBase
   Ticket --> Produto
   TicketProblemaMD --> MaterialDidaticoProblema
   TipoAtendimentoPorTipoRede --> TipoAtendimento
@@ -569,10 +687,13 @@ graph TD
   TipoComportamentoConfiguracao --> Segmento
   TipoComportamentoConfiguracao --> TipoComportamento
   TipoDocumento --> GrupoDocumento
+  TipoErroCadastro --> TipoErroResponsavel
   TipoEvento --> RedePagamento
   TipoEvento --> TipoEvento
   TipoEvento --> TipoPagamento
+  TipoMenu --> TipoRede
   TipoOcorrencia --> TipoOcorrencia
+  TipoOcorrencia --> Segmento
   TipoPublicoAtendidoPorTipoRede --> TipoPublicoAtendido
   TipoPublicoAtendidoPorTipoRede --> TipoRede
   TipoRedeFuncionalidadePadrao --> Funcionalidade
@@ -652,6 +773,7 @@ graph TD
   ControleErroFotos
   ControleFotos
   ControleLinhasFotoTotvs
+  CorCorrecaoRedacao
   Counter
   Curso
   CustomClassroom
@@ -674,6 +796,7 @@ graph TD
   EventosProfessor
   Feriado
   FichaMedica
+  FichaTecnicaImportacao
   Filiacao
   FiltroBaseDeDesempenho
   Fluig
@@ -746,6 +869,7 @@ graph TD
   MaterialDidaticoStatusPedido
   MaterialDidaticoTipoPedido
   MaterialPlanejamentoPedagogico
+  Matriz
   Mensageria
   MenuDevolutivas
   MenuLink
@@ -793,6 +917,7 @@ graph TD
   RelatorioFolha
   RelatorioPlataformaAdaptativa
   RelatorioPreviaCarga
+  RelatorioProvaGerado
   RelatorioSimulado
   RelatorioUploadCartoes
   RelatorioUploadCartoesAnalitico
@@ -811,6 +936,7 @@ graph TD
   StatusAprovacao
   StatusAtividadeClassroom
   StatusBoletim
+  StatusConfiguracaoProfessores
   StatusControleEmail
   StatusCovid
   StatusQuestao
@@ -820,7 +946,6 @@ graph TD
   TipoArredondamento
   TipoCalculo
   TipoDisciplina
-  TipoDivisaoChapa
   TipoEspacamento
   TipoFarol
   TipoMeta
@@ -828,6 +953,7 @@ graph TD
   TipoParentesco
   TipoProfissionalSaude
   TipoQuestao
+  TipoResultadoFinal
   TipoSanguineo
   TipoSituacaoBinaria
   TipoSubstituicao
@@ -840,7 +966,6 @@ graph TD
   _MigrationHistory
   dummy
   logclassroom
-  segmentoProfessor
   sysdiagrams
   tempEmailEnviados
   temp_EnvioLeitura

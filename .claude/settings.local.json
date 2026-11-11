@@ -206,7 +206,14 @@
       "Bash(awk 'NR==6735{print; printf \"\\\\t\\\\tpublic static partial class Toggle {\\\\t\\\\t\\\\n\\\\t\\\\t\\\\tpublic static Eleva.Portal.Toggle.Services.IHomeAlunoService HomeAlunoService {\\\\n\\\\t\\\\t\\\\t\\\\tget {return DomainInfrastructure.Domain.Service<Eleva.Portal.Toggle.Services.IHomeAlunoService>\\(\\);}\\\\n\\\\t\\\\t\\\\t}\\\\t\\\\t\\\\n\\\\t\\\\t}\\\\t\\\\t\\\\n\"; next} {print}' Generated/Domain.cs)",
       "PowerShell(. _scripts\\\\jira-env.ps1)",
       "Bash(curl -s http://localhost:4200/ -o /dev/null -w \"%{http_code}\\\\n\")",
-      "Bash(node *)"
+      "Bash(node *)",
+      "Bash(awk '{print length}' \"Documentacao Pedagogica - Configuracoes.html\")",
+      "Bash(taskkill //F //IM testhost.exe)",
+      "Bash(taskkill //F //IM dotnet.exe)",
+      "Bash(xargs -n1 basename)",
+      "Bash(tasklist)",
+      "Bash(awk '/^  Pessoa:$/,/^  [A-Za-z]/' _pde/db_map/schema/tables.yaml)",
+      "WebFetch(domain:claude.ai)"
     ],
     "additionalDirectories": [
       "c:\\projects\\notas",

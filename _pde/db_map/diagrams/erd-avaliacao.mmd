@@ -9,13 +9,22 @@ graph TD
   AlunoNotaRecomendacao --> Avaliacao
   AlunoNotaTRI --> Avaliacao
   AnotacaoLegendaRedacao --> Anotacao
+  AnotacaoMigracaoItem --> AnotacaoMigracaoOperacao
+  AnotacaoMigracaoOperacao --> AnotacaoMigracaoCampanha
   AnotacaoRegraGeralRedacao --> Anotacao
   AtendimentoAvaliacaoItem --> AtendimentoAvaliacao
   AtendimentoAvaliacaoItem --> Avaliacao
+  Avaliacao --> EstruturaAvaliacaoEscopo
   Avaliacao --> EstruturaAvaliacaoImportacaoEstrutura
   Avaliacao --> Avaliacao
   Avaliacao --> TipoAvaliacao
+  Avaliacao --> AvaliacaoStatus
   AvaliacaoDisciplina --> Avaliacao
+  AvaliacaoDisciplina --> AvaliacaoDisciplinaStatus
+  AvaliacaoDisciplinaDistribuicao --> AvaliacaoDisciplina
+  AvaliacaoDisciplinaQuestao --> AvaliacaoDisciplina
+  AvaliacaoDisciplinaStatusHistorico --> AvaliacaoDisciplina
+  AvaliacaoDisciplinaStatusHistorico --> AvaliacaoDisciplinaStatus
   AvaliacaoEscola --> Avaliacao
   AvaliacaoEscolaEleva --> Avaliacao
   AvaliacaoEscolaTurma --> AvaliacaoEscolaTurmaStatus
@@ -33,6 +42,8 @@ graph TD
   AvaliacaoModeloHistorico --> StatusAvaliacaoModelo
   AvaliacaoModeloQuestao --> AvaliacaoModelo
   AvaliacaoSerie --> Avaliacao
+  AvaliacaoStatusHistorico --> Avaliacao
+  AvaliacaoStatusHistorico --> AvaliacaoStatus
   BaseDeAvaliacoesAluno --> BaseDeAvaliacoes
   EstruturaAvaliacao --> EstruturaAvaliacaoEscopo
   EstruturaAvaliacao --> EstruturaAvaliacao
@@ -49,7 +60,12 @@ graph TD
   EstruturaAvaliacaoImportacaoEstrutura --> TipoAvaliacao
   EstruturaAvaliacaoImportacaoSerie --> EstruturaAvaliacaoImportacao
   EstruturaAvaliacaoNomenclaturaEscopo --> EstruturaAvaliacaoEscopo
+  EstruturaAvaliacaoOrdemDisciplina --> EstruturaAvaliacaoEscopo
   EstruturaAvaliacaoSubstituicao --> EstruturaAvaliacao
+  MapaAvaliacaoItem --> AvaliacaoDisciplina
+  MapaAvaliacaoItemAssunto --> MapaAvaliacaoItem
+  MapaAvaliacaoItemHabilidadeBncc --> MapaAvaliacaoItem
+  MapaAvaliacaoItemHabilidadeEnem --> MapaAvaliacaoItem
   MediaAvaliacaoEscola --> Avaliacao
   NotaFormativa --> TipoNotaFormativa
   PesquisaNotaAvaliacao --> NotaAvaliacao
@@ -65,13 +81,14 @@ graph TD
   TipoNotaFormativa --> GrupoNotaFormativa
   AlunoNotaEscolaEleva
   AlunoNota_bkp
+  AnotacaoArmazenamentoControle
+  AnotacaoArquivoExclusaoPendente
   AvaliacaoEditora
   BaseDeNotas
   EstruturaAvaliacaoAprovacaoEscola
   EstruturaAvaliacaoLiberacaoBoletim
   EstruturaAvaliacaoLiberacaoSituacao
   EstruturaAvaliacaoNomenclaturaCiclo
-  EstruturaAvaliacaoOrdemDisciplina
   ExtracaoBaseDeNotas
   HisHistoricoNotas
   MaterialDidaticoMonitoriaAvaliacao

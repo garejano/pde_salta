@@ -130,6 +130,144 @@ Todas seguem a convenção `StatefulEntity` do `estrutura-pedagogica` (Id/Hash/A
 DataUltimaAlteracao/DataInativacao/Usuario\*) — não o padrão `Hash`+`HashOrigem` do doc-ped, que
 não se aplica aqui (essas tabelas não espelham dado de outro lugar, são novas).
 
+## Decisão de arquitetura (2026-10-23) — normalizar configuração por tipo de documento
+
+**Regras definidas pelo usuário, a valer a partir de agora para o Card 1** (o schema abaixo já
+rodou em homolog com o desenho antigo — ver "Migração do schema já rodado" mais abaixo):
+
+1. Sem alterações nas entidades nativas `Rede` e `Escola` — continua valendo o que já era regra
+   (ver "O que não migra"), só reafirmando no contexto desta mudança.
+2. Uma tabela `TipoDocumento` (lookup) indicando os tipos de documento existentes.
+3. Uma tabela cruzando Rede (ou Escola) × Documento com as configurações pertinentes de cada
+   combinação — em vez de colunas fixas por documento numa tabela larga.
+
+Isso **antecipa a Fase 4** do modelo genérico Documento/Bloco desenhado em
+`document-builder/estrutura_documentos.md` (que já previa `DocumentoTipo` + uma tabela de junção
+tipo `RedeDocumento`/`EscolaDocumento`, seção 4) — só que lá estava marcado como evolução futura,
+independente, só depois das Fases 1–3 provarem o modelo. Decisão tomada em 2026-10-23: puxar só a
+parte Rede/Escola × Documento pra agora, aplicada ao Card 1, sem esperar o resto do modelo genérico
+(catálogo de blocos, editor, `ConfiguracaoBloco`) — ver nota de escopo atualizada em
+`estrutura_documentos.md` seção 9.
+
+### Schema atual (rodado) vs. schema novo (a implementar)
+
+| Tabela atual | O que muda |
+|---|---|
+| `ConfiguracaoRedeDocumentacaoPedagogica` (1 linha por Rede, ~30 colunas somando Geral + Histórico + Ficha + Ata + Livro) | Encolhe para só as 4 colunas de **Geral** (`ExibirTituloCentralizadoNoDocumento`, `NotasComUmaCasaDecimal`, `StatusAprovadoPeloConselho`, `ExibirAlunosApenasNaTurmaMaisRecente`) + `RedeId` — "Geral" não é config de um documento específico, não entra no cruzamento. As colunas de Histórico/Ficha/Ata/Livro saem daqui. |
+| `ConfiguracaoCertificadoConclusaoDocumentacaoPedagogica` (1:1 com a config de rede) | Absorvida — Certificado de Conclusão passa a ser só mais um `TipoDocumento`, sua config vira uma linha em `RedeDocumentoConfiguracao` como qualquer outro documento, tabela própria é removida. |
+| `ConfiguracaoRedeSerieNomenclatura` (1:N série por rede) | Não muda — nomenclatura de série não é config "por documento", é por rede/série. |
+| `ConfiguracaoEscolaDocumentacaoPedagogica` (1:1 por Escola — Cabeçalho/Assinatura) | Absorvida — mesma lógica do Certificado: cada documento passa a ter sua própria linha em `EscolaDocumentoConfiguracao`, tabela própria é removida. Ver "Decisão confirmada" abaixo. |
+| `FundamentacaoLegal` (1:N por rede) | Não muda. |
+
+### Schema novo proposto
+
+```
+TipoDocumento                    — lookup, catálogo fixo dos documentos desta migração
+   Id, Hash, Chave (ex: "historico", "ficha-individual", "ata-resultados-finais",
+   "certificado-conclusao", "livro-matricula"), Nome, Ativo
+
+RedeDocumentoConfiguracao        — 1 linha por (Rede, TipoDocumento)
+   Id, Hash, RedeId, TipoDocumentoId, ValoresJson, + colunas de auditoria StatefulEntity
+   UNIQUE(RedeId, TipoDocumentoId)
+
+EscolaDocumentoConfiguracao      — 1 linha por (Escola, TipoDocumento)
+   Id, Hash, EscolaId, TipoDocumentoId, ValoresJson, + colunas de auditoria StatefulEntity
+   UNIQUE(EscolaId, TipoDocumentoId)
+```
+
+`ValoresJson` (não colunas tipadas por campo) pela mesma razão já decidida em
+`estrutura_documentos.md` (seção 5, item 4) para `ConfiguracaoBloco`: cada documento tem um shape de
+config totalmente diferente (Histórico tem ~15 flags, Livro tem 5, Certificado tem texto livre de
+lei/termo) — colunas tipadas numa tabela cruzada geraria a mesma tabela larga com dezenas de colunas
+majoritariamente nulas que este refactor está tentando eliminar, só que uma linha por documento em
+vez de uma coluna por documento. A aplicação valida o shape esperado por `TipoDocumento` antes de
+salvar; o banco não valida estrutura interna do JSON (mesmo trade-off já aceito lá).
+
+### Decisão confirmada (2026-10-23): `ConfiguracaoEscolaDocumentacaoPedagogica` também vira Escola × Documento
+
+Confirmado pelo usuário: `EscolaDocumentoConfiguracao` é criada, espelhando `RedeDocumentoConfiguracao`
+(mesma estrutura, `ValoresJson`, `UNIQUE(EscolaId, TipoDocumentoId)`). A tabela
+`ConfiguracaoEscolaDocumentacaoPedagogica` atual (Cabeçalho/Assinatura, hoje compartilhada entre
+todos os documentos) é removida — cada documento passa a ter sua própria linha, mesmo que a
+migração inicial (ver abaixo) replique o mesmo valor em todas por não existir hoje diferenciação.
+
+**Decidido (2026-10-23)**: `NomeExibicao` entra no `ValoresJson` por documento, por hora — mesmo
+tratamento dos demais campos da tabela atual (replicado por `TipoDocumento` na migração inicial, sem
+diferenciação de uso). Não vira coluna própria de `EscolaDocumentoConfiguracao` neste momento;
+revisitar só se aparecer necessidade real de ele divergir por documento.
+
+### Migração do dado já rodado (não é re-seed do zero)
+
+Card 1 já tem esse schema **rodado em homolog com seed de produção migrado**
+(`ConfiguracaoRedeDocumentacaoPedagogica` + `ConfiguracaoCertificadoConclusaoDocumentacaoPedagogica`
++ `ConfiguracaoEscolaDocumentacaoPedagogica` populadas via `gen_seed.py`). O refactor precisa de um
+script de **migração de dado** (ler as colunas atuais — de rede e de escola — e gerar as linhas
+correspondentes de `RedeDocumentoConfiguracao`/`EscolaDocumentoConfiguracao` com `ValoresJson`
+montado a partir delas, replicando o mesmo valor de escola para cada `TipoDocumento` aplicável), não
+um novo seed a partir dos CSVs originais — o dado de produção já migrado é a fonte, não o doc-ped
+original de novo.
+
+### Implementação (2026-10-23) — concluída
+
+Backend e frontend reescritos contra o desenho acima, no branch `projetos/MigracaoDocPed`:
+
+- **Schema**: 3 scripts novos em `estrutura-pedagogica/backend/Scripts/` —
+  `documentacao-pedagogica-configuracoes-tipo-documento-schema.sql` (cria `TipoDocumento`,
+  `RedeDocumentoConfiguracao`, `EscolaDocumentoConfiguracao`, seed do catálogo de 5 tipos),
+  `...-migrar-dados.sql` (lê as colunas/tabelas atuais e popula as novas, idempotente) e
+  `...-limpeza.sql` (dropa as colunas/tabelas antigas — **só rodar depois** de confirmar a migração
+  de dado e o deploy do backend novo). **Nenhum dos 3 foi executado ainda** — só os arquivos, para
+  revisão/execução manual (mesma convenção dos scripts anteriores do Card 1).
+- **Backend**: entidades `TipoDocumentoDocPed`/`RedeDocumentoConfiguracao`/`EscolaDocumentoConfiguracao`
+  (renomeado para `TipoDocumentoDocPed` — colisão de nome com um `TipoDocumento` pré-existente de
+  Painel do Aluno, achado durante a implementação); `ConfiguracaoRedeDocumentacaoPedagogica` trimada
+  pra só Geral; `ConfiguracaoCertificadoConclusaoDocumentacaoPedagogica`/
+  `ConfiguracaoEscolaDocumentacaoPedagogica` removidas. Os 5 services de salvar por documento da
+  Rede viraram 1 (`SalvarConfiguracaoRedeDocumentoService`, recebe `TipoDocumento` + `Valores` JSON);
+  `GetConfiguracaoRedeDocPedService`/`GetConfiguracaoEscolaDocPedService`/
+  `SalvarConfiguracaoEscolaDocPedService` e os 3 `TurmaDocumento` services que liam Certificado/Ata/
+  Livro (`GetAtaResultadosFinaisService`, `GetCertificadoConclusaoService`, `GetLivroMatriculaService`)
+  foram adaptados pra ler as tabelas normalizadas. Controller: os 5 `POST rede/{historico,ficha,ata,
+  livro-matricula,certificado-conclusao}` viraram 1 `POST rede/documento`.
+- **Frontend**: contrato também mudou (decisão do usuário) — `ConfiguracaoRedeResponse.documentos:
+  ConfiguracaoRedeDocumentoResponse[]` substitui os ~30 campos soltos + `configuracaoCertificadoConclusao`;
+  `ConfiguracaoRedeService` ganhou `salvarDocumento(hashRede, tipoDocumento, valores)` no lugar dos 5
+  `update*`; `rede-documentos-tab.component.ts` lê/grava via essa lista genérica. Escola manteve o
+  contrato (`ConfiguracaoEscolaDocPedGetResponse`/`SaveRequest` sem mudança de shape) — só a
+  persistência por baixo mudou, sem necessidade de UI por documento (nenhum caso de uso hoje precisa).
+- **Testes**: os 5 testes de save por documento da Rede viraram 1
+  (`SalvarConfiguracaoRedeDocumentoServiceTests.cs`); os demais cenários afetados (Get de Rede/Escola,
+  Save de Escola, os 3 Get de `TurmaDocumento`) foram reescritos contra o schema novo. Suíte completa
+  do backend (5595 testes) passando, sem regressão. Build de backend e frontend sem erros.
+
+**Status em homolog (2026-10-27)**: `...-tipo-documento-schema.sql` e `...-migrar-dados.sql` já
+rodaram e foram validados por contagem (`TipoDocumento`=5, `RedeDocumentoConfiguracao`=165 = 41
+redes×4 + 1 certificado, `EscolaDocumentoConfiguracao`=1375 = 275 escolas×5 — bate exato com as
+tabelas de origem, que continuam intactas). `...-limpeza.sql` **ainda não rodou** — só depois do
+deploy do backend novo (código local ainda não commitado/deployado nesta data).
+
+### `AnoLetivoId` em `EscolaDocumentoConfiguracao` (2026-10-27)
+
+Pré-requisito de schema pro novo design do editor de Configurações (ver
+`novo_design/analise-tecnica.md`, item 1) — lá o escopo "Escola" é por Escola + Ano Letivo, não só
+Escola. Novo script
+`documentacao-pedagogica-escola-documento-configuracao-adicionar-ano-letivo.sql` (**não executado
+ainda**): adiciona `AnoLetivoId INT NULL` (FK `dbo.AnoLetivo`) e troca a constraint única por 2
+índices filtrados — um pra linha "default" (`AnoLetivoId IS NULL`, vale pra todos os anos, é o
+comportamento de hoje) e um pra override por ano específico (`AnoLetivoId IS NOT NULL`).
+
+Só o schema + entidade foram adicionados nesta rodada — `GetConfiguracaoEscolaDocPedService`,
+`SalvarConfiguracaoEscolaDocPedService` e os 2 `TurmaDocumento` services que leem assinaturas da
+escola (`GetAtaResultadosFinaisService`, `GetLivroMatriculaService`) foram ajustados só pra filtrar
+explicitamente `AnoLetivoId == null` (preserva o comportamento atual, sem regressão). **Não
+implementado ainda**: seletor de ano letivo na UI, lógica de override por ano no save, resolução
+do ano letivo vigente da turma nos services de `TurmaDocumento` — isso fica para quando o editor do
+Histórico Escolar (próximo passo do novo design) for implementado de fato.
+
+**Pendente**: rodar os 2 scripts ainda não executados (`...-adicionar-ano-letivo.sql` e
+`...-limpeza.sql`, nessa ordem relativa não importa entre si, mas ambos depois do deploy do backend
+atualizado) em homolog.
+
 ## Card 2 (Histórico do Aluno) — implementado
 
 Schema: `estrutura-pedagogica/backend/Scripts/documentacao-pedagogica-historico-aluno-schema.sql`

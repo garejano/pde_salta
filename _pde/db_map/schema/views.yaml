@@ -6190,6 +6190,39 @@ views:
       type: varchar
     - name: StatusAluno
       type: nvarchar
+  ViewAreaDisciplina:
+    domain: outros
+    columns:
+    - name: Id
+      type: int
+    - name: Codigo
+      type: varchar
+    - name: Tipo
+      type: varchar
+    - name: Nome
+      type: varchar
+    - name: Disciplina
+      type: int
+    - name: DisciplinaSigla
+      type: varchar
+    - name: AreaConhecimento
+      type: int
+    - name: AreaConhecimentoCodigo
+      type: varchar
+    - name: AreaConhecimentoNome
+      type: varchar
+    - name: AreaDisciplinaArea
+      type: int
+    - name: Cor
+      type: char
+    - name: CorTexto
+      type: char
+    - name: CorClara
+      type: char
+    - name: ExibirNosFiltros
+      type: bit
+    - name: Ativo
+      type: bit
   ViewArquivamentoDeTurmaSemClassroomHabilitado:
     domain: academico
     columns:
@@ -6221,6 +6254,33 @@ views:
       type: varchar
     - name: Operacao
       type: int
+  ViewAssunto:
+    domain: outros
+    columns:
+    - name: Assunto
+      type: int
+    - name: Nome
+      type: nvarchar
+    - name: AssuntoPai
+      type: int
+    - name: AssuntoNivel
+      type: int
+    - name: NivelNome
+      type: nvarchar
+    - name: Dimensao
+      type: int
+    - name: DimensaoNome
+      type: nvarchar
+    - name: AreaDisciplina
+      type: int
+    - name: Profundidade
+      type: int
+    - name: Caminho
+      type: nvarchar
+    - name: Folha
+      type: bit
+    - name: Ativo
+      type: bit
   ViewAtendimentoPainel:
     domain: outros
     columns:
@@ -6598,6 +6658,39 @@ views:
       type: int
     - name: NomeDisciplina
       type: nvarchar
+  ViewAvaliacaoDisciplinaSituacao:
+    domain: avaliacao
+    columns:
+    - name: AvaliacaoDisciplina
+      type: int
+    - name: Avaliacao
+      type: int
+    - name: AvaliacaoDisciplinaStatus
+      type: int
+    - name: StatusCodigo
+      type: varchar
+    - name: ElaboracaoIniciada
+      type: bit
+    - name: RevisaoIniciada
+      type: bit
+    - name: SituacaoCodigo
+      type: varchar
+    - name: SituacaoNome
+      type: nvarchar
+    - name: SituacaoOrdem
+      type: int
+    - name: PeriodoEncerrado
+      type: bit
+    - name: ComentariosPendentes
+      type: int
+    - name: ItensRevisados
+      type: int
+    - name: ItensNaoRevisados
+      type: int
+    - name: IneditosPendentesEnvio
+      type: bit
+    - name: TemPendencia
+      type: bit
   ViewAvaliacaoEscolaEleva:
     domain: avaliacao
     columns:
@@ -6730,6 +6823,31 @@ views:
       type: int
     - name: EhSituacao
       type: bit
+  ViewAvaliacaoSituacao:
+    domain: avaliacao
+    columns:
+    - name: Avaliacao
+      type: int
+    - name: StatusCodigo
+      type: varchar
+    - name: AvaliacaoStatus
+      type: int
+    - name: StatusNome
+      type: varchar
+    - name: StatusOrdem
+      type: int
+    - name: FiltroSituacao
+      type: varchar
+    - name: IneditosPendentesEnvio
+      type: bit
+    - name: TemPendencia
+      type: bit
+    - name: Disciplinas
+      type: int
+    - name: DisciplinasIniciadas
+      type: int
+    - name: DisciplinasConcluidas
+      type: int
   ViewBancoDeQuestoesTags:
     domain: outros
     columns:
@@ -11958,6 +12076,23 @@ views:
       type: int
     - name: NomeExibicaoSerie
       type: nvarchar
+  ViewHabilidadeBnccClassificacao:
+    domain: outros
+    columns:
+    - name: HabilidadeBncc
+      type: int
+    - name: HabilidadeCodigo
+      type: varchar
+    - name: ClassificacaoBncc
+      type: int
+    - name: TipoCodigo
+      type: varchar
+    - name: TipoNome
+      type: varchar
+    - name: Nome
+      type: varchar
+    - name: AreaDisciplina
+      type: int
   ViewHomeAlunoNota:
     domain: avaliacao
     columns:
@@ -16537,6 +16672,23 @@ views:
       type: int
     - name: ParaRevisar
       type: int
+  ViewQuestaoHistoricoUso:
+    domain: outros
+    columns:
+    - name: Questao
+      type: int
+    - name: Avaliacao
+      type: int
+    - name: AvaliacaoNome
+      type: nvarchar
+    - name: TipoAvaliacaoNome
+      type: varchar
+    - name: Ano
+      type: int
+    - name: Vezes
+      type: int
+    - name: FonteQuestao
+      type: bit
   ViewQuestaoLaplace:
     domain: outros
     columns:
@@ -16615,6 +16767,12 @@ views:
       type: int
     - name: ZeraRedacao
       type: bit
+    - name: NomeArquivo
+      type: varchar
+    - name: PossuiArquivo
+      type: bit
+    - name: HashConteudo
+      type: binary
   ViewRedacaoCorrigidaSemNota:
     domain: avaliacao
     columns:

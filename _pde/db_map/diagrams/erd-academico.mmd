@@ -19,6 +19,7 @@ graph TD
   AlunoEscolaResponsavel --> AlunoEscola
   AlunoExecucaoProva --> AlunoProva
   AlunoNecessidadesEspeciaisRelatorio --> AnoLetivo
+  AlunoNecessidadesEspeciaisTipoTranstorno --> AlunoNecessidadesEspeciais
   AlunoOcorrencia --> AlunoEscola
   AlunoParentesco --> AlunoEscola
   AlunoProvaResposta --> AlunoProva
@@ -41,6 +42,8 @@ graph TD
   ComunicadoMobileEscolaSerieTurma --> Escola
   ComunicadoMobileEscolaSerieTurma --> Serie
   ComunicadoMobileEscolaSerieTurma --> Turma
+  ConfiguracaoEscolaDocumentacaoPedagogica --> Escola
+  ConfiguracaoRedeSerieNomenclatura --> Serie
   ConteudoOnlineEscola --> Escola
   ConteudoOnlineTurma --> Turma
   CoordenadorEscola --> Escola
@@ -50,7 +53,10 @@ graph TD
   Escola --> TipoEscola
   EscolaAnoLetivo --> AnoLetivo
   EscolaAnoLetivo --> Escola
+  EscolaAnoLetivoDocumentacaoPedagogica --> EscolaAnoLetivo
   EscolaConfiguracao --> Escola
+  EscolaDocumentoConfiguracao --> AnoLetivo
+  EscolaDocumentoConfiguracao --> Escola
   EscolaFeriado --> Escola
   EscolaFeriado --> Turma
   EscolaGerencialEscola --> AnoLetivo
@@ -78,6 +84,7 @@ graph TD
   EscolaSerieDisciplinaGrupoDisciplina --> EscolaSerieDisciplina
   EscolaSerieEtapa --> EscolaSerie
   EstatisticaTurmaClassroom --> TurmaClassroom
+  HabilidadeBnccSerie --> Serie
   HisAnoLetivo --> AnoLetivo
   HisEscola --> Escola
   HisEscolaComp --> HisAnoLetivo
@@ -85,6 +92,9 @@ graph TD
   HisEscolaComp --> HisSerie
   HisEscolaCompDisc --> HisEscolaComp
   HisHistoricoAnoLetivo --> HisEscolaComp
+  HistoricoSerie --> AnoLetivo
+  HistoricoSerie --> Escola
+  HistoricoSerie --> Serie
   IndicadorEscola --> AnoLetivo
   IndicadorEscola --> Escola
   IndicadorEscolaObjeto --> IndicadorEscola
@@ -151,6 +161,7 @@ graph TD
   POATurma --> Turma
   POATurmaStatus --> POATurma
   PreviaCargaEscola --> Escola
+  PreviaEventosEscolaGerencialExcluida --> EscolaGerencial
   ProfessorChapaEscolaMes --> EscolaGerencial
   ProfessorChapaEscolaMes --> AnoLetivo
   ProfessorTurmaDisciplina --> PessoaEscolaAcesso
@@ -237,7 +248,6 @@ graph TD
   AlunoEscolaEnturmacaoTemp
   AlunoExecucaoProva2
   AlunoLaudoMedico
-  AlunoNecessidadesEspeciais
   AlunoParaSincronizacao
   AlunoProvaMarcacao
   AlunoProvaQuestaoSomatorio
@@ -257,6 +267,7 @@ graph TD
   DeHabilitacaoParaSerie
   EnturmacaoEE
   Escola_Origem
+  FaixaAdicionalPorAluno
   HoraInicioFimPorTurma
   ImportacaoAlunosEE
   ImportacaoAlunosGE
@@ -283,6 +294,7 @@ graph TD
   POAAluno_Modulo
   POATurma_Modulo
   PainelAluno
+  ParametroAdicionalPorAluno
   ProfessorEscola
   PublicoSerie
   RelacaoSeriePlanejamentoPedagogico

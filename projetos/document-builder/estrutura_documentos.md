@@ -347,9 +347,12 @@ qualquer momento, em paralelo, sem depender dela terminar.
 - **Fase 3 — adicionar o primeiro bloco de regra de negócio real.** Pegar um caso concreto (ex.:
   "Tabela de Notas do Histórico") e modelar como `BlocoTipo` com `schemaConfig` próprio + lógica de
   montagem, validando que o modelo aguenta regra de negócio e não só blocos estruturais.
-- **Fase 4 (fora de escopo aqui) — decidir a integração com consumidor.** Só depois das fases
-  acima provarem o modelo, decidir como Rede/Escola/outro consumidor se conecta a `Documento` — e
-  nesse momento avaliar se/quando migrar o schema atual ou fazer os dois modelos conviverem.
+- **Fase 4 (parcialmente antecipada, ver seção 9) — decidir a integração com consumidor.** Pensada
+  originalmente para só depois das fases acima provarem o modelo. **Atualização 2026-10-23**: a
+  parte Rede × Documento **e** Escola × Documento foi antecipada para o Card 1 da migração em
+  andamento, sem esperar as Fases 1–3 — ver `projetos/migracao_doc_ped/backend.md`. O que continua
+  em aberto da Fase 4 é só a integração com o catálogo de blocos genérico
+  `BlocoTipo`/`ConfiguracaoBloco`/Editor (Fases 1–3), não a conexão com Rede/Escola em si.
 
 ## 7. Boas práticas recomendadas já hoje (sem esperar as fases da seção 6)
 
@@ -1103,8 +1106,18 @@ bater — qualquer alteração de valor no meio do caminho invalida a assinatura
 
 ## 9. Fora de escopo (explícito)
 
+> **Atualização 2026-10-23**: a parte Rede × Documento da Fase 4 (seção 6) foi **puxada pra agora**,
+> por decisão do usuário, só para o Card 1 (`projetos/migracao_doc_ped`) — não o modelo genérico
+> inteiro (`BlocoTipo`/`ConfiguracaoBloco`/Editor, Fases 1–3, que continuam futuras/fora de escopo).
+> `DocumentoTipo` (seção 3.1) virou `TipoDocumento` e a opção "tabela de junção específica por tipo
+> de consumidor" (seção 4, primeira opção) foi a escolhida, para **os dois consumidores**:
+> `RedeDocumentoConfiguracao` e `EscolaDocumentoConfiguracao` (confirmado em 2026-10-23). Desenho
+> completo em `projetos/migracao_doc_ped/backend.md` (pde_salta), seção "Decisão de arquitetura
+> (2026-10-23)". A ressalva abaixo não se aplica mais a essa parte específica.
+
 - Qualquer alteração na migração em andamento (`projetos/MigracaoDocPed`) ou no schema
-  `ConfiguracaoRedeDocumentacaoPedagogica`/`ConfiguracaoEscolaDocumentacaoPedagogica`.
+  `ConfiguracaoRedeDocumentacaoPedagogica`/`ConfiguracaoEscolaDocumentacaoPedagogica`, **exceto** a
+  normalização Rede × Documento descrita na atualização acima.
 - Upload/gestão de imagem de brasão.
 - O pipeline de geração de PDF/impressão (`PrintService`, `LayoutEngineService`) — já é genérico e
   não precisa mudar para suportar este modelo.

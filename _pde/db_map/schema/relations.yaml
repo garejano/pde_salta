@@ -92,6 +92,9 @@ relations:
 - fk: FK_PK_AlocacaoRede_Rede
   from: AlocacaoRede.Rede
   to: Rede.Id
+- fk: FK_AlteracaoCargaLancamento_AlteracaoCargaLancamentoOrigem
+  from: AlteracaoCargaLancamento.AlteracaoCargaLancamentoOrigem
+  to: AlteracaoCargaLancamento.Id
 - fk: FK_AlunoAP.AnoLetivo
   from: AlunoAP.AnoLetivo
   to: AnoLetivo.Id
@@ -287,6 +290,12 @@ relations:
 - fk: FK_AlunoNecessidadesEspeciaisRelatorio.Pessoa
   from: AlunoNecessidadesEspeciaisRelatorio.Pessoa
   to: Pessoa.Id
+- fk: FK_AlunoNeeTipoTranstorno_AlunoNecessidadesEspeciais
+  from: AlunoNecessidadesEspeciaisTipoTranstorno.AlunoNecessidadesEspeciais
+  to: AlunoNecessidadesEspeciais.Id
+- fk: FK_AlunoNeeTipoTranstorno_TipoTranstorno
+  from: AlunoNecessidadesEspeciaisTipoTranstorno.TipoTranstorno
+  to: TipoTranstorno.Id
 - fk: FK.AlunoNota.TipoJustificativaNota
   from: AlunoNota.TipoJustificativaNota
   to: TipoJustificativaNota.Id
@@ -434,6 +443,9 @@ relations:
 - fk: FK_Anotacao_Redacao
   from: Anotacao.Redacao
   to: Redacao.Id
+- fk: FK_AAC_Redacao
+  from: AnotacaoArmazenamentoControle.Redacao
+  to: Redacao.Id
 - fk: FK_AnotacaoLegendaRedacao
   from: AnotacaoLegendaRedacao.LegendaRedacao
   to: LegendaRedacao.Id
@@ -443,6 +455,15 @@ relations:
 - fk: FK_LegendaRedacao_Anotacao
   from: AnotacaoLegendaRedacao.Anotacao
   to: Anotacao.Id
+- fk: FK_AMI_Operacao
+  from: AnotacaoMigracaoItem.Operacao
+  to: AnotacaoMigracaoOperacao.Id
+- fk: FK_AMO_Campanha
+  from: AnotacaoMigracaoOperacao.Campanha
+  to: AnotacaoMigracaoCampanha.Id
+- fk: FK_AMO_Redacao
+  from: AnotacaoMigracaoOperacao.Redacao
+  to: Redacao.Id
 - fk: FK_AnotacaoRegraGeralRedacao
   from: AnotacaoRegraGeralRedacao.RegraGeralRedacao
   to: RegraGeralRedacao.Id
@@ -452,12 +473,33 @@ relations:
 - fk: FK_AoVivoSerie_Serie_Serie_Id
   from: AoVivoSerie.Serie
   to: Serie.Id
+- fk: FK_AreaDisciplina_AreaConhecimento
+  from: AreaDisciplina.AreaConhecimento
+  to: AreaConhecimento.Id
+- fk: FK_AreaDisciplina_Disciplina
+  from: AreaDisciplina.Disciplina
+  to: Disciplina.Id
 - fk: FK_Assunto.Disciplina
   from: Assunto.Disciplina
   to: Disciplina.Id
+- fk: FK_Assunto_AssuntoNivel
+  from: Assunto.AssuntoNivel
+  to: AssuntoNivel.Id
+- fk: FK_Assunto_AssuntoPai
+  from: Assunto.AssuntoPai
+  to: Assunto.Id
+- fk: FK_Assunto_Dimensao
+  from: Assunto.Dimensao
+  to: Dimensao.Id
 - fk: FK_Assunto_Disciplina_Disciplina
   from: Assunto.Disciplina
   to: Disciplina.Id
+- fk: FK_AssuntoSegmento_Assunto
+  from: AssuntoSegmento.Assunto
+  to: Assunto.Id
+- fk: FK_AssuntoSegmento_Segmento
+  from: AssuntoSegmento.Segmento
+  to: Segmento.Id
 - fk: FK_Atendimento.AlunoEscola
   from: Atendimento.AlunoEscola
   to: AlunoEscola.AlunoEscola_key
@@ -719,6 +761,9 @@ relations:
 - fk: FK_Avaliacao.Ementa
   from: Avaliacao.Ementa
   to: Conteudo.Id
+- fk: FK_Avaliacao.EstruturaAvaliacaoEscopo
+  from: Avaliacao.EstruturaAvaliacaoEscopo
+  to: EstruturaAvaliacaoEscopo.Id
 - fk: FK_Avaliacao.EstruturaAvaliacaoImportacaoEstrutura
   from: Avaliacao.EstruturaAvaliacaoImportacaoEstrutura
   to: EstruturaAvaliacaoImportacaoEstrutura.Id
@@ -734,6 +779,18 @@ relations:
 - fk: FK_Avaliacao.TipoResultado
   from: Avaliacao.TipoResultado
   to: TipoResultado.Id
+- fk: FK_Avaliacao_AnoLetivo
+  from: Avaliacao.AnoLetivo
+  to: AnoLetivo.Id
+- fk: FK_Avaliacao_AvaliacaoStatus
+  from: Avaliacao.AvaliacaoStatus
+  to: AvaliacaoStatus.Id
+- fk: FK_Avaliacao_Serie
+  from: Avaliacao.Serie
+  to: Serie.Id
+- fk: FK_Avaliacao_TipoAvaliacao
+  from: Avaliacao.TipoAvaliacao
+  to: TipoAvaliacao.Id
 - fk: FK_LogAlteracoes.Avaliacao.Agrupamento
   from: Avaliacao.Agrupamento
   to: Agrupamento.Id
@@ -764,6 +821,42 @@ relations:
 - fk: FK_AvaliacaoDisciplina.Disciplina
   from: AvaliacaoDisciplina.Disciplina
   to: Disciplina.Id
+- fk: FK_AvaliacaoDisciplina_AreaDisciplina
+  from: AvaliacaoDisciplina.AreaDisciplina
+  to: AreaDisciplina.Id
+- fk: FK_AvaliacaoDisciplina_Avaliacao
+  from: AvaliacaoDisciplina.Avaliacao
+  to: Avaliacao.Id
+- fk: FK_AvaliacaoDisciplina_AvaliacaoDisciplinaStatus
+  from: AvaliacaoDisciplina.AvaliacaoDisciplinaStatus
+  to: AvaliacaoDisciplinaStatus.Id
+- fk: FK_AvaliacaoDisciplina_Elaborador
+  from: AvaliacaoDisciplina.Elaborador
+  to: Usuario.Id
+- fk: FK_AvaliacaoDisciplina_Revisor
+  from: AvaliacaoDisciplina.Revisor
+  to: Usuario.Id
+- fk: FK_AvaliacaoDisciplinaDistribuicao_AvaliacaoDisciplina
+  from: AvaliacaoDisciplinaDistribuicao.AvaliacaoDisciplina
+  to: AvaliacaoDisciplina.Id
+- fk: FK_AvaliacaoDisciplinaDistribuicao_Complexidade
+  from: AvaliacaoDisciplinaDistribuicao.Complexidade
+  to: Complexidade.Id
+- fk: FK_AvaliacaoDisciplinaQuestao_AvaliacaoDisciplina
+  from: AvaliacaoDisciplinaQuestao.AvaliacaoDisciplina
+  to: AvaliacaoDisciplina.Id
+- fk: FK_AvaliacaoDisciplinaQuestao_QuestaoVersao
+  from: AvaliacaoDisciplinaQuestao.QuestaoVersao
+  to: QuestaoVersao.Id
+- fk: FK_AvaliacaoDisciplinaStatusHistorico_AvaliacaoDisciplina
+  from: AvaliacaoDisciplinaStatusHistorico.AvaliacaoDisciplina
+  to: AvaliacaoDisciplina.Id
+- fk: FK_AvaliacaoDisciplinaStatusHistorico_AvaliacaoDisciplinaStatus
+  from: AvaliacaoDisciplinaStatusHistorico.AvaliacaoDisciplinaStatus
+  to: AvaliacaoDisciplinaStatus.Id
+- fk: FK_AvaliacaoDisciplinaStatusHistorico_AvaliacaoDisciplinaStatusAnterior
+  from: AvaliacaoDisciplinaStatusHistorico.AvaliacaoDisciplinaStatusAnterior
+  to: AvaliacaoDisciplinaStatus.Id
 - fk: FK_AvaliacaoEditora_Disciplina
   from: AvaliacaoEditora.Disciplina
   to: Disciplina.Id
@@ -902,6 +995,15 @@ relations:
 - fk: FK_AvaliacaoSerie.Serie
   from: AvaliacaoSerie.Serie
   to: Serie.Id
+- fk: FK_AvaliacaoStatusHistorico_Avaliacao
+  from: AvaliacaoStatusHistorico.Avaliacao
+  to: Avaliacao.Id
+- fk: FK_AvaliacaoStatusHistorico_AvaliacaoStatus
+  from: AvaliacaoStatusHistorico.AvaliacaoStatus
+  to: AvaliacaoStatus.Id
+- fk: FK_AvaliacaoStatusHistorico_AvaliacaoStatusAnterior
+  from: AvaliacaoStatusHistorico.AvaliacaoStatusAnterior
+  to: AvaliacaoStatus.Id
 - fk: FK_rel.BaseDeAvaliacoesAluno.BaseDeAlunos
   from: BaseDeAvaliacoesAluno.BaseDeAlunos
   to: BaseDeAlunos.Id
@@ -1103,12 +1205,21 @@ relations:
 - fk: FK_CargaProfessorSaindo_PessoaEscolaAcesso
   from: CargaProfessorSaindo.Professor
   to: PessoaEscolaAcesso.Id
+- fk: FK_TOTVS.Cargo.GrupoCargo
+  from: Cargo.GrupoCargo
+  to: GrupoCargo.Id
 - fk: FK_Folha.CargoPagamentoCargo.Cargo
   from: CargoPagamentoCargo.Cargo
   to: Cargo.Id
 - fk: FK_Folha.CargoPagamentoCargo.CargoPagamento
   from: CargoPagamentoCargo.CargoPagamento
   to: CargoPagamento.Id
+- fk: FK_Folha.CargoPagamentoGrupoCargo.CargoPagamento
+  from: CargoPagamentoGrupoCargo.CargoPagamento
+  to: CargoPagamento.Id
+- fk: FK_Folha.CargoPagamentoGrupocargo.GrupoCargo
+  from: CargoPagamentoGrupoCargo.GrupoCargo
+  to: GrupoCargo.Id
 - fk: FK_poa.Cartao_dbo.ProfessorTurmaDisciplina
   from: Cartao.dboProfessorTurmaDisciplina
   to: ProfessorTurmaDisciplina.Id
@@ -1190,6 +1301,12 @@ relations:
 - fk: FK_ClasseTurmaSegmentoPgto_Turma
   from: ClasseTurmaSegmentoPgto.Turma
   to: Turma.Id
+- fk: FK_ClassificacaoBncc_AreaDisciplina
+  from: ClassificacaoBncc.AreaDisciplina
+  to: AreaDisciplina.Id
+- fk: FK_ClassificacaoBncc_Tipo
+  from: ClassificacaoBncc.Tipo
+  to: ClassificacaoBnccTipo.Id
 - fk: FK_Classroom.Disciplina
   from: Classroom.Disciplina
   to: Disciplina.Id
@@ -1217,6 +1334,9 @@ relations:
 - fk: FK_TOTVS.Colaborador.Cargo
   from: Colaborador.IdCargo
   to: Cargo.Id
+- fk: FK_TOTVS.Colaborador.IdGrupoCargo
+  from: Colaborador.IdGrupoCargo
+  to: GrupoCargo.Id
 - fk: FK_TOTVS.Colaborador.IdPessoa
   from: Colaborador.IdPessoa
   to: Pessoa.Id
@@ -1253,6 +1373,9 @@ relations:
 - fk: FK_CompetenciaAgrupamento_Competencia
   from: CompetenciaAgrupamento.Competencia
   to: Competencia.Id
+- fk: FK_CompetenciaEnem_AreaDisciplina
+  from: CompetenciaEnem.AreaDisciplina
+  to: AreaDisciplina.Id
 - fk: FK_ComunicadoCanalEnvio_CanalEnvio
   from: ComunicadoCanalEnvio.CanalEnvio
   to: CanalEnvio.Id
@@ -1328,12 +1451,27 @@ relations:
 - fk: FK_ComunicadoTemplate.Rede
   from: ComunicadoTemplate.Rede
   to: Rede.Id
+- fk: FK_ConfigCertConclusaoDocPed_ConfigRede
+  from: ConfiguracaoCertificadoConclusaoDocumentacaoPedagogica.ConfiguracaoRedeDocumentacaoPedagogicaId
+  to: ConfiguracaoRedeDocumentacaoPedagogica.Id
+- fk: FK_ConfiguracaoEscolaDocPed_Escola
+  from: ConfiguracaoEscolaDocumentacaoPedagogica.EscolaId
+  to: Escola.Id
 - fk: FK_ConfiguracaoPeriodoLetivo.EscolaSerie
   from: ConfiguracaoPeriodoLetivo.EscolaSerie
   to: EscolaSerie.Id
 - fk: FK_ConfiguracaoPeriodoLetivo.TipoChamada
   from: ConfiguracaoPeriodoLetivo.TipoChamada
   to: TipoChamada.Id
+- fk: FK_ConfiguracaoRedeDocPed_Rede
+  from: ConfiguracaoRedeDocumentacaoPedagogica.RedeId
+  to: Rede.Id
+- fk: FK_ConfigRedeSerieNomenclatura_ConfigRede
+  from: ConfiguracaoRedeSerieNomenclatura.ConfiguracaoRedeDocumentacaoPedagogicaId
+  to: ConfiguracaoRedeDocumentacaoPedagogica.Id
+- fk: FK_ConfigRedeSerieNomenclatura_Serie
+  from: ConfiguracaoRedeSerieNomenclatura.SerieId
+  to: Serie.Id
 - fk: FK_ConfiguracaoTempoPadrao.EscolaSerie
   from: ConfiguracaoTempoPadrao.EscolaSerie
   to: EscolaSerie.Id
@@ -1472,6 +1610,9 @@ relations:
 - fk: FK_DiaSemAulaTurma.DiaSemAulaMotivo
   from: DiaSemAulaTurma.DiaSemAulaMotivo
   to: DiaSemAulaMotivo.Id
+- fk: FK_Dimensao_AreaDisciplina
+  from: Dimensao.AreaDisciplina
+  to: AreaDisciplina.Id
 - fk: FK_DiretorEscola.Escola
   from: DiretorEscola.Escola
   to: Escola.Id
@@ -1490,6 +1631,9 @@ relations:
 - fk: FK_Disciplina.GrupoDisciplina
   from: Disciplina.GrupoDisciplina
   to: GrupoDisciplina.Id
+- fk: FK_Disciplina_AreaConhecimento
+  from: Disciplina.AreaConhecimento
+  to: AreaConhecimento.Id
 - fk: FK_Importacoes.Disciplina.Rede
   from: Disciplina.Rede
   to: Rede.Id
@@ -1622,9 +1766,21 @@ relations:
 - fk: FK_TOTVS.EscolaAnoLetivo.Escola
   from: EscolaAnoLetivo.Escola
   to: Escola.Id
+- fk: FK_EscolaAnoLetivoDocPed_EscolaAnoLetivo
+  from: EscolaAnoLetivoDocumentacaoPedagogica.EscolaAnoLetivoId
+  to: EscolaAnoLetivo.Id
 - fk: FK_EscolaConfiguracao.Escola
   from: EscolaConfiguracao.Escola
   to: Escola.Id
+- fk: FK_EscolaDocumentoConfiguracao_AnoLetivo
+  from: EscolaDocumentoConfiguracao.AnoLetivoId
+  to: AnoLetivo.Id
+- fk: FK_EscolaDocumentoConfiguracao_Escola
+  from: EscolaDocumentoConfiguracao.EscolaId
+  to: Escola.Id
+- fk: FK_EscolaDocumentoConfiguracao_TipoDocumento
+  from: EscolaDocumentoConfiguracao.TipoDocumentoId
+  to: TipoDocumento.Id
 - fk: FK_EscolaFeriado_Escola
   from: EscolaFeriado.Escola
   to: Escola.Id
@@ -1667,6 +1823,9 @@ relations:
 - fk: FK_Folha.EscolaPagamento.RedePagamento
   from: EscolaPagamento.RedePagamento
   to: RedePagamento.Id
+- fk: FK_Folha.EscolaPagamento.RegraCalculoAuxiliar
+  from: EscolaPagamento.RegraCalculoAuxiliar
+  to: RegraCalculoAuxiliar.Id
 - fk: FK_Folha.EscolaPagamento.AnoLetivo
   from: EscolaPagamentoEscola.AnoLetivo
   to: AnoLetivo.Id
@@ -1739,6 +1898,9 @@ relations:
 - fk: FK_EscolaSerieEtapa.EscolaSerie
   from: EscolaSerieEtapa.EscolaSerie
   to: EscolaSerie.Id
+- fk: FK_EscolaSerieEtapa.EstruturaAvaliacaoEscopo
+  from: EscolaSerieEtapa.EstruturaAvaliacaoEscopo
+  to: EstruturaAvaliacaoEscopo.Id
 - fk: FK_EscolaSerieEtapa.Etapa
   from: EscolaSerieEtapa.Etapa
   to: Etapa.Id
@@ -2039,6 +2201,9 @@ relations:
 - fk: FK_EstruturaAvaliacaoOrdemDisciplina.Disciplina
   from: EstruturaAvaliacaoOrdemDisciplina.Disciplina
   to: Disciplina.Id
+- fk: FK_EstruturaAvaliacaoOrdemDisciplina.EstruturaAvaliacaoEscopo
+  from: EstruturaAvaliacaoOrdemDisciplina.EstruturaAvaliacaoEscopo
+  to: EstruturaAvaliacaoEscopo.Id
 - fk: FK_EstruturaAvaliacaoOrdemDisciplina.Rede
   from: EstruturaAvaliacaoOrdemDisciplina.Rede
   to: Rede.Id
@@ -2075,6 +2240,9 @@ relations:
 - fk: FK_ExtracaoBaseDeNotas.AnoLetivo
   from: ExtracaoBaseDeNotas.AnoLetivo
   to: AnoLetivo.Id
+- fk: FK_Folha.FaixaAdicionalPorAluno.RegraCalculoAuxiliar
+  from: FaixaAdicionalPorAluno.RegraCalculoAuxiliar
+  to: RegraCalculoAuxiliar.Id
 - fk: FK_FaleConosco.Escola
   from: FaleConosco.Escola
   to: Escola.Id
@@ -2084,6 +2252,9 @@ relations:
 - fk: FK_FichaMedica.Pessoa
   from: FichaMedica.Pessoa
   to: Pessoa.Id
+- fk: FK_FichaTecnicaImportacao_Avaliacao
+  from: FichaTecnicaImportacao.Avaliacao
+  to: Avaliacao.Id
 - fk: FK_Filiacao.PessoaAluno
   from: Filiacao.PessoaAluno
   to: Pessoa.Id
@@ -2096,15 +2267,27 @@ relations:
 - fk: FK_rel.FolhaAlteracaoCarga.PeriodoLancamento
   from: FolhaAlteracaoCarga.PeriodoLancamento
   to: Periodo.Id
+- fk: FK_rel.FolhaAlteracaoCarga.ProfessorPerfilVigente
+  from: FolhaAlteracaoCarga.ProfessorPerfilVigente
+  to: ProfessorPerfilVigente.Id
 - fk: FK_rel.FolhaChecklistCargasIndevidas.Periodo
   from: FolhaChecklistCargasIndevidas.Periodo
   to: Periodo.Id
+- fk: FK_rel.FolhaChecklistCargasIndevidas.ProfessorChapa
+  from: FolhaChecklistCargasIndevidas.ProfessorChapa
+  to: ProfessorChapa.Id
 - fk: FK_rel.FolhaChecklistCargasIndevidas.ProfessorPerfilVigente
   from: FolhaChecklistCargasIndevidas.ProfessorPerfilVigente
   to: ProfessorPerfilVigente.Id
 - fk: FK_rel.FolhaChecklistCargasIndevidas.Situacao
   from: FolhaChecklistCargasIndevidas.Situacao
   to: Situacao.Id
+- fk: FK_rel.FolhaChecklistChapaSemSC.Periodo
+  from: FolhaChecklistChapaSemSC.Periodo
+  to: Periodo.Id
+- fk: FK_rel.FolhaChecklistChapaSemSC.ProfessorChapa
+  from: FolhaChecklistChapaSemSC.ProfessorChapa
+  to: ProfessorChapa.Id
 - fk: FK_rel.FolhaChecklistProfessorAcimaDoLimite.Periodo
   from: FolhaChecklistProfessorAcimaDoLimite.Periodo
   to: Periodo.Id
@@ -2125,6 +2308,36 @@ relations:
   to: Periodo.Id
 - fk: FK_rel.FolhaChecklistSemTitular.Turma
   from: FolhaChecklistSemTitular.Turma
+  to: Turma.Id
+- fk: FK_FolhaProfessorEventos.PeriodoCancelamento
+  from: FolhaProfessorEventos.PeriodoCancelamento
+  to: Periodo.Id
+- fk: FK_rel.FolhaProfessorEventos.Escola
+  from: FolhaProfessorEventos.Escola
+  to: Escola.Id
+- fk: FK_rel.FolhaProfessorEventos.EventoOriginal
+  from: FolhaProfessorEventos.EventoOriginal
+  to: FrequenciaProfessor.Id
+- fk: FK_rel.FolhaProfessorEventos.MotivoFrequenciaProfessor
+  from: FolhaProfessorEventos.MotivoFrequenciaProfessor
+  to: MotivoFrequenciaProfessor.Id
+- fk: FK_rel.FolhaProfessorEventos.PeriodoLancamento
+  from: FolhaProfessorEventos.PeriodoLancamento
+  to: Periodo.Id
+- fk: FK_rel.FolhaProfessorEventos.PeriodoOcorrencia
+  from: FolhaProfessorEventos.PeriodoOcorrencia
+  to: Periodo.Id
+- fk: FK_rel.FolhaProfessorEventos.ProfessorPerfilVigente
+  from: FolhaProfessorEventos.ProfessorPerfilVigente
+  to: ProfessorPerfilVigente.Id
+- fk: FK_rel.FolhaProfessorEventos.SegmentoProfessor
+  from: FolhaProfessorEventos.SegmentoProfessor
+  to: segmentoProfessor.Id
+- fk: FK_rel.FolhaProfessorEventos.TipoPresenca
+  from: FolhaProfessorEventos.TipoPresenca
+  to: TipoPresenca.Id
+- fk: FK_rel.FolhaProfessorEventos.Turma
+  from: FolhaProfessorEventos.Turma
   to: Turma.Id
 - fk: FK_rel.FolhaProfessorLicenca.DisciplinaFolha
   from: FolhaProfessorLicenca.DisciplinaFolha
@@ -2156,6 +2369,72 @@ relations:
 - fk: FK_rel.FolhaProfessorPorPeriodoTotal.ProfessorPerfilVigente
   from: FolhaProfessorPorPeriodoTotal.ProfessorPerfilVigente
   to: ProfessorPerfilVigente.Id
+- fk: FK_rel.FolhaRelatorioFinal.Cargo
+  from: FolhaRelatorioFinal.Cargo
+  to: Cargo.Id
+- fk: FK_rel.FolhaRelatorioFinal.CargoPagamento
+  from: FolhaRelatorioFinal.CargoPagamento
+  to: CargoPagamento.Id
+- fk: FK_rel.FolhaRelatorioFinal.ClassePagamento
+  from: FolhaRelatorioFinal.ClassePagamento
+  to: ClassePagamento.Id
+- fk: FK_rel.FolhaRelatorioFinal.DisciplinaFolha
+  from: FolhaRelatorioFinal.DisciplinaFolha
+  to: Disciplina.Id
+- fk: FK_rel.FolhaRelatorioFinal.EscolaGerencial
+  from: FolhaRelatorioFinal.EscolaGerencial
+  to: EscolaGerencial.Id
+- fk: FK_rel.FolhaRelatorioFinal.EscolaPagamento
+  from: FolhaRelatorioFinal.EscolaPagamento
+  to: EscolaPagamento.Id
+- fk: FK_rel.FolhaRelatorioFinal.MotivoAlteracao
+  from: FolhaRelatorioFinal.MotivoAlteracao
+  to: MotivosSaida.Id
+- fk: FK_rel.FolhaRelatorioFinal.MotivoFrequenciaProfessor
+  from: FolhaRelatorioFinal.MotivoFrequenciaProfessor
+  to: MotivoFrequenciaProfessor.Id
+- fk: FK_rel.FolhaRelatorioFinal.PeriodoAlteracao
+  from: FolhaRelatorioFinal.PeriodoAlteracao
+  to: Periodo.Id
+- fk: FK_rel.FolhaRelatorioFinal.PeriodoLancamento
+  from: FolhaRelatorioFinal.PeriodoLancamento
+  to: Periodo.Id
+- fk: FK_rel.FolhaRelatorioFinal.ProfessorPerfilVigente
+  from: FolhaRelatorioFinal.ProfessorPerfilVigente
+  to: ProfessorPerfilVigente.Id
+- fk: FK_rel.FolhaRelatorioFinal.RedePagamento
+  from: FolhaRelatorioFinal.RedePagamento
+  to: RedePagamento.Id
+- fk: FK_rel.FolhaRelatorioFinal.RegraCalculoAuxiliar
+  from: FolhaRelatorioFinal.RegraCalculoAuxiliar
+  to: RegraCalculoAuxiliar.Id
+- fk: FK_rel.FolhaRelatorioFinal.SegmentoPagamento
+  from: FolhaRelatorioFinal.SegmentoPagamento
+  to: SegmentoPagamento.Id
+- fk: FK_rel.FolhaRelatorioFinal.SegmentoProfessor
+  from: FolhaRelatorioFinal.SegmentoProfessor
+  to: segmentoProfessor.Id
+- fk: FK_rel.FolhaRelatorioFinal.SegmentoSindical
+  from: FolhaRelatorioFinal.SegmentoSindical
+  to: SegmentoSindical.Id
+- fk: FK_rel.FolhaRelatorioFinal.Situacao
+  from: FolhaRelatorioFinal.Situacao
+  to: Situacao.Id
+- fk: FK_rel.FolhaRelatorioFinal.TipoDivisaoChapa
+  from: FolhaRelatorioFinal.TipoDivisaoChapa
+  to: TipoDivisaoChapa.Id
+- fk: FK_rel.FolhaRelatorioFinal.TipoEvento
+  from: FolhaRelatorioFinal.TipoEvento
+  to: TipoEvento.Id
+- fk: FK_rel.FolhaRelatorioFinal.TipoPresenca
+  from: FolhaRelatorioFinal.TipoPresenca
+  to: TipoPresenca.Id
+- fk: FK_rel.FolhaRelatorioFinal.TipoVinculo
+  from: FolhaRelatorioFinal.TipoVinculo
+  to: TipoVinculo.Id
+- fk: FK_rel.FolhaRelatorioFinal.Turma
+  from: FolhaRelatorioFinal.Turma
+  to: Turma.Id
 - fk: FK_FormularioAtendimento.MotivoAtendimento
   from: FormularioAtendimento.MotivoAtendimento
   to: MotivoAtendimento.Id
@@ -2219,6 +2498,9 @@ relations:
 - fk: FK_Funcionalidade.AnoLetivoMinimo
   from: Funcionalidade.AnoLetivoMinimo
   to: AnoLetivo.Id
+- fk: FK_Funcionalidade.FuncionalidadeMae
+  from: Funcionalidade.FuncionalidadeMae
+  to: Funcionalidade.Id
 - fk: FK_FuncionalidadeAcessada.PerfilAcesso
   from: FuncionalidadeAcessada.PerfilAcesso
   to: PerfilAcesso.Id
@@ -2246,6 +2528,9 @@ relations:
 - fk: FK_FuncionalidadeTipoPresenca.TipoPresenca
   from: FuncionalidadeTipoPresenca.TipoPresenca
   to: TipoPresenca.Id
+- fk: FK_FundamentacaoLegal_Rede
+  from: FundamentacaoLegal.RedeId
+  to: Rede.Id
 - fk: FK_GabaritoComentado_Simulado_Simulado
   from: GabaritoComentado.Simulado
   to: Simulado.Id
@@ -2312,6 +2597,9 @@ relations:
 - fk: FK_GradeRedacaoRegraGeral.RegraGeralRedacao
   from: GradeRedacaoRegraGeral.RegraGeralRedacao
   to: RegraGeralRedacao.Id
+- fk: FK_TOTVS.GrupoCargo.TipoVinculo
+  from: GrupoCargo.TipoVinculo
+  to: TipoVinculo.Id
 - fk: FK_GrupoNotaFormativa.Rede
   from: GrupoNotaFormativa.Rede
   to: Rede.Id
@@ -2330,9 +2618,27 @@ relations:
 - fk: FK_GuiaPortal.Rede
   from: GuiaPortal.Rede
   to: Rede.Id
+- fk: FK_HabilidadeBncc_AreaDisciplina
+  from: HabilidadeBncc.AreaDisciplina
+  to: AreaDisciplina.Id
+- fk: FK_HabilidadeBnccClassificacao_ClassificacaoBncc
+  from: HabilidadeBnccClassificacao.ClassificacaoBncc
+  to: ClassificacaoBncc.Id
+- fk: FK_HabilidadeBnccClassificacao_HabilidadeBncc
+  from: HabilidadeBnccClassificacao.HabilidadeBncc
+  to: HabilidadeBncc.Id
+- fk: FK_HabilidadeBnccSerie_HabilidadeBncc
+  from: HabilidadeBnccSerie.HabilidadeBncc
+  to: HabilidadeBncc.Id
+- fk: FK_HabilidadeBnccSerie_Serie
+  from: HabilidadeBnccSerie.Serie
+  to: Serie.Id
 - fk: FK__Habilidad__AreaC__53659CE6
   from: HabilidadeEnem.AreaConhecimento
   to: AreaConhecimento.Id
+- fk: FK_HabilidadeEnem_CompetenciaEnem
+  from: HabilidadeEnem.CompetenciaEnem
+  to: CompetenciaEnem.Id
 - fk: FK_HabilidadesBNCC_Disciplina_DisciplinaId
   from: HabilidadesBNCC.DisciplinaId
   to: Disciplina.Id
@@ -2399,18 +2705,42 @@ relations:
 - fk: FK__HisNucleo__HisSe__21D862F3
   from: HisNucleoComum.HisSerie
   to: HisSerie.Id
+- fk: FK_Historico_Pessoa
+  from: Historico.PessoaId
+  to: Pessoa.Id
 - fk: FK_HistoricoAlocacaoValidador_Redacao
   from: HistoricoAlocacaoValidador.Redacao
   to: Redacao.Id
 - fk: FK_HistoricoAlocacaoValidador_Validador
   from: HistoricoAlocacaoValidador.Validador
   to: Usuario.Id
+- fk: FK_HistoricoFundamentacao_FundamentacaoLegal
+  from: HistoricoFundamentacao.FundamentacaoLegalId
+  to: FundamentacaoLegal.Id
+- fk: FK_HistoricoFundamentacao_Historico
+  from: HistoricoFundamentacao.HistoricoId
+  to: Historico.Id
 - fk: FK_HistoricoClassificacaoClassePgto_ClassificacaoClassePgto
   from: HistoricoHoraAulaPgto.HoraAulaPgto
   to: HoraAulaPgto.Id
 - fk: FK_HistoricoHoraAulaSegmentoPgto_HoraAulaSegmentoPgto
   from: HistoricoHoraAulaSegmentoPgto.HoraAulaSegmentoPgto
   to: HoraAulaSegmentoPgto.Id
+- fk: FK_HistoricoSerie_AnoLetivo
+  from: HistoricoSerie.AnoLetivoId
+  to: AnoLetivo.Id
+- fk: FK_HistoricoSerie_Escola
+  from: HistoricoSerie.EscolaId
+  to: Escola.Id
+- fk: FK_HistoricoSerie_Historico
+  from: HistoricoSerie.HistoricoId
+  to: Historico.Id
+- fk: FK_HistoricoSerie_Serie
+  from: HistoricoSerie.SerieId
+  to: Serie.Id
+- fk: FK_HistoricoSerie_TipoResultadoFinal
+  from: HistoricoSerie.TipoResultadoFinalId
+  to: TipoResultadoFinal.Id
 - fk: FK_HoraAulaEspecial_JustificativaHoraAula
   from: HoraAulaEspecial.JustificativaHoraAula
   to: JustificativaHoraAula.Id
@@ -2423,6 +2753,9 @@ relations:
 - fk: FK_HoraAulaEspecial_ProfessorPerfilVigente
   from: HoraAulaEspecial.ProfessorPerfilVigente
   to: ProfessorPerfilVigente.Id
+- fk: FK_HoraAulaEspecial_TipoErroCadastro
+  from: HoraAulaEspecial.TipoErroCadastro
+  to: TipoErroCadastro.Id
 - fk: FK_HoraAulaEspecial_Turma
   from: HoraAulaEspecial.Turma
   to: Turma.Id
@@ -2444,6 +2777,9 @@ relations:
 - fk: FK_HoraAulaPadrao_MovimentacaoHoraAula
   from: HoraAulaPadrao.MovimentacaoHoraAula
   to: MovimentacaoHoraAula.Id
+- fk: FK_HoraAulaPadrao_TipoErroCadastro
+  from: HoraAulaPadrao.TipoErroCadastro
+  to: TipoErroCadastro.Id
 - fk: FK_ClassificacaoClassePgto_ClassificacaoPgto
   from: HoraAulaPgto.TipoHoraAula
   to: TipoHoraAula_Excluir.Id
@@ -2471,6 +2807,9 @@ relations:
 - fk: FK_HoraAulaSegmento_SegmentoPagamento
   from: HoraAulaSegmento.SegmentoPagamento
   to: SegmentoPagamento.Id
+- fk: FK_HoraAulaSegmento_TipoErroCadastro
+  from: HoraAulaSegmento.TipoErroCadastro
+  to: TipoErroCadastro.Id
 - fk: FK_HoraAulaSegmentoPgto_ClasseTurmaSegmentoPgto
   from: HoraAulaSegmentoPgto.ClasseTurmaSegmentoPgto
   to: ClasseTurmaSegmentoPgto.Id
@@ -2498,6 +2837,9 @@ relations:
 - fk: FK_HoraAulaTabelada_Segmento
   from: HoraAulaTabelada.Segmento
   to: Segmento.Id
+- fk: FK_HoraAulaTabelada_TipoErroCadastro
+  from: HoraAulaTabelada.TipoErroCadastro
+  to: TipoErroCadastro.Id
 - fk: FK_IconDisciplinaPladGame.Disciplina
   from: IconDisciplinaPladGame.Disciplina
   to: Disciplina.Id
@@ -2573,12 +2915,24 @@ relations:
 - fk: FK_InformacaoSaidaLogModificacao.AlunoEscola
   from: InformacaoSaidaLogModificacao.AlunoEscola
   to: AlunoEscola.AlunoEscola_key
+- fk: FK_ItinerarioFormativo.Agrupamento
+  from: ItinerarioFormativo.Agrupamento
+  to: Agrupamento.Id
+- fk: FK_ItinerarioFormativo.AnoLetivo
+  from: ItinerarioFormativo.AnoLetivo
+  to: AnoLetivo.Id
 - fk: FK_ItinerarioFormativo.ItinerarioFormativoCiclo
   from: ItinerarioFormativo.ItinerarioFormativoCiclo
   to: ItinerarioFormativoCiclo.Id
 - fk: FK_ItinerarioFormativo.ItinerarioFormativoTipo
   from: ItinerarioFormativo.ItinerarioFormativoTipo
   to: ItinerarioFormativoTipo.Id
+- fk: FK_ItinerarioFormativo.Rede
+  from: ItinerarioFormativo.Rede
+  to: Rede.Id
+- fk: FK_ItinerarioFormativoCiclo.AnoLetivoInicial
+  from: ItinerarioFormativoCiclo.AnoLetivoInicial
+  to: AnoLetivo.Id
 - fk: FK_ItinerarioFormativoOferta.ItinerarioFormativo
   from: ItinerarioFormativoOferta.ItinerarioFormativo
   to: ItinerarioFormativo.Id
@@ -3047,6 +3401,18 @@ relations:
 - fk: FK_LogErroClassroom.Turma
   from: LogErroClassroom.Turma
   to: Turma.Id
+- fk: FK_LogGeracaoDocumento_AnoLetivo
+  from: LogGeracaoDocumento.AnoLetivo
+  to: AnoLetivo.Id
+- fk: FK_LogGeracaoDocumento_Escola
+  from: LogGeracaoDocumento.Escola
+  to: Escola.Id
+- fk: FK_LogGeracaoDocumento_Pessoa
+  from: LogGeracaoDocumento.Pessoa
+  to: Pessoa.Id
+- fk: FK_LogGeracaoDocumento_Rede
+  from: LogGeracaoDocumento.Rede
+  to: Rede.Id
 - fk: FK_LogVimeo.LogMaterialEletiva.MaterialEletivaConteudo
   from: LogMaterialEletiva.MaterialEletivaConteudo
   to: MaterialEletivaConteudo.Id
@@ -3104,6 +3470,39 @@ relations:
 - fk: FK_MacroTurmaIntelpedTurma_Turma
   from: MacroTurmaIntelpedTurma.Turma
   to: Turma.Id
+- fk: FK_MapaAvaliacaoItem_AvaliacaoDisciplina
+  from: MapaAvaliacaoItem.AvaliacaoDisciplina
+  to: AvaliacaoDisciplina.Id
+- fk: FK_MapaAvaliacaoItem_CompetenciaEnem
+  from: MapaAvaliacaoItem.CompetenciaEnem
+  to: CompetenciaEnem.Id
+- fk: FK_MapaAvaliacaoItem_Complexidade
+  from: MapaAvaliacaoItem.Complexidade
+  to: Complexidade.Id
+- fk: FK_MapaAvaliacaoItem_Dimensao
+  from: MapaAvaliacaoItem.Dimensao
+  to: Dimensao.Id
+- fk: FK_MapaAvaliacaoItem_FichaTecnicaImportacao
+  from: MapaAvaliacaoItem.FichaTecnicaImportacao
+  to: FichaTecnicaImportacao.Id
+- fk: FK_MapaAvaliacaoItemAssunto_Assunto
+  from: MapaAvaliacaoItemAssunto.Assunto
+  to: Assunto.Id
+- fk: FK_MapaAvaliacaoItemAssunto_MapaAvaliacaoItem
+  from: MapaAvaliacaoItemAssunto.MapaAvaliacaoItem
+  to: MapaAvaliacaoItem.Id
+- fk: FK_MapaAvaliacaoItemHabilidadeBncc_HabilidadeBncc
+  from: MapaAvaliacaoItemHabilidadeBncc.HabilidadeBncc
+  to: HabilidadeBncc.Id
+- fk: FK_MapaAvaliacaoItemHabilidadeBncc_MapaAvaliacaoItem
+  from: MapaAvaliacaoItemHabilidadeBncc.MapaAvaliacaoItem
+  to: MapaAvaliacaoItem.Id
+- fk: FK_MapaAvaliacaoItemHabilidadeEnem_HabilidadeEnem
+  from: MapaAvaliacaoItemHabilidadeEnem.HabilidadeEnem
+  to: HabilidadeEnem.Id
+- fk: FK_MapaAvaliacaoItemHabilidadeEnem_MapaAvaliacaoItem
+  from: MapaAvaliacaoItemHabilidadeEnem.MapaAvaliacaoItem
+  to: MapaAvaliacaoItem.Id
 - fk: FK_Marca.TipoRede
   from: Marca.TipoRede
   to: TipoRede.Id
@@ -3356,6 +3755,9 @@ relations:
 - fk: FK_MenuItem.PerfilAcesso
   from: MenuItem.PerfilAcesso
   to: PerfilAcesso.Id
+- fk: FK_MenuItem.TipoMenu
+  from: MenuItem.TipoMenu
+  to: TipoMenu.Id
 - fk: FK_MenuItem.TipoRede
   from: MenuItem.TipoRede
   to: TipoRede.Id
@@ -3557,6 +3959,24 @@ relations:
 - fk: FK_log.PainelAlunoTrocaAlunoEscola.AlunoEscolaPara
   from: PainelAlunoTrocaAlunoEscola.AlunoEscolaPara
   to: AlunoEscola.AlunoEscola_key
+- fk: FK_Folha.ParametroAdicionalPorAluno.RegraCalculoAuxiliar
+  from: ParametroAdicionalPorAluno.RegraCalculoAuxiliar
+  to: RegraCalculoAuxiliar.Id
+- fk: FK_Folha.ParametroGTEAuxilioTransporte.RegraCalculoAuxiliar
+  from: ParametroGTEAuxilioTransporte.RegraCalculoAuxiliar
+  to: RegraCalculoAuxiliar.Id
+- fk: FK_Folha.ParametroHoraAtividade.RegraCalculoAuxiliar
+  from: ParametroHoraAtividade.RegraCalculoAuxiliar
+  to: RegraCalculoAuxiliar.Id
+- fk: FK_Folha.ParametroHoraDisponivel.RegraCalculoAuxiliar
+  from: ParametroHoraDisponivel.RegraCalculoAuxiliar
+  to: RegraCalculoAuxiliar.Id
+- fk: FK_Folha.ParametroIncentivoPedagogico.RegraCalculoAuxiliar
+  from: ParametroIncentivoPedagogico.RegraCalculoAuxiliar
+  to: RegraCalculoAuxiliar.Id
+- fk: FK_Folha.ParametroReflexo.RegraCalculoAuxiliar
+  from: ParametroReflexo.RegraCalculoAuxiliar
+  to: RegraCalculoAuxiliar.Id
 - fk: FK_Professor.ParametrosFolhaPorRede
   from: ParametrosFolhaPorRede.Rede
   to: Rede.Id
@@ -3572,6 +3992,21 @@ relations:
 - fk: FK_Frequencia.PercentualFrequencia.Serie
   from: PercentualFrequencia.Serie
   to: Serie.Id
+- fk: FK_Folha.PercentualHoraDisponivel.Disciplina
+  from: PercentualHoraDisponivel.Disciplina
+  to: Disciplina.Id
+- fk: FK_Folha.PercentualHoraDisponivel.RegraCalculoAuxiliar
+  from: PercentualHoraDisponivel.RegraCalculoAuxiliar
+  to: RegraCalculoAuxiliar.Id
+- fk: FK_Folha.PercentualHoraDisponivel.SegmentoPagamento
+  from: PercentualHoraDisponivel.SegmentoPagamento
+  to: SegmentoPagamento.Id
+- fk: FK_Folha.PercentualIncentivoPedagogico.ProfessorPerfilVigente
+  from: PercentualIncentivoPedagogico.ProfessorPerfilVigente
+  to: ProfessorPerfilVigente.Id
+- fk: FK_Folha.PercentualIncentivoPedagogico.RegraCalculoAuxiliar
+  from: PercentualIncentivoPedagogico.RegraCalculoAuxiliar
+  to: RegraCalculoAuxiliar.Id
 - fk: FK__PerfilAce__Escol__3A3D2596
   from: PerfilAcessoFuncionalidade.Escola
   to: Escola.Id
@@ -4046,6 +4481,9 @@ relations:
 - fk: FK_POATurmaStatus.POATurma
   from: POATurmaStatus.POATurma
   to: POATurma.Id
+- fk: FK_PollingCorrecaoIAPendente_Redacao
+  from: PollingCorrecaoIAPendente.Redacao
+  to: Redacao.Id
 - fk: FK_Pontuacao_Agrupamento
   from: Pontuacao.Agrupamento
   to: Agrupamento.Id
@@ -4082,6 +4520,27 @@ relations:
 - fk: FK_PreviaCargaPublico.TwilioFilaEnvio
   from: PreviaCargaPublico.TwilioFilaEnvio
   to: TwilioFilaEnvio.Id
+- fk: FK_Folha.PreviaEventos.Periodo
+  from: PreviaEventos.Periodo
+  to: Periodo.Id
+- fk: FK_Folha.PreviaEventos.Rede
+  from: PreviaEventos.Rede
+  to: Rede.Id
+- fk: FK_PreviaEventosEscolaGerencialExcluida_EscolaGerencial
+  from: PreviaEventosEscolaGerencialExcluida.EscolaGerencial
+  to: EscolaGerencial.Id
+- fk: FK_PreviaEventosEscolaGerencialExcluida_PreviaEventos
+  from: PreviaEventosEscolaGerencialExcluida.PreviaEventos
+  to: PreviaEventos.Id
+- fk: FK_Folha.PreviaEventosPublico.EnvioEmail
+  from: PreviaEventosPublico.EnvioEmail
+  to: EnvioEmail.Id
+- fk: FK_Folha.PreviaEventosPublico.PreviaEventos
+  from: PreviaEventosPublico.PreviaEventos
+  to: PreviaEventos.Id
+- fk: FK_Folha.PreviaEventosPublico.ProfessorPerfilVigente
+  from: PreviaEventosPublico.ProfessorPerfilVigente
+  to: ProfessorPerfilVigente.Id
 - fk: FK__Problema.AlunoEscola
   from: Problema.AlunoEscola
   to: AlunoEscola.AlunoEscola_key
@@ -4166,12 +4625,27 @@ relations:
 - fk: FK_Folha.ProfessorCarga.PessoaLancamentoSaida
   from: ProfessorCarga.PessoaLancamentoSaida
   to: Pessoa.Id
+- fk: FK_Folha.ProfessorCarga.ProfessorCargaRestaurada
+  from: ProfessorCarga.ProfessorCargaRestaurada
+  to: ProfessorCarga.Id
 - fk: FK_Folha.ProfessorCarga.ProfessorPerfilVigente
   from: ProfessorCarga.ProfessorPerfilVigente
   to: ProfessorPerfilVigente.Id
 - fk: FK_Folha.ProfessorCarga.Turma
   from: ProfessorCarga.Turma
   to: Turma.Id
+- fk: FK_ProfessorCarga_AlteracaoCargaLancamentoCriacao
+  from: ProfessorCarga.AlteracaoCargaLancamentoCriacao
+  to: AlteracaoCargaLancamento.Id
+- fk: FK_ProfessorCarga_AlteracaoCargaLancamentoRetornoPermanente
+  from: ProfessorCarga.AlteracaoCargaLancamentoRetornoPermanente
+  to: AlteracaoCargaLancamento.Id
+- fk: FK_ProfessorCarga_AlteracaoCargaLancamentoSaida
+  from: ProfessorCarga.AlteracaoCargaLancamentoSaida
+  to: AlteracaoCargaLancamento.Id
+- fk: FK_ProfessorCarga_ProfessorCargaCancelamento
+  from: ProfessorCarga.ProfessorCargaCancelamento
+  to: ProfessorCargaCancelamento.Id
 - fk: FK_Folha.ProfessorCargaSubstituto.MotivoAlteracao
   from: ProfessorCargaSubstituto.MotivoAlteracao
   to: MotivosSaida.Id
@@ -4187,12 +4661,30 @@ relations:
 - fk: FK_Folha.ProfessorCargaSubstituto.ProfessorCarga
   from: ProfessorCargaSubstituto.ProfessorCarga
   to: ProfessorCarga.Id
+- fk: FK_Folha.ProfessorCargaSubstituto.ProfessorCargaSubstitutoRestaurado
+  from: ProfessorCargaSubstituto.ProfessorCargaSubstitutoRestaurado
+  to: ProfessorCargaSubstituto.Id
 - fk: FK_Folha.ProfessorCargaSubstituto.ProfessorPerfilVigente
   from: ProfessorCargaSubstituto.ProfessorPerfilVigente
   to: ProfessorPerfilVigente.Id
+- fk: FK_ProfessorCargaSubstituto_AlteracaoCargaLancamentoCriacao
+  from: ProfessorCargaSubstituto.AlteracaoCargaLancamentoCriacao
+  to: AlteracaoCargaLancamento.Id
+- fk: FK_ProfessorCargaSubstituto_AlteracaoCargaLancamentoSaida
+  from: ProfessorCargaSubstituto.AlteracaoCargaLancamentoSaida
+  to: AlteracaoCargaLancamento.Id
+- fk: FK_ProfessorCargaSubstituto_ProfessorCargaCancelamento
+  from: ProfessorCargaSubstituto.ProfessorCargaCancelamento
+  to: ProfessorCargaCancelamento.Id
 - fk: FK_Folha.ProfessorChapa.Cargo
   from: ProfessorChapa.Cargo
   to: Cargo.Id
+- fk: FK_Folha.ProfessorChapa.ColigadaFilial
+  from: ProfessorChapa.ColigadaFilial
+  to: ColigadaFilial.Id
+- fk: FK_Folha.ProfessorChapa.TipoVinculo
+  from: ProfessorChapa.TipoVinculo
+  to: TipoVinculo.Id
 - fk: FK_ProfessorChapa.ProfessorPerfilVigente
   from: ProfessorChapa.ProfessorPerfilVigente
   to: ProfessorPerfilVigente.Id
@@ -4205,12 +4697,18 @@ relations:
 - fk: FK_Folha.ProfessorChapaEscolaMes.AnoLetivo
   from: ProfessorChapaEscolaMes.AnoLetivo
   to: AnoLetivo.Id
+- fk: FK_Folha.ProfessorChapaEscolaMes.Periodo
+  from: ProfessorChapaEscolaMes.Periodo
+  to: Periodo.Id
 - fk: FK_Folha.ProfessorChapaEscolaMes.ProfessorChapa
   from: ProfessorChapaEscolaMes.ProfessorChapa
   to: ProfessorChapa.Id
 - fk: FK_Folha.ProfessorClassePagamento.AnoLetivo
   from: ProfessorClassePagamento.AnoLetivo
   to: AnoLetivo.Id
+- fk: FK_Folha.ProfessorClassePagamento.Periodo
+  from: ProfessorClassePagamento.Periodo
+  to: Periodo.Id
 - fk: FK_ProfessorClassePagamento.ClassePagamento
   from: ProfessorClassePagamento.ClassePagamento
   to: ClassePagamento.Id
@@ -4538,6 +5036,21 @@ relations:
 - fk: FK_Questao.QuestaoOriginal
   from: Questao.QuestaoOriginal
   to: Questao.Id
+- fk: FK_Questao_TipoAvaliacao
+  from: Questao.TipoAvaliacao
+  to: TipoAvaliacao.Id
+- fk: FK_QuestaoAfirmativa_QuestaoVersao
+  from: QuestaoAfirmativa.QuestaoVersao
+  to: QuestaoVersao.Id
+- fk: FK_QuestaoAlternativa_QuestaoVersao
+  from: QuestaoAlternativa.QuestaoVersao
+  to: QuestaoVersao.Id
+- fk: FK_QuestaoAssunto_Assunto
+  from: QuestaoAssunto.Assunto
+  to: Assunto.Id
+- fk: FK_QuestaoAssunto_QuestaoVersao
+  from: QuestaoAssunto.QuestaoVersao
+  to: QuestaoVersao.Id
 - fk: FK_QuestaoAutor.AprovacaoQuestao
   from: QuestaoAutor.AprovacaoQuestao
   to: AprovacaoQuestao.Id
@@ -4613,6 +5126,12 @@ relations:
 - fk: FK_QuestaoClassificacao_Video_Video
   from: QuestaoClassificacao.Video
   to: Video.Id
+- fk: FK_QuestaoClassificacaoBncc_ClassificacaoBncc
+  from: QuestaoClassificacaoBncc.ClassificacaoBncc
+  to: ClassificacaoBncc.Id
+- fk: FK_QuestaoClassificacaoBncc_QuestaoVersao
+  from: QuestaoClassificacaoBncc.QuestaoVersao
+  to: QuestaoVersao.Id
 - fk: FK_QuestaoFeedback_Origem_Origem
   from: QuestaoFeedback.Origem
   to: Origem.Id
@@ -4622,6 +5141,21 @@ relations:
 - fk: FK_QuestaoFeedback_QuestaoTipoErro_TipoErro
   from: QuestaoFeedback.TipoErro
   to: QuestaoTipoErro.Id
+- fk: FK_QuestaoHabilidadeBncc_HabilidadeBncc
+  from: QuestaoHabilidadeBncc.HabilidadeBncc
+  to: HabilidadeBncc.Id
+- fk: FK_QuestaoHabilidadeBncc_QuestaoVersao
+  from: QuestaoHabilidadeBncc.QuestaoVersao
+  to: QuestaoVersao.Id
+- fk: FK_QuestaoHabilidadeEnem_HabilidadeEnem
+  from: QuestaoHabilidadeEnem.HabilidadeEnem
+  to: HabilidadeEnem.Id
+- fk: FK_QuestaoHabilidadeEnem_QuestaoVersao
+  from: QuestaoHabilidadeEnem.QuestaoVersao
+  to: QuestaoVersao.Id
+- fk: FK_QuestaoImagem_Questao
+  from: QuestaoImagem.Questao
+  to: Questao.Id
 - fk: FK_QuestaoLaplace.Questao
   from: QuestaoLaplace.Questao
   to: Questao.Id
@@ -4637,6 +5171,18 @@ relations:
 - fk: FK_QuestaoOpcaoResposta_Questao_Questao_Id
   from: QuestaoOpcaoResposta.Questao
   to: Questao.Id
+- fk: FK_QuestaoPalavraChave_QuestaoVersao
+  from: QuestaoPalavraChave.QuestaoVersao
+  to: QuestaoVersao.Id
+- fk: FK_QuestaoProblema_QuestaoProblemaStatus
+  from: QuestaoProblema.QuestaoProblemaStatus
+  to: QuestaoProblemaStatus.Id
+- fk: FK_QuestaoProblema_QuestaoProblemaTipo
+  from: QuestaoProblema.QuestaoProblemaTipo
+  to: QuestaoProblemaTipo.Id
+- fk: FK_QuestaoProblema_QuestaoVersao
+  from: QuestaoProblema.QuestaoVersao
+  to: QuestaoVersao.Id
 - fk: FK_QuestaoRedeSerie_Questao_Questao
   from: QuestaoRedeSerie.Questao
   to: Questao.Id
@@ -4667,6 +5213,57 @@ relations:
 - fk: FK_QuestaoTag.Tag
   from: QuestaoTag.Tag
   to: Tag.Id
+- fk: FK_QuestaoVersao_AreaDisciplina
+  from: QuestaoVersao.AreaDisciplina
+  to: AreaDisciplina.Id
+- fk: FK_QuestaoVersao_AvaliacaoDisciplinaOrigem
+  from: QuestaoVersao.AvaliacaoDisciplinaOrigem
+  to: AvaliacaoDisciplina.Id
+- fk: FK_QuestaoVersao_CompetenciaEnem
+  from: QuestaoVersao.CompetenciaEnem
+  to: CompetenciaEnem.Id
+- fk: FK_QuestaoVersao_Complexidade
+  from: QuestaoVersao.Complexidade
+  to: Complexidade.Id
+- fk: FK_QuestaoVersao_Dimensao
+  from: QuestaoVersao.Dimensao
+  to: Dimensao.Id
+- fk: FK_QuestaoVersao_Questao
+  from: QuestaoVersao.Questao
+  to: Questao.Id
+- fk: FK_QuestaoVersao_QuestaoTipo
+  from: QuestaoVersao.QuestaoTipo
+  to: QuestaoTipo.Id
+- fk: FK_QuestaoVersao_QuestaoVersaoAnterior
+  from: QuestaoVersao.QuestaoVersaoAnterior
+  to: QuestaoVersao.Id
+- fk: FK_QuestaoVersao_Serie
+  from: QuestaoVersao.Serie
+  to: Serie.Id
+- fk: FK_QuestaoVersao_TextoBase
+  from: QuestaoVersao.TextoBase
+  to: TextoBase.Id
+- fk: FK_QuestaoVersaoHistorico_AvaliacaoDisciplinaStatus
+  from: QuestaoVersaoHistorico.AvaliacaoDisciplinaStatus
+  to: AvaliacaoDisciplinaStatus.Id
+- fk: FK_QuestaoVersaoHistorico_QuestaoVersao
+  from: QuestaoVersaoHistorico.QuestaoVersao
+  to: QuestaoVersao.Id
+- fk: FK_QuestaoVersaoHistorico_RestauradaDe
+  from: QuestaoVersaoHistorico.RestauradaDe
+  to: QuestaoVersaoHistorico.Id
+- fk: FK_QuestaoVisibilidadeHistorico_AvaliacaoDisciplinaQuestao
+  from: QuestaoVisibilidadeHistorico.AvaliacaoDisciplina
+  to: AvaliacaoDisciplinaQuestao.AvaliacaoDisciplina
+- fk: FK_QuestaoVisibilidadeHistorico_AvaliacaoDisciplinaQuestao
+  from: QuestaoVisibilidadeHistorico.QuestaoVersao
+  to: AvaliacaoDisciplinaQuestao.QuestaoVersao
+- fk: FK_QuestaoVisibilidadeHistorico_Questao
+  from: QuestaoVisibilidadeHistorico.Questao
+  to: Questao.Id
+- fk: FK_QuestaoVisibilidadeHistorico_QuestaoVisibilidadeOrigem
+  from: QuestaoVisibilidadeHistorico.QuestaoVisibilidadeOrigem
+  to: QuestaoVisibilidadeOrigem.Id
 - fk: FK_LogAlteracoes.Redacao.Avaliacao
   from: Redacao.Avaliacao
   to: Avaliacao.Id
@@ -4793,6 +5390,12 @@ relations:
 - fk: FK_FacilitiesRedeAcesso.Rede
   from: RedeAcesso.Rede
   to: Rede.Id
+- fk: FK_RedeDocumentoConfiguracao_Rede
+  from: RedeDocumentoConfiguracao.RedeId
+  to: Rede.Id
+- fk: FK_RedeDocumentoConfiguracao_TipoDocumento
+  from: RedeDocumentoConfiguracao.TipoDocumentoId
+  to: TipoDocumento.Id
 - fk: FK_RedeIdioma.Idioma
   from: RedeIdioma.Idioma
   to: Idioma.Id
@@ -4958,6 +5561,9 @@ relations:
 - fk: FK_AnamneseVirtual.RedeSerieVersaoAnamnese.VersaoAnamnese
   from: RedeSerieVersaoAnamnese.VersaoAnamnese
   to: VersaoAnamnese.Id
+- fk: FK_Folha.RegraCalculoAuxiliar.GrupoRegraCalculoAuxiliar
+  from: RegraCalculoAuxiliar.GrupoRegraCalculoAuxiliar
+  to: GrupoRegraCalculoAuxiliar.Id
 - fk: FK_RelatorioFolhaPeriodo.AnoLetivo
   from: RelatorioFolhaPeriodo.AnoLetivo
   to: AnoLetivo.Id
@@ -5006,6 +5612,15 @@ relations:
 - fk: FK_RestricaoRankingSimuladoRede_Simulado
   from: RestricaoRankingSimuladoRede.Simulado
   to: Simulado.Id
+- fk: FK_ResultadoFinal_AreaConhecimento
+  from: ResultadoFinal.AreaConhecimentoId
+  to: AreaConhecimento.Id
+- fk: FK_ResultadoFinal_HistoricoSerie
+  from: ResultadoFinal.HistoricoSerieId
+  to: HistoricoSerie.Id
+- fk: FK_ResultadoFinal_TipoComponenteCurricular
+  from: ResultadoFinal.TipoComponenteCurricularId
+  to: TipoComponenteCurricular.Id
 - fk: FK_Resumo_Assunto
   from: Resumo.Assunto
   to: Assunto.Id
@@ -5015,14 +5630,53 @@ relations:
 - fk: FK_Resumo_Segmento
   from: Resumo.Segmento
   to: Segmento.Id
+- fk: FK_RetentativaCorrecaoIAPendente_Corretor
+  from: RetentativaCorrecaoIAPendente.Corretor
+  to: Usuario.Id
+- fk: FK_RetentativaCorrecaoIAPendente_EnvioLeituraCartao
+  from: RetentativaCorrecaoIAPendente.EnvioLeituraCartao
+  to: EnvioLeituraCartao.Id
+- fk: FK_RetentativaCorrecaoIAPendente_Redacao
+  from: RetentativaCorrecaoIAPendente.Redacao
+  to: Redacao.Id
+- fk: FK_ReversaoHoraAulaLogAcaoImpactadaItem_Log
+  from: ReversaoHoraAulaLogAcaoImpactadaItem.ReversaoHoraAulaLog
+  to: ReversaoHoraAulaLog.Id
+- fk: FK_RevisaoComentario_AvaliacaoDisciplina
+  from: RevisaoComentario.AvaliacaoDisciplina
+  to: AvaliacaoDisciplina.Id
+- fk: FK_RevisaoComentario_QuestaoAfirmativa
+  from: RevisaoComentario.QuestaoAfirmativa
+  to: QuestaoAfirmativa.Id
+- fk: FK_RevisaoComentario_QuestaoAlternativa
+  from: RevisaoComentario.QuestaoAlternativa
+  to: QuestaoAlternativa.Id
+- fk: FK_RevisaoComentario_QuestaoCampo
+  from: RevisaoComentario.QuestaoCampo
+  to: QuestaoCampo.Id
+- fk: FK_RevisaoComentario_QuestaoImagem
+  from: RevisaoComentario.QuestaoImagem
+  to: QuestaoImagem.Id
+- fk: FK_RevisaoComentario_QuestaoVersao
+  from: RevisaoComentario.QuestaoVersao
+  to: QuestaoVersao.Id
+- fk: FK_RevisaoComentario_RevisaoComentarioStatus
+  from: RevisaoComentario.RevisaoComentarioStatus
+  to: RevisaoComentarioStatus.Id
+- fk: FK_RevisaoComentarioResposta_RevisaoComentario
+  from: RevisaoComentarioResposta.RevisaoComentario
+  to: RevisaoComentario.Id
 - fk: FK_Segmento.SegmentoBase
   from: Segmento.SegmentoBase
   to: Segmento.Id
+- fk: FK_Folha.SegmentoExcluidoHoraDisponivel.RegraCalculoAuxiliar
+  from: SegmentoExcluidoHoraDisponivel.RegraCalculoAuxiliar
+  to: RegraCalculoAuxiliar.Id
+- fk: FK_Folha.SegmentoExcluidoHoraDisponivel.SegmentoPagamento
+  from: SegmentoExcluidoHoraDisponivel.SegmentoPagamento
+  to: SegmentoPagamento.Id
 - fk: FK_Folha.SegmentoPagamento.RedePagamento
   from: SegmentoPagamento.RedePagamento
-  to: RedePagamento.Id
-- fk: FK_Folha.SegmentoSindical.RedePagamento
-  from: SegmentoSindical.RedePagamento
   to: RedePagamento.Id
 - fk: FK_SemestreEletiva.Serie
   from: SemestreEletiva.Serie
@@ -5054,6 +5708,9 @@ relations:
 - fk: FK_Serie.SerieBase
   from: Serie.SerieBase
   to: Serie.Id
+- fk: FK_Serie_Segmento
+  from: Serie.Segmento
+  to: Segmento.Id
 - fk: FK_SerieBolsao.Serie
   from: SerieBolsao.Serie
   to: Serie.Id
@@ -5198,6 +5855,9 @@ relations:
 - fk: FK_Tags_Tag_Tag_Id
   from: Tags.Tag
   to: Tag.Id
+- fk: FK_Notas_TemplateEmail_Funcionalidade
+  from: TemplateEmail.Funcionalidade
+  to: Funcionalidade.Id
 - fk: FK_TemplateEmail.Rede
   from: TemplateEmail.Rede
   to: Rede.Id
@@ -5252,6 +5912,21 @@ relations:
 - fk: FK__TermosDeUs__Rede__69C7AAE7
   from: TermosDeUsoRedePerfil.Rede
   to: Rede.Id
+- fk: FK_TextoBase_AreaDisciplina
+  from: TextoBase.AreaDisciplina
+  to: AreaDisciplina.Id
+- fk: FK_TextoBase_AvaliacaoDisciplinaOrigem
+  from: TextoBase.AvaliacaoDisciplinaOrigem
+  to: AvaliacaoDisciplina.Id
+- fk: FK_TextoBase_Serie
+  from: TextoBase.Serie
+  to: Serie.Id
+- fk: FK_TextoBase_TextoBaseAnterior
+  from: TextoBase.TextoBaseAnterior
+  to: TextoBase.Id
+- fk: FK_TextoBaseImagem_TextoBase
+  from: TextoBaseImagem.TextoBase
+  to: TextoBase.Id
 - fk: FK_Ticket_Produto
   from: Ticket.Produto
   to: Produto.Id
@@ -5297,6 +5972,12 @@ relations:
 - fk: FK_TipoAvaliacao.TipoCartaoResposta
   from: TipoAvaliacao.TipoCartaoResposta
   to: TipoCartaoResposta.Id
+- fk: FK_TipoAvaliacao_Matriz
+  from: TipoAvaliacao.Matriz
+  to: Matriz.Id
+- fk: FK_TipoAvaliacao_TipoAvaliacaoBase
+  from: TipoAvaliacao.TipoAvaliacaoBase
+  to: TipoAvaliacao.Id
 - fk: FK_TipoCartaoRespostaSomatorioAlternativa.TipoCartaoResposta
   from: TipoCartaoRespostaSomatorioAlternativa.TipoCartaoResposta
   to: TipoCartaoResposta.Id
@@ -5330,6 +6011,9 @@ relations:
 - fk: FK_TipoDocumento.GrupoDocumento
   from: TipoDocumento.GrupoDocumento
   to: GrupoDocumento.Id
+- fk: FK_TipoErroCadastro_TipoErroResponsavel
+  from: TipoErroCadastro.TipoErroResponsavel
+  to: TipoErroResponsavel.Id
 - fk: FK_Folha.TipoEvento.RedePagamento
   from: TipoEvento.RedePagamento
   to: RedePagamento.Id
@@ -5339,6 +6023,12 @@ relations:
 - fk: FK_Folha.TipoEvento.TipoPagamento
   from: TipoEvento.TipoPagamento
   to: TipoPagamento.Id
+- fk: FK_TipoMenu.PerfilAcesso
+  from: TipoMenu.PerfilAcesso
+  to: PerfilAcesso.Id
+- fk: FK_TipoMenu.TipoRede
+  from: TipoMenu.TipoRede
+  to: TipoRede.Id
 - fk: FK_TipoNotaFormativa.GrupoNotaFormativa
   from: TipoNotaFormativa.GrupoNotaFormativa
   to: GrupoNotaFormativa.Id
@@ -5348,6 +6038,15 @@ relations:
 - fk: FK_TipoOcorrencia.Rede
   from: TipoOcorrencia.Rede
   to: TipoOcorrencia.Id
+- fk: FK_TipoOcorrencia.Segmento
+  from: TipoOcorrencia.Segmento
+  to: Segmento.Id
+- fk: FK_TipoPresencaAprovacaoAutomatica_Rede
+  from: TipoPresencaAprovacaoAutomatica.Rede
+  to: Rede.Id
+- fk: FK_TipoPresencaAprovacaoAutomatica_TipoPresenca
+  from: TipoPresencaAprovacaoAutomatica.TipoPresenca
+  to: TipoPresenca.Id
 - fk: FK_TipoPublicoAtendidoPorTipoRede.TipoPublicoAtendido
   from: TipoPublicoAtendidoPorTipoRede.TipoPublicoAtendido
   to: TipoPublicoAtendido.Id

@@ -2,6 +2,18 @@
 
 > Ver [`../readme.md`](../readme.md) e [`../frontend.md`](../frontend.md) para contexto geral.
 
+## ⚠️ Refactor de schema concluído (2026-10-23) — descrição abaixo desatualizada
+
+O schema descrito logo abaixo (`ConfiguracaoRedeDocumentacaoPedagogica` com colunas por documento +
+`ConfiguracaoCertificadoConclusaoDocumentacaoPedagogica` separada + `ConfiguracaoEscolaDocumentacaoPedagogica`
+compartilhada) **foi substituído** por um modelo normalizado: tabela `TipoDocumentoDocPed` (lookup) +
+tabelas cruzadas `RedeDocumentoConfiguracao` e `EscolaDocumentoConfiguracao` (Rede/Escola ×
+TipoDocumento, config em JSON). Backend, frontend e testes já reescritos contra o novo desenho — ver
+`../backend.md`, seção "Implementação (2026-10-23) — concluída", para o detalhe completo (arquivos
+tocados, achados durante a implementação, scripts SQL ainda não executados). **O restante deste card,
+abaixo, descreve o estado anterior ao refactor** (schema/endpoints/contrato antigos) — mantido como
+histórico, não reflete mais o código atual.
+
 ## Status: frontend + backend implementados, plugado, schema + dado rodados
 
 Tudo em `estrutura-pedagogica`, branch `projetos/MigracaoDocPed`.
